@@ -6,11 +6,11 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-version = mod_version
+version = "Forge-${minecraft_version}-v"+mod_version+"-Beta"
 group = mod_group_id
 
 base {
-    archivesName = mod_id
+    archivesName = "OverpoweredTechnology"
 }
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -184,16 +184,16 @@ dependencies {
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"
     // at runtime, use the full JEI jar
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
     compileOnly "curse.maven:projecte-226410:4901951" // Click additional files, then mouse over the link and it displays the file ID
-    runtimeOnly "curse.maven:projecte-226410:4901949"
+    runtimeOnly fg.deobf("curse.maven:projecte-226410:4901949")
 
     compileOnly "appeng:appliedenergistics2-forge:${applied_energistics_version}:api"
     // runtimeOnly "appeng:appliedenergistics2-forge:${applied_energistics_version}"
 
     compileOnly "top.theillusivec4.curios:curios-forge:${curios_version}+${minecraft_version}:api"
-    runtimeOnly "top.theillusivec4.curios:curios-forge:${curios_version}+${minecraft_version}"
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}+${minecraft_version}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
