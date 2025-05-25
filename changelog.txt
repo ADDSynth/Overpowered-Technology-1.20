@@ -1,3 +1,7 @@
+version 6 - TBD
+
+
+
 v1.5.3 - TBD
 NEW:
   Some vanilla items can now be found in the ADDSynth Materials Creative Tab.
