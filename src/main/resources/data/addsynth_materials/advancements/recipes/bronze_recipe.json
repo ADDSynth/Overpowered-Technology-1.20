@@ -1,0 +1,54 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "tin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/tin"
+          }
+        ]
+      }
+    },
+    "copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/copper"
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "addsynth_materials:bronze"
+      }
+    },
+    "has_bronze": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/bronze"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tin",
+      "copper",
+      "has_recipe",
+      "has_bronze"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:bronze"
+    ]
+  }
+}

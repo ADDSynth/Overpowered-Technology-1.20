@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable_with_bottom",
+  "textures": {
+    "front":  "overpowered:block/machines/plasma_generator/plasma_generator_front",
+    "bottom": "overpowered:block/machines/default_machine_texture",
+    "top":    "overpowered:block/machines/top_texture2",
+    "side":   "overpowered:block/machines/plasma_generator/plasma_generator_side"
+  }
+}

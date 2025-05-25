@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "overpowered:block/lasers/orange_laser_beam"
+	},
+    "render_type": "translucent"
+}

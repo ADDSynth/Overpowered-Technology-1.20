@@ -1,0 +1,97 @@
+{
+  "parent": "overpowered:recipes/root",
+  "criteria": {
+    "energy_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered:energy_crystal"
+            ]
+          }
+        ]
+      }
+    },
+    "silver_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:plates/silver"
+          }
+        ]
+      }
+    },
+    "matter_energy_transformer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered:matter_energy_transformer"
+            ]
+          }
+        ]
+      }
+    },
+    "circuit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "addsynth_energy:circuit_tier_5"
+            ]
+          }
+        ]
+      }
+    },
+    "vacuum_container": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered:vacuum_container"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered:energy_extractor"
+      }
+    },
+    "has_machine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered:energy_extractor"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "energy_crystal",
+      "silver_plate",
+      "matter_energy_transformer",
+      "circuit",
+      "vacuum_container",
+      "has_recipe",
+      "has_machine"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered:energy_extractor"
+    ]
+  }
+}

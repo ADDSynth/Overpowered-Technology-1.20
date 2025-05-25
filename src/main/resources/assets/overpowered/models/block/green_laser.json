@@ -1,0 +1,7 @@
+{
+  "parent": "overpowered:block/laser_cannon",
+   "textures": {
+    "laser_side": "overpowered:block/lasers/green_laser_side",
+    "laser_front": "overpowered:block/lasers/green_laser_front"
+  }
+}

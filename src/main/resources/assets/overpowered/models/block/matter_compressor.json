@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "particle": "overpowered:block/machines/matter_compressor",
+        "bottom":   "overpowered:block/machines/dark_bottom_texture",
+        "top":      "overpowered:block/machines/dark_top_texture",
+        "side":     "overpowered:block/machines/matter_compressor"
+    }
+}

@@ -1,0 +1,36 @@
+package addsynth.core.gameplay;
+
+import addsynth.core.ADDSynthCore;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+
+public final class CreativeTab {
+
+  public static final void register(){
+    final ResourceLocation id = ResourceLocation.fromNamespaceAndPath(ADDSynthCore.MOD_ID, "creative_tab");
+    final ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, id);
+    final CreativeModeTab creative_tab = CreativeModeTab.builder()
+      .title(Component.literal(ADDSynthCore.NAME))
+      .icon(() -> new ItemStack(Item.BY_BLOCK.get(Core.caution_block.get())))
+      .displayItems((displayParameters, output) -> {
+        output.accept(Core.caution_block.get());
+        output.accept(Core.music_box.get());
+        output.accept(Core.music_sheet.get());
+        output.accept(Core.team_manager.get());
+        output.accept(Trophy.trophy_base.get());
+        output.accept(Trophy.bronze.get());
+        output.accept(Trophy.silver.get());
+        output.accept(Trophy.gold.get());
+        output.accept(Trophy.platinum.get());
+      }).build();
+    Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, creative_tab);
+  }
+
+}

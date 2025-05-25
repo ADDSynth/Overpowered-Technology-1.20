@@ -1,0 +1,20 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "addsynth_materials:ore_ruby",
+    "addsynth_materials:ore_topaz",
+    "addsynth_materials:ore_citrine",
+    "addsynth_materials:ore_emerald",
+    "addsynth_materials:ore_sapphire",
+    "addsynth_materials:ore_amethyst",
+    "addsynth_materials:ore_tin",
+    "addsynth_materials:ore_aluminum",
+    "addsynth_materials:ore_silver",
+    "addsynth_materials:ore_titanium",
+    "addsynth_materials:ore_platinum",
+    "addsynth_materials:ore_silicon",
+    "addsynth_materials:ore_rose_quartz"
+  ],
+  "step": "underground_ores"
+}

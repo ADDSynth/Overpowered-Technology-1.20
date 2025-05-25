@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "overpowered:item/emitters/matter_energy_transformer"
+  }
+}
