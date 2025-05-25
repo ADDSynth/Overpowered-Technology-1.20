@@ -1,7 +1,7 @@
 package addsynth.overpoweredmod.machines.identifier;
 
-import java.util.function.Predicate;
 import javax.annotation.Nullable;
+import addsynth.core.game.inventory.filter.TypeFilter;
 import addsynth.core.game.item.ItemUtil;
 import addsynth.core.util.game.data.AdvancementUtil;
 import addsynth.core.util.player.PlayerUtil;
@@ -21,16 +21,12 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TileIdentifier extends TileStandardWorkMachine implements MenuProvider {
 
-  private static final Predicate<ItemStack> filter = (ItemStack stack) -> {
-    final Item item = stack.getItem();
-    return item instanceof UnidentifiedItem;
-  };
+  private static final TypeFilter filter = new TypeFilter(UnidentifiedItem.class);
 
   public TileIdentifier(BlockPos position, BlockState blockstate){
     super(Tiles.IDENTIFIER.get(), position, blockstate, 1, filter, 1, MachineValues.identifier);

@@ -1,10 +1,10 @@
 package addsynth.overpoweredmod.machines.suspension_bridge;
 
-import java.util.function.Predicate;
 import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.IBlockNetworkUser;
 import addsynth.core.game.inventory.SlotData;
+import addsynth.core.game.inventory.filter.TypeFilter;
 import addsynth.core.gameplay.reference.ADDSynthCoreText;
 import addsynth.core.util.constants.DirectionConstant;
 import addsynth.core.util.game.redstone.RedstoneDetector;
@@ -19,16 +19,12 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TileSuspensionBridge extends TileBasicMachine implements IBlockNetworkUser<BridgeNetwork>, MenuProvider {
 
-  private static final Predicate<ItemStack> filter = (ItemStack stack) -> {
-    final Item item = stack.getItem();
-    return item instanceof LensItem;
-  };
+  private static final TypeFilter filter = new TypeFilter(LensItem.class);
   private static final SlotData[] slot_data = {new SlotData(filter, 1)};
 
   private BridgeNetwork network;
