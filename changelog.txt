@@ -45,6 +45,8 @@ FIXED:
     meaning you will not take any damage from Lasers if you are immune to fire.
   We now have a translated death message if you died from a Laser.
   Fixed not dropping custom mob loot for the Zombified Piglin, ever since the ID changed in Minecraft 1.16.
+  Fixed ADDSynthCore Dump Map Colors config option not printing blocks in the text file,
+    and added the new Map Colors that were added in Minecraft 1.17.
 
 
 
