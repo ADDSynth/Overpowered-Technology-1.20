@@ -77,4 +77,44 @@ public final class MaterialTag {
     public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/titanium"));
   }
 
+  public static class LEAD {
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/lead"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/lead"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/lead"));
+  }
+
+  public static class NICKEL {
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/nickel"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/nickel"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/nickel"));
+  }
+
+  public static class ZINC {
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/zinc"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/zinc"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/zinc"));
+  }
+
+  public static class COBALT {
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/cobalt"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/cobalt"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/cobalt"));
+  }
+
+  public static class NEODYMIUM {
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/neodymium"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/neodymium"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/neodymium"));
+  }
+
+  public static class BRASS {
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/brass"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/brass"));
+  }
+
+  public static class INVAR {
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/invar"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/invar"));
+  }
+
 }

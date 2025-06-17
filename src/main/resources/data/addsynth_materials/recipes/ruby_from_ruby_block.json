@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "ruby",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/ruby"
+    }
+  ],
+  "result": {
+    "item": "addsynth_materials:ruby",
+    "count": 9
+  }
+}

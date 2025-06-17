@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "brass_ingot",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/brass"
+    }
+  ],
+  "result": {
+    "item": "addsynth_materials:brass_ingot",
+    "count": 9
+  }
+}

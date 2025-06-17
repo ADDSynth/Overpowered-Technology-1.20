@@ -14,7 +14,10 @@
   },
   "rewards": {
     "recipes": [
-      "addsynth_materials:tin_smelting"
+      "addsynth_materials:tin_ingot_from_smelting_tin_ore",
+      "addsynth_materials:tin_ingot_from_smelting_deepslate_tin_ore",
+      "addsynth_materials:tin_ingot_from_blasting_tin_ore",
+      "addsynth_materials:tin_ingot_from_blasting_deepslate_tin_ore"
     ]
   }
 }

@@ -14,7 +14,10 @@
   },
   "rewards": {
     "recipes": [
-      "addsynth_materials:titanium_smelting"
+      "addsynth_materials:titanium_ingot_from_smelting_titanium_ore",
+      "addsynth_materials:titanium_ingot_from_smelting_deepslate_titanium_ore",
+      "addsynth_materials:titanium_ingot_from_blasting_titanium_ore",
+      "addsynth_materials:titanium_ingot_from_blasting_deepslate_titanium_ore"
     ]
   }
 }

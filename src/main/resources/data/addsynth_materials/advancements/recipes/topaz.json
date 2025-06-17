@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:topaz",
+      "addsynth_materials:topaz_from_topaz_block",
       "addsynth_materials:topaz_block"
     ]
   }

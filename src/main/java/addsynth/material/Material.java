@@ -84,14 +84,15 @@ public final class Material {
   }
 
   public static final class AMETHYST {
-    public static final Item   gem = Items.AMETHYST_SHARD;
+    public static final Item    gem = Items.AMETHYST_SHARD;
     public static final Block block = Blocks.AMETHYST_BLOCK;
-    public static final RegistryObject<Block> ore = RegistryObject.create(Names.AMETHYST_ORE, ForgeRegistries.BLOCKS);
+    public static final RegistryObject<Block>           ore = RegistryObject.create(Names.AMETHYST_ORE, ForgeRegistries.BLOCKS);
+    public static final RegistryObject<Block> deepslate_ore = RegistryObject.create(Names.DEEPSLATE_AMETHYST_ORE, ForgeRegistries.BLOCKS);
   }
 
   // Gems
   // public static final Gem AMBER       = new Gem("amber",       MapColor.COLOR_ORANGE);
-  public static final Gem CITRINE     = new Gem("citrine",     MapColor.COLOR_YELLOW);
+  public static final Gem CITRINE     = new Gem("citrine",     MapColor.GOLD);
   // public static final Gem MALACHITE   = new Gem("malachite",   MapColor.DIAMOND);
   // public static final Gem PERIDOT     = new Gem("peridot",     MapColor.GRASS);
   public static final Gem RUBY        = new Gem("ruby",        MapColor.FIRE);
@@ -111,35 +112,36 @@ public final class Material {
   */
   
   // Common Metals
-  public static final Metal ALUMINUM = new Metal("aluminum", MapColor.ICE);
-  // public static final CustomMetal LEAD     = new CustomMetal("lead",     MapColor.STONE);
-  // public static final CustomMetal NICKEL   = new CustomMetal("nickel",   MapColor.METAL);
-  public static final Metal TIN      = new Metal("tin",      MapColor.METAL);
-  // public static final CustomMetal ZINC     = new CustomMetal("zinc",     MapColor.METAL);
+  public static final Metal ALUMINUM = new Metal("aluminum", MapColor.DIAMOND);
+  public static final Metal LEAD     = new Metal("lead",     MapColor.COLOR_GRAY);
+  public static final Metal NICKEL   = new Metal("nickel",   MapColor.SAND);
+  public static final Metal TIN      = new Metal("tin",      MapColor.WOOL);
+  public static final Metal ZINC     = new Metal("zinc",     MapColor.METAL);
 
   // Uncommon Metals
   public static final Metal SILVER   = new Metal("silver",   MapColor.WOOL);
-  // public static final CustomMetal COBALT   = new CustomMetal("cobalt",   MapColor.COLOR_BLUE);
+  public static final Metal COBALT   = new Metal("cobalt",   MapColor.COLOR_LIGHT_BLUE);
 
   // Rare Metals
-  public static final Metal PLATINUM = new Metal("platinum", MapColor.ICE);
-  public static final Metal TITANIUM = new Metal("titanium", MapColor.SNOW);
+  public static final Metal PLATINUM  = new Metal("platinum", MapColor.ICE);
+  public static final Metal TITANIUM  = new Metal("titanium", MapColor.SNOW);
+  public static final Metal NEODYMIUM = new Metal("neodymium", MapColor.TERRACOTTA_WHITE);
 
   // Metal Alloys
   /** Metal alloy of Copper and Zinc. Generally 2 parts Copper, 1 part Zinc.
    *  Used in applications where corrosion resistance and low friction is required, such as door hinges and gears. */
-  // public static final ManufacturedMetal BRASS    = new ManufacturedMetal("brass",  MapColor.COLOR_YELLOW);
+  public static final MetalAlloy BRASS    = new MetalAlloy("brass",  MapColor.GOLD);
 
   /** Metal alloy of Tin and Copper. Stronger and more durable than Copper alone. */
-  public static final MetalAlloy BRONZE   = new MetalAlloy("bronze", MapColor.COLOR_ORANGE);
+  public static final MetalAlloy BRONZE   = new MetalAlloy("bronze", MapColor.RAW_IRON);
 
   /** Metal alloy of Iron and Nickel. Known for its strong resistance to heat expansion.
    *  Has a simplified Nickel:Iron ratio of 3:5 or 1:2. */
-  // public static final ManufacturedMetal INVAR    = new ManufacturedMetal("invar",  MapColor.SAND);
+  public static final MetalAlloy INVAR    = new MetalAlloy("invar",  MapColor.SAND);
 
   // Now that I have the MaterialsCompat.SteelModAbsent() function, I could prevent registering Steel if I wanted to.
   /** An advanced version of Iron. Metal alloy of Iron with a very small amount of Carbon. */
-  public static final MetalAlloy STEEL    = new MetalAlloy("steel",  MapColor.COLOR_GRAY);
+  public static final MetalAlloy STEEL    = new MetalAlloy("steel",  MapColor.STONE);
   
   // Other Materials
   public static final SimpleMaterial SILICON   = new SimpleMaterial("silicon",   MapColor.COLOR_GRAY, 0, 0);

@@ -14,7 +14,10 @@
   },
   "rewards": {
     "recipes": [
-      "addsynth_materials:amethyst_smelting"
+      "addsynth_materials:amethyst_shard_from_smelting_amethyst_ore",
+      "addsynth_materials:amethyst_shard_from_smelting_deepslate_amethyst_ore",
+      "addsynth_materials:amethyst_shard_from_blasting_amethyst_ore",
+      "addsynth_materials:amethyst_shard_from_blasting_deepslate_amethyst_ore"
     ]
   }
 }

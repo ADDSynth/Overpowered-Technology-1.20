@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "addsynth_materials:topaz_ore"
+    "addsynth_materials:topaz_ore",
+    "addsynth_materials:deepslate_topaz_ore"
   ]
 }

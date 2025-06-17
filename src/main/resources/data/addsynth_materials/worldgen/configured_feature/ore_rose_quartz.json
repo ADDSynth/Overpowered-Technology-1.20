@@ -13,7 +13,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:rose_quartz_ore"
+          "Name": "addsynth_materials:deepslate_rose_quartz_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

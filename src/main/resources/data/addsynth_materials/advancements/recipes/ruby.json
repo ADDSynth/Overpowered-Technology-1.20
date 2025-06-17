@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:ruby",
+      "addsynth_materials:ruby_from_ruby_block",
       "addsynth_materials:ruby_block"
     ]
   }

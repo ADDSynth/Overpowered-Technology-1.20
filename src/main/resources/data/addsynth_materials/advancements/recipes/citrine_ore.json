@@ -14,7 +14,10 @@
   },
   "rewards": {
     "recipes": [
-      "addsynth_materials:citrine_smelting"
+      "addsynth_materials:citrine_from_smelting_citrine_ore",
+      "addsynth_materials:citrine_from_smelting_deepslate_citrine_ore",
+      "addsynth_materials:citrine_from_blasting_citrine_ore",
+      "addsynth_materials:citrine_from_blasting_deepslate_citrine_ore"
     ]
   }
 }

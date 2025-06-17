@@ -1,0 +1,23 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "has_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ores/lead"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:lead_ingot_from_smelting_lead_ore",
+      "addsynth_materials:lead_ingot_from_smelting_deepslate_lead_ore",
+      "addsynth_materials:lead_ingot_from_blasting_lead_ore",
+      "addsynth_materials:lead_ingot_from_blasting_deepslate_lead_ore"
+    ]
+  }
+}

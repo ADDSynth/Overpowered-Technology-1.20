@@ -14,7 +14,10 @@
   },
   "rewards": {
     "recipes": [
-      "addsynth_materials:ruby_smelting"
+      "addsynth_materials:ruby_from_smelting_ruby_ore",
+      "addsynth_materials:ruby_from_smelting_deepslate_ruby_ore",
+      "addsynth_materials:ruby_from_blasting_ruby_ore",
+      "addsynth_materials:ruby_from_blasting_deepslate_ruby_ore"
     ]
   }
 }

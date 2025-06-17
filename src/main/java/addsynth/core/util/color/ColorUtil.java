@@ -3,7 +3,6 @@ package addsynth.core.util.color;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import addsynth.core.ADDSynthCore;
@@ -11,7 +10,6 @@ import addsynth.core.util.java.FileUtil;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -91,6 +89,9 @@ public final class ColorUtil {
     .put(MapColor.WARPED_STEM,            "MapColor.WARPED_STEM")
     .put(MapColor.WARPED_HYPHAE,          "MapColor.WARPED_HYPHAE")
     .put(MapColor.WARPED_WART_BLOCK,      "MapColor.WARPED_WART_BLOCK")
+    .put(MapColor.DEEPSLATE,              "MapColor.DEEPSLATE")
+    .put(MapColor.RAW_IRON,               "MapColor.RAW_IRON")
+    .put(MapColor.GLOW_LICHEN,            "MapColor.GLOW_LICHEN")
     .build();
 
   private static final class ColorSet implements Comparable<ColorSet> {
@@ -239,17 +240,11 @@ public final class ColorUtil {
   }
 
   public static final Block[] get_blocks_that_match_color(final MapColor test_color){
-    final ArrayList<Block> blocks = new ArrayList<>(200);
-    try{
-      final Field field = ObfuscationReflectionHelper.findField(Block.class, "field_181083_K");
-      for(Block block : ForgeRegistries.BLOCKS){
-        if(test_color == (MapColor)field.get(block)){
-          blocks.add(block);
-        }
+    final ArrayList<Block> blocks = new ArrayList<>(500);
+    for(final Block block : ForgeRegistries.BLOCKS){
+      if(block.defaultMapColor() == test_color){
+        blocks.add(block);
       }
-    }
-    catch(Exception e){
-      System.err.println(e.toString());
     }
     return blocks.toArray(new Block[blocks.size()]);
   }

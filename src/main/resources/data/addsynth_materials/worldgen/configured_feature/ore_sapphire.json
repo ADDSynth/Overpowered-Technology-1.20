@@ -13,7 +13,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:sapphire_ore"
+          "Name": "addsynth_materials:deepslate_sapphire_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

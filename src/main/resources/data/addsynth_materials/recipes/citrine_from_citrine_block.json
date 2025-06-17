@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "citrine",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/citrine"
+    }
+  ],
+  "result": {
+    "item": "addsynth_materials:citrine",
+    "count": 9
+  }
+}

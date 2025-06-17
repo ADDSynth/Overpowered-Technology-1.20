@@ -20,12 +20,14 @@ public final class Gem {
   public final RegistryObject<Item>  gem;
   public final RegistryObject<Block> block;
   public final RegistryObject<Block> ore;
+  public final RegistryObject<Block> deepslate_ore;
   
   public Gem(final String name, final MapColor block_color){
     this.block_color = block_color;
-      gem = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name), ForgeRegistries.ITEMS);
-    block = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_block"), ForgeRegistries.BLOCKS);
-      ore = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_ore"), ForgeRegistries.BLOCKS);
+              gem = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name), ForgeRegistries.ITEMS);
+            block = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_block"), ForgeRegistries.BLOCKS);
+              ore = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_ore"), ForgeRegistries.BLOCKS);
+    deepslate_ore = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, "deepslate_"+name+"_ore"), ForgeRegistries.BLOCKS);
   }
 
   public final void registerGem(final IForgeRegistry<Item> registry){
@@ -41,15 +43,21 @@ public final class Gem {
   }
 
   public final void registerOre(final IForgeRegistry<Block> registry){
-    registry.register(ore.getId(), getOreBlock());
+    registry.register(          ore.getId(), getOreBlock());
+    registry.register(deepslate_ore.getId(), getDeepslateOreBlock());
   }
 
   public final void registerOreItem(final IForgeRegistry<Item> registry){
-    registry.register(ore.getId(), new BlockItem(ore.get(), new Item.Properties()));
+    registry.register(          ore.getId(), new BlockItem(          ore.get(), new Item.Properties()));
+    registry.register(deepslate_ore.getId(), new BlockItem(deepslate_ore.get(), new Item.Properties()));
   }
 
   public static final Block getOreBlock(){
-    return new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).requiresCorrectToolForDrops().strength(3.0f, 3.0f), UniformInt.of(3, 7));
+    return new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(3.0f, 3.0f), UniformInt.of(3, 7));
+  }
+
+  public static final Block getDeepslateOreBlock(){
+    return new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops().strength(4.5f, 3.0f), UniformInt.of(3, 7));
   }
 
 }

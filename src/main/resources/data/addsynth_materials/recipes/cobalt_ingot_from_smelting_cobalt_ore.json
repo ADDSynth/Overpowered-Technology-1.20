@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "cobalt_ingot",
+  "ingredient": {
+    "item": "addsynth_materials:cobalt_ore"
+  },
+  "result": "addsynth_materials:cobalt_ingot"
+}

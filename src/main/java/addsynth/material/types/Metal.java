@@ -18,14 +18,16 @@ public final class Metal {
   public final RegistryObject<Item>  ingot;
   public final RegistryObject<Block> block;
   public final RegistryObject<Block> ore;
+  public final RegistryObject<Block> deepslate_ore;
   public final RegistryObject<Item>  plate;
   
   public Metal(final String name, final MapColor block_color){
     this.block_color = block_color;
-    ingot = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_ingot"), ForgeRegistries.ITEMS);
-    block = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_block"), ForgeRegistries.BLOCKS);
-      ore = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_ore"), ForgeRegistries.BLOCKS);
-    plate = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_plate"), ForgeRegistries.ITEMS);
+            ingot = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_ingot"), ForgeRegistries.ITEMS);
+            block = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_block"), ForgeRegistries.BLOCKS);
+              ore = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_ore"), ForgeRegistries.BLOCKS);
+    deepslate_ore = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, "deepslate_"+name+"_ore"), ForgeRegistries.BLOCKS);
+            plate = RegistryObject.create(ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, name+"_plate"), ForgeRegistries.ITEMS);
   }
 
   public final void registerIngot(final IForgeRegistry<Item> registry){
@@ -41,11 +43,13 @@ public final class Metal {
   }
 
   public final void registerOre(final IForgeRegistry<Block> registry){
-    registry.register(ore.getId(), new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
+    registry.register(          ore.getId(), new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
+    registry.register(deepslate_ore.getId(), new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops().strength(4.5F, 3.0F)));
   }
 
   public final void registerOreItem(final IForgeRegistry<Item> registry){
-    registry.register(ore.getId(), new BlockItem(ore.get(), new Item.Properties()));
+    registry.register(          ore.getId(), new BlockItem(          ore.get(), new Item.Properties()));
+    registry.register(deepslate_ore.getId(), new BlockItem(deepslate_ore.get(), new Item.Properties()));
   }
 
   public final void registerPlate(final IForgeRegistry<Item> registry){

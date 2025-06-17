@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "topaz",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/topaz"
+    }
+  ],
+  "result": {
+    "item": "addsynth_materials:topaz",
+    "count": 9
+  }
+}

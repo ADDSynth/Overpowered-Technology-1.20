@@ -14,7 +14,10 @@
   },
   "rewards": {
     "recipes": [
-      "addsynth_materials:aluminum_smelting"
+      "addsynth_materials:aluminum_ingot_from_smelting_aluminum_ore",
+      "addsynth_materials:aluminum_ingot_from_smelting_deepslate_aluminum_ore",
+      "addsynth_materials:aluminum_ingot_from_blasting_aluminum_ore",
+      "addsynth_materials:aluminum_ingot_from_blasting_deepslate_aluminum_ore"
     ]
   }
 }

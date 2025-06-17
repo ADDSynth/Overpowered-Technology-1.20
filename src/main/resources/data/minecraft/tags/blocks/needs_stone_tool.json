@@ -3,7 +3,18 @@
   "values": [
     "addsynth_materials:tin_block",
     "addsynth_materials:aluminum_block",
+    "addsynth_materials:lead_block",
+    "addsynth_materials:nickel_block",
+    "addsynth_materials:zinc_block",
     "addsynth_materials:tin_ore",
-    "addsynth_materials:aluminum_ore"
+    "addsynth_materials:aluminum_ore",
+    "addsynth_materials:lead_ore",
+    "addsynth_materials:nickel_ore",
+    "addsynth_materials:zinc_ore",
+    "addsynth_materials:deepslate_tin_ore",
+    "addsynth_materials:deepslate_aluminum_ore",
+    "addsynth_materials:deepslate_lead_ore",
+    "addsynth_materials:deepslate_nickel_ore",
+    "addsynth_materials:deepslate_zinc_ore"
   ]
 }

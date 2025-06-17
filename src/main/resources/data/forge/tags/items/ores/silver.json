@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "addsynth_materials:silver_ore"
+    "addsynth_materials:silver_ore",
+    "addsynth_materials:deepslate_silver_ore"
   ]
 }

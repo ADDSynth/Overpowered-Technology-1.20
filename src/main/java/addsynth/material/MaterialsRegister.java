@@ -34,19 +34,31 @@ public final class MaterialsRegister {
       // metal blocks
       Material.TIN.registerBlock(registry);
       Material.ALUMINUM.registerBlock(registry);
+      Material.LEAD.registerBlock(registry);
+      Material.NICKEL.registerBlock(registry);
+      Material.ZINC.registerBlock(registry);
       Material.SILVER.registerBlock(registry);
+      Material.COBALT.registerBlock(registry);
       Material.PLATINUM.registerBlock(registry);
       Material.TITANIUM.registerBlock(registry);
+      Material.NEODYMIUM.registerBlock(registry);
       Material.STEEL.registerBlock(registry);
       Material.BRONZE.registerBlock(registry);
+      Material.BRASS.registerBlock(registry);
+      Material.INVAR.registerBlock(registry);
       
       // metal ores
       Material.TIN.registerOre(registry);
       Material.ALUMINUM.registerOre(registry);
+      Material.LEAD.registerOre(registry);
+      Material.NICKEL.registerOre(registry);
+      Material.ZINC.registerOre(registry);
       Material.SILVER.registerOre(registry);
+      Material.COBALT.registerOre(registry);
       Material.PLATINUM.registerOre(registry);
       Material.TITANIUM.registerOre(registry);
-      
+      Material.NEODYMIUM.registerOre(registry);
+
       // gem blocks
       Material.RUBY.registerBlock(registry);
       Material.TOPAZ.registerBlock(registry);
@@ -59,6 +71,7 @@ public final class MaterialsRegister {
       Material.CITRINE.registerOre(registry);
       Material.SAPPHIRE.registerOre(registry);
       registry.register(Names.AMETHYST_ORE, Gem.getOreBlock());
+      registry.register(Names.DEEPSLATE_AMETHYST_ORE, Gem.getDeepslateOreBlock());
 
       // other materials
       Material.SILICON.registerOre(registry);
@@ -71,27 +84,46 @@ public final class MaterialsRegister {
       // metal ingots
       Material.TIN.registerIngot(registry);
       Material.ALUMINUM.registerIngot(registry);
+      Material.LEAD.registerIngot(registry);
+      Material.NICKEL.registerIngot(registry);
+      Material.ZINC.registerIngot(registry);
       Material.SILVER.registerIngot(registry);
+      Material.COBALT.registerIngot(registry);
       Material.PLATINUM.registerIngot(registry);
       Material.TITANIUM.registerIngot(registry);
+      Material.NEODYMIUM.registerIngot(registry);
       Material.STEEL.registerIngot(registry);
       Material.BRONZE.registerIngot(registry);
+      Material.BRASS.registerIngot(registry);
+      Material.INVAR.registerIngot(registry);
 
       // metal blocks
       Material.TIN.registerBlockItem(registry);
       Material.ALUMINUM.registerBlockItem(registry);
+      Material.LEAD.registerBlockItem(registry);
+      Material.NICKEL.registerBlockItem(registry);
+      Material.ZINC.registerBlockItem(registry);
       Material.SILVER.registerBlockItem(registry);
+      Material.COBALT.registerBlockItem(registry);
       Material.PLATINUM.registerBlockItem(registry);
       Material.TITANIUM.registerBlockItem(registry);
+      Material.NEODYMIUM.registerBlockItem(registry);
       Material.STEEL.registerBlockItem(registry);
       Material.BRONZE.registerBlockItem(registry);
+      Material.BRASS.registerBlockItem(registry);
+      Material.INVAR.registerBlockItem(registry);
 
       // metal ores
       Material.TIN.registerOreItem(registry);
       Material.ALUMINUM.registerOreItem(registry);
+      Material.LEAD.registerOreItem(registry);
+      Material.NICKEL.registerOreItem(registry);
+      Material.ZINC.registerOreItem(registry);
       Material.SILVER.registerOreItem(registry);
+      Material.COBALT.registerOreItem(registry);
       Material.PLATINUM.registerOreItem(registry);
       Material.TITANIUM.registerOreItem(registry);
+      Material.NEODYMIUM.registerOreItem(registry);
 
       // metal plates
       if(Compatibility.ADDSYNTH_ENERGY.isLoaded()){
@@ -100,11 +132,18 @@ public final class MaterialsRegister {
         registry.register(Names.GOLD_PLATE,   new Item(new Item.Properties()));
         Material.TIN.registerPlate(registry);
         Material.ALUMINUM.registerPlate(registry);
+        Material.LEAD.registerPlate(registry);
+        Material.NICKEL.registerPlate(registry);
+        Material.ZINC.registerPlate(registry);
         Material.SILVER.registerPlate(registry);
+        Material.COBALT.registerPlate(registry);
         Material.PLATINUM.registerPlate(registry);
         Material.TITANIUM.registerPlate(registry);
+        Material.NEODYMIUM.registerPlate(registry);
         Material.STEEL.registerPlate(registry);
         Material.BRONZE.registerPlate(registry);
+        Material.BRASS.registerPlate(registry);
+        Material.INVAR.registerPlate(registry);
       }
 
       // gems
@@ -125,6 +164,7 @@ public final class MaterialsRegister {
       Material.CITRINE.registerOreItem(registry);
       Material.SAPPHIRE.registerOreItem(registry);
       registry.register(Names.AMETHYST_ORE, new BlockItem(Material.AMETHYST.ore.get(), new Item.Properties()));
+      registry.register(Names.DEEPSLATE_AMETHYST_ORE, new BlockItem(Material.AMETHYST.deepslate_ore.get(), new Item.Properties()));
       
       // other materials
       Material.SILICON.registerItem(registry);

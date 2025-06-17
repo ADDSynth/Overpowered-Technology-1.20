@@ -10,6 +10,10 @@
     "addsynth_materials:silver_block",
     "addsynth_materials:titanium_block",
     "addsynth_materials:platinum_block",
+    "addsynth_materials:cobalt_block",
+    "addsynth_materials:neodymium_block",
+    "addsynth_materials:brass_block",
+    "addsynth_materials:invar_block",
     "addsynth_materials:ruby_ore",
     "addsynth_materials:topaz_ore",
     "addsynth_materials:citrine_ore",
@@ -18,7 +22,19 @@
     "addsynth_materials:silver_ore",
     "addsynth_materials:titanium_ore",
     "addsynth_materials:platinum_ore",
+    "addsynth_materials:cobalt_ore",
+    "addsynth_materials:neodymium_ore",
     "addsynth_materials:rose_quartz_ore",
-    "addsynth_materials:silicon_ore"
+    "addsynth_materials:silicon_ore",
+    "addsynth_materials:deepslate_ruby_ore",
+    "addsynth_materials:deepslate_topaz_ore",
+    "addsynth_materials:deepslate_citrine_ore",
+    "addsynth_materials:deepslate_sapphire_ore",
+    "addsynth_materials:deepslate_amethyst_ore",
+    "addsynth_materials:deepslate_silver_ore",
+    "addsynth_materials:deepslate_titanium_ore",
+    "addsynth_materials:deepslate_platinum_ore",
+    "addsynth_materials:deepslate_cobalt_ore",
+    "addsynth_materials:deepslate_neodymium_ore"
   ]
 }

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "brass_ingot",
+  "ingredients": [
+    {"tag": "forge:ingots/zinc"},
+    {"item": "minecraft:copper_ingot"},
+    {"item": "minecraft:copper_ingot"}
+  ],
+  "result": {
+    "item": "addsynth_materials:brass_ingot",
+    "count": 3
+  },
+  "conditions": [
+  ]
+}

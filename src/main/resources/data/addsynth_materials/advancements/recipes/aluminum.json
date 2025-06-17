@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:aluminum",
+      "addsynth_materials:aluminum_ingot_from_aluminum_block",
       "addsynth_materials:aluminum_block"
     ]
   }

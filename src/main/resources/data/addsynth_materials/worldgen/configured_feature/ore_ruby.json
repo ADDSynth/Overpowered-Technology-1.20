@@ -13,7 +13,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:ruby_ore"
+          "Name": "addsynth_materials:deepslate_ruby_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

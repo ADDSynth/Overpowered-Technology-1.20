@@ -1,0 +1,26 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "has_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "addsynth_materials:rose_quartz_ore",
+              "addsynth_materials:deepslate_rose_quartz_ore"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:rose_quartz_from_smelting_rose_quartz_ore",
+      "addsynth_materials:rose_quartz_from_smelting_deepslate_rose_quartz_ore",
+      "addsynth_materials:rose_quartz_from_blasting_rose_quartz_ore",
+      "addsynth_materials:rose_quartz_from_blasting_deepslate_rose_quartz_ore"
+    ]
+  }
+}

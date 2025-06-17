@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "tag": "forge:ingots/lead"
+    }
+  },
+  "result": {
+    "item": "addsynth_materials:lead_block"
+  }
+}

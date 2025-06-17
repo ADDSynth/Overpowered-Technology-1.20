@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:platinum_ore"
+          "Name": "addsynth_materials:deepslate_platinum_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

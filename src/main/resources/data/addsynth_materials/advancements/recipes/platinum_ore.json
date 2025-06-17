@@ -14,7 +14,10 @@
   },
   "rewards": {
     "recipes": [
-      "addsynth_materials:platinum_smelting"
+      "addsynth_materials:platinum_ingot_from_smelting_platinum_ore",
+      "addsynth_materials:platinum_ingot_from_smelting_deepslate_platinum_ore",
+      "addsynth_materials:platinum_ingot_from_blasting_platinum_ore",
+      "addsynth_materials:platinum_ingot_from_blasting_deepslate_platinum_ore"
     ]
   }
 }

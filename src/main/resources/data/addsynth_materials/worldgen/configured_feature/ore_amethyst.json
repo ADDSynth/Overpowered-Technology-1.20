@@ -13,7 +13,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:amethyst_ore"
+          "Name": "addsynth_materials:deepslate_amethyst_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

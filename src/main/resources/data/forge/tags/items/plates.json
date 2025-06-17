@@ -10,6 +10,13 @@
     "#forge:plates/bronze",
     "#forge:plates/silver",
     "#forge:plates/platinum",
-    "#forge:plates/titanium"
+    "#forge:plates/titanium",
+    "#forge:plates/lead",
+    "#forge:plates/nickel",
+    "#forge:plates/zinc",
+    "#forge:plates/cobalt",
+    "#forge:plates/neodymium",
+    "#forge:plates/brass",
+    "#forge:plates/invar"
   ]
 }

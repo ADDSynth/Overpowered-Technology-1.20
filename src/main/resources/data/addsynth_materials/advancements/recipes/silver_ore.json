@@ -14,7 +14,10 @@
   },
   "rewards": {
     "recipes": [
-      "addsynth_materials:silver_smelting"
+      "addsynth_materials:silver_ingot_from_smelting_silver_ore",
+      "addsynth_materials:silver_ingot_from_smelting_deepslate_silver_ore",
+      "addsynth_materials:silver_ingot_from_blasting_silver_ore",
+      "addsynth_materials:silver_ingot_from_blasting_deepslate_silver_ore"
     ]
   }
 }

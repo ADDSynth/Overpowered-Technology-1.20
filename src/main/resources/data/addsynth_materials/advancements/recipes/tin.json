@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:tin",
+      "addsynth_materials:tin_ingot_from_tin_block",
       "addsynth_materials:tin_block"
     ]
   }

@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:sapphire",
+      "addsynth_materials:sapphire_from_sapphire_block",
       "addsynth_materials:sapphire_block"
     ]
   }

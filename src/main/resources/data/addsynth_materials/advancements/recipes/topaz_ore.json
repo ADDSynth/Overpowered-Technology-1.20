@@ -14,7 +14,10 @@
   },
   "rewards": {
     "recipes": [
-      "addsynth_materials:topaz_smelting"
+      "addsynth_materials:topaz_from_smelting_topaz_ore",
+      "addsynth_materials:topaz_from_smelting_deepslate_topaz_ore",
+      "addsynth_materials:topaz_from_blasting_topaz_ore",
+      "addsynth_materials:topaz_from_blasting_deepslate_topaz_ore"
     ]
   }
 }

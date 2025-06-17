@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:silver_ore"
+          "Name": "addsynth_materials:deepslate_silver_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

@@ -3,6 +3,17 @@ ADDSynthCore:
 CHANGED:
   Removed the top ingredient in Trophy crafting recipes so all trophies now only require 5 of their
     main ingredient instead of 6.
+ADDDSynth Materials:
+NEW:
+  Added 7 new Materials: Nickel, Lead, Zinc, Cobalt, Brass, Invar, and Neodymium.
+    Nickel, Lead, and Zinc are common (like Iron).
+    Cobalt is uncommon (like Silver and Gold).
+    Neodymium is rare (like Platinum or Titanium).
+    Brass and Invar are Metal Alloys.
+  Added missing Deepslate variants of all ores.
+CHANGED:
+  In the real world, Bronze actually has a lighter color than Copper. Changed the color of Bronze
+    blocks and items to a lighter color that I've used for Copper before.
 
 
 

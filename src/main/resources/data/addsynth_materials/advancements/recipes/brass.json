@@ -1,0 +1,38 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "brass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/brass"
+          }
+        ]
+      }
+    },
+    "brass_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:storage_blocks/brass"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "brass",
+      "brass_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:brass_ingot",
+      "addsynth_materials:brass_ingot_from_brass_block",
+      "addsynth_materials:brass_block"
+    ]
+  }
+}

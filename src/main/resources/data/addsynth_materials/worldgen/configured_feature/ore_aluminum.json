@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:aluminum_ore"
+          "Name": "addsynth_materials:deepslate_aluminum_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

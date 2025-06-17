@@ -1,0 +1,23 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "has_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ores/cobalt"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:cobalt_ingot_from_smelting_cobalt_ore",
+      "addsynth_materials:cobalt_ingot_from_smelting_deepslate_cobalt_ore",
+      "addsynth_materials:cobalt_ingot_from_blasting_cobalt_ore",
+      "addsynth_materials:cobalt_ingot_from_blasting_deepslate_cobalt_ore"
+    ]
+  }
+}

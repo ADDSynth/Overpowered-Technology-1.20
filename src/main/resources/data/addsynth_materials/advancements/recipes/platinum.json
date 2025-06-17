@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:platinum",
+      "addsynth_materials:platinum_ingot_from_platinum_block",
       "addsynth_materials:platinum_block"
     ]
   }

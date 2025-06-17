@@ -1,0 +1,23 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "has_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ores/neodymium"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:neodymium_ingot_from_smelting_neodymium_ore",
+      "addsynth_materials:neodymium_ingot_from_smelting_deepslate_neodymium_ore",
+      "addsynth_materials:neodymium_ingot_from_blasting_neodymium_ore",
+      "addsynth_materials:neodymium_ingot_from_blasting_deepslate_neodymium_ore"
+    ]
+  }
+}

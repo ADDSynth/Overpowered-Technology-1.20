@@ -13,7 +13,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:citrine_ore"
+          "Name": "addsynth_materials:deepslate_citrine_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

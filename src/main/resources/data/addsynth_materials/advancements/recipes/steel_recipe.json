@@ -37,7 +37,8 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:steel_smelting"
+      "addsynth_materials:steel_ingot_from_smelting",
+      "addsynth_materials:steel_ingot_from_blasting"
     ]
   }
 }

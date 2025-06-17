@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "addsynth_materials:aluminum_ore"
+    "addsynth_materials:aluminum_ore",
+    "addsynth_materials:deepslate_aluminum_ore"
   ]
 }

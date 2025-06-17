@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "silver_ingot",
+  "ingredient": {
+    "item": "addsynth_materials:silver_ore"
+  },
+  "result": "addsynth_materials:silver_ingot"
+}

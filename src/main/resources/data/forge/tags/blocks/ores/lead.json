@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "addsynth_materials:lead_ore",
+    "addsynth_materials:deepslate_lead_ore"
+  ]
+}

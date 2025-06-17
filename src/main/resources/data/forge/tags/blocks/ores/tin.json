@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "addsynth_materials:tin_ore"
+    "addsynth_materials:tin_ore",
+    "addsynth_materials:deepslate_tin_ore"
   ]
 }

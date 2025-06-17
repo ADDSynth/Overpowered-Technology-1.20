@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:tin_ore"
+          "Name": "addsynth_materials:deepslate_tin_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

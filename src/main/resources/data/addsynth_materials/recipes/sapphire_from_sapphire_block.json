@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "sapphire",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/sapphire"
+    }
+  ],
+  "result": {
+    "item": "addsynth_materials:sapphire",
+    "count": 9
+  }
+}

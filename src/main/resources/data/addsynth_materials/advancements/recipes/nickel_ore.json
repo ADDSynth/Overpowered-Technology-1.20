@@ -1,0 +1,23 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "has_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ores/nickel"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:nickel_ingot_from_smelting_nickel_ore",
+      "addsynth_materials:nickel_ingot_from_smelting_deepslate_nickel_ore",
+      "addsynth_materials:nickel_ingot_from_blasting_nickel_ore",
+      "addsynth_materials:nickel_ingot_from_blasting_deepslate_nickel_ore"
+    ]
+  }
+}

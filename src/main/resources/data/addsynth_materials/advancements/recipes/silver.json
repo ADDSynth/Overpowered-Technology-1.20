@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:silver",
+      "addsynth_materials:silver_ingot_from_silver_block",
       "addsynth_materials:silver_block"
     ]
   }

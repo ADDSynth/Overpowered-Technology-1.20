@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:titanium",
+      "addsynth_materials:titanium_ingot_from_titanium_block",
       "addsynth_materials:titanium_block"
     ]
   }

@@ -1,0 +1,54 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/copper"
+          }
+        ]
+      }
+    },
+    "zinc": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/zinc"
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "addsynth_materials:brass_ingot"
+      }
+    },
+    "has_brass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/brass"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "copper",
+      "zinc",
+      "has_recipe",
+      "has_brass"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:brass_ingot"
+    ]
+  }
+}

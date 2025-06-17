@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "amethyst_shard",
+  "ingredient": {
+    "item": "addsynth_materials:amethyst_ore"
+  },
+  "result": "minecraft:amethyst_shard"
+}

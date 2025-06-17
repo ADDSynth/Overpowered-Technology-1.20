@@ -1,0 +1,23 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "has_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ores/zinc"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:zinc_ingot_from_smelting_zinc_ore",
+      "addsynth_materials:zinc_ingot_from_smelting_deepslate_zinc_ore",
+      "addsynth_materials:zinc_ingot_from_blasting_zinc_ore",
+      "addsynth_materials:zinc_ingot_from_blasting_deepslate_zinc_ore"
+    ]
+  }
+}

@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:silicon_ore"
+          "Name": "addsynth_materials:deepslate_silicon_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

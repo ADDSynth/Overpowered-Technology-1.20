@@ -13,7 +13,7 @@
       },
       {
         "state": {
-          "Name": "addsynth_materials:topaz_ore"
+          "Name": "addsynth_materials:deepslate_topaz_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

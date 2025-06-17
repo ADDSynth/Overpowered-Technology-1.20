@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:steel",
+      "addsynth_materials:steel_ingot_from_steel_block",
       "addsynth_materials:steel_block"
     ]
   }

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "addsynth_materials:titanium_ore"
+    "addsynth_materials:titanium_ore",
+    "addsynth_materials:deepslate_titanium_ore"
   ]
 }

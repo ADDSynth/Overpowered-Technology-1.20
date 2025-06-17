@@ -1,0 +1,54 @@
+{
+  "parent": "addsynth_materials:recipes/root",
+  "criteria": {
+    "iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/iron"
+          }
+        ]
+      }
+    },
+    "nickel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/nickel"
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "addsynth_materials:invar_ingot"
+      }
+    },
+    "has_invar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/invar"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "iron",
+      "nickel",
+      "has_recipe",
+      "has_invar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "addsynth_materials:invar_ingot"
+    ]
+  }
+}

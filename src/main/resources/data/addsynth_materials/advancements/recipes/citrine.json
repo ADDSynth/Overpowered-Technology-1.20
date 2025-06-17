@@ -30,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "addsynth_materials:citrine",
+      "addsynth_materials:citrine_from_citrine_block",
       "addsynth_materials:citrine_block"
     ]
   }

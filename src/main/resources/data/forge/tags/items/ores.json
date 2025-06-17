@@ -12,6 +12,11 @@
     "#forge:ores/platinum",
     "#forge:ores/titanium",
     "#forge:ores/silicon",
-    "#forge:ores/quartz"
+    "#forge:ores/quartz",
+    "#forge:ores/lead",
+    "#forge:ores/nickel",
+    "#forge:ores/zinc",
+    "#forge:ores/cobalt",
+    "#forge:ores/neodymium"
   ]
 }
