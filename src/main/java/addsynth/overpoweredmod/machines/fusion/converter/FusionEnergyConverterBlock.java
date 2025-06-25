@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import addsynth.core.util.game.tileentity.TileEntityUtil;
 import addsynth.energy.lib.blocks.MachineBlock;
 import addsynth.overpoweredmod.game.reference.TextReference;
-import addsynth.overpoweredmod.machines.data_cable.DataCable;
 import addsynth.overpoweredmod.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -24,7 +23,6 @@ public final class FusionEnergyConverterBlock extends MachineBlock {
 
   public FusionEnergyConverterBlock(){
     super(MapColor.SNOW);
-    DataCable.addAttachableBlock(this);
   }
 
   @Override

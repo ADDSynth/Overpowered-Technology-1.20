@@ -3,7 +3,6 @@ package addsynth.overpoweredmod.machines.portal.frame;
 import javax.annotation.Nullable;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.energy.lib.blocks.MachineBlock;
-import addsynth.overpoweredmod.machines.data_cable.DataCable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -20,7 +19,6 @@ public final class PortalFrameBlock extends MachineBlock {
 
   public PortalFrameBlock(){
     super(MapColor.WOOL);
-    DataCable.addAttachableBlock(this);
   }
 
   @Override

@@ -4,7 +4,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 import addsynth.energy.lib.blocks.MachineBlock;
 import addsynth.overpoweredmod.game.reference.TextReference;
-import addsynth.overpoweredmod.machines.data_cable.DataCable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +17,6 @@ public final class FusionControlUnit extends MachineBlock {
 
   public FusionControlUnit(){
     super(MapColor.WOOL);
-    DataCable.addAttachableBlock(this);
   }
 
   @Override
