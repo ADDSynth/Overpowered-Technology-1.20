@@ -21,6 +21,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TileLaserHousing extends TileBase implements IBlockNetworkUser<LaserNetwork>,
@@ -44,7 +45,7 @@ public final class TileLaserHousing extends TileBase implements IBlockNetworkUse
   }
 
   @Override
-  public final void serverTick(){
+  public final void serverTick(Level level){
     BlockNetwork.tick(network, level, this, LaserNetwork::new);
   }
 

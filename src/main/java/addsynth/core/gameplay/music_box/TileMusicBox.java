@@ -9,6 +9,7 @@ import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TileMusicBox extends TileBase implements ITickingTileEntity {
@@ -34,7 +35,7 @@ public final class TileMusicBox extends TileBase implements ITickingTileEntity {
 // ===================================== TICK ====================================
 
   @Override
-  public final void serverTick(){
+  public final void serverTick(Level level){
     changed = redstone.update(level, worldPosition, changed);
     if(redstone.onRisingEdge()){
       play(true);

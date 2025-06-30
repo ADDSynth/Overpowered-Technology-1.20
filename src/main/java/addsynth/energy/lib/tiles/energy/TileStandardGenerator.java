@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -30,7 +31,7 @@ public abstract class TileStandardGenerator extends TileAbstractGenerator implem
   }
 
   @Override
-  public void serverTick(){
+  public void serverTick(Level level){
     // standard generator behaviour
     if(energy.isEmpty()){
       if(input_inventory.isEmpty() == false){

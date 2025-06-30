@@ -7,6 +7,7 @@ import addsynth.core.block_network.IBlockNetworkUser;
 import addsynth.core.block_network.Node;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -17,7 +18,7 @@ public class LowVoltageWireTile extends BlockEntity implements IBlockNetworkUser
   }
 
   @Override
-  public void serverTick(){
+  public void serverTick(Level level){
   }
 
   @Override

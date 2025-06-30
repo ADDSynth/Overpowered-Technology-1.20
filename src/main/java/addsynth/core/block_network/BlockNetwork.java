@@ -244,7 +244,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   }
 
   /** This is a static helper function, used to initialize your BlockNetwork
-   *  in the {@link ITickingTileEntity#serverTick()} function. Use this if
+   *  in the {@link ITickingTileEntity#serverTick(Level)} function. Use this if
    *  your BlockNetwork does not need to be ticked. */
   public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B check(final B network, final Level world, final T tile, final BiFunction<Level, T, B> constructor){
     if(network == null){
@@ -257,7 +257,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   }
 
   /** Static helper function that automatically initializes your BlockNetwork if needed
-   *  and ticks it. This must be called in the {@link ITickingTileEntity#serverTick()}
+   *  and ticks it. This must be called in the {@link ITickingTileEntity#serverTick(Level)}
    *  method and your BlockNetwork should override the {@link #tick(Level)} method. */
   public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> void tick(final B network, final Level world, final T tile, final BiFunction<Level, T, B> constructor){
     if(!world.isClientSide){

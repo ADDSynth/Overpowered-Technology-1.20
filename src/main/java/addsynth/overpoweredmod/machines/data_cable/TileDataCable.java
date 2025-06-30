@@ -6,6 +6,7 @@ import addsynth.core.block_network.IBlockNetworkUser;
 import addsynth.core.game.tiles.TileBase;
 import addsynth.overpoweredmod.registers.Tiles;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TileDataCable extends TileBase implements IBlockNetworkUser<DataCableNetwork> {
@@ -17,7 +18,7 @@ public final class TileDataCable extends TileBase implements IBlockNetworkUser<D
   }
 
   @Override
-  public final void serverTick(){
+  public final void serverTick(Level level){
     BlockNetwork.check(cable_network, level, this, DataCableNetwork::new);
   }
 

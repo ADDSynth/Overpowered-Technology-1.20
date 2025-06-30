@@ -19,13 +19,10 @@ public final class TilePortal extends TileBase implements ITickingTileEntity {
   }
 
   @Override
-  public final void serverTick(){
+  public final void serverTick(Level level){
     count += 1;
     if(count >= life){
-      final Level level = this.level;
-      if(level != null){
-        level.removeBlock(worldPosition, false);
-      }
+      level.removeBlock(worldPosition, false);
     }
   }
 

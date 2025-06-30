@@ -6,6 +6,7 @@ import addsynth.energy.lib.main.Generator;
 import addsynth.energy.lib.main.IEnergyGenerator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -21,7 +22,7 @@ public abstract class TileAbstractGenerator extends TileBase implements IEnergyG
   }
 
   @Override
-  public void serverTick(){
+  public void serverTick(Level level){
     if(energy.isEmpty()){
       setGeneratorData();
       changed = true;

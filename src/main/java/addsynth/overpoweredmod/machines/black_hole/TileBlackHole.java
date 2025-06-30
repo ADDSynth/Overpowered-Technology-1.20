@@ -66,8 +66,7 @@ public final class TileBlackHole extends BlockEntity implements ITickingTileEnti
   }
 
   @Override
-  @SuppressWarnings("null")
-  public void serverTick(){
+  public void serverTick(Level level){
     begin_tick_time = TimeUtil.get_start_time();
     if(first_tick){
       first_tick();

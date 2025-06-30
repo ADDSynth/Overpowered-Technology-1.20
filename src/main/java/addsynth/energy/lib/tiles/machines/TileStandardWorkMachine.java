@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -43,7 +44,7 @@ public abstract class TileStandardWorkMachine extends TileSwitchableMachine
   }
 
   @Override
-  public final void serverTick(){
+  public final void serverTick(Level level){
     machine_tick();
     if(inventory.tick()){
       changed = true;
