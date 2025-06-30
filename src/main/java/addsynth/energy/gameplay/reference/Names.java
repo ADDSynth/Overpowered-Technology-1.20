@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public final class Names {
 
+  public static final ResourceLocation LOW_VOLTAGE_WIRE           = ResourceLocation.fromNamespaceAndPath(ADDSynthEnergy.MOD_ID, "low_voltage_wire");
   public static final ResourceLocation ENERGY_WIRE                = new ResourceLocation(ADDSynthEnergy.MOD_ID, "energy_wire");
   public static final ResourceLocation GENERATOR                  = new ResourceLocation(ADDSynthEnergy.MOD_ID, "generator");
   public static final ResourceLocation ENERGY_STORAGE             = new ResourceLocation(ADDSynthEnergy.MOD_ID, "energy_storage");

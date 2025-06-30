@@ -20,6 +20,7 @@ import addsynth.energy.gameplay.machines.generator.ContainerGenerator;
 import addsynth.energy.gameplay.machines.generator.GeneratorBlock;
 import addsynth.energy.gameplay.machines.universal_energy_interface.ContainerUniversalEnergyInterface;
 import addsynth.energy.gameplay.machines.universal_energy_interface.UniversalEnergyInterfaceBlock;
+import addsynth.energy.gameplay.machines.wire.LowVoltageWire;
 import addsynth.energy.gameplay.reference.Names;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.inventory.MenuType;
@@ -43,6 +44,7 @@ public final class Registers {
     final ResourceKey key = event.getRegistryKey();
     if(key.equals(ForgeRegistries.Keys.BLOCKS)){
       final IForgeRegistry<Block> registry = event.getForgeRegistry();
+      // registry.register(Names.LOW_VOLTAGE_WIRE,           new LowVoltageWire());
       registry.register(Names.ENERGY_WIRE,                new EnergyWire());
       registry.register(Names.GENERATOR,                  new GeneratorBlock());
       registry.register(Names.ENERGY_STORAGE,             new EnergyStorageBlock());
@@ -54,6 +56,7 @@ public final class Registers {
     }
     if(key.equals(ForgeRegistries.Keys.ITEMS)){
       final IForgeRegistry<Item> registry = event.getForgeRegistry();
+      // BlockItemHolder.register(registry, EnergyBlocks.low_voltage_wire);
       BlockItemHolder.register(registry, EnergyBlocks.wire);
       BlockItemHolder.register(registry, EnergyBlocks.generator);
       BlockItemHolder.register(registry, EnergyBlocks.energy_storage);
@@ -78,6 +81,7 @@ public final class Registers {
     }
     if(key.equals(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES)){
       final IForgeRegistry<BlockEntityType> registry = event.getForgeRegistry();
+      // Tiles.LOW_VOLTAGE_WIRE.register(registry);
       Tiles.ENERGY_WIRE.register(registry);
       Tiles.GENERATOR.register(registry);
       Tiles.ENERGY_CONTAINER.register(registry);

@@ -1,13 +1,13 @@
 package addsynth.core.util.block;
 
-import addsynth.core.ADDSynthCore;
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public final class BlockShape {
+
+  public static final double MINIMUM_THICKNESS = 0.03125; // 1/32 of a block
 
   // !!! This MUST follow the same order as the Direction enum!
   public static final int DOWN  =  1;
@@ -17,12 +17,15 @@ public final class BlockShape {
   public static final int WEST  = 16;
   public static final int EAST  = 32;
 
-  public static final VoxelShape[] create_six_sided_binary_voxel_shapes(final double thickness){
+  public static final VoxelShape[] createWireShapes(double thickness){
+    if(thickness < MINIMUM_THICKNESS){
+      thickness = MINIMUM_THICKNESS;
+    }
     final double half_width = thickness / 2;
-    return create_six_sided_binary_voxel_shapes(0.5 - half_width, 0.5 + half_width);
+    return createWireShapes(0.5 - half_width, 0.5 + half_width);
   }
 
-  public static final VoxelShape[] create_six_sided_binary_voxel_shapes(final double min_size, final double max_size){
+  public static final VoxelShape[] createWireShapes(final double min_size, final double max_size){
     final int max = 64;
     final VoxelShape[] shapes = new VoxelShape[max];
     final VoxelShape center = Shapes.box(min_size, min_size, min_size, max_size, max_size, max_size);
@@ -46,6 +49,44 @@ public final class BlockShape {
     return shapes;
   }
 
+  public static final VoxelShape[] createPanelShapes(final double thickness){
+    final double min = Math.max(thickness, MINIMUM_THICKNESS);
+    final double max = 1 - min;
+    return new VoxelShape[]{
+      Shapes.box(0, 0, 0, 1, min, 1),
+      Shapes.box(0, max, 0, 1, 1, 1),
+      Shapes.box(0, 0, 0, 1, 1, min),
+      Shapes.box(0, 0, max, 1, 1, 1),
+      Shapes.box(0, 0, 0, min, 1, 1),
+      Shapes.box(max, 0, 0, 1, 1, 1)
+    };
+  }
+
+  public static final VoxelShape[] createSixSidedPanelShapes(final double thickness){
+    final int max_number = 64;
+    final double min = Math.max(thickness, MINIMUM_THICKNESS);
+    final double max = 1 - min;
+    final VoxelShape[] shapes = new VoxelShape[max_number];
+    final VoxelShape west  = Shapes.box(0, 0, 0, min, 1, 1);
+    final VoxelShape down  = Shapes.box(0, 0, 0, 1, min, 1);
+    final VoxelShape north = Shapes.box(0, 0, 0, 1, 1, min);
+    final VoxelShape east  = Shapes.box(max, 0, 0, 1, 1, 1);
+    final VoxelShape up    = Shapes.box(0, max, 0, 1, 1, 1);
+    final VoxelShape south = Shapes.box(0, 0, max, 1, 1, 1);
+    int i;
+    shapes[0] = Shapes.empty();
+    for(i = 1; i < max_number; i++){
+      shapes[i] = Shapes.empty();
+      if((i & DOWN)  == DOWN ){ shapes[i] = Shapes.or(shapes[i], down);  }
+      if((i & UP)    == UP   ){ shapes[i] = Shapes.or(shapes[i], up);    }
+      if((i & NORTH) == NORTH){ shapes[i] = Shapes.or(shapes[i], north); }
+      if((i & SOUTH) == SOUTH){ shapes[i] = Shapes.or(shapes[i], south); }
+      if((i & WEST)  == WEST ){ shapes[i] = Shapes.or(shapes[i], west);  }
+      if((i & EAST)  == EAST ){ shapes[i] = Shapes.or(shapes[i], east);  }
+    }
+    return shapes;
+  }
+
   public static final int getIndex(final BlockState state){
     final int down  = state.getValue(BlockStateProperties.DOWN)  ? DOWN  : 0;
     final int up    = state.getValue(BlockStateProperties.UP)    ? UP    : 0;
@@ -57,10 +98,7 @@ public final class BlockShape {
   }
 
   public static final VoxelShape combine(final VoxelShape ... shapes){
-    if(shapes.length == 0){
-      ADDSynthCore.log.error(new IllegalArgumentException("Improper use of the "+BlockShape.class.getSimpleName()+".combine(VoxelShape[] shapes) function! There are no shapes to combine!"));
-      return null;
-    }
+    if(shapes.length == 0){ return Shapes.empty(); }
     if(shapes.length == 1){ return shapes[0]; }
     VoxelShape final_shape = shapes[0];
     int i;
@@ -68,32 +106,6 @@ public final class BlockShape {
       final_shape = Shapes.or(final_shape, shapes[i]);
     }
     return final_shape;
-  }
-
-  private static final boolean is_90_degrees(final int degrees){
-    if(degrees == 0 || degrees == 90 || degrees == 180 || degrees == 270){ return true; }
-    ADDSynthCore.log.error(new IllegalArgumentException("degrees input for rotation functions in "+BlockShape.class.getSimpleName()+" is not a multiple of 90!"));
-    return false;
-  }
-
-  // public static final VoxelShape[] rotate(final VoxelShape[] shape, final Direction.Axis axis, final int degrees){
-  //   
-  // } FEATURE Add BlockUtil.rotate() function.
-
-  @Deprecated
-  public static final VoxelShape rotate(double x0, double x1, double y0, double y1, double z0, double z1, Direction.Axis axis, int degrees){
-    if(is_90_degrees(degrees)){
-      switch(axis){
-      case X: // left/right
-        // damn quaternion magic...
-        break;
-      case Y:
-        break;
-      case Z:
-        break;
-      }
-    }
-    return Shapes.box(x0, y0, z0, x1, y1, z1);
   }
 
 }

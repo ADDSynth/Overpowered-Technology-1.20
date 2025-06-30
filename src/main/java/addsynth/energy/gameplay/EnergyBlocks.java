@@ -7,6 +7,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public final class EnergyBlocks {
 
+  public static final RegistryObject<Block> low_voltage_wire         = RegistryObject.create(Names.LOW_VOLTAGE_WIRE,           ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> wire                     = RegistryObject.create(Names.ENERGY_WIRE,                ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> generator                = RegistryObject.create(Names.GENERATOR,                  ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> energy_storage           = RegistryObject.create(Names.ENERGY_STORAGE,             ForgeRegistries.BLOCKS);

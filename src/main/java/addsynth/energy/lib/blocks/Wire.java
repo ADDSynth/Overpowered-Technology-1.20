@@ -49,7 +49,7 @@ public abstract class Wire extends TileEntityBlock implements SimpleWaterloggedB
    *  The base Wire class automatically calls this to assign the shapes array.
    */
   protected VoxelShape[] makeShapes(){
-    return BlockShape.create_six_sided_binary_voxel_shapes(default_min_wire_size, default_max_wire_size);
+    return BlockShape.createWireShapes(default_min_wire_size, default_max_wire_size);
   }
 
   @Override
@@ -63,9 +63,12 @@ public abstract class Wire extends TileEntityBlock implements SimpleWaterloggedB
 
   private final BlockState getState(final BlockState state, final LevelAccessor world, final BlockPos position){
     final boolean[] valid_sides = get_valid_sides(world, position);
-    return state.setValue(DOWN,  valid_sides[DirectionConstant.DOWN ]).setValue(UP,    valid_sides[DirectionConstant.UP   ])
-                .setValue(NORTH, valid_sides[DirectionConstant.NORTH]).setValue(SOUTH, valid_sides[DirectionConstant.SOUTH])
-                .setValue(WEST,  valid_sides[DirectionConstant.WEST ]).setValue(EAST,  valid_sides[DirectionConstant.EAST ])
+    return state.setValue(DOWN,  valid_sides[DirectionConstant.DOWN ])
+                .setValue(UP,    valid_sides[DirectionConstant.UP   ])
+                .setValue(NORTH, valid_sides[DirectionConstant.NORTH])
+                .setValue(SOUTH, valid_sides[DirectionConstant.SOUTH])
+                .setValue(WEST,  valid_sides[DirectionConstant.WEST ])
+                .setValue(EAST,  valid_sides[DirectionConstant.EAST ])
                 .setValue(WATERLOGGED, world.getFluidState(position).getType() == Fluids.WATER);
   }
 

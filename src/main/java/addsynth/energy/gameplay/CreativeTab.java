@@ -20,6 +20,7 @@ public final class CreativeTab {
       .title(Component.literal(ADDSynthEnergy.MOD_NAME))
       .icon(() -> new ItemStack(Item.BY_BLOCK.get(EnergyBlocks.wire.get())))
       .displayItems((displayParameters, output) -> {
+        // output.accept(EnergyBlocks.low_voltage_wire.get());
         output.accept(EnergyBlocks.wire.get());
         output.accept(EnergyBlocks.generator.get());
         output.accept(EnergyBlocks.energy_storage.get());

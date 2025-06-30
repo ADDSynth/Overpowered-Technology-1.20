@@ -10,6 +10,7 @@ import addsynth.energy.gameplay.machines.energy_storage.TileEnergyStorage;
 import addsynth.energy.gameplay.machines.energy_wire.TileEnergyWire;
 import addsynth.energy.gameplay.machines.generator.TileGenerator;
 import addsynth.energy.gameplay.machines.universal_energy_interface.TileUniversalEnergyInterface;
+import addsynth.energy.gameplay.machines.wire.LowVoltageWireTile;
 import addsynth.energy.gameplay.reference.Names;
 
 public final class Tiles {
@@ -37,5 +38,8 @@ public final class Tiles {
 
   public static final BlockEntityHolder<TileEnergyDiagnostics> ENERGY_DIAGNOSTICS_BLOCK =
     new BlockEntityHolder<>(Names.ENERGY_DIAGNOSTICS_BLOCK, TileEnergyDiagnostics::new, EnergyBlocks.energy_diagnostics_block);
+
+  public static final BlockEntityHolder<LowVoltageWireTile> LOW_VOLTAGE_WIRE =
+    new BlockEntityHolder<>(Names.LOW_VOLTAGE_WIRE, LowVoltageWireTile::new, EnergyBlocks.low_voltage_wire);
 
 }

@@ -41,7 +41,7 @@ public final class DataCable extends Wire {
 
   @Override
   protected VoxelShape[] makeShapes(){
-    return BlockShape.create_six_sided_binary_voxel_shapes(min_wire_size, max_wire_size);
+    return BlockShape.createWireShapes(min_wire_size, max_wire_size);
   }
 
   @Override
