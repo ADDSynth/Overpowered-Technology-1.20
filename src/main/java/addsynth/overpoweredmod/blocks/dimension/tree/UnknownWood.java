@@ -1,7 +1,8 @@
 package addsynth.overpoweredmod.blocks.dimension.tree;
 
+import java.util.HashSet;
 import addsynth.core.block_network.Node;
-import addsynth.core.util.block.BlockUtil;
+import addsynth.core.block_network.search.StandardBlockSearch;
 import addsynth.core.util.world.WorldUtil;
 import addsynth.overpoweredmod.game.reference.OverpoweredBlocks;
 import addsynth.overpoweredmod.game.reference.OverpoweredItems;
@@ -22,8 +23,10 @@ public final class UnknownWood extends Block {
   // TEST: I think I prefer this one because it works if the player is in Creative Mode as well.
   @Override
   public void playerWillDestroy(Level world, BlockPos position, BlockState state, Player player){
+    super.playerWillDestroy(world, position, state, player);
     if(world.isClientSide == false){
-      BlockUtil.find_blocks(position, world, (Node node) -> valid(node, position)).forEach(
+      final HashSet<Node> blocks = search.find_blocks(position, world);
+      blocks.forEach(
         (Node node) -> {
           if(node.position != position){
             world.removeBlock(node.position, false);
@@ -34,10 +37,9 @@ public final class UnknownWood extends Block {
     }
   }
 
-  private static final boolean valid(final Node node, final BlockPos from){
+  private static final StandardBlockSearch search = new StandardBlockSearch((Node node) -> {
     return node.block == OverpoweredBlocks.unknown_wood.get()   ||
-           node.block == OverpoweredBlocks.unknown_leaves.get() ||
-           node.position == from;
-  }
+           node.block == OverpoweredBlocks.unknown_leaves.get();
+  });
 
 }

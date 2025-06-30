@@ -3,6 +3,8 @@ package addsynth.core.block_network;
 import java.util.Collection;
 import java.util.function.BiFunction;
 import addsynth.core.ADDSynthCore;
+import addsynth.core.block_network.search.IBlockSearchAlgorithm;
+import addsynth.core.block_network.search.StandardBlockSearch;
 import addsynth.core.game.tiles.TileBase;
 import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import addsynth.energy.lib.energy_network.EnergyNetwork;
@@ -208,6 +210,10 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   /** All the blocks that are in this block network. */
   protected final BlockList<T> blocks = new BlockList<>();
 
+  /** Search algorithm this BlockNetwork will use. Most BlockNetworks
+   *  will just use the {@link StandardBlockSearch}. */
+  private final IBlockSearchAlgorithm search_algorithm;
+
   public BlockNetwork(final Level world, final T tile){
     if(world == null){
       throw new NullPointerException("Loaded Block Network too early! Level hasn't been loaded yet.");
@@ -215,6 +221,19 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
     if(world.isClientSide){
       throw new RuntimeException("Block Networks SHOULD NOT be created on the Client side!");
     }
+    class_type = tile.getClass();
+    search_algorithm = new StandardBlockSearch(this::is_valid);
+    DebugBlockNetwork.CREATED(this, tile.getBlockPos());
+  }
+
+  public BlockNetwork(final Level world, final T tile, final IBlockSearchAlgorithm search_algorithm){
+    if(world == null){
+      throw new NullPointerException("Loaded Block Network too early! Level hasn't been loaded yet.");
+    }
+    if(world.isClientSide){
+      throw new RuntimeException("Block Networks SHOULD NOT be created on the Client side!");
+    }
+    this.search_algorithm = search_algorithm;
     class_type = tile.getClass();
     DebugBlockNetwork.CREATED(this, tile.getBlockPos());
   }
@@ -247,6 +266,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
     }
   }
 
+  // This can't be removed as it is used when Removing TileEntities to create a new Network if blocks get disconnected.
   private final boolean is_valid(final Node node){
     final BlockEntity tile = node.getTile();
     if(tile != null){
@@ -267,7 +287,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
         try{
           DebugBlockNetwork.UPDATED(this, from);
           clear_custom_data();
-          blocks.update(world, from, this, this::is_valid, this::customSearch);
+          blocks.update(search_algorithm, world, from, this, this::customSearch);
           onUpdateNetworkFinished(world);
         }
         catch(Exception e){
