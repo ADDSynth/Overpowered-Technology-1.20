@@ -1,9 +1,9 @@
 version 6 - TBD
-ADDSynthCore:
+===ADDSynthCore:
 CHANGED:
   Removed the top ingredient in Trophy crafting recipes so all trophies now only require 5 of their
     main ingredient instead of 6.
-ADDDSynth Materials:
+===ADDDSynth Materials:
 NEW:
   Added 7 new Materials: Nickel, Lead, Zinc, Cobalt, Brass, Invar, and Neodymium.
     Nickel, Lead, and Zinc are common (like Iron).
@@ -14,6 +14,22 @@ NEW:
 CHANGED:
   In the real world, Bronze actually has a lighter color than Copper. Changed the color of Bronze
     blocks and items to a lighter color that I've used for Copper before.
+  Silicon Ore now drops 2-3 Silicon instead of just 1.
+===ADDSynth Energy:
+NEW:
+  Low Voltage Wire item.
+  Added Solar Panels:
+   - By default each solar panel provides 0.5 energy per tick.
+   - Solar panels can only be placed on top of blocks.
+   - Since solar panels sit flat at all times, energy calculation changes during the day, with 100%
+       energy when sun is at noon, and 0% when sun is at horizon. Energy calculation follows a sine curve.
+   - Solar Panels use a hitscan to determine if line-of-sight to the sun is blocked.
+   - Solar Panels generate less energy if a thunder storm is occuring.
+   - Solar Panels (by default) get dirty over time, which lowers the power generated. Clean solar panels
+       by washing with water, or waiting until it rains.
+   - Solar Panels do not connect to Energy Wire directly, there must be a Solar Panel Controller adjacent
+       to a Solar Panel.
+   - Right-clicking the Solar Panel Controller will give you detailed info about the solar array.
 
 
 

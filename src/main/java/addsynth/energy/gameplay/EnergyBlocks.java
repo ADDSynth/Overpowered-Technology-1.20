@@ -16,5 +16,7 @@ public final class EnergyBlocks {
   public static final RegistryObject<Block> circuit_fabricator       = RegistryObject.create(Names.CIRCUIT_FABRICATOR,         ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> universal_energy_machine = RegistryObject.create(Names.UNIVERSAL_ENERGY_INTERFACE, ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> energy_diagnostics_block = RegistryObject.create(Names.ENERGY_DIAGNOSTICS_BLOCK,   ForgeRegistries.BLOCKS);
+  public static final RegistryObject<Block> solar_panel              = RegistryObject.create(Names.SOLAR_PANEL,                ForgeRegistries.BLOCKS);
+  public static final RegistryObject<Block> solar_panel_controller   = RegistryObject.create(Names.SOLAR_PANEL_CONTROLLER,     ForgeRegistries.BLOCKS);
 
 }

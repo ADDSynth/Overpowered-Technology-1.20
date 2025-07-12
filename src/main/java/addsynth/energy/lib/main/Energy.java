@@ -209,7 +209,7 @@ public class Energy {
    * Sets the energy and capacity at once to the specified value.
    * @param energy
    */
-  public final void setEnergyAndCapacity(final int energy){
+  public final void setEnergyAndCapacity(final double energy){
     this.energy.set(energy);
     this.capacity.set(energy);
     changed = true;

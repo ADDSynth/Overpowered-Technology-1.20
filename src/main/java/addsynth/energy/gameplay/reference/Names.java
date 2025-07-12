@@ -15,6 +15,10 @@ public final class Names {
   public static final ResourceLocation UNIVERSAL_ENERGY_INTERFACE = new ResourceLocation(ADDSynthEnergy.MOD_ID, "universal_energy_interface");
   public static final ResourceLocation ENERGY_DIAGNOSTICS_BLOCK   = new ResourceLocation(ADDSynthEnergy.MOD_ID, "energy_diagnostics_block");
 
+  public static final ResourceLocation PHOTOVOLTAIC_CELL      = ResourceLocation.fromNamespaceAndPath(ADDSynthEnergy.MOD_ID, "photovoltaic_cell");
+  public static final ResourceLocation SOLAR_PANEL            = ResourceLocation.fromNamespaceAndPath(ADDSynthEnergy.MOD_ID, "solar_panel");
+  public static final ResourceLocation SOLAR_PANEL_CONTROLLER = ResourceLocation.fromNamespaceAndPath(ADDSynthEnergy.MOD_ID, "solar_panel_controller");
+
   public static final ResourceLocation POWER_CORE            = new ResourceLocation(ADDSynthEnergy.MOD_ID, "power_core");
   public static final ResourceLocation ADVANCED_POWER_CORE   = new ResourceLocation(ADDSynthEnergy.MOD_ID, "advanced_power_core");
   public static final ResourceLocation POWER_REGULATOR       = new ResourceLocation(ADDSynthEnergy.MOD_ID, "power_regulator");

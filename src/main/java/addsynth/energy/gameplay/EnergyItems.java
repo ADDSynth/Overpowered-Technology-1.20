@@ -7,9 +7,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 public final class EnergyItems {
 
+  public static final RegistryObject<Item> low_voltage_wire    = RegistryObject.create(Names.LOW_VOLTAGE_WIRE,    ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> power_core          = RegistryObject.create(Names.POWER_CORE,          ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> advanced_power_core = RegistryObject.create(Names.ADVANCED_POWER_CORE, ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> power_regulator     = RegistryObject.create(Names.POWER_REGULATOR,     ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> photovoltaic_cell   = RegistryObject.create(Names.PHOTOVOLTAIC_CELL,   ForgeRegistries.ITEMS);
   
   public static final RegistryObject<Item> circuit_tier_1      = RegistryObject.create(Names.CIRCUIT_TIER_1,      ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> circuit_tier_2      = RegistryObject.create(Names.CIRCUIT_TIER_2,      ForgeRegistries.ITEMS);

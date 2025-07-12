@@ -3,6 +3,7 @@ package addsynth.energy.gameplay;
 import addsynth.energy.ADDSynthEnergy;
 import addsynth.energy.gameplay.machines.circuit_fabricator.ChangeCircuitFabricatorRecipe;
 import addsynth.energy.gameplay.machines.energy_diagnostics.EnergyDiagnosticsMessage;
+import addsynth.energy.gameplay.machines.solar_panel.SolarPanelData;
 import addsynth.energy.gameplay.machines.universal_energy_interface.CycleTransferModeMessage;
 import addsynth.energy.lib.network_messages.*;
 import net.minecraft.resources.ResourceLocation;
@@ -48,6 +49,12 @@ public final class NetworkHandler {
       EnergyDiagnosticsMessage::encode,
       EnergyDiagnosticsMessage::decode,
       EnergyDiagnosticsMessage::handle
+    );
+    INSTANCE.registerMessage(5,
+      SolarPanelData.class,
+      SolarPanelData::encode,
+      SolarPanelData::decode,
+      SolarPanelData::handle
     );
   }
 

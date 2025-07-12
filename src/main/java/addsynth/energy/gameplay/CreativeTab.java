@@ -20,7 +20,7 @@ public final class CreativeTab {
       .title(Component.literal(ADDSynthEnergy.MOD_NAME))
       .icon(() -> new ItemStack(Item.BY_BLOCK.get(EnergyBlocks.wire.get())))
       .displayItems((displayParameters, output) -> {
-        // output.accept(EnergyBlocks.low_voltage_wire.get());
+        output.accept(EnergyItems.low_voltage_wire.get());
         output.accept(EnergyBlocks.wire.get());
         output.accept(EnergyBlocks.generator.get());
         output.accept(EnergyBlocks.energy_storage.get());
@@ -29,6 +29,9 @@ public final class CreativeTab {
         output.accept(EnergyBlocks.circuit_fabricator.get());
         output.accept(EnergyBlocks.universal_energy_machine.get());
         output.accept(EnergyBlocks.energy_diagnostics_block.get());
+        output.accept(EnergyItems.photovoltaic_cell.get());
+        output.accept(EnergyBlocks.solar_panel.get());
+        output.accept(EnergyBlocks.solar_panel_controller.get());
         output.accept(EnergyItems.power_core.get());
         output.accept(EnergyItems.advanced_power_core.get());
         output.accept(EnergyItems.power_regulator.get());

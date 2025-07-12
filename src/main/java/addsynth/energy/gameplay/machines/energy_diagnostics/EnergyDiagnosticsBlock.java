@@ -53,7 +53,7 @@ public final class EnergyDiagnosticsBlock extends TileEntityBlock {
     if(world.isClientSide){
       final TileEnergyDiagnostics tile = MinecraftUtility.getTileEntity(position, world, TileEnergyDiagnostics.class);
       if(tile != null){
-        GuiProvider.openEnergyDiagnostics(tile, getDescriptionId());
+        GuiProvider.openEnergyDiagnostics(tile, getName());
       }
     }
     return InteractionResult.SUCCESS;

@@ -18,6 +18,7 @@ import addsynth.energy.gameplay.machines.energy_storage.EnergyStorageBlock;
 import addsynth.energy.gameplay.machines.energy_wire.EnergyWire;
 import addsynth.energy.gameplay.machines.generator.ContainerGenerator;
 import addsynth.energy.gameplay.machines.generator.GeneratorBlock;
+import addsynth.energy.gameplay.machines.solar_panel.*;
 import addsynth.energy.gameplay.machines.universal_energy_interface.ContainerUniversalEnergyInterface;
 import addsynth.energy.gameplay.machines.universal_energy_interface.UniversalEnergyInterfaceBlock;
 import addsynth.energy.gameplay.machines.wire.LowVoltageWire;
@@ -53,10 +54,13 @@ public final class Registers {
       registry.register(Names.CIRCUIT_FABRICATOR,         new CircuitFabricatorBlock());
       registry.register(Names.UNIVERSAL_ENERGY_INTERFACE, new UniversalEnergyInterfaceBlock());
       registry.register(Names.ENERGY_DIAGNOSTICS_BLOCK,   new EnergyDiagnosticsBlock());
+      registry.register(Names.SOLAR_PANEL,                new SolarPanel());
+      registry.register(Names.SOLAR_PANEL_CONTROLLER,     new SolarPanelController());
     }
     if(key.equals(ForgeRegistries.Keys.ITEMS)){
       final IForgeRegistry<Item> registry = event.getForgeRegistry();
       // BlockItemHolder.register(registry, EnergyBlocks.low_voltage_wire);
+      registry.register(Names.LOW_VOLTAGE_WIRE, new Item(new Item.Properties()));
       BlockItemHolder.register(registry, EnergyBlocks.wire);
       BlockItemHolder.register(registry, EnergyBlocks.generator);
       BlockItemHolder.register(registry, EnergyBlocks.energy_storage);
@@ -65,6 +69,10 @@ public final class Registers {
       BlockItemHolder.register(registry, EnergyBlocks.circuit_fabricator);
       BlockItemHolder.register(registry, EnergyBlocks.universal_energy_machine);
       BlockItemHolder.register(registry, EnergyBlocks.energy_diagnostics_block);
+
+      registry.register(Names.PHOTOVOLTAIC_CELL, new Item(new Item.Properties()));
+      BlockItemHolder.register(registry, EnergyBlocks.solar_panel);
+      BlockItemHolder.register(registry, EnergyBlocks.solar_panel_controller);
       
       registry.register(Names.POWER_CORE,          new Item(new Item.Properties()));
       registry.register(Names.ADVANCED_POWER_CORE, new Item(new Item.Properties()));
@@ -90,6 +98,8 @@ public final class Registers {
       Tiles.CIRCUIT_FABRICATOR.register(registry);
       Tiles.UNIVERSAL_ENERGY_INTERFACE.register(registry);
       Tiles.ENERGY_DIAGNOSTICS_BLOCK.register(registry);
+      Tiles.SOLAR_PANEL.register(registry);
+      Tiles.SOLAR_PANEL_CONTROLLER.register(registry);
     }
     if(key.equals(ForgeRegistries.Keys.MENU_TYPES)){
       final IForgeRegistry<MenuType> registry = event.getForgeRegistry();

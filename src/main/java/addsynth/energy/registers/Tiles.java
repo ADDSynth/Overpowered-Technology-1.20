@@ -9,6 +9,8 @@ import addsynth.energy.gameplay.machines.energy_diagnostics.TileEnergyDiagnostic
 import addsynth.energy.gameplay.machines.energy_storage.TileEnergyStorage;
 import addsynth.energy.gameplay.machines.energy_wire.TileEnergyWire;
 import addsynth.energy.gameplay.machines.generator.TileGenerator;
+import addsynth.energy.gameplay.machines.solar_panel.SolarPanelTile;
+import addsynth.energy.gameplay.machines.solar_panel.SolarPanelControllerTile;
 import addsynth.energy.gameplay.machines.universal_energy_interface.TileUniversalEnergyInterface;
 import addsynth.energy.gameplay.machines.wire.LowVoltageWireTile;
 import addsynth.energy.gameplay.reference.Names;
@@ -41,5 +43,11 @@ public final class Tiles {
 
   public static final BlockEntityHolder<LowVoltageWireTile> LOW_VOLTAGE_WIRE =
     new BlockEntityHolder<>(Names.LOW_VOLTAGE_WIRE, LowVoltageWireTile::new, EnergyBlocks.low_voltage_wire);
+
+  public static final BlockEntityHolder<SolarPanelTile> SOLAR_PANEL =
+    new BlockEntityHolder<>(Names.SOLAR_PANEL, SolarPanelTile::new, EnergyBlocks.solar_panel);
+
+  public static final BlockEntityHolder<SolarPanelControllerTile> SOLAR_PANEL_CONTROLLER =
+    new BlockEntityHolder<>(Names.SOLAR_PANEL_CONTROLLER, SolarPanelControllerTile::new, EnergyBlocks.solar_panel_controller);
 
 }
