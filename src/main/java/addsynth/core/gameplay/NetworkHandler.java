@@ -5,7 +5,6 @@ import addsynth.core.gameplay.music_box.network_messages.ChangeInstrumentMessage
 import addsynth.core.gameplay.music_box.network_messages.MusicBoxMessage;
 import addsynth.core.gameplay.music_box.network_messages.NoteMessage;
 import addsynth.core.gameplay.team_manager.network_messages.TeamManagerSyncMessage;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import addsynth.core.gameplay.team_manager.network_messages.RequestPlayerScoreMessage;
@@ -17,7 +16,7 @@ public final class NetworkHandler {
   private static final String PROTOCAL_VERSION = "1";
 
   public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-    new ResourceLocation(ADDSynthCore.MOD_ID, "main_network_channel"),
+    ADDSynthCore.getLocation("network_channel"),
     () -> PROTOCAL_VERSION, PROTOCAL_VERSION::equals, PROTOCAL_VERSION::equals
   );
 

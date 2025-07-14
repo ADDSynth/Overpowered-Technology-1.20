@@ -10,7 +10,7 @@ import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 public final class SteelModAbsentCondition implements ICondition {
 
   public static final SteelModAbsentCondition INSTANCE = new SteelModAbsentCondition();
-  public static final ResourceLocation id = new ResourceLocation(ADDSynthMaterials.MOD_ID, "steel_mod_absent");
+  public static final ResourceLocation id = ADDSynthMaterials.getLocation("steel_mod_absent");
 
   private SteelModAbsentCondition(){ }
 

@@ -12,6 +12,7 @@ import addsynth.core.recipe.FurnaceRecipes;
 import addsynth.core.util.CommonUtil;
 import addsynth.core.util.constants.DevStage;
 import addsynth.core.util.game.Game;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TagsUpdatedEvent;
@@ -37,6 +38,10 @@ public final class ADDSynthCore {
   public static final DevStage DEV_STAGE = DevStage.STABLE;
 
   public static final Logger log = LogManager.getLogger(NAME);
+
+  public static final ResourceLocation getLocation(final String path){
+    return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+  }
 
   public ADDSynthCore(final FMLJavaModLoadingContext context){
     ADDSynthCore.log.info("Begin constructing ADDSynthCore class object...");

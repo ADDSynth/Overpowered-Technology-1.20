@@ -5,14 +5,14 @@ import net.minecraft.resources.ResourceLocation;
 
 public final class Names {
 
-  public static final ResourceLocation           AMETHYST_ORE = new ResourceLocation(ADDSynthMaterials.MOD_ID, "amethyst_ore");
-  public static final ResourceLocation DEEPSLATE_AMETHYST_ORE = ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, "deepslate_amethyst_ore");
-  public static final ResourceLocation           COPPER_PLATE = new ResourceLocation(ADDSynthMaterials.MOD_ID, "copper_plate");
-  public static final ResourceLocation             GOLD_PLATE = new ResourceLocation(ADDSynthMaterials.MOD_ID, "gold_plate");
-  public static final ResourceLocation             IRON_PLATE = new ResourceLocation(ADDSynthMaterials.MOD_ID, "iron_plate");
+  public static final ResourceLocation           AMETHYST_ORE = ADDSynthMaterials.getLocation("amethyst_ore");
+  public static final ResourceLocation DEEPSLATE_AMETHYST_ORE = ADDSynthMaterials.getLocation("deepslate_amethyst_ore");
+  public static final ResourceLocation           COPPER_PLATE = ADDSynthMaterials.getLocation("copper_plate");
+  public static final ResourceLocation             GOLD_PLATE = ADDSynthMaterials.getLocation("gold_plate");
+  public static final ResourceLocation             IRON_PLATE = ADDSynthMaterials.getLocation("iron_plate");
 
   // legacy
-  public static final ResourceLocation AMETHYST_LEGACY       = new ResourceLocation(ADDSynthMaterials.MOD_ID, "amethyst");
-  public static final ResourceLocation AMETHYST_BLOCK_LEGACY = new ResourceLocation(ADDSynthMaterials.MOD_ID, "amethyst_block");
+  public static final ResourceLocation AMETHYST_LEGACY       = ADDSynthMaterials.getLocation("amethyst");
+  public static final ResourceLocation AMETHYST_BLOCK_LEGACY = ADDSynthMaterials.getLocation("amethyst_block");
 
 }

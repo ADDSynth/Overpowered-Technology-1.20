@@ -47,7 +47,7 @@ public final class MagicInfuserRecipe extends AbstractRecipe {
   public MagicInfuserRecipe(ResourceLocation id, String group, String enchantment_id, Ingredient ingredient){
     super(id, group, null, null);
     main_ingredient = ingredient;
-    this.enchantment_id = new ResourceLocation(enchantment_id);
+    this.enchantment_id = ResourceLocation.parse(enchantment_id);
     enchantment = ForgeRegistries.ENCHANTMENTS.getValue(this.enchantment_id);
   }
 

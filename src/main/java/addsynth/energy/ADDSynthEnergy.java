@@ -22,6 +22,7 @@ import addsynth.energy.gameplay.machines.generator.GuiGenerator;
 import addsynth.energy.gameplay.machines.universal_energy_interface.GuiUniversalEnergyInterface;
 import addsynth.energy.registers.Containers;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
@@ -43,6 +44,10 @@ public class ADDSynthEnergy {
   public static final DevStage DEV_STAGE = DevStage.STABLE;
     
   public static final Logger log = LogManager.getLogger(MOD_NAME);
+
+  public static final ResourceLocation getLocation(final String path){
+    return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+  }
 
   public ADDSynthEnergy(final FMLJavaModLoadingContext context){
     final IEventBus bus = context.getModEventBus();

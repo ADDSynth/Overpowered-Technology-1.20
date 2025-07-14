@@ -13,7 +13,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 @JeiPlugin
 public final class CoreJEIPlugin  implements IModPlugin {
 
-  public static final ResourceLocation id = new ResourceLocation(ADDSynthCore.MOD_ID, "jei_plugin");
+  public static final ResourceLocation id = ADDSynthCore.getLocation("jei_plugin");
 
   @Override
   public ResourceLocation getPluginUid(){

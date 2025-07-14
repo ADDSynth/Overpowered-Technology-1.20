@@ -6,7 +6,6 @@ import addsynth.energy.gameplay.machines.energy_diagnostics.EnergyDiagnosticsMes
 import addsynth.energy.gameplay.machines.solar_panel.SolarPanelData;
 import addsynth.energy.gameplay.machines.universal_energy_interface.CycleTransferModeMessage;
 import addsynth.energy.lib.network_messages.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
@@ -15,7 +14,7 @@ public final class NetworkHandler {
   private static final String PROTOCAL_VERSION = "1";
 
   public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-    new ResourceLocation(ADDSynthEnergy.MOD_ID, "main_network_channel"),
+    ADDSynthEnergy.getLocation("network_channel"),
     () -> PROTOCAL_VERSION, PROTOCAL_VERSION::equals, PROTOCAL_VERSION::equals
   );
 

@@ -21,7 +21,7 @@ import net.minecraft.world.item.ItemStack;
 @JeiPlugin
 public final class EnergyJEIPlugin implements IModPlugin {
 
-  public static final ResourceLocation id = new ResourceLocation(ADDSynthEnergy.MOD_ID, "jei_plugin");
+  public static final ResourceLocation id = ADDSynthEnergy.getLocation("jei_plugin");
 
   @Override
   public ResourceLocation getPluginUid(){

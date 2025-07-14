@@ -58,7 +58,7 @@ public final class TileCircuitFabricator extends TileStandardWorkMachine impleme
   }
 
   public final void change_recipe(final String new_recipe){
-    change_recipe(new ResourceLocation(new_recipe));
+    change_recipe(ResourceLocation.parse(new_recipe));
   }
 
   public final void change_recipe(final ResourceLocation new_recipe){
@@ -130,7 +130,7 @@ public final class TileCircuitFabricator extends TileStandardWorkMachine impleme
       return;
     }
     // handle if item doesn't exist
-    final ResourceLocation recipe = new ResourceLocation(recipe_string);
+    final ResourceLocation recipe = ResourceLocation.parse(recipe_string);
     if(ForgeRegistries.ITEMS.containsKey(recipe) == false){
       ADDSynthEnergy.log.warn("Loading CircuitFabricator data: Item '"+recipe_string+"' doesn't exist anymore. Loading default recipe.");
       change_recipe(defaultRecipe);

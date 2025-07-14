@@ -141,7 +141,7 @@ public final class LaserJobs {
     }
 
     private LaserJob(final CompoundTag tag){
-      dimension = new ResourceLocation(tag.getString("dimension"));
+      dimension = ResourceLocation.parse(tag.getString("dimension"));
       distance = Mth.clamp(tag.getInt("distance"), 1, LaserNetwork.max_laser_distance);
       life = Math.max(tag.getInt("life"), 0);
       final ListTag beam_list = tag.getList("beams", Tag.TAG_COMPOUND);

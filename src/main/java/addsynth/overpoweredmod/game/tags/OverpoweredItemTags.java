@@ -1,7 +1,6 @@
 package addsynth.overpoweredmod.game.tags;
 
 import addsynth.overpoweredmod.OverpoweredTechnology;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -16,7 +15,7 @@ public final class OverpoweredItemTags {
   public static final TagKey<Item> portal_fuel           = create("portal_fuel");
 
   private static final TagKey<Item> create(final String name){
-    return ItemTags.create(new ResourceLocation(OverpoweredTechnology.MOD_ID, name));
+    return ItemTags.create(OverpoweredTechnology.getLocation(name));
   }
 
 }

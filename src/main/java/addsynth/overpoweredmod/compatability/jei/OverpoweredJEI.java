@@ -37,7 +37,7 @@ public final class OverpoweredJEI implements IModPlugin {
 
   @Override
   public ResourceLocation getPluginUid(){
-    return new ResourceLocation(OverpoweredTechnology.MOD_ID, "jei_plugin");
+    return OverpoweredTechnology.getLocation("jei_plugin");
   }
 
   @Override

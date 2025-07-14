@@ -10,7 +10,7 @@ import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 public final class BronzeModAbsentCondition implements ICondition {
 
   public static final BronzeModAbsentCondition INSTANCE = new BronzeModAbsentCondition();
-  public static final ResourceLocation id = new ResourceLocation(ADDSynthMaterials.MOD_ID, "bronze_mod_absent");
+  public static final ResourceLocation id = ADDSynthMaterials.getLocation("bronze_mod_absent");
 
   private BronzeModAbsentCondition(){ }
 

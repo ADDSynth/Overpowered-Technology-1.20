@@ -48,7 +48,7 @@ public final class UnidentifiedItem extends Item {
 
   /** This is used to create the ResourceLocation from the {@link ArmorMaterial} and {@link EquipmentType}. */
   public static final ResourceLocation getResourceLocation(final ArmorMaterial material, final EquipmentType type){
-    return new ResourceLocation(OverpoweredTechnology.MOD_ID, "unidentified_"+material.name+"_"+type.name);
+    return OverpoweredTechnology.getLocation("unidentified_"+material.name+"_"+type.name);
   }
 
   /** Use this to get the Item associated with this {@link ArmorMaterial} and {@link EquipmentType}. */

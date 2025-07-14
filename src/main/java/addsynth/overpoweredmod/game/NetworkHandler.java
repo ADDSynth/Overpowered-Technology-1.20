@@ -9,7 +9,6 @@ import addsynth.overpoweredmod.machines.portal.control_panel.GeneratePortalMessa
 import addsynth.overpoweredmod.machines.portal.control_panel.SyncPortalDataMessage;
 import addsynth.overpoweredmod.machines.suspension_bridge.RotateBridgeMessage;
 import addsynth.overpoweredmod.machines.suspension_bridge.SyncClientBridgeMessage;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
@@ -20,7 +19,7 @@ public final class NetworkHandler {
   private static final String PROTOCAL_VERSION = "1";
 
   public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-    new ResourceLocation(OverpoweredTechnology.MOD_ID, "main_network_channel"),
+    OverpoweredTechnology.getLocation("network_channel"),
     () -> PROTOCAL_VERSION, PROTOCAL_VERSION::equals, PROTOCAL_VERSION::equals
   );
 

@@ -10,71 +10,71 @@ import net.minecraft.world.item.Item;
 public final class MaterialTag {
 
   public static class RUBY {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/ruby"));
-    public static final TagKey<Item>   GEMS = ItemTags.create(new ResourceLocation("forge:gems/ruby"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/ruby"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/ruby"));
+    public static final TagKey<Item>   GEMS = ItemTags.create(ResourceLocation.parse("forge:gems/ruby"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/ruby"));
   }
 
   public static class TOPAZ {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/topaz"));
-    public static final TagKey<Item>   GEMS = ItemTags.create(new ResourceLocation("forge:gems/topaz"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/topaz"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/topaz"));
+    public static final TagKey<Item>   GEMS = ItemTags.create(ResourceLocation.parse("forge:gems/topaz"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/topaz"));
   }
   
   public static class CITRINE {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/citrine"));
-    public static final TagKey<Item>   GEMS = ItemTags.create(new ResourceLocation("forge:gems/citrine"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/citrine"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/citrine"));
+    public static final TagKey<Item>   GEMS = ItemTags.create(ResourceLocation.parse("forge:gems/citrine"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/citrine"));
   }
   
   public static class SAPPHIRE {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/sapphire"));
-    public static final TagKey<Item>   GEMS = ItemTags.create(new ResourceLocation("forge:gems/sapphire"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/sapphire"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/sapphire"));
+    public static final TagKey<Item>   GEMS = ItemTags.create(ResourceLocation.parse("forge:gems/sapphire"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/sapphire"));
   }
   
   public static class AMETHYST {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/amethyst"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/amethyst"));
   }
   
   public static class TIN {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/tin"));
-    public static final TagKey<Item> INGOTS = ItemTags.create(new ResourceLocation("forge:ingots/tin"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/tin"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/tin"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/tin"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/tin"));
   }
   
   public static class ALUMINUM {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/aluminum"));
-    public static final TagKey<Item> INGOTS = ItemTags.create(new ResourceLocation("forge:ingots/aluminum"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/aluminum"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/aluminum"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/aluminum"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/aluminum"));
   }
   
   public static class STEEL {
-    public static final TagKey<Item> INGOTS = ItemTags.create(new ResourceLocation("forge:ingots/steel"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/steel"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/steel"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/steel"));
   }
   
   public static class BRONZE {
-    public static final TagKey<Item> INGOTS = ItemTags.create(new ResourceLocation("forge:ingots/bronze"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/bronze"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/bronze"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/bronze"));
   }
   
   public static class SILVER {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/silver"));
-    public static final TagKey<Item> INGOTS = ItemTags.create(new ResourceLocation("forge:ingots/silver"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/silver"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/silver"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/silver"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/silver"));
   }
   
   public static class PLATINUM {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/platinum"));
-    public static final TagKey<Item> INGOTS = ItemTags.create(new ResourceLocation("forge:ingots/platinum"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/platinum"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/platinum"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/platinum"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/platinum"));
   }
   
   public static class TITANIUM {
-    public static final TagKey<Item>   ORES = ItemTags.create(new ResourceLocation("forge:ores/titanium"));
-    public static final TagKey<Item> INGOTS = ItemTags.create(new ResourceLocation("forge:ingots/titanium"));
-    public static final TagKey<Item> BLOCKS = ItemTags.create(new ResourceLocation("forge:storage_blocks/titanium"));
+    public static final TagKey<Item>   ORES = ItemTags.create(ResourceLocation.parse("forge:ores/titanium"));
+    public static final TagKey<Item> INGOTS = ItemTags.create(ResourceLocation.parse("forge:ingots/titanium"));
+    public static final TagKey<Item> BLOCKS = ItemTags.create(ResourceLocation.parse("forge:storage_blocks/titanium"));
   }
 
   public static class LEAD {

@@ -7,6 +7,7 @@ import addsynth.core.ADDSynthCore;
 import addsynth.core.util.CommonUtil;
 import addsynth.core.util.constants.DevStage;
 import addsynth.material.compat.MaterialsCompat;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,6 +30,10 @@ public final class ADDSynthMaterials {
   public static final DevStage DEV_STAGE = ADDSynthCore.DEV_STAGE;
 
   public static final Logger log = LogManager.getLogger(MOD_NAME);
+
+  public static final ResourceLocation getLocation(final String path){
+    return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+  }
 
   public ADDSynthMaterials(final FMLJavaModLoadingContext context){
     final IEventBus bus = context.getModEventBus();

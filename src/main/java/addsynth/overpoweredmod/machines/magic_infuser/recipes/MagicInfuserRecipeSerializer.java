@@ -34,7 +34,7 @@ public final class MagicInfuserRecipeSerializer implements RecipeSerializer<Magi
     if(enchantment_string == null){
       throw new JsonParseException("Could not read enchantment string correctly for recipe '"+recipeId.toString()+"'.");
     }
-    final ResourceLocation enchantment_id = new ResourceLocation(enchantment_string);
+    final ResourceLocation enchantment_id = ResourceLocation.parse(enchantment_string);
     final Enchantment enchantment = ForgeRegistries.ENCHANTMENTS.getValue(enchantment_id);
     if(enchantment == null){
       OverpoweredTechnology.log.error("While parsing recipe "+recipeId.toString()+", Enchantment '"+enchantment_string+"' does not exist or is not registered.");

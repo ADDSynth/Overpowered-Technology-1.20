@@ -30,6 +30,7 @@ import addsynth.overpoweredmod.machines.suspension_bridge.GuiEnergySuspensionBri
 import addsynth.overpoweredmod.registers.Containers;
 import addsynth.overpoweredmod.registers.Registers;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartedEvent;
@@ -53,6 +54,10 @@ public class OverpoweredTechnology {
   public static final DevStage DEV_STAGE = DevStage.DEVELOPMENT;
     
   public static final Logger log = LogManager.getLogger(MOD_NAME);
+
+  public static final ResourceLocation getLocation(final String path){
+    return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+  }
 
   public OverpoweredTechnology(final FMLJavaModLoadingContext context){
     OverpoweredTechnology.log.info("Begin constructing "+OverpoweredTechnology.class.getSimpleName()+" class object...");
