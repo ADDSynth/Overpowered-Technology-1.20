@@ -1,5 +1,6 @@
 package addsynth.energy.gameplay.machines.solar_panel;
 
+import java.time.LocalTime;
 import addsynth.core.gui.GuiBase;
 import addsynth.core.gui.util.GuiUtil;
 import addsynth.energy.gameplay.config.Config;
@@ -46,11 +47,23 @@ public final class SolarPanelControllerGui extends GuiBase {
     text_width += 5;
     draw_text_left(graphics, tile.getStatusMessage(), text_width, lines[0]);
     draw_text_left(graphics, String.format("%.2f", tile.getEnergyValue()), text_width, lines[1]);
-    if(Config.SOLAR_PANEL.displayPhaseInDegrees()){
+    switch(Config.SOLAR_PANEL.phase_display.get()){
+    case DEGREES:
       draw_text_left(graphics, String.format("%.1f", tile.getPhase() * 360)+'°', text_width, lines[2]);
-    }
-    else{
+      break;
+    case PERCENTAGE:
       draw_text_left(graphics, String.format("%.1f", tile.getPhase() * 100)+'%', text_width, lines[2]);
+      break;
+    case TICKS:
+      draw_text_left(graphics, Integer.toString(tile.getTicks()), text_width, lines[2]);
+      break;
+    case TIME:
+      final int ticks = tile.getTicks();
+      final int hours = ((ticks / 1000) + 6) % 24;
+      final int minutes = (int)((ticks % 1000)*0.06);
+      final LocalTime time = LocalTime.of(hours, minutes, 0);
+      draw_text_left(graphics, String.format("%1$Tl:%1$TM %1$Tp", time), text_width, lines[2]);
+      break;
     }
     draw_text_left(graphics, Integer.toString(tile.getSolarPanelCount()), text_width, lines[3]);
     draw_text_left(graphics, Integer.toString(tile.getBlockedCount()), text_width, lines[4]);

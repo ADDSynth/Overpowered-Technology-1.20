@@ -24,7 +24,8 @@ NEW:
    - Since solar panels sit flat at all times, energy calculation changes during the day, with 100%
        energy when sun is at noon, and 0% when sun is at horizon. Energy calculation follows a sine curve.
    - Solar Panels use a hitscan to determine if line-of-sight to the sun is blocked.
-   - Solar Panels generate less energy if a thunder storm is occuring.
+      - This can be changed in the config if it's using too much processing power.
+   - Solar Panels generate less energy if a thunderstorm is occuring.
    - Solar Panels (by default) get dirty over time, which lowers the power generated. Clean solar panels
        by washing with water, or waiting until it rains.
    - Solar Panels do not connect to Energy Wire directly, there must be a Solar Panel Controller adjacent

@@ -22,6 +22,7 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
 
   private SolarPanelStatus status;
   private final Generator energy = new Generator();
+  private int daytime;
   private double total_energy;
   private double phase;
   private int panel_count;
@@ -54,7 +55,8 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
 
   @Override
   public void serverTick(Level level){
-    phase = (double)(level.getDayTime() % WorldTime.minecraft_day_in_ticks) / WorldTime.minecraft_day_in_ticks;
+    daytime = (int)(level.getDayTime() % WorldTime.minecraft_day_in_ticks);
+    phase = (double)daytime / WorldTime.minecraft_day_in_ticks;
     if(status != SolarPanelStatus.DIMENSION_HAS_NO_LIGHT){
       found = false;
       total_energy = 0;
@@ -68,7 +70,6 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
           found = true;
           network = solar_panel.getBlockNetwork();
           if(network != null){
-            // energy.add(network.getEnergy());
             total_energy += network.getEnergy();
             panel_count += network.getCount();
             blocked_count += network.getBlockedCount();
@@ -95,13 +96,14 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
     energy.setEnergyAndCapacity(total_energy);
     energy.setMaxExtract(total_energy);
     energy.updateEnergyIO();
-    data.set(status, phase, total_energy, panel_count, blocked_count, theoretical_energy);
+    data.set(status, daytime, phase, total_energy, panel_count, blocked_count, theoretical_energy);
     NetworkUtil.send_to_TileEntity(NetworkHandler.INSTANCE, this, data);
   }
 
   // Client methods;
   public final void setFromServer(SolarPanelData data){
     status = data.status;
+    daytime = data.daytime;
     phase = data.phase;
     total_energy = data.energy;
     panel_count = data.panel_count;
@@ -111,9 +113,12 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
   public final Component getStatusMessage(){ return status != null ? status.getMessage() : ADDSynthCoreText.null_error; }
   public final double getEnergyValue(){ return total_energy; }
   public final double getPhase(){ return phase; }
+  public final int getTicks(){ return daytime; }
   public final int getSolarPanelCount(){ return panel_count; }
   public final int getBlockedCount(){ return blocked_count; }
-  public final double getEfficiency(){ return total_energy / theoretical_energy * 100; }
+  public final double getEfficiency(){
+    return theoretical_energy > 0 ? total_energy / theoretical_energy * 100 : 0;
+  }
 
   @Override
   public Energy getEnergy(){

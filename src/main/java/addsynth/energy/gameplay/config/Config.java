@@ -12,7 +12,8 @@ public final class Config {
 
   public static class SOLAR_PANEL {
     
-    public enum PhaseDisplay {DEGREES, PERCENTAGE}
+    public enum PhaseDisplay {DEGREES, PERCENTAGE, TICKS, TIME}
+    public enum BlockingAlgorithm {Hitscan, Sunlight}
     
     public static ForgeConfigSpec.BooleanValue decrease_life;
     public static ForgeConfigSpec.DoubleValue dirty_modifier;
@@ -20,6 +21,7 @@ public final class Config {
     public static ForgeConfigSpec.IntValue max_life;
     public static ForgeConfigSpec.DoubleValue heavy_rain_modifier;
     public static ForgeConfigSpec.EnumValue<PhaseDisplay> phase_display;
+    public static ForgeConfigSpec.EnumValue<BlockingAlgorithm> blocking_algorithm;
     
     private static final int DEFAULT_TIME = 24_192_000;
     
@@ -38,13 +40,23 @@ public final class Config {
       energy = builder.defineInRange("Energy per Tick", 0.5, 0, Double.MAX_VALUE);
       heavy_rain_modifier = builder.defineInRange("Heavy Rain Efficiency Multiplier", 0.5, 0, 1.0);
       phase_display = builder.comment(
-        "Client Only: Determines whether the Phase in Solar Panel Controller is displayed in degrees 0-359 or as a percentage of day."
+        "Client Only: Determines how the Phase in the Solar Panel Controller gui is displayed."
       ).defineEnum("Phase Display", PhaseDisplay.DEGREES);
+      blocking_algorithm = builder.comment(
+        "Hitscan: Uses a hitscan line to determine if a path to the sun is blocked. This is the most\n"+
+        "  realistic, and also the most processor intensive. However, if the hitscan finds blocks which\n"+
+        "  would normally allow light to pass through, such as Glass, it will consider that as blocked.\n"+
+        "Sunlight: Energy generated will still be determined by the time of day, but will also be multiplied\n"+
+        "  by the amount of sunlight hitting the solar panel. If any solar panel does not have full \n"+
+        "  brightness, then the Solar Panel Controller will display the Blocked status. Although this\n"+
+        "  tremendously saves on processing power, it won't be very realistic if you can surround the solar\n"+
+        "  panel with stacks of blocks, and it'll still receive full power.."
+      ).defineEnum("Blocking Detection Method", BlockingAlgorithm.Hitscan);
       builder.pop();
     }
     
-    public static final boolean displayPhaseInDegrees(){
-      return phase_display.get() == PhaseDisplay.DEGREES;
+    public static final boolean checkHitscanBlocking(){
+      return blocking_algorithm.get() == BlockingAlgorithm.Hitscan;
     }
   }
 

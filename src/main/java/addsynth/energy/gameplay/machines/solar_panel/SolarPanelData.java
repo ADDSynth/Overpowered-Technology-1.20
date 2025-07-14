@@ -14,6 +14,7 @@ public final class SolarPanelData {
 
   private final BlockPos position;
   public SolarPanelStatus status;
+  public int daytime;
   public double phase;
   public double energy;
   public int panel_count;
@@ -24,8 +25,9 @@ public final class SolarPanelData {
     this.position = position;
   }
 
-  public final void set(SolarPanelStatus status, double phase, double energy, int panel_count, int blocked_count, double efficiency){
+  public final void set(SolarPanelStatus status, int daytime, double phase, double energy, int panel_count, int blocked_count, double efficiency){
     this.status = status;
+    this.daytime = daytime;
     this.phase = phase;
     this.energy = energy;
     this.panel_count = panel_count;
@@ -36,6 +38,7 @@ public final class SolarPanelData {
   public static void encode(SolarPanelData message, FriendlyByteBuf buf){
     buf.writeBlockPos(message.position);
     buf.writeInt(message.status.ordinal());
+    buf.writeInt(message.daytime);
     buf.writeDouble(message.phase);
     buf.writeDouble(message.energy);
     buf.writeInt(message.panel_count);
@@ -46,6 +49,7 @@ public final class SolarPanelData {
   public static SolarPanelData decode(FriendlyByteBuf buf){
     SolarPanelData data = new SolarPanelData(buf.readBlockPos());
     data.status = SolarPanelStatus.values()[buf.readInt()];
+    data.daytime = buf.readInt();
     data.phase = buf.readDouble();
     data.energy = buf.readDouble();
     data.panel_count = buf.readInt();
