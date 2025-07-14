@@ -29,6 +29,7 @@ public final class ADDSynthCommands {
       LightningStormCommand.register(dispatcher);
     }
     ShowOresCommand.register(dispatcher, build_context);
+    MapColorsCommand.register(dispatcher);
   }
 
   /** This runs every server tick (20 times a second). Assigned to the Forge Event bus by {@link ADDSynthCore}. */

@@ -1,5 +1,8 @@
 version 6 - TBD
 ===ADDSynthCore:
+NEW:
+  Added the /addsynthcore map_colors Command. Spawns blocks of each MapColor at the highest point in the world.
+   - Another command meant to help developers.
 CHANGED:
   Removed the top ingredient in Trophy crafting recipes so all trophies now only require 5 of their
     main ingredient instead of 6.
