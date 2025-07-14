@@ -12,20 +12,10 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 public final class NetworkUtil {
 
-  public static final void writeBlockPos(final FriendlyByteBuf data, final BlockPos pos){
-    data.writeInt(pos.getX());
-    data.writeInt(pos.getY());
-    data.writeInt(pos.getZ());
-  }
-
-  public static final BlockPos readBlockPos(final FriendlyByteBuf data){
-    return new BlockPos(data.readInt(), data.readInt(), data.readInt());
-  }
-
   public static final void writeBlockPositions(final FriendlyByteBuf data, final BlockPos[] positions){
     data.writeInt(positions.length);
     for(final BlockPos pos : positions){
-      writeBlockPos(data, pos);
+      data.writeBlockPos(pos);
     }
   }
 
@@ -34,7 +24,7 @@ public final class NetworkUtil {
     final int length = data.readInt();
     final BlockPos[] positions = new BlockPos[length];
     for(i = 0; i < length; i++){
-      positions[i] = readBlockPos(data);
+      positions[i] = data.readBlockPos();
     }
     return positions;
   }
