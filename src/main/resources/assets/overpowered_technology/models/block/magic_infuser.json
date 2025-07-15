@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "bottom":   "overpowered_technology:block/machines/default_machine_texture",
+    "top":      "overpowered_technology:block/machines/top_texture",
+    "side":     "overpowered_technology:block/machines/magic_infuser"
+  }
+}

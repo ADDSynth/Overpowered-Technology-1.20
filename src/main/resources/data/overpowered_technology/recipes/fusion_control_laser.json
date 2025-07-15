@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " gs",
+    "fed",
+    " gs"
+  ],
+  "key": {
+    "g": {
+      "tag": "forge:dyes/gray"
+    },
+    "s": {
+      "tag": "forge:plates/steel"
+    },
+    "f": {
+      "item": "overpowered_technology:focus_lens"
+    },
+    "e": {
+      "item": "overpowered_technology:energy_stabilizer"
+    },
+    "d": {
+      "item": "overpowered_technology:data_cable"
+    }
+  },
+  "result": {
+    "item": "overpowered_technology:fusion_control_laser"
+  }
+}

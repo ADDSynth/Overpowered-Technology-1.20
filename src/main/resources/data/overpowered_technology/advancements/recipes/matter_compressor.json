@@ -1,0 +1,97 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "titanium_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:plates/titanium"
+          }
+        ]
+      }
+    },
+    "reinforced_container": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:reinforced_container"
+            ]
+          }
+        ]
+      }
+    },
+    "circuit_tier_9": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "addsynth_energy:circuit_tier_9"
+            ]
+          }
+        ]
+      }
+    },
+    "nullified_power_core": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:nullified_power_core"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:matter_compressor"
+      }
+    },
+    "has_matter_compressor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:matter_compressor"
+            ]
+          }
+        ]
+      }
+    },
+    "has_unimatter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:unimatter"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "titanium_plate",
+      "reinforced_container",
+      "circuit_tier_9",
+      "nullified_power_core",
+      "has_recipe",
+      "has_matter_compressor",
+      "has_unimatter"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:matter_compressor"
+    ]
+  }
+}

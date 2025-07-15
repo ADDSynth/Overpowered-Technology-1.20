@@ -1,0 +1,26 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "has_void_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:void_crystal"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:void_sword",
+      "overpowered_technology:void_shovel",
+      "overpowered_technology:void_axe",
+      "overpowered_technology:void_pickaxe",
+      "overpowered_technology:void_hoe"
+    ]
+  }
+}

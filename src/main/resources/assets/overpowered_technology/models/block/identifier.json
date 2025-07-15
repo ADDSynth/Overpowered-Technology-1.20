@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "overpowered_technology:block/machines/identifier"
+	}
+}

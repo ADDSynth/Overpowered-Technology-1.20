@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "tet",
+    "ere",
+    "ncn"
+  ],
+  "key": {
+    "t": {
+      "tag": "forge:plates/titanium"
+    },
+    "r": {
+      "item": "overpowered_technology:reinforced_container"
+    },
+    "c": {
+      "item": "addsynth_energy:circuit_tier_9"
+    },
+    "n": {
+      "item": "overpowered_technology:nullified_power_core"
+    },
+    "e": {
+      "item": "overpowered_technology:energy_stabilizer"
+    }
+  },
+  "result": {
+    "item": "overpowered_technology:matter_compressor"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "celestial_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:celestial_gem"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:celestial_sword",
+      "overpowered_technology:celestial_pickaxe",
+      "overpowered_technology:celestial_axe",
+      "overpowered_technology:celestial_shovel",
+      "overpowered_technology:celestial_hoe"
+    ]
+  }
+}

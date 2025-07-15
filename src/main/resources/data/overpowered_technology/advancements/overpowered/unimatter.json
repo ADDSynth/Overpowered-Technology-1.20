@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:unimatter"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.unimatter.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.unimatter.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "overpowered_technology:overpowered/black_hole",
+  "criteria": {
+    "unimatter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:unimatter"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

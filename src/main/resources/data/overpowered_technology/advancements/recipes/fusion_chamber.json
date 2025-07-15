@@ -1,0 +1,58 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "vacuum_container": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:vacuum_container"
+            ]
+          }
+        ]
+      }
+    },
+    "titanium_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:plates/titanium"
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:fusion_chamber"
+      }
+    },
+    "has_machine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:fusion_chamber"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "vacuum_container",
+      "titanium_plate",
+      "has_recipe",
+      "has_machine"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:fusion_chamber"
+    ]
+  }
+}

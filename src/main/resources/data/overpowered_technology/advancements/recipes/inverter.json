@@ -1,0 +1,48 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "void_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:void_crystal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:inverter"
+      }
+    },
+    "has_inverter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:inverter"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "void_crystal",
+      "has_recipe",
+      "has_inverter"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:inverter",
+      "overpowered_technology:inverter_alternate"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "overpowered_technology:light_block"
+    }
+  ],
+  "result": {
+    "item": "overpowered_technology:celestial_gem",
+    "count": 9
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "destructive_laser": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:destructive_laser"
+            ]
+          }
+        ]
+      }
+    },
+    "focus_lens": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:focus_lens"
+            ]
+          }
+        ]
+      }
+    },
+    "laser_housing": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:laser_housing"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "destructive_laser",
+      "focus_lens",
+      "laser_housing"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:red_laser",
+      "overpowered_technology:orange_laser",
+      "overpowered_technology:yellow_laser",
+      "overpowered_technology:green_laser",
+      "overpowered_technology:cyan_laser",
+      "overpowered_technology:blue_laser",
+      "overpowered_technology:magenta_laser",
+      "overpowered_technology:white_laser"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:red_laser"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.fire_laser.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.fire_laser.description"
+    }
+  },
+  "parent": "overpowered_technology:overpowered/craft_laser",
+  "criteria": {
+    "fire_laser": {
+      "trigger": "minecraft:impossible"
+      }
+    }
+  },
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "overpowered_technology:laser_housing"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "overpowered_technology:block/null_block"
+	},
+    "render_type": "translucent"
+}

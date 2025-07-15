@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable_with_bottom",
+  "textures": {
+    "front":  "overpowered_technology:block/machines/portal_control_panel/portal_control_panel_front",
+    "bottom": "overpowered_technology:block/machines/portal_control_panel/portal_control_panel_side",
+    "top":    "overpowered_technology:block/machines/top_texture",
+    "side":   "overpowered_technology:block/machines/portal_control_panel/portal_control_panel_side"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "overpowered_technology:magic_infuser",
+  "input": {
+    "item": "overpowered_technology:void_crystal"
+  },
+  "enchantment": "minecraft:binding_curse"
+}

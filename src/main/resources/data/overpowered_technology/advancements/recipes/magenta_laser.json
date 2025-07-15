@@ -1,0 +1,47 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "magenta_lens": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:magenta_lens"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:magenta_laser"
+      }
+    },
+    "has_laser": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:magenta_laser"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "magenta_lens",
+      "has_recipe",
+      "has_laser"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:magenta_laser"
+    ]
+  }
+}

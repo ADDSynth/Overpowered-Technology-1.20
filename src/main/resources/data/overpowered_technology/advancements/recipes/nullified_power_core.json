@@ -1,0 +1,47 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "void_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:void_crystal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:nullified_power_core"
+      }
+    },
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:nullified_power_core"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "void_crystal",
+      "has_recipe",
+      "has_item"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:nullified_power_core"
+    ]
+  }
+}

@@ -57,6 +57,6 @@
     "addsynth_materials:deepslate_neodymium_ore",
     "addsynth_materials:deepslate_rose_quartz_ore",
     "addsynth_materials:deepslate_silicon_ore",
-    "overpowered:light_block"
+    "overpowered_technology:light_block"
   ]
 }

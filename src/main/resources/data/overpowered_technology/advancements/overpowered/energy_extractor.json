@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:energy_extractor"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.energy_extractor.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.energy_extractor.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "overpowered_technology:overpowered/matter_energy_core",
+  "criteria": {
+    "energy_extractor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:energy_extractor"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "overpowered_technology:energy_extractor"
+    }
+  ]
+}

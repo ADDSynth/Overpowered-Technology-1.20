@@ -1,0 +1,28 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "has_focus_lens": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:focus_lens"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:red_lens",
+      "overpowered_technology:orange_lens",
+      "overpowered_technology:yellow_lens",
+      "overpowered_technology:green_lens",
+      "overpowered_technology:cyan_lens",
+      "overpowered_technology:blue_lens",
+      "overpowered_technology:magenta_lens"
+    ]
+  }
+}

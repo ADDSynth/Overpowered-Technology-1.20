@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "overpowered_technology:celestial_gem"
+  },
+  "result": "overpowered_technology:energy_crystal",
+  "experience": 0.0,
+  "cookingtime": 800
+}

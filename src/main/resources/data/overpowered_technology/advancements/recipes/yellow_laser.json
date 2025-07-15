@@ -1,0 +1,47 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "yellow_lens": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:yellow_lens"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:yellow_laser"
+      }
+    },
+    "has_laser": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:yellow_laser"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "yellow_lens",
+      "has_recipe",
+      "has_laser"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:yellow_laser"
+    ]
+  }
+}

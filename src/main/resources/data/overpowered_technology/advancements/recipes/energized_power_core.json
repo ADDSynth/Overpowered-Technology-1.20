@@ -1,0 +1,47 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "energy_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:energy_crystal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:energized_power_core"
+      }
+    },
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:energized_power_core"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "energy_crystal",
+      "has_recipe",
+      "has_item"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:energized_power_core"
+    ]
+  }
+}

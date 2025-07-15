@@ -1,0 +1,71 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "steel_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:plates/steel"
+          }
+        ]
+      }
+    },
+    "beam_emitter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:beam_emitter"
+            ]
+          }
+        ]
+      }
+    },
+    "circuit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "addsynth_energy:circuit_tier_6"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:energy_suspension_bridge"
+      }
+    },
+    "has_bridge": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:energy_suspension_bridge"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "steel_plate",
+      "beam_emitter",
+      "circuit",
+      "has_recipe",
+      "has_bridge"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:energy_suspension_bridge"
+    ]
+  }
+}

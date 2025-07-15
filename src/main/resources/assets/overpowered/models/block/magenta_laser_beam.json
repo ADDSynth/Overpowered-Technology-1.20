@@ -1,7 +1,0 @@
-{
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "overpowered:block/lasers/magenta_laser_beam"
-	},
-    "render_type": "translucent"
-}

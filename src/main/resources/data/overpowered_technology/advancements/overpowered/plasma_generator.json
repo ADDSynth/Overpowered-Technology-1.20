@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:plasma_generator"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.plasma_generator.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.plasma_generator.description"
+    }
+  },
+  "parent": "overpowered_technology:overpowered/energy_crystal",
+  "criteria": {
+    "plasma_generator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:plasma_generator",
+              "overpowered_technology:plasma"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

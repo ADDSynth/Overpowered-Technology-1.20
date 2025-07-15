@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-    "textures": {
-        "layer0": "overpowered:item/leather_armor/leather_pants"
-    }
-}

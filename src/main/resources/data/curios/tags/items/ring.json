@@ -2,19 +2,19 @@
   "replace": false,
   "values": [
     {
-      "id": "overpowered:magic_ring_0",
+      "id": "overpowered_technology:magic_ring_0",
       "required": false
     },
     {
-      "id": "overpowered:magic_ring_1",
+      "id": "overpowered_technology:magic_ring_1",
       "required": false
     },
     {
-      "id": "overpowered:magic_ring_2",
+      "id": "overpowered_technology:magic_ring_2",
       "required": false
     },
     {
-      "id": "overpowered:magic_ring_3",
+      "id": "overpowered_technology:magic_ring_3",
       "required": false
     }
   ]

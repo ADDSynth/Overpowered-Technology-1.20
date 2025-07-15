@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "overpowered_technology:scanning_laser"},
+    {"item": "addsynth_energy:power_regulator"}
+  ],
+  "result": {
+    "item": "overpowered_technology:energy_stabilizer"
+  }
+}

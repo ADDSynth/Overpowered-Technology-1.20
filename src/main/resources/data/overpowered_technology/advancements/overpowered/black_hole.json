@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:black_hole"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.black_hole.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.black_hole.description"
+    }
+  },
+  "parent": "overpowered_technology:overpowered/inverter",
+  "criteria": {
+    "black_hole": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:black_hole"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "overpowered_technology:black_hole"
+    }
+  ]
+}

@@ -1,7 +1,0 @@
-{
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "overpowered:block/portal"
-	},
-    "render_type": "translucent"
-}

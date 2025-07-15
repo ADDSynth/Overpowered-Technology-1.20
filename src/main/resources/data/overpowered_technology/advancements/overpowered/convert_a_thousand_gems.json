@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.convert_a_thousand_gems.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.convert_a_thousand_gems.description"
+    },
+    "frame": "challenge"
+  },
+  "parent": "overpowered_technology:overpowered/gem_converter",
+  "criteria": {
+    "convert_gems": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "overpowered_technology:gem_converter"
+    }
+  ]
+}

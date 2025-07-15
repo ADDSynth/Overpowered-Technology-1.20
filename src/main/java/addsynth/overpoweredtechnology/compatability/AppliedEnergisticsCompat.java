@@ -1,0 +1,20 @@
+package addsynth.overpoweredtechnology.compatability;
+
+import addsynth.overpoweredtechnology.machines.advanced_ore_refinery.TileAdvancedOreRefinery;
+import addsynth.overpoweredtechnology.machines.crystal_matter_generator.TileCrystalMatterGenerator;
+import addsynth.overpoweredtechnology.machines.data_cable.TileDataCable;
+import addsynth.overpoweredtechnology.machines.energy_extractor.TileEnergyExtractor;
+import addsynth.overpoweredtechnology.machines.fusion.chamber.TileFusionChamber;
+import addsynth.overpoweredtechnology.machines.fusion.converter.TileFusionEnergyConverter;
+import addsynth.overpoweredtechnology.machines.gem_converter.TileGemConverter;
+import addsynth.overpoweredtechnology.machines.identifier.TileIdentifier;
+import addsynth.overpoweredtechnology.machines.inverter.TileInverter;
+import addsynth.overpoweredtechnology.machines.laser.machine.TileLaserHousing;
+import addsynth.overpoweredtechnology.machines.magic_infuser.TileMagicInfuser;
+import addsynth.overpoweredtechnology.machines.portal.control_panel.TilePortalControlPanel;
+import addsynth.overpoweredtechnology.machines.portal.frame.TilePortalFrame;
+import addsynth.overpoweredtechnology.machines.portal.rift.TilePortal;
+
+public final class AppliedEnergisticsCompat {
+
+}

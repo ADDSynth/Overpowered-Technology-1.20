@@ -1,0 +1,49 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "celestial_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:celestial_gem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:energy_crystal"
+      }
+    },
+    "has_energy_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:energy_crystal"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "celestial_gem",
+      "has_recipe",
+      "has_energy_crystal"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:energy_crystal",
+      "overpowered_technology:matter_energy_core",
+      "overpowered_technology:plasma_generator"
+    ]
+  }
+}

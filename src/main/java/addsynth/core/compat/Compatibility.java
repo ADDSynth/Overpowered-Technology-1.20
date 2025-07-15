@@ -207,7 +207,7 @@ public final class Compatibility {
     new CompatInfo("OpenComputers",                      "opencomputers",        ModType.Computer);
   
   public static final CompatInfo OVERPOWERED_TECHNOLOGY =
-    new CompatInfo("Overpowered Technology",             "overpowered",          ModType.Tech);
+    new CompatInfo("Overpowered Technology",             "overpowered_technology", ModType.Tech);
   
   public static final CompatInfo PAMS_HARVESTCRAFT_2_FOOD_CORE =
     new CompatInfo("Pam's Harvestcraft 2 - Food Core",   "pamhc2foodcore",       ModType.Food);

@@ -36,7 +36,7 @@ import net.minecraftforge.server.ServerLifecycleHooks;
  *  @see FurnaceRecipes
  *  @see addsynth.energy.gameplay.machines.compressor.recipe.CompressorRecipes
  *  @see addsynth.energy.gameplay.machines.circuit_fabricator.recipe.CircuitFabricatorRecipes
- *  @see addsynth.overpoweredmod.machines.magic_infuser.recipes.MagicInfuserRecipes
+ *  @see addsynth.overpoweredtechnology.machines.magic_infuser.recipes.MagicInfuserRecipes
  */
 public class RecipeCollection<T extends Recipe<Container>> {
 

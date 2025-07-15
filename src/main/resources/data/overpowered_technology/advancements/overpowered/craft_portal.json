@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:portal_control_panel"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.craft_portal.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.craft_portal.description"
+    }
+  },
+  "parent": "overpowered_technology:overpowered/matter_energy_core",
+  "criteria": {
+    "portal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:portal_control_panel"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

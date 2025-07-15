@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.survivor.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.survivor.description"
+    },
+    "frame": "challenge"
+  },
+  "parent": "overpowered_technology:overpowered/dimensional_anchor",
+  "criteria": {
+    "survive_black_hole": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "overpowered_technology:dimensional_anchor"
+    }
+  ]
+}

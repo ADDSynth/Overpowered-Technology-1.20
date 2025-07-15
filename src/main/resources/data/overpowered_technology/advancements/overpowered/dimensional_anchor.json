@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:dimensional_anchor"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.dimensional_anchor.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.dimensional_anchor.description"
+    }
+  },
+  "parent": "overpowered_technology:overpowered/inverter",
+  "criteria": {
+    "dimensional_anchor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:dimensional_anchor"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "overpowered_technology:dimensional_anchor"
+    }
+  ]
+}

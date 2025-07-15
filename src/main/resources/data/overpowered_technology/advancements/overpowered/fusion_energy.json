@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:fusion_core"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.fusion_energy.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.fusion_energy.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "overpowered_technology:overpowered/fusion_structure",
+  "criteria": {
+    "fusion_energy": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "overpowered_technology:fusion_energy_converter"
+    }
+  ]
+}

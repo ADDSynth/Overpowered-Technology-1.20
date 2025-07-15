@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:matter_energy_core"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.matter_energy_core.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.matter_energy_core.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "overpowered_technology:overpowered/plasma_generator",
+  "criteria": {
+    "matter_energy_core": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:matter_energy_core"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

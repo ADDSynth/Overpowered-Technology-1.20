@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:dimensional_flux"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.dimensional_flux.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.dimensional_flux.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "overpowered_technology:overpowered/portal",
+  "criteria": {
+    "dimensional_flux": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:dimensional_flux"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

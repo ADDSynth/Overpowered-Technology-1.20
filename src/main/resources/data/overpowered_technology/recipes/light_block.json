@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "light_block",
+  "pattern": [
+    "eee",
+    "eee",
+    "eee"
+  ],
+  "key": {
+    "e": {
+      "item": "overpowered_technology:celestial_gem"
+    }
+  },
+  "result": {
+    "item": "overpowered_technology:light_block"
+  }
+}

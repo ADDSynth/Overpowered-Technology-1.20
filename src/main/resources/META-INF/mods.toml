@@ -54,7 +54,7 @@ authors="ADDSynth" #optional
 description="Core mod required by all of ADDSynth's mods. Also adds a few basic things by itself."
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.overpowered]] #optional
+[[dependencies.addsynthcore]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -66,7 +66,7 @@ description="Core mod required by all of ADDSynth's mods. Also adds a few basic 
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.overpowered]]
+[[dependencies.addsynthcore]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.20.1]"
@@ -85,7 +85,7 @@ description="Extra Materials"
 [[dependencies.addsynth_materials]]
     modId="addsynthcore"
     mandatory=true
-    versionRange="[1.0,]"
+    versionRange="[1,]"
     ordering="BEFORE"
     side="BOTH"
 
@@ -98,20 +98,26 @@ logoFile="addsynth_energy_logo.png"
 credits="Mojang, and the Forge Development Team"
 authors="ADDSynth"
 description="Library by ADDSynth, for ADDSynth's mods. Adds Energy Wire, a Generator, an Electric Furnace, and the Universal Energy Interface."
-[[dependencies.overpowered]] #optional
+[[dependencies.addsynth_energy]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
     versionRange="[47.4.0,)" #mandatory
     ordering="NONE"
     side="BOTH"
-[[dependencies.overpowered]]
+[[dependencies.addsynth_energy]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.20.1]"
     ordering="NONE"
     side="BOTH"
-[[dependencies.overpowered]]
+[[dependencies.addsynth_energy]]
     modId="addsynthcore"
+    mandatory=true
+    versionRange="[1,)"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.addsynth_energy]]
+    modId="addsynth_materials"
     mandatory=true
     versionRange="[1,)"
     ordering="BEFORE"
@@ -119,7 +125,7 @@ description="Library by ADDSynth, for ADDSynth's mods. Adds Energy Wire, a Gener
 
 
 [[mods]]
-modId="overpowered" #mandatory
+modId="overpowered_technology" #mandatory
 version="6" #mandatory
 displayName="Overpowered Technology" #mandatory
 updateJSONURL="http://www.gyrostudiostechnology.com/minecraft/mods/overpowered/update.json" #optional
@@ -130,26 +136,32 @@ authors="ADDSynth" #optional
 description="This mod adds a bunch of really cool science and tech stuff."
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.overpowered]] #optional
+[[dependencies.overpowered_technology]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
     versionRange="[47.4.0,)" #mandatory
     ordering="NONE"
     side="BOTH"
-[[dependencies.overpowered]]
+[[dependencies.overpowered_technology]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.20.1]"
     ordering="NONE"
     side="BOTH"
-[[dependencies.overpowered]]
+[[dependencies.overpowered_technology]]
     modId="addsynthcore"
     mandatory=true
     versionRange="[1,)"
     ordering="BEFORE"
     side="BOTH"
-[[dependencies.overpowered]]
+[[dependencies.overpowered_technology]]
     modId="addsynth_energy"
+    mandatory=true
+    versionRange="[1,)"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.overpowered_technology]]
+    modId="addsynth_materials"
     mandatory=true
     versionRange="[1,)"
     ordering="BEFORE"

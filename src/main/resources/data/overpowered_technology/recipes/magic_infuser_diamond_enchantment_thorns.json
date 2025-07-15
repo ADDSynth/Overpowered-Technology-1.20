@@ -1,0 +1,7 @@
+{
+  "type": "overpowered_technology:magic_infuser",
+  "input": {
+    "tag": "forge:gems/diamond"
+  },
+  "enchantment": "minecraft:thorns"
+}
