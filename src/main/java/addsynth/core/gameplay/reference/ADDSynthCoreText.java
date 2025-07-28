@@ -1,6 +1,5 @@
 package addsynth.core.gameplay.reference;
 
-import addsynth.core.gameplay.Core;
 import addsynth.core.util.color.ColorCode;
 import net.minecraft.network.chat.Component;
 

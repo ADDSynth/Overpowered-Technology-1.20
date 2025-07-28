@@ -1,8 +1,8 @@
 package addsynth.core.gameplay.compat;
 
 import addsynth.core.ADDSynthCore;
-import addsynth.core.gameplay.Core;
 import addsynth.core.gameplay.reference.ADDSynthCoreText;
+import addsynth.core.gameplay.reference.Core;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import mezz.jei.api.IModPlugin;

@@ -2,7 +2,7 @@ package addsynth.core.gameplay.music_box;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import addsynth.core.gameplay.Core;
+import addsynth.core.gameplay.reference.Core;
 import addsynth.core.util.player.PlayerUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

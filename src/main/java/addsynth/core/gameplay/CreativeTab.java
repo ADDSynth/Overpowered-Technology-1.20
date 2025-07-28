@@ -1,6 +1,8 @@
 package addsynth.core.gameplay;
 
 import addsynth.core.ADDSynthCore;
+import addsynth.core.gameplay.reference.Core;
+import addsynth.core.gameplay.reference.Trophy;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;

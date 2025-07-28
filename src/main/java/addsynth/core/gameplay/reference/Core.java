@@ -1,6 +1,5 @@
-package addsynth.core.gameplay;
+package addsynth.core.gameplay.reference;
 
-import addsynth.core.gameplay.reference.Names;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;

@@ -2,8 +2,8 @@ package addsynth.core.gameplay.music_box;
 
 import javax.annotation.Nullable;
 import addsynth.core.game.blocks.TileEntityBlock;
-import addsynth.core.gameplay.Core;
 import addsynth.core.gameplay.client.GuiProvider;
+import addsynth.core.gameplay.reference.Core;
 import addsynth.core.gameplay.registers.Tiles;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.core.util.player.PlayerUtil;

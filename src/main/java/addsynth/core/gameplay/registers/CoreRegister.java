@@ -2,13 +2,13 @@ package addsynth.core.gameplay.registers;
 
 import addsynth.core.ADDSynthCore;
 import addsynth.core.game.registry.BlockItemHolder;
-import addsynth.core.gameplay.Core;
-import addsynth.core.gameplay.Trophy;
 import addsynth.core.gameplay.blocks.CautionBlock;
 import addsynth.core.gameplay.blocks.TrophyBlock;
 import addsynth.core.gameplay.music_box.MusicBox;
 import addsynth.core.gameplay.music_box.MusicSheet;
+import addsynth.core.gameplay.reference.Core;
 import addsynth.core.gameplay.reference.Names;
+import addsynth.core.gameplay.reference.Trophy;
 import addsynth.core.gameplay.team_manager.TeamManagerBlock;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.inventory.MenuType;
