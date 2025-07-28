@@ -12,6 +12,16 @@ public final class Names {
   public static final ResourceLocation MUSIC_SHEET     = ADDSynthCore.getLocation("music_sheet");
   public static final ResourceLocation TEAM_MANAGER    = ADDSynthCore.getLocation("team_manager");
 
+  public static final ResourceLocation CONCH_SHELL     = ADDSynthCore.getLocation("conch_shell");
+  public static final ResourceLocation SAND_DOLLAR     = ADDSynthCore.getLocation("sand_dollar");
+  public static final ResourceLocation COWRIE          = ADDSynthCore.getLocation("cowrie");
+  public static final ResourceLocation LIONS_PAW       = ADDSynthCore.getLocation("lions_paw");
+  public static final ResourceLocation SCALLOP         = ADDSynthCore.getLocation("scallop");
+  public static final ResourceLocation WHITE_SCALLOP   = ADDSynthCore.getLocation("white_scallop");
+  public static final ResourceLocation WENTLETRAP      = ADDSynthCore.getLocation("wentletrap");
+  public static final ResourceLocation VENUS_COMB      = ADDSynthCore.getLocation("venus_comb");
+  public static final ResourceLocation PEARL           = ADDSynthCore.getLocation("pearl");
+
   public static final ResourceLocation TROPHY_BASE     = ADDSynthCore.getLocation("trophy_base");
   public static final ResourceLocation BRONZE_TROPHY   = ADDSynthCore.getLocation("bronze_trophy");
   public static final ResourceLocation SILVER_TROPHY   = ADDSynthCore.getLocation("silver_trophy");

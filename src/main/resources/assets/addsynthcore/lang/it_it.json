@@ -24,7 +24,15 @@
 "block.addsynthcore.team_manager": "Team Manager",
 
 "item.addsynthcore.music_sheet": "Spartito",
-
+"item.addsynthcore.conch_shell": "Conch Shell",
+"item.addsynthcore.sand_dollar": "Sand Dollar",
+"item.addsynthcore.cowrie": "Cowrie",
+"item.addsynthcore.lions_paw": "Lion's Paw",
+"item.addsynthcore.scallop": "Scallop",
+"item.addsynthcore.white_scallop": "White Scallop",
+"item.addsynthcore.wentletrap": "Wentletrap",
+"item.addsynthcore.venus_comb": "Venus Comb",
+"item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "base del trofeo",
 "block.addsynthcore.bronze_trophy": "Trofeo di bronzo",
 "block.addsynthcore.silver_trophy": "Trofeo d'argento",

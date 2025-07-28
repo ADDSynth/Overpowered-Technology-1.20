@@ -1,6 +1,7 @@
 version 6 - TBD
 ===ADDSynthCore:
 NEW:
+  Added Seashells.
   Added the /addsynthcore map_colors Command. Spawns blocks of each MapColor at the highest point in the world.
    - Another command meant to help developers.
 CHANGED:

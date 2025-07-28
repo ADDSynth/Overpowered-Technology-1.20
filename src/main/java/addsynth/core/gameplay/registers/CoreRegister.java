@@ -44,6 +44,15 @@ public final class CoreRegister {
       BlockItemHolder.register(registry, Core.music_box);
       registry.register(Names.MUSIC_SHEET,     new MusicSheet());
       BlockItemHolder.register(registry, Core.team_manager);
+      registry.register(Names.CONCH_SHELL,     new Item(new Item.Properties()));
+      registry.register(Names.SAND_DOLLAR,     new Item(new Item.Properties()));
+      registry.register(Names.COWRIE,          new Item(new Item.Properties()));
+      registry.register(Names.LIONS_PAW,       new Item(new Item.Properties()));
+      registry.register(Names.SCALLOP,         new Item(new Item.Properties()));
+      registry.register(Names.WHITE_SCALLOP,   new Item(new Item.Properties()));
+      registry.register(Names.WENTLETRAP,      new Item(new Item.Properties()));
+      registry.register(Names.VENUS_COMB,      new Item(new Item.Properties()));
+      registry.register(Names.PEARL,           new Item(new Item.Properties()));
       registry.register(Names.TROPHY_BASE,     new Item(new Item.Properties()));
       BlockItemHolder.register(registry, Trophy.bronze);
       BlockItemHolder.register(registry, Trophy.silver);
