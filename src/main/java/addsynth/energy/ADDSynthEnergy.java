@@ -9,7 +9,6 @@ import addsynth.core.util.CommonUtil;
 import addsynth.core.util.constants.DevStage;
 import addsynth.core.util.game.Game;
 import addsynth.energy.compat.ADDSynthEnergyCompat;
-import addsynth.energy.gameplay.CreativeTab;
 import addsynth.energy.gameplay.NetworkHandler;
 import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.gameplay.machines.circuit_fabricator.CircuitFabricatorGui;
@@ -85,8 +84,7 @@ public class ADDSynthEnergy {
   }
 
   private static final void client_setup(final FMLClientSetupEvent event){
-    event.enqueueWork(ADDSynthEnergy::register_guis);
-    CreativeTab.register();
+    register_guis();
   }
 
   private static final void register_guis(){

@@ -2,7 +2,6 @@ package addsynth.material;
 
 import addsynth.core.compat.Compatibility;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -12,9 +11,10 @@ import net.minecraft.world.item.ItemStack;
 
 public final class CreativeTab {
 
-  public static final void register(){
-    final ResourceLocation location = ResourceLocation.fromNamespaceAndPath(ADDSynthMaterials.MOD_ID, "creative_tab");
-    final ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, location);
+  private static final ResourceLocation location = ADDSynthMaterials.getLocation("creative_tab");
+  public  static final ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, location);
+
+  public static final void register(final Registry<CreativeModeTab> registry){
     final CreativeModeTab creative_tab = CreativeModeTab.builder()
       .title(Component.literal(ADDSynthMaterials.MOD_NAME))
       .icon(() -> new ItemStack(Material.SAPPHIRE.gem.get()))
@@ -134,8 +134,10 @@ public final class CreativeTab {
         output.accept(Material.ROSE_QUARTZ.item.get());
         output.accept(Material.ROSE_QUARTZ.ore.get());
         output.accept(Material.ROSE_QUARTZ.deepslate_ore.get());
-      }).build();
-    Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, creative_tab);
+      })
+      .withTabsBefore(addsynth.core.gameplay.CreativeTab.key) // TODO: no 'clean' way around this? Now Materials will depend on ADDSynthCore
+      .build();
+    Registry.register(registry, key, creative_tab);
   }
 
 }

@@ -3,7 +3,6 @@ package addsynth.core;
 import java.io.File;
 import addsynth.core.compat.Compatibility;
 import addsynth.core.gameplay.Config;
-import addsynth.core.gameplay.CreativeTab;
 import addsynth.core.gameplay.NetworkHandler;
 import addsynth.core.gameplay.commands.ADDSynthCommands;
 import addsynth.core.gameplay.team_manager.data.CriteriaData;
@@ -83,7 +82,6 @@ public final class ADDSynthCore {
   }
 
   private static final void client_setup(final FMLClientSetupEvent event){
-    CreativeTab.register();
     CriteriaData.calculate();
   }
 

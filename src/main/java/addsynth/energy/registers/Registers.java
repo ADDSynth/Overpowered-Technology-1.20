@@ -3,6 +3,7 @@ package addsynth.energy.registers;
 import addsynth.core.game.registry.BlockItemHolder;
 import addsynth.core.game.registry.RegistryUtil;
 import addsynth.energy.ADDSynthEnergy;
+import addsynth.energy.gameplay.CreativeTab;
 import addsynth.energy.gameplay.EnergyBlocks;
 import addsynth.energy.gameplay.machines.circuit_fabricator.CircuitFabricatorBlock;
 import addsynth.energy.gameplay.machines.circuit_fabricator.CircuitFabricatorContainer;
@@ -23,8 +24,11 @@ import addsynth.energy.gameplay.machines.universal_energy_interface.ContainerUni
 import addsynth.energy.gameplay.machines.universal_energy_interface.UniversalEnergyInterfaceBlock;
 import addsynth.energy.gameplay.machines.wire.LowVoltageWire;
 import addsynth.energy.gameplay.reference.Names;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -86,6 +90,10 @@ public final class Registers {
       registry.register(Names.CIRCUIT_TIER_7,      new Item(new Item.Properties()));
       registry.register(Names.CIRCUIT_TIER_8,      new Item(new Item.Properties()));
       registry.register(Names.CIRCUIT_TIER_9,      new Item(new Item.Properties()));
+    }
+    if(key.equals(Registries.CREATIVE_MODE_TAB)){
+      final Registry<CreativeModeTab> registry = event.getVanillaRegistry();
+      CreativeTab.register(registry);
     }
     if(key.equals(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES)){
       final IForgeRegistry<BlockEntityType> registry = event.getForgeRegistry();

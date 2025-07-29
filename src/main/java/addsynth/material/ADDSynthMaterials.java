@@ -60,7 +60,6 @@ public final class ADDSynthMaterials {
   }
 
   private static final void client_setup(final FMLClientSetupEvent event){
-    CreativeTab.register();
   }
 
   private static final void process_imc_messages(final InterModProcessEvent event){

@@ -9,7 +9,6 @@ import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import addsynth.overpoweredtechnology.items.UnidentifiedItem;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -19,9 +18,10 @@ import net.minecraft.world.item.ItemStack;
 
 public final class CreativeTab {
 
-  public static final void register(){
-    final ResourceLocation location = ResourceLocation.fromNamespaceAndPath(OverpoweredTechnology.MOD_ID, "creative_tab");
-    final ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, location);
+  private static final ResourceLocation location = OverpoweredTechnology.getLocation("creative_tab");
+  public  static final ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, location);
+
+  public static final void register(final Registry<CreativeModeTab> registry){
     final CreativeModeTab creative_tab = CreativeModeTab.builder()
       .title(Component.literal(OverpoweredTechnology.MOD_NAME))
       .icon(() -> new ItemStack(OverpoweredItems.celestial_gem.get(), 1))
@@ -109,8 +109,12 @@ public final class CreativeTab {
           output.accept(OverpoweredItems.ring_2.get());
           output.accept(OverpoweredItems.ring_3.get());
         }
-      }).build();
-    Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, creative_tab);
+      })
+      .withTabsBefore(addsynth.core.gameplay.CreativeTab.key,
+                      addsynth.material.CreativeTab.key,
+                      addsynth.energy.gameplay.CreativeTab.key
+      ).build();
+    Registry.register(registry, key, creative_tab);
   }
 
 }

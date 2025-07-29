@@ -6,7 +6,6 @@ import java.io.File;
 import addsynth.core.util.CommonUtil;
 import addsynth.core.util.constants.DevStage;
 import addsynth.core.util.game.Game;
-import addsynth.overpoweredtechnology.assets.CreativeTab;
 import addsynth.overpoweredtechnology.assets.CustomStats;
 import addsynth.overpoweredtechnology.compatability.CompatabilityManager;
 import addsynth.overpoweredtechnology.config.*;
@@ -117,7 +116,6 @@ public class OverpoweredTechnology {
 
   private static final void client_setup(final FMLClientSetupEvent event){
     register_guis();
-    CreativeTab.register();
   }
 
   private static final void register_guis(){

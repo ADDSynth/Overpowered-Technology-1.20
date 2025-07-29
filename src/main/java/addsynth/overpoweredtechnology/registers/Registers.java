@@ -7,6 +7,7 @@ import addsynth.core.game.item.constants.EquipmentType;
 import addsynth.core.game.registry.BlockItemHolder;
 import addsynth.core.game.registry.RegistryUtil;
 import addsynth.overpoweredtechnology.OverpoweredTechnology;
+import addsynth.overpoweredtechnology.assets.CreativeTab;
 import addsynth.overpoweredtechnology.assets.Sounds;
 import addsynth.overpoweredtechnology.blocks.*;
 import addsynth.overpoweredtechnology.blocks.dimension.tree.*;
@@ -55,10 +56,13 @@ import addsynth.overpoweredtechnology.machines.portal.rift.PortalEnergyBlock;
 import addsynth.overpoweredtechnology.machines.suspension_bridge.ContainerSuspensionBridge;
 import addsynth.overpoweredtechnology.machines.suspension_bridge.EnergyBridge;
 import addsynth.overpoweredtechnology.machines.suspension_bridge.EnergySuspensionBridgeBlock;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -238,6 +242,10 @@ public final class Registers {
       // Items for advancements only
       registry.register(Names.PORTAL_RIFT,                new BlockItem(OverpoweredBlocks.portal.get(),             new Item.Properties()));
       registry.register(DeviceColor.BLUE.energy_bridge,   new BlockItem(OverpoweredBlocks.blue_energy_bridge.get(), new Item.Properties()));
+    }
+    if(key.equals(Registries.CREATIVE_MODE_TAB)){
+      final Registry<CreativeModeTab> registry = event.getVanillaRegistry();
+      CreativeTab.register(registry);
     }
     if(key.equals(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES)){
       /*

@@ -2,6 +2,7 @@ package addsynth.core.gameplay.registers;
 
 import addsynth.core.ADDSynthCore;
 import addsynth.core.game.registry.BlockItemHolder;
+import addsynth.core.gameplay.CreativeTab;
 import addsynth.core.gameplay.blocks.CautionBlock;
 import addsynth.core.gameplay.blocks.TrophyBlock;
 import addsynth.core.gameplay.music_box.MusicBox;
@@ -10,8 +11,11 @@ import addsynth.core.gameplay.reference.Core;
 import addsynth.core.gameplay.reference.Names;
 import addsynth.core.gameplay.reference.Trophy;
 import addsynth.core.gameplay.team_manager.TeamManagerBlock;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -27,6 +31,8 @@ public final class CoreRegister {
   @SubscribeEvent
   public static final void register(final RegisterEvent event){
     final ResourceKey key = event.getRegistryKey();
+    // final boolean vanilla_registry = event.getVanillaRegistry() != null;
+    // ADDSynthCore.log.info(StringUtil.build("Registry Event: ", key.location(), ", Type: ", vanilla_registry ? "Vanilla" : "Forge"));
     if(key.equals(ForgeRegistries.Keys.BLOCKS)){
       final IForgeRegistry<Block> registry = event.getForgeRegistry();
       registry.register(Names.CAUTION_BLOCK,   new CautionBlock());
@@ -59,6 +65,10 @@ public final class CoreRegister {
       BlockItemHolder.register(registry, Trophy.gold);
       BlockItemHolder.register(registry, Trophy.platinum);
       // registry.register(Names.TEST_BLOCK, newBlockItem(Core.test_block));
+    }
+    if(key.equals(Registries.CREATIVE_MODE_TAB)){
+      final Registry<CreativeModeTab> registry = event.getVanillaRegistry();
+      CreativeTab.register(registry);
     }
     if(key.equals(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES)){
       final IForgeRegistry<BlockEntityType> registry = event.getForgeRegistry();

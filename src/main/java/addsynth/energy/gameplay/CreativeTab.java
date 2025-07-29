@@ -2,7 +2,6 @@ package addsynth.energy.gameplay;
 
 import addsynth.energy.ADDSynthEnergy;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -13,9 +12,10 @@ import net.minecraft.world.item.ItemStack;
 
 public final class CreativeTab {
 
-  public static final void register(){
-    final ResourceLocation id = ResourceLocation.fromNamespaceAndPath(ADDSynthEnergy.MOD_ID, "creative_tab");
-    final ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, id);
+  private static final ResourceLocation id = ADDSynthEnergy.getLocation("creative_tab");
+  public  static final ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, id);
+
+  public static final void register(final Registry<CreativeModeTab> registry){
     final CreativeModeTab creative_tab = CreativeModeTab.builder()
       .title(Component.literal(ADDSynthEnergy.MOD_NAME))
       .icon(() -> new ItemStack(Item.BY_BLOCK.get(EnergyBlocks.wire.get())))
@@ -44,8 +44,11 @@ public final class CreativeTab {
         output.accept(EnergyItems.circuit_tier_7.get());
         output.accept(EnergyItems.circuit_tier_8.get());
         output.accept(EnergyItems.circuit_tier_9.get());
-      }).build();
-    Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, creative_tab);
+      })
+      .withTabsBefore(addsynth.core.gameplay.CreativeTab.key,
+                      addsynth.material.CreativeTab.key
+      ).build();
+    Registry.register(registry, key, creative_tab);
   }
 
 }
