@@ -146,6 +146,7 @@ public class BridgeData {
       if(!exists()){
         turn_off_immediately(world);
         network = null;
+        message = BridgeMessage.NO_BRIDGE;
       }
       else{
         Block block;

@@ -126,6 +126,10 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   // TODO: we need a single function that updates both directions, but only if
   // the other network exists, and the other network isn't currently udpating!
   // Move the single check_direction functions into the BridgeData.
+  // I can think this a little more intuitively now.
+  // After updating ourselves (if we're masters) send status to remote bridges by calling updateRemote();
+  // To update directions independent of travel direction, have each side have a BridgeArea,
+  // which has a setStartPosition() function and a specialized nextBlock() function? which increments search position.
 
   private final void finalize_direction(final int direction, final int distance){
     if(bridge_data[direction].message == BridgeMessage.PENDING){
@@ -484,6 +488,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
     for(direction = 0; direction < 6; direction++){
       if(bridge_data[direction].relation == BridgeRelation.MASTER){
         bridge_data[direction].turn_off_immediately(world);
+        bridge_data[direction].message = BridgeMessage.NO_BRIDGE;
       }
     }
   }
