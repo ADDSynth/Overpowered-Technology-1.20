@@ -27,6 +27,12 @@ public abstract class TileAbstractWorkMachine extends TileAbstractMachine implem
     this.state = initial_state;
   }
 
+  public TileAbstractWorkMachine(final BlockEntityType type, BlockPos position, BlockState blockstate,
+                                 final MachineState initial_state, final Receiver energy){
+    super(type, position, blockstate, energy);
+    this.state = initial_state;
+  }
+
   @Override
   public void load(final CompoundTag nbt){
     super.load(nbt);

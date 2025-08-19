@@ -1,5 +1,6 @@
 package addsynth.energy.registers;
 
+import addsynth.energy.gameplay.machines.charger.ChargerContainer;
 import addsynth.energy.gameplay.machines.circuit_fabricator.CircuitFabricatorContainer;
 import addsynth.energy.gameplay.machines.compressor.ContainerCompressor;
 import addsynth.energy.gameplay.machines.electric_furnace.ContainerElectricFurnace;
@@ -15,6 +16,9 @@ public final class Containers {
 
   public static final RegistryObject<MenuType<ContainerGenerator>> GENERATOR =
     RegistryObject.create(Names.GENERATOR, ForgeRegistries.MENU_TYPES);
+
+  public static final RegistryObject<MenuType<ChargerContainer>> CHARGER =
+    RegistryObject.create(Names.CHARGER, ForgeRegistries.MENU_TYPES);
 
   public static final RegistryObject<MenuType<ContainerCompressor>> COMPRESSOR =
     RegistryObject.create(Names.COMPRESSOR, ForgeRegistries.MENU_TYPES);

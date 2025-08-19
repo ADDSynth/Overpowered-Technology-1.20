@@ -5,6 +5,9 @@ import addsynth.core.game.registry.RegistryUtil;
 import addsynth.energy.ADDSynthEnergy;
 import addsynth.energy.gameplay.CreativeTab;
 import addsynth.energy.gameplay.EnergyBlocks;
+import addsynth.energy.gameplay.items.BatteryItem;
+import addsynth.energy.gameplay.items.energy_tools.*;
+import addsynth.energy.gameplay.machines.charger.*;
 import addsynth.energy.gameplay.machines.circuit_fabricator.CircuitFabricatorBlock;
 import addsynth.energy.gameplay.machines.circuit_fabricator.CircuitFabricatorContainer;
 import addsynth.energy.gameplay.machines.circuit_fabricator.recipe.CircuitFabricatorRecipeSerializer;
@@ -22,7 +25,6 @@ import addsynth.energy.gameplay.machines.generator.GeneratorBlock;
 import addsynth.energy.gameplay.machines.solar_panel.*;
 import addsynth.energy.gameplay.machines.universal_energy_interface.ContainerUniversalEnergyInterface;
 import addsynth.energy.gameplay.machines.universal_energy_interface.UniversalEnergyInterfaceBlock;
-import addsynth.energy.gameplay.machines.wire.LowVoltageWire;
 import addsynth.energy.gameplay.reference.Names;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
@@ -52,6 +54,7 @@ public final class Registers {
       // registry.register(Names.LOW_VOLTAGE_WIRE,           new LowVoltageWire());
       registry.register(Names.ENERGY_WIRE,                new EnergyWire());
       registry.register(Names.GENERATOR,                  new GeneratorBlock());
+      registry.register(Names.CHARGER,                    new ChargerBlock());
       registry.register(Names.ENERGY_STORAGE,             new EnergyStorageBlock());
       registry.register(Names.COMPRESSOR,                 new CompressorBlock());
       registry.register(Names.ELECTRIC_FURNACE,           new ElectricFurnaceBlock());
@@ -67,6 +70,7 @@ public final class Registers {
       registry.register(Names.LOW_VOLTAGE_WIRE, new Item(new Item.Properties()));
       BlockItemHolder.register(registry, EnergyBlocks.wire);
       BlockItemHolder.register(registry, EnergyBlocks.generator);
+      BlockItemHolder.register(registry, EnergyBlocks.charger);
       BlockItemHolder.register(registry, EnergyBlocks.energy_storage);
       BlockItemHolder.register(registry, EnergyBlocks.compressor);
       BlockItemHolder.register(registry, EnergyBlocks.electric_furnace);
@@ -77,10 +81,12 @@ public final class Registers {
       registry.register(Names.PHOTOVOLTAIC_CELL, new Item(new Item.Properties()));
       BlockItemHolder.register(registry, EnergyBlocks.solar_panel);
       BlockItemHolder.register(registry, EnergyBlocks.solar_panel_controller);
-      
+      registry.register(Names.BATTERY,             new BatteryItem());
       registry.register(Names.POWER_CORE,          new Item(new Item.Properties()));
       registry.register(Names.ADVANCED_POWER_CORE, new Item(new Item.Properties()));
       registry.register(Names.POWER_REGULATOR,     new Item(new Item.Properties()));
+      registry.register(Names.STEEL_ROD,           new Item(new Item.Properties()));
+      registry.register(Names.ENERGY_TOOL_PART,    new Item(new Item.Properties()));
       registry.register(Names.CIRCUIT_TIER_1,      new Item(new Item.Properties()));
       registry.register(Names.CIRCUIT_TIER_2,      new Item(new Item.Properties()));
       registry.register(Names.CIRCUIT_TIER_3,      new Item(new Item.Properties()));
@@ -90,6 +96,10 @@ public final class Registers {
       registry.register(Names.CIRCUIT_TIER_7,      new Item(new Item.Properties()));
       registry.register(Names.CIRCUIT_TIER_8,      new Item(new Item.Properties()));
       registry.register(Names.CIRCUIT_TIER_9,      new Item(new Item.Properties()));
+      registry.register(Names.ENERGY_SHOVEL,       new EnergyShovel());
+      registry.register(Names.ENERGY_PICKAXE,      new EnergyPickaxe());
+      registry.register(Names.ENERGY_AXE,          new EnergyAxe());
+      registry.register(Names.ENERGY_HOE,          new EnergyHoe());
     }
     if(key.equals(Registries.CREATIVE_MODE_TAB)){
       final Registry<CreativeModeTab> registry = event.getVanillaRegistry();
@@ -100,6 +110,7 @@ public final class Registers {
       // Tiles.LOW_VOLTAGE_WIRE.register(registry);
       Tiles.ENERGY_WIRE.register(registry);
       Tiles.GENERATOR.register(registry);
+      Tiles.CHARGER.register(registry);
       Tiles.ENERGY_CONTAINER.register(registry);
       Tiles.COMPRESSOR.register(registry);
       Tiles.ELECTRIC_FURNACE.register(registry);
@@ -112,6 +123,7 @@ public final class Registers {
     if(key.equals(ForgeRegistries.Keys.MENU_TYPES)){
       final IForgeRegistry<MenuType> registry = event.getForgeRegistry();
       registry.register(Names.GENERATOR,                  IForgeMenuType.create(ContainerGenerator::new));
+      registry.register(Names.CHARGER,                    IForgeMenuType.create(ChargerContainer::new));
       registry.register(Names.ENERGY_STORAGE,             IForgeMenuType.create(ContainerEnergyStorage::new));
       registry.register(Names.COMPRESSOR,                 IForgeMenuType.create(ContainerCompressor::new));
       registry.register(Names.ELECTRIC_FURNACE,           IForgeMenuType.create(ContainerElectricFurnace::new));

@@ -11,6 +11,7 @@ import addsynth.core.util.game.Game;
 import addsynth.energy.compat.ADDSynthEnergyCompat;
 import addsynth.energy.gameplay.NetworkHandler;
 import addsynth.energy.gameplay.config.Config;
+import addsynth.energy.gameplay.machines.charger.ChargerGui;
 import addsynth.energy.gameplay.machines.circuit_fabricator.CircuitFabricatorGui;
 import addsynth.energy.gameplay.machines.circuit_fabricator.recipe.CircuitFabricatorRecipes;
 import addsynth.energy.gameplay.machines.compressor.GuiCompressor;
@@ -19,6 +20,7 @@ import addsynth.energy.gameplay.machines.electric_furnace.GuiElectricFurnace;
 import addsynth.energy.gameplay.machines.energy_storage.GuiEnergyStorageContainer;
 import addsynth.energy.gameplay.machines.generator.GuiGenerator;
 import addsynth.energy.gameplay.machines.universal_energy_interface.GuiUniversalEnergyInterface;
+import addsynth.energy.lib.items.energy.ItemEnergy;
 import addsynth.energy.registers.Containers;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
@@ -85,10 +87,12 @@ public class ADDSynthEnergy {
 
   private static final void client_setup(final FMLClientSetupEvent event){
     register_guis();
+    ItemEnergy.registerItemProperty();
   }
 
   private static final void register_guis(){
     MenuScreens.register(Containers.GENERATOR.get(),                  GuiGenerator::new);
+    MenuScreens.register(Containers.CHARGER.get(),                    ChargerGui::new);
     MenuScreens.register(Containers.ENERGY_STORAGE_CONTAINER.get(),   GuiEnergyStorageContainer::new);
     MenuScreens.register(Containers.COMPRESSOR.get(),                 GuiCompressor::new);
     MenuScreens.register(Containers.ELECTRIC_FURNACE.get(),           GuiElectricFurnace::new);

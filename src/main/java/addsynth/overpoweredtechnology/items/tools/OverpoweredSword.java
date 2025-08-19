@@ -1,8 +1,8 @@
 package addsynth.overpoweredtechnology.items.tools;
 
+import addsynth.core.game.item.tool.ToolConstants;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import addsynth.core.game.item.constants.ToolConstants;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

@@ -20,7 +20,7 @@ public final class EnergyCrystalShards extends Item {
   @Override
   public final void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn){
     final String energy = NumberFormat.getIntegerInstance().format(MachineValues.energy_crystal_shards_energy.get());
-    tooltip.add(Component.translatable("gui.addsynth_energy.tooltip.energy", energy).withStyle(ChatFormatting.AQUA));
+    tooltip.add(Component.translatable("gui.addsynth_energy.tooltip.energy_capacity", energy).withStyle(ChatFormatting.AQUA));
   }
 
 }

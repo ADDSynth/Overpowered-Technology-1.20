@@ -22,6 +22,7 @@ CHANGED:
 ===ADDSynth Energy:
 NEW:
   Low Voltage Wire item.
+  Battery item.
   Added Solar Panels:
    - By default each solar panel provides 0.5 energy per tick.
    - Solar panels can only be placed on top of blocks.
@@ -35,6 +36,10 @@ NEW:
    - Solar Panels do not connect to Energy Wire directly, there must be a Solar Panel Controller adjacent
        to a Solar Panel.
    - Right-clicking the Solar Panel Controller will give you detailed info about the solar array.
+  Charger machine, which can charge batteries and items (and probably items from other mods.)
+  Energy tools, which need to be charged to function.
+   - Same mining level and number of uses as Diamond.
+   - Same speed and attack strength as Iron.
 ===Overpowered Technology:
 INFO:
   The mod ID has changed from 'overpowered' to 'overpowered_technology'.

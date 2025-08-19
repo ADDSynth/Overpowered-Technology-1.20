@@ -37,8 +37,16 @@ public final class InputInventory extends CommonInventory {
     return number_of_slots > 0 ? new InputInventory(responder, SlotData.create_new_array(number_of_slots)) : null;
   }
 
+  public static final InputInventory create(final IInputInventory responder, final int number_of_slots, final int maxStackSize){
+    return number_of_slots > 0 ? new InputInventory(responder, SlotData.create_new_array(number_of_slots, maxStackSize)) : null;
+  }
+
   public static final InputInventory create(final IInputInventory responder, final int number_of_slots, final Predicate<ItemStack> filter){
     return number_of_slots > 0 ? new InputInventory(responder, SlotData.create_new_array(number_of_slots, filter)) : null;
+  }
+
+  public static final InputInventory create(final IInputInventory responder, final SlotData slotData){
+    return new InputInventory(responder, new SlotData[]{slotData});
   }
 
   public static final InputInventory create(final IInputInventory responder, final SlotData[] slots){

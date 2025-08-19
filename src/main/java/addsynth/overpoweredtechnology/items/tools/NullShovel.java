@@ -1,6 +1,6 @@
 package addsynth.overpoweredtechnology.items.tools;
 
-import addsynth.core.game.item.constants.ToolConstants;
+import addsynth.core.game.item.tool.ToolConstants;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;

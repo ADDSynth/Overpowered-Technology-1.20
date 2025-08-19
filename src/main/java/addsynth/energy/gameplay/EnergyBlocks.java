@@ -10,6 +10,7 @@ public final class EnergyBlocks {
   public static final RegistryObject<Block> low_voltage_wire         = RegistryObject.create(Names.LOW_VOLTAGE_WIRE,           ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> wire                     = RegistryObject.create(Names.ENERGY_WIRE,                ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> generator                = RegistryObject.create(Names.GENERATOR,                  ForgeRegistries.BLOCKS);
+  public static final RegistryObject<Block> charger                  = RegistryObject.create(Names.CHARGER,                    ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> energy_storage           = RegistryObject.create(Names.ENERGY_STORAGE,             ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> compressor               = RegistryObject.create(Names.COMPRESSOR,                 ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> electric_furnace         = RegistryObject.create(Names.ELECTRIC_FURNACE,           ForgeRegistries.BLOCKS);

@@ -1,5 +1,6 @@
 package addsynth.energy.gameplay.machines.wire;
 
+/*
 import javax.annotation.Nullable;
 import addsynth.energy.gameplay.machines.solar_panel.SolarPanel;
 import addsynth.energy.gameplay.machines.solar_panel.SolarPanelController;
@@ -29,3 +30,4 @@ public class LowVoltageWire extends WallAttachableWire {
   }
 
 }
+*/

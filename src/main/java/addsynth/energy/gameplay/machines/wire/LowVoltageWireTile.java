@@ -1,5 +1,6 @@
 package addsynth.energy.gameplay.machines.wire;
 
+/*
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
@@ -36,3 +37,4 @@ public class LowVoltageWireTile extends BlockEntity implements IBlockNetworkUser
   }
 
 }
+*/

@@ -7,6 +7,7 @@ public final class GuiReference {
 
   public static final ResourceLocation widgets                = ADDSynthEnergy.getLocation("textures/gui/gui_textures.png");
 
+  public static final ResourceLocation charger                = ADDSynthEnergy.getLocation("textures/gui/charger.png");
   public static final ResourceLocation circuit_fabricator     = ADDSynthEnergy.getLocation("textures/gui/circuit_fabricator.png");
   public static final ResourceLocation compressor             = ADDSynthEnergy.getLocation("textures/gui/compressor.png");
   public static final ResourceLocation electric_furnace       = ADDSynthEnergy.getLocation("textures/gui/electric_furnace.png");

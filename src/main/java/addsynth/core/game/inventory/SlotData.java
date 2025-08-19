@@ -25,11 +25,29 @@ public final class SlotData {
     return data;
   }
 
+  public final static SlotData[] create_new_array(final int number_of_slots, final int maxStackSize){
+    final SlotData[] data = new SlotData[number_of_slots];
+    int i;
+    for(i = 0; i < number_of_slots; i++){
+      data[i] = new SlotData(maxStackSize);
+    }
+    return data;
+  }
+
   public final static SlotData[] create_new_array(final int number_of_slots, @Nonnull final Predicate<ItemStack> filter){
     final SlotData[] data = new SlotData[number_of_slots];
     int i;
     for(i = 0; i < number_of_slots; i++){
       data[i] = new SlotData(filter);
+    }
+    return data;
+  }
+
+  public final static SlotData[] create_new_array(int number_of_slots, int maxStackSize, @Nonnull Predicate<ItemStack> filter){
+    final SlotData[] data = new SlotData[number_of_slots];
+    int i;
+    for(i = 0; i < number_of_slots; i++){
+      data[i] = new SlotData(filter, maxStackSize);
     }
     return data;
   }

@@ -2,6 +2,7 @@ package addsynth.energy.registers;
 
 import addsynth.core.game.registry.BlockEntityHolder;
 import addsynth.energy.gameplay.EnergyBlocks;
+import addsynth.energy.gameplay.machines.charger.TileCharger;
 import addsynth.energy.gameplay.machines.circuit_fabricator.TileCircuitFabricator;
 import addsynth.energy.gameplay.machines.compressor.TileCompressor;
 import addsynth.energy.gameplay.machines.electric_furnace.TileElectricFurnace;
@@ -12,7 +13,6 @@ import addsynth.energy.gameplay.machines.generator.TileGenerator;
 import addsynth.energy.gameplay.machines.solar_panel.SolarPanelTile;
 import addsynth.energy.gameplay.machines.solar_panel.SolarPanelControllerTile;
 import addsynth.energy.gameplay.machines.universal_energy_interface.TileUniversalEnergyInterface;
-import addsynth.energy.gameplay.machines.wire.LowVoltageWireTile;
 import addsynth.energy.gameplay.reference.Names;
 
 public final class Tiles {
@@ -22,6 +22,9 @@ public final class Tiles {
 
   public static final BlockEntityHolder<TileGenerator> GENERATOR =
     new BlockEntityHolder<>(Names.GENERATOR, TileGenerator::new, EnergyBlocks.generator);
+
+  public static final BlockEntityHolder<TileCharger> CHARGER =
+    new BlockEntityHolder<>(Names.CHARGER, TileCharger::new, EnergyBlocks.charger);
 
   public static final BlockEntityHolder<TileEnergyStorage> ENERGY_CONTAINER =
     new BlockEntityHolder<>(Names.ENERGY_STORAGE, TileEnergyStorage::new, EnergyBlocks.energy_storage);
@@ -41,8 +44,8 @@ public final class Tiles {
   public static final BlockEntityHolder<TileEnergyDiagnostics> ENERGY_DIAGNOSTICS_BLOCK =
     new BlockEntityHolder<>(Names.ENERGY_DIAGNOSTICS_BLOCK, TileEnergyDiagnostics::new, EnergyBlocks.energy_diagnostics_block);
 
-  public static final BlockEntityHolder<LowVoltageWireTile> LOW_VOLTAGE_WIRE =
-    new BlockEntityHolder<>(Names.LOW_VOLTAGE_WIRE, LowVoltageWireTile::new, EnergyBlocks.low_voltage_wire);
+  // public static final BlockEntityHolder<LowVoltageWireTile> LOW_VOLTAGE_WIRE =
+  //   new BlockEntityHolder<>(Names.LOW_VOLTAGE_WIRE, LowVoltageWireTile::new, EnergyBlocks.low_voltage_wire);
 
   public static final BlockEntityHolder<SolarPanelTile> SOLAR_PANEL =
     new BlockEntityHolder<>(Names.SOLAR_PANEL, SolarPanelTile::new, EnergyBlocks.solar_panel);

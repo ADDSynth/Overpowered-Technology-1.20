@@ -1,4 +1,4 @@
-package addsynth.core.game.item.constants;
+package addsynth.core.game.item.tool;
 
 public final class HarvestLevel {
 

@@ -2,10 +2,10 @@ package addsynth.core.util.constants;
 
 import net.minecraft.world.level.block.Blocks;
 
-/** @see addsynth.core.game.item.constants.HarvestLevel
+/** @see addsynth.core.game.item.tool.HarvestLevel
  *  @see addsynth.core.game.item.constants.ItemConstants
  *  @see addsynth.core.game.item.constants.ItemValue
- *  @see addsynth.core.game.item.constants.ToolConstants
+ *  @see addsynth.core.game.item.tool.ToolConstants
  *  @see addsynth.core.gui.util.GuiUtil#text_color
  *  @see addsynth.core.util.command.PermissionLevel
  *  @see addsynth.core.util.world.WorldConstants
