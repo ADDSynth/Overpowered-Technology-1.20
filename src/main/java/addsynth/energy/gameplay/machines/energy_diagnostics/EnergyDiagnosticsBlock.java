@@ -27,7 +27,7 @@ import net.minecraft.world.phys.BlockHitResult;
 public final class EnergyDiagnosticsBlock extends TileEntityBlock {
 
   public EnergyDiagnosticsBlock(){
-    super(Properties.of().sound(SoundType.METAL).mapColor(MapColor.WOOL).strength(1.5f, 6.0f));
+    super(Properties.of().sound(SoundType.METAL).mapColor(MapColor.WOOL).strength(0.5f, 6.0f));
   }
 
   @Override

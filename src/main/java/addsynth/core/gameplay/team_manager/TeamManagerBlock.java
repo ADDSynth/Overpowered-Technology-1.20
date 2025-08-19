@@ -20,7 +20,7 @@ public final class TeamManagerBlock extends Block {
   private static final Component you_dont_have_permission = Component.translatable("gui.addsynthcore.team_manager.message.you_do_not_have_permission", PermissionLevel.COMMANDS);
 
   public TeamManagerBlock(){
-    super(Block.Properties.of().mapColor(MapColor.METAL).sound(SoundType.STONE).strength(2.0f, Constants.block_resistance));
+    super(Block.Properties.of().mapColor(MapColor.METAL).sound(SoundType.STONE).strength(0.5f, Constants.block_resistance));
   }
 
   @Override

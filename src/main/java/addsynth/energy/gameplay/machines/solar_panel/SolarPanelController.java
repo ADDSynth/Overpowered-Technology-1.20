@@ -22,7 +22,7 @@ import net.minecraft.world.phys.BlockHitResult;
 public class SolarPanelController extends TileEntityBlock {
 
   public SolarPanelController(){
-    super(Block.Properties.of().mapColor(MapColor.WOOL).sound(SoundType.METAL).strength(1.5f, 6.0f));
+    super(Block.Properties.of().mapColor(MapColor.WOOL).sound(SoundType.METAL).strength(0.5f, 6.0f));
   }
 
   @Override

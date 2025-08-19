@@ -35,7 +35,7 @@ public class SolarPanel extends TileEntityBlock implements SimpleWaterloggedBloc
   private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 2, 16);
 
   public SolarPanel(){
-    super(Block.Properties.of().mapColor(MapColor.WATER).strength(0.5f, 0.0f));
+    super(Block.Properties.of().mapColor(MapColor.WATER).strength(0.5f, 1.0f));
     registerDefaultState(stateDefinition.any().setValue(DIRT_LEVEL, 0).setValue(WATERLOGGED, false));
   }
 

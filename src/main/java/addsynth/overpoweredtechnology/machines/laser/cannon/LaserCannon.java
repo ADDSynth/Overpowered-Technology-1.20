@@ -115,7 +115,7 @@ public final class LaserCannon extends Block implements SimpleWaterloggedBlock {
 
   public LaserCannon(final int color){
     super(Block.Properties.of().mapColor(color >= 0 ? MapColor.STONE : MapColor.COLOR_GRAY).sound(SoundType.METAL)
-      .sound(SoundType.METAL).strength(3.5f, 6.0f).dynamicShape());
+      .sound(SoundType.METAL).strength(0.5f, 6.0f).dynamicShape());
     this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
     this.color = color;
   }

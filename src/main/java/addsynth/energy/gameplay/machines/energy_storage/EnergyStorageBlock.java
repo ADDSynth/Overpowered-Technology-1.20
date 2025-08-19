@@ -33,7 +33,7 @@ import net.minecraftforge.network.NetworkHooks;
 public final class EnergyStorageBlock extends MachineBlock {
 
   public EnergyStorageBlock(){
-    super(Block.Properties.of().sound(SoundType.METAL).mapColor(MapColor.SNOW).noOcclusion().strength(3.5f, 6.0f));
+    super(Block.Properties.of().sound(SoundType.METAL).mapColor(MapColor.SNOW).noOcclusion().strength(0.5f, 6.0f));
   }
 
   @Override

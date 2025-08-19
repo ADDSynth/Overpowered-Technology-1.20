@@ -62,6 +62,8 @@ CHANGED:
    - (matches the Advancements Tab.)
   The count_blocks and sample_ores commands max size has increased from 32 to 40.
   Unidentified Item Configuration settings have moved to their own config file.
+  Reduced mine time of all machine blocks, especially for the Team Manager, Energy Storage Container,
+    Iron Frame Block, and Laser Cannons.
 REMOVED:
   Removed Gem shards. (Been meaning to do this for a while.)
    - As a result, the Crystal Matter Generator now produces 1 random Gem every 1.5 hours using
