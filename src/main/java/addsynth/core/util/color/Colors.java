@@ -2,7 +2,7 @@ package addsynth.core.util.color;
 
 import net.minecraft.world.level.material.MapColor;
 
-public enum MinecraftColor {
+public enum Colors {
 
   // Some of these colors values were obtained from looking them up on Wikipedia.
   WHITE(    "White",     0xFFFFFF, MapColor.SNOW, MapColor.QUARTZ),
@@ -26,7 +26,7 @@ public enum MinecraftColor {
   public final int value;
   public final MapColor[] colors;
   
-  private MinecraftColor(final String name, final int value, final MapColor ... overrides){
+  private Colors(final String name, final int value, final MapColor ... overrides){
     this.name = name;
     this.value = value;
     this.colors = overrides;
@@ -35,6 +35,10 @@ public enum MinecraftColor {
   @Override
   public final String toString(){
     return name+": "+value;
+  }
+
+  public final Color toColor(){
+    return new Color(value);
   }
 
 }

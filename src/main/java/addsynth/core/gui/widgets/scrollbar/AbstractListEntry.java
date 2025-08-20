@@ -1,7 +1,7 @@
 package addsynth.core.gui.widgets.scrollbar;
 
 import addsynth.core.gameplay.reference.GuiReference;
-import addsynth.core.util.color.Color;
+import addsynth.core.util.color.Colors;
 import addsynth.core.util.java.StringUtil;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -37,7 +37,7 @@ public abstract class AbstractListEntry<E> extends AbstractButton {
     Minecraft minecraft = Minecraft.getInstance();
     Font fontrenderer = minecraft.font;
     drawListEntryHighlight(graphics);
-    graphics.drawString(fontrenderer, getMessage(), getX() + 1, getY() + 1, Color.WHITE.get());
+    graphics.drawString(fontrenderer, getMessage(), getX() + 1, getY() + 1, Colors.WHITE.value);
   }
 
   /** This is the code that draws a transparent white box under the list entry

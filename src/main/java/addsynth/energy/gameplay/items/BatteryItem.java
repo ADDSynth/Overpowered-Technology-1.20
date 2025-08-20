@@ -1,6 +1,6 @@
 package addsynth.energy.gameplay.items;
 
-import addsynth.core.util.color.MinecraftColor;
+import addsynth.core.util.color.Colors;
 import addsynth.energy.lib.items.energy.EnergyItemCapabilityProvider;
 import addsynth.energy.lib.items.energy.ItemEnergy;
 import net.minecraft.nbt.CompoundTag;
@@ -30,7 +30,7 @@ public final class BatteryItem extends Item {
 
   @Override
   public int getBarColor(ItemStack itemstack){
-    return MinecraftColor.YELLOW.value;
+    return Colors.YELLOW.value;
   }
 
   @Override

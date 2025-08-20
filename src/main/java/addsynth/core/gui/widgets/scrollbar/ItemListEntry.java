@@ -1,6 +1,6 @@
 package addsynth.core.gui.widgets.scrollbar;
 
-import addsynth.core.util.color.Color;
+import addsynth.core.util.color.Colors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -24,7 +24,7 @@ public final class ItemListEntry extends AbstractListEntry<ItemStack> {
     if(item != null){
       graphics.renderItem(item, getX() + 1, getY() + 1);
     }
-    graphics.drawString(fontrenderer, getMessage(), getX() + 18, getY() + 5, Color.WHITE.get());
+    graphics.drawString(fontrenderer, getMessage(), getX() + 18, getY() + 5, Colors.WHITE.value);
   }
 
   @Override

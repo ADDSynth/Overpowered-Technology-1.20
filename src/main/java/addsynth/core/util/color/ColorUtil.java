@@ -24,7 +24,7 @@ import net.minecraftforge.registries.IForgeRegistry;
  *     in the config.
  * @author ADDSynth
  * @see Color
- * @see MinecraftColor
+ * @see Colors
  * @since October 23, 2019
  */
 public final class ColorUtil {
@@ -127,7 +127,7 @@ public final class ColorUtil {
         writer.write("ADDSynthCore: debug Minecraft Map Colors:\n\n\n");
   
         int i;
-        final MinecraftColor[] color_values = MinecraftColor.values();
+        final Colors[] color_values = Colors.values();
         final int length = color_values.length;
         final ColorSet[][] set = build_color_list();
         final IForgeRegistry<Block> registry = ForgeRegistries.BLOCKS;
@@ -168,7 +168,7 @@ public final class ColorUtil {
     }
 
     // Part 2: create difference list. get the difference for each MapColor aggainst each color we're testing.
-    final MinecraftColor[] color_values = MinecraftColor.values();
+    final Colors[] color_values = Colors.values();
     final int length = color_values.length;
     final int[][] difference = new int[number_of_colors][length];
     int j;
