@@ -49,13 +49,13 @@ public final class WorkingInventory extends CommonInventory {
   public final void save(final CompoundTag nbt){
     nbt.put("WorkingInventory", serializeNBT());
     // IMPORTANT: Need to remember the result of the recipe we're currently working on!
-    ItemUtil.saveItemStackToNBT(nbt, result, "Output");
+    ItemUtil.saveItemStack(nbt, result, "Output");
   }
 
   @Override
   public final void load(final CompoundTag nbt){
     deserializeNBT(nbt.getCompound("WorkingInventory"));
-    result = ItemUtil.loadItemStackFromNBT(nbt, "Output"); // TODO: Not necessarily important to change the name its saved to, but I can change it to a more purposeful name, once I create the NBTUtil class to help in saving/loading to a new name.
+    result = ItemUtil.loadItemStack(nbt, "Output"); // TODO: Not necessarily important to change the name its saved to, but I can change it to a more purposeful name, once I create the NBTUtil class to help in saving/loading to a new name.
   }
 
 }

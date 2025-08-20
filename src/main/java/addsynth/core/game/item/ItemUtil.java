@@ -19,20 +19,8 @@ public final class ItemUtil {
     return stack == null ? true : stack.isEmpty();
   }
 
-  /**
-   * Used in Items to get the {@link CompoundTag} of ItemStacks.
-   * Used in functions like <code>onItemUse()</code> or <code>onItemRightClick()</code>.
-   * Then call {@link ItemStack#setTag(CompoundTag)} to save any changes.
-   * @param stack
-   * @return NBTTag if one exists, otherwise a new CompoundNBT
-   */
-  public static final CompoundTag getItemStackNBT(final ItemStack stack) throws NullPointerException {
-    final CompoundTag nbt = stack.getTag();
-    return nbt == null ? new CompoundTag() : nbt;
-  }
-
   /** If the provided ItemStack exists, saves it with the Compound nbt using the key name. */
-  public static final void saveItemStackToNBT(final CompoundTag nbt, final ItemStack stack, final String key){
+  public static final void saveItemStack(final CompoundTag nbt, final ItemStack stack, final String key){
     if(stack != null){
       final CompoundTag item = new CompoundTag();
       stack.save(item);
@@ -41,7 +29,7 @@ public final class ItemUtil {
   }
 
   /** Loads ItemStack if the entry for it exists. Returns an Empty ItemStack if it does not. */
-  public static final ItemStack loadItemStackFromNBT(final CompoundTag nbt, final String key){
+  public static final ItemStack loadItemStack(final CompoundTag nbt, final String key){
     return ItemStack.of(nbt.getCompound(key));
   }
 

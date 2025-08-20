@@ -2,7 +2,6 @@ package addsynth.overpoweredtechnology.compatability.curios;
 
 import java.util.List;
 import java.util.Random;
-import addsynth.core.game.item.ItemUtil;
 import addsynth.core.game.item.constants.ItemValue;
 import addsynth.core.util.math.random.Weight;
 import addsynth.core.util.time.TimeConstants;
@@ -171,7 +170,7 @@ public enum RingEffects {
    * This method is very similar to the addEnchantment() method in the ItemStack class.
    */
   private static final void write_nbt(final ItemStack stack, final RingEffects effect, final int level, final ItemValue value){
-    final CompoundTag nbt = ItemUtil.getItemStackNBT(stack); // get or create new compound
+    final CompoundTag nbt = stack.getOrCreateTag();
     nbt.putByte("RingEffect", (byte)effect.id); // add to compound
     nbt.putByte("RingEffectLevel", (byte)level);
     nbt.putByte("Value", (byte)value.value);
