@@ -24,33 +24,32 @@ public final class TileCharger extends TileSingleItemMachine implements MenuProv
     return optional.isPresent();
   };
 
+  @Nullable
+  private IEnergyStorage item_energy;
+
   public TileCharger(BlockPos position, BlockState blockstate){
     super(Tiles.CHARGER.get(), position, blockstate, filter, new Receiver(1));
   }
 
   @Override
   protected final void doWork(){
-    if(energy.isFull()){
-      final ItemStack stack = getItemStack();
-      final LazyOptional<IEnergyStorage> optional = stack.getCapability(ForgeCapabilities.ENERGY);
-      final IEnergyStorage stack_energy = optional.orElse(null);
-      if(stack_energy != null){
-        stack_energy.receiveEnergy(1, false);
+    if(item_energy != null){
+      final IEnergyStorage item_energy = this.item_energy;
+      if(energy.isFull()){
+        item_energy.receiveEnergy(1, false);
+        energy.setEmpty();
       }
-      energy.setEmpty();
     }
   }
 
   @Override
   protected final boolean canFinishWork(){
     if(output_inventory.isEmpty()){
-      final ItemStack stack = getItemStack();
-      final LazyOptional<IEnergyStorage> optional = stack.getCapability(ForgeCapabilities.ENERGY);
-      final IEnergyStorage stack_energy = optional.orElse(null);
-      if(stack_energy != null){
-        return stack_energy.getEnergyStored() == stack_energy.getMaxEnergyStored();
+      if(item_energy != null){
+        final IEnergyStorage item_energy = this.item_energy;
+        return item_energy.getEnergyStored() == item_energy.getMaxEnergyStored();
       }
-      return true;
+      return true; // if somehow an item was inserted, but does not have an IEnergyStorage
     }
     return false;
   }
@@ -59,6 +58,22 @@ public final class TileCharger extends TileSingleItemMachine implements MenuProv
   protected final void finishWork(){
     final ItemStack stack = input_inventory.extractItemStack(0);
     output_inventory.add(0, stack);
+  }
+
+  @Override
+  public final void onInventoryChanged(){
+    final ItemStack itemstack = input_inventory.getStackInSlot(0);
+    final LazyOptional<IEnergyStorage> optional = itemstack.getCapability(ForgeCapabilities.ENERGY);
+    item_energy = optional.orElse(null);
+    changed = true;
+  }
+
+  public final int getTimeLeft(){
+    if(item_energy != null){
+      final IEnergyStorage item_energy = this.item_energy;
+      return item_energy.getMaxEnergyStored() - item_energy.getEnergyStored();
+    }
+    return 0;
   }
 
   @Override

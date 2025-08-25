@@ -119,11 +119,12 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
   }
 
   /** Draws machine time left at the bottom-left corner of the gui. */
-  protected final void draw_time_left(GuiGraphics graphics, final int draw_y){
+  protected void draw_time_left(GuiGraphics graphics, final int draw_y){
     if(energy != null){
       final double rate = energy.getDifference();
       final String time_left; // it let's me do this?
       if(tile instanceof IMachineInventory){
+        // prints all jobs
         time_left = StringUtil.print_time((((IMachineInventory)tile).getJobs() * energy.getCapacity()) + energy.getEnergyNeeded(), rate);
       }
       else{
@@ -137,7 +138,7 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
   }
 
   /** Draws machine time left at the bottom-center of the gui. */
-  protected final void draw_time_left_center(GuiGraphics graphics, final int draw_y){
+  protected void draw_time_left_center(GuiGraphics graphics, final int draw_y){
     final int draw_x = imageWidth/2;
     if(energy != null){
       final double rate = energy.getDifference();

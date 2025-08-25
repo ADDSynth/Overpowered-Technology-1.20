@@ -38,7 +38,7 @@ public final class EnergyPickaxe extends PickaxeItem {
 
   @Override
   public boolean mineBlock(ItemStack itemstack, Level level, BlockState blockstate, BlockPos position, LivingEntity entity){
-    if(!ToolUtil.InstaMine(level, blockstate, position)){
+    if(ToolUtil.mine(level, blockstate, position)){
       EnergyTools.reduceEnergy(itemstack);
       return super.mineBlock(itemstack, level, blockstate, position, entity);
     }
