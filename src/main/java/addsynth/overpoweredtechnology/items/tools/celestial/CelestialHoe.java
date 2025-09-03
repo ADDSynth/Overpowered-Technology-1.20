@@ -1,13 +1,14 @@
-package addsynth.overpoweredtechnology.items.tools;
+package addsynth.overpoweredtechnology.items.tools.celestial;
 
+import addsynth.overpoweredtechnology.items.tools.OverpoweredTiers;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 
-public class OverpoweredHoe extends HoeItem {
+public class CelestialHoe extends HoeItem {
 
-  public OverpoweredHoe(){
+  public CelestialHoe(){
     super(OverpoweredTiers.CELESTIAL, -4, 0.0f, new Item.Properties());
   }
 

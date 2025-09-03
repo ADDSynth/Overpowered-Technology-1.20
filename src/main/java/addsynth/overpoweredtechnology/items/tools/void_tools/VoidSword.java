@@ -1,14 +1,15 @@
-package addsynth.overpoweredtechnology.items.tools;
+package addsynth.overpoweredtechnology.items.tools.void_tools;
 
 import addsynth.core.game.item.tool.ToolConstants;
+import addsynth.overpoweredtechnology.items.tools.OverpoweredTiers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SwordItem;
 
-public class NullSword extends SwordItem {
+public class VoidSword extends SwordItem {
 
-  public NullSword(){
+  public VoidSword(){
     super(OverpoweredTiers.VOID, ToolConstants.sword_damage, ToolConstants.sword_speed, new Item.Properties());
   }
 

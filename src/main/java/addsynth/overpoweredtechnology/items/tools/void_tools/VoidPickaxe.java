@@ -1,14 +1,15 @@
-package addsynth.overpoweredtechnology.items.tools;
+package addsynth.overpoweredtechnology.items.tools.void_tools;
 
 import addsynth.core.game.item.tool.ToolConstants;
+import addsynth.overpoweredtechnology.items.tools.OverpoweredTiers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Rarity;
 
-public class NullPickaxe extends PickaxeItem {
+public class VoidPickaxe extends PickaxeItem {
 
-  public NullPickaxe(){
+  public VoidPickaxe(){
     super(OverpoweredTiers.VOID, ToolConstants.pickaxe_damage, ToolConstants.pickaxe_speed, new Item.Properties());
   }
 

@@ -50,13 +50,16 @@ public final class OverpoweredItems {
   public static final RegistryObject<Item> celestial_pickaxe = RegistryObject.create(Names.CELESTIAL_PICKAXE, ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> celestial_axe     = RegistryObject.create(Names.CELESTIAL_AXE,     ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> celestial_hoe     = RegistryObject.create(Names.CELESTIAL_HOE,     ForgeRegistries.ITEMS);
-  
-  public static final RegistryObject<Item> void_sword   = RegistryObject.create(Names.VOID_SWORD,   ForgeRegistries.ITEMS);
-  public static final RegistryObject<Item> void_shovel  = RegistryObject.create(Names.VOID_SHOVEL,  ForgeRegistries.ITEMS);
-  public static final RegistryObject<Item> void_pickaxe = RegistryObject.create(Names.VOID_PICKAXE, ForgeRegistries.ITEMS);
-  public static final RegistryObject<Item> void_axe     = RegistryObject.create(Names.VOID_AXE,     ForgeRegistries.ITEMS);
-  public static final RegistryObject<Item> void_hoe     = RegistryObject.create(Names.VOID_HOE,     ForgeRegistries.ITEMS);
-  
+  public static final RegistryObject<Item> void_sword        = RegistryObject.create(Names.VOID_SWORD,   ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> void_shovel       = RegistryObject.create(Names.VOID_SHOVEL,  ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> void_pickaxe      = RegistryObject.create(Names.VOID_PICKAXE, ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> void_axe          = RegistryObject.create(Names.VOID_AXE,     ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> void_hoe          = RegistryObject.create(Names.VOID_HOE,     ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> infinity_sword    = RegistryObject.create(Names.INFINITY_SWORD,   ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> infinity_shovel   = RegistryObject.create(Names.INFINITY_SHOVEL,  ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> infinity_pickaxe  = RegistryObject.create(Names.INFINITY_PICKAXE, ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> infinity_axe      = RegistryObject.create(Names.INFINITY_AXE,     ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> infinity_hoe      = RegistryObject.create(Names.INFINITY_HOE,     ForgeRegistries.ITEMS);
 
   public static final RegistryObject<Item> ring_0 = RegistryObject.create(Names.UNIDENTIFIED_RING[0], ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> ring_1 = RegistryObject.create(Names.UNIDENTIFIED_RING[1], ForgeRegistries.ITEMS);

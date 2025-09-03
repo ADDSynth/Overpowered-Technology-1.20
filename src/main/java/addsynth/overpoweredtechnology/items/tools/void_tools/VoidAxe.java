@@ -1,15 +1,15 @@
-package addsynth.overpoweredtechnology.items.tools;
+package addsynth.overpoweredtechnology.items.tools.void_tools;
 
-import addsynth.core.game.item.tool.ToolConstants;
+import addsynth.overpoweredtechnology.items.tools.OverpoweredTiers;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.ShovelItem;
 
-public class NullShovel extends ShovelItem {
+public class VoidAxe extends AxeItem {
 
-  public NullShovel(){
-    super(OverpoweredTiers.VOID, ToolConstants.shovel_damage, ToolConstants.shovel_speed, new Item.Properties());
+  public VoidAxe(){
+    super(OverpoweredTiers.VOID, 14.0f, -3.0f, new Item.Properties());
   }
 
   @Override

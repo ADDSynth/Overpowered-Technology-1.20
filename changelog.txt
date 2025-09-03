@@ -44,6 +44,10 @@ NEW:
 INFO:
   The mod ID has changed from 'overpowered' to 'overpowered_technology'.
    - This WILL make your existing worlds incompatible when upgrading to this version.
+NEW:
+  Added Infinity Tools, made from Unimatter.
+CHANGED:
+  Celestial Sword was renamed to Celestial Blade.
 
 
 

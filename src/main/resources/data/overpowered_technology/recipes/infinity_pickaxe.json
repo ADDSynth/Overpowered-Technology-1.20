@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "uuu",
+    " s ",
+    " s "
+  ],
+  "key": {
+    "s": {
+      "item": "addsynth_energy:steel_rod"
+    },
+    "u": {
+      "item": "overpowered_technology:unimatter"
+    }
+  },
+  "result": {
+    "item": "overpowered_technology:infinity_pickaxe"
+  }
+}

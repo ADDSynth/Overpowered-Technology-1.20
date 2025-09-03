@@ -1,6 +1,7 @@
-package addsynth.overpoweredtechnology.items.tools;
+package addsynth.overpoweredtechnology.items.tools.celestial;
 
 import addsynth.core.game.item.tool.ToolConstants;
+import addsynth.overpoweredtechnology.items.tools.OverpoweredTiers;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -12,9 +13,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SwordItem;
 
-public final class OverpoweredSword extends SwordItem {
+public final class CelestialSword extends SwordItem {
 
-  public OverpoweredSword(){ // TODO: Does Minecraft 1.16 now allow us to pass the Attack Damage and Speed as paramters? - for 1.16 only, do this when we drop support for earlier versions of MC.
+  public CelestialSword(){ // TODO: Does Minecraft 1.16 now allow us to pass the Attack Damage and Speed as paramters? - for 1.16 only, do this when we drop support for earlier versions of MC.
     super(OverpoweredTiers.CELESTIAL_SWORD, ToolConstants.sword_damage, ToolConstants.sword_damage, new Item.Properties());
   }
 

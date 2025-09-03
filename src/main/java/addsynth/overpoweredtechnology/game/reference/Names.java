@@ -81,6 +81,12 @@ public final class Names {
   public static final ResourceLocation VOID_AXE          = OverpoweredTechnology.getLocation("void_axe");
   public static final ResourceLocation VOID_HOE          = OverpoweredTechnology.getLocation("void_hoe");
 
+  public static final ResourceLocation INFINITY_SWORD    = OverpoweredTechnology.getLocation("infinity_sword");
+  public static final ResourceLocation INFINITY_SHOVEL   = OverpoweredTechnology.getLocation("infinity_shovel");
+  public static final ResourceLocation INFINITY_PICKAXE  = OverpoweredTechnology.getLocation("infinity_pickaxe");
+  public static final ResourceLocation INFINITY_AXE      = OverpoweredTechnology.getLocation("infinity_axe");
+  public static final ResourceLocation INFINITY_HOE      = OverpoweredTechnology.getLocation("infinity_hoe");
+
   public static final ResourceLocation[] UNIDENTIFIED_RING = {
     OverpoweredTechnology.getLocation("unidentified_ring_0"),
     OverpoweredTechnology.getLocation("unidentified_ring_1"),

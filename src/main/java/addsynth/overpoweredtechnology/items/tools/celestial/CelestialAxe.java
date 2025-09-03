@@ -1,21 +1,17 @@
-package addsynth.overpoweredtechnology.items.tools;
+package addsynth.overpoweredtechnology.items.tools.celestial;
 
+import addsynth.overpoweredtechnology.items.tools.OverpoweredTiers;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 
-public class NullAxe extends AxeItem {
+public final class CelestialAxe extends AxeItem {
 
-  public NullAxe(){
-    super(OverpoweredTiers.VOID, 14.0f, -3.0f, new Item.Properties());
+  public CelestialAxe(){
+    super(OverpoweredTiers.CELESTIAL, 14.0f, -3.0f, new Item.Properties());
   }
 
-  @Override
-  public boolean isFoil(ItemStack stack){
-    return true;
-  }
-  
   @Override
   public boolean isEnchantable(ItemStack stack){
     return false;
@@ -23,7 +19,6 @@ public class NullAxe extends AxeItem {
 
   @Override
   public Rarity getRarity(ItemStack stack){
-    return Rarity.EPIC;
+    return Rarity.RARE;
   }
-
 }

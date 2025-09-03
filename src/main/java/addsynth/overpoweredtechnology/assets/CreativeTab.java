@@ -96,6 +96,11 @@ public final class CreativeTab {
         output.accept(OverpoweredItems.void_pickaxe.get());
         output.accept(OverpoweredItems.void_axe.get());
         output.accept(OverpoweredItems.void_hoe.get());
+        output.accept(OverpoweredItems.infinity_sword.get());
+        output.accept(OverpoweredItems.infinity_shovel.get());
+        output.accept(OverpoweredItems.infinity_pickaxe.get());
+        output.accept(OverpoweredItems.infinity_axe.get());
+        output.accept(OverpoweredItems.infinity_hoe.get());
         for(ArmorMaterial material : ArmorMaterial.values()){
           if(material != ArmorMaterial.NETHERITE){
             for(EquipmentType equipment : EquipmentType.values()){

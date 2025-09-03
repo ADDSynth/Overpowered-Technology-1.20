@@ -17,7 +17,9 @@ import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import addsynth.overpoweredtechnology.items.*;
 import addsynth.overpoweredtechnology.items.basic.*;
-import addsynth.overpoweredtechnology.items.tools.*;
+import addsynth.overpoweredtechnology.items.tools.celestial.*;
+import addsynth.overpoweredtechnology.items.tools.infinity.*;
+import addsynth.overpoweredtechnology.items.tools.void_tools.*;
 import addsynth.overpoweredtechnology.machines.advanced_ore_refinery.AdvancedOreRefineryBlock;
 import addsynth.overpoweredtechnology.machines.advanced_ore_refinery.ContainerOreRefinery;
 import addsynth.overpoweredtechnology.machines.black_hole.BlackHoleBlock;
@@ -209,16 +211,21 @@ public final class Registers {
       BlockItemHolder.register(registry, OverpoweredBlocks.iron_frame_block);
       registry.register(Names.BLACK_HOLE,                 new BlackHoleItem());
       
-      registry.register(Names.CELESTIAL_SWORD,            new OverpoweredSword());
-      registry.register(Names.CELESTIAL_SHOVEL,           new OverpoweredShovel());
-      registry.register(Names.CELESTIAL_PICKAXE,          new OverpoweredPickaxe());
-      registry.register(Names.CELESTIAL_AXE,              new OverpoweredAxe());
-      registry.register(Names.CELESTIAL_HOE,              new OverpoweredHoe());
-      registry.register(Names.VOID_SWORD,                 new NullSword());
-      registry.register(Names.VOID_SHOVEL,                new NullShovel());
-      registry.register(Names.VOID_PICKAXE,               new NullPickaxe());
-      registry.register(Names.VOID_AXE,                   new NullAxe());
-      registry.register(Names.VOID_HOE,                   new NullHoe());
+      registry.register(Names.CELESTIAL_SWORD,            new CelestialSword());
+      registry.register(Names.CELESTIAL_SHOVEL,           new CelestialShovel());
+      registry.register(Names.CELESTIAL_PICKAXE,          new CelestialPickaxe());
+      registry.register(Names.CELESTIAL_AXE,              new CelestialAxe());
+      registry.register(Names.CELESTIAL_HOE,              new CelestialHoe());
+      registry.register(Names.VOID_SWORD,                 new VoidSword());
+      registry.register(Names.VOID_SHOVEL,                new VoidShovel());
+      registry.register(Names.VOID_PICKAXE,               new VoidPickaxe());
+      registry.register(Names.VOID_AXE,                   new VoidAxe());
+      registry.register(Names.VOID_HOE,                   new VoidHoe());
+      registry.register(Names.INFINITY_SWORD,             new InfinitySword());
+      registry.register(Names.INFINITY_SHOVEL,            new InfinityShovel());
+      registry.register(Names.INFINITY_PICKAXE,           new InfinityPickaxe());
+      registry.register(Names.INFINITY_AXE,               new InfinityAxe());
+      registry.register(Names.INFINITY_HOE,               new InfinityHoe());
       
       for(ArmorMaterial material : ArmorMaterial.values()){
         if(material != ArmorMaterial.NETHERITE){

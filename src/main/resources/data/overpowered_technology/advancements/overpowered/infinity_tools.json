@@ -1,0 +1,55 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:infinity_pickaxe"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.infinity_tools.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.infinity_tools.description"
+    }
+  },
+  "parent": "overpowered_technology:overpowered/unimatter",
+  "criteria": {
+    "infinity_sword": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "overpowered_technology:infinity_sword"
+      }
+    },
+    "infinity_shovel": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "overpowered_technology:infinity_shovel"
+      }
+    },
+    "infinity_axe": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "overpowered_technology:infinity_axe"
+      }
+    },
+    "infinity_pickaxe": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "overpowered_technology:infinity_pickaxe"
+      }
+    },
+    "infinity_hoe": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "overpowered_technology:infinity_hoe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "infinity_sword",
+      "infinity_shovel",
+      "infinity_axe",
+      "infinity_pickaxe",
+      "infinity_hoe"
+    ]
+  ]
+}
