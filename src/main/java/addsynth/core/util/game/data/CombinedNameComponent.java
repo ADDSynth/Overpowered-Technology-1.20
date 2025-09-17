@@ -2,8 +2,8 @@ package addsynth.core.util.game.data;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import addsynth.core.gameplay.team_manager.data.ObjectiveDataUnit;
-import addsynth.core.gameplay.team_manager.data.TeamDataUnit;
+import addsynth.core.gameplay.blocks.team_manager.data.ObjectiveDataUnit;
+import addsynth.core.gameplay.blocks.team_manager.data.TeamDataUnit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;

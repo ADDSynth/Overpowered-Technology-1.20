@@ -1,8 +1,8 @@
 package addsynth.core.gameplay.client;
 
-import addsynth.core.gameplay.music_box.TileMusicBox;
-import addsynth.core.gameplay.music_box.gui.GuiMusicBox;
-import addsynth.core.gameplay.team_manager.gui.TeamManagerGui;
+import addsynth.core.gameplay.blocks.music_box.TileMusicBox;
+import addsynth.core.gameplay.blocks.music_box.gui.GuiMusicBox;
+import addsynth.core.gameplay.blocks.team_manager.gui.TeamManagerGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 

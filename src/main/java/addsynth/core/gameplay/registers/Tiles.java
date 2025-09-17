@@ -1,7 +1,7 @@
 package addsynth.core.gameplay.registers;
 
 import addsynth.core.game.registry.BlockEntityHolder;
-import addsynth.core.gameplay.music_box.TileMusicBox;
+import addsynth.core.gameplay.blocks.music_box.TileMusicBox;
 import addsynth.core.gameplay.reference.Core;
 import addsynth.core.gameplay.reference.Names;
 

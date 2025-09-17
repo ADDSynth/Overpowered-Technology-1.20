@@ -1,15 +1,15 @@
 package addsynth.core.gameplay;
 
 import addsynth.core.ADDSynthCore;
-import addsynth.core.gameplay.music_box.network_messages.ChangeInstrumentMessage;
-import addsynth.core.gameplay.music_box.network_messages.MusicBoxMessage;
-import addsynth.core.gameplay.music_box.network_messages.NoteMessage;
-import addsynth.core.gameplay.team_manager.network_messages.TeamManagerSyncMessage;
+import addsynth.core.gameplay.blocks.music_box.network_messages.ChangeInstrumentMessage;
+import addsynth.core.gameplay.blocks.music_box.network_messages.MusicBoxMessage;
+import addsynth.core.gameplay.blocks.music_box.network_messages.NoteMessage;
+import addsynth.core.gameplay.blocks.team_manager.network_messages.PlayerScoreMessage;
+import addsynth.core.gameplay.blocks.team_manager.network_messages.RequestPlayerScoreMessage;
+import addsynth.core.gameplay.blocks.team_manager.network_messages.TeamManagerCommand;
+import addsynth.core.gameplay.blocks.team_manager.network_messages.TeamManagerSyncMessage;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
-import addsynth.core.gameplay.team_manager.network_messages.RequestPlayerScoreMessage;
-import addsynth.core.gameplay.team_manager.network_messages.PlayerScoreMessage;
-import addsynth.core.gameplay.team_manager.network_messages.TeamManagerCommand;
 
 public final class NetworkHandler {
 
