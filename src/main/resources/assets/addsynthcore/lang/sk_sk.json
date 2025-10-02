@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "Upozornenie Blokovať",
 "block.addsynthcore.music_box": "hudobný box",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "Bronzová trofej",
+"block.addsynthcore.silver_trophy": "strieborná trofej",
+"block.addsynthcore.gold_trophy": "Zlatá trofej",
+"block.addsynthcore.platinum_trophy": "Platinová trofej",
 
 "item.addsynthcore.music_sheet": "Hudobný list",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "Trofejná základňa",
-"block.addsynthcore.bronze_trophy": "Bronzová trofej",
-"block.addsynthcore.silver_trophy": "strieborná trofej",
-"block.addsynthcore.gold_trophy": "Zlatá trofej",
-"block.addsynthcore.platinum_trophy": "Platinová trofej",
 
 "gui.addsynthcore.direction.north": "sever",
 "gui.addsynthcore.direction.south": "juh",

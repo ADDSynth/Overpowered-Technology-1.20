@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "Cwaarschuwingsblok",
 "block.addsynthcore.music_box": "Muziekdoos",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "Bronzen trofee",
+"block.addsynthcore.silver_trophy": "Zilveren trofee",
+"block.addsynthcore.gold_trophy": "Gouden trofee",
+"block.addsynthcore.platinum_trophy": "Platina trofee",
 
 "item.addsynthcore.music_sheet": "Bladmuziek",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "trofee basis",
-"block.addsynthcore.bronze_trophy": "Bronzen trofee",
-"block.addsynthcore.silver_trophy": "Zilveren trofee",
-"block.addsynthcore.gold_trophy": "Gouden trofee",
-"block.addsynthcore.platinum_trophy": "Platina trofee",
 
 "gui.addsynthcore.direction.north": "noorden",
 "gui.addsynthcore.direction.south": "zuiden",

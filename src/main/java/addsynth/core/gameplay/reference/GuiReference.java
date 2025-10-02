@@ -18,4 +18,6 @@ public final class GuiReference {
   public static final ResourceLocation edit_objective_gui = ADDSynthCore.getLocation("textures/gui/team_manager_objective_edit.png");
   public static final ResourceLocation color_buttons      = ADDSynthCore.getLocation("textures/gui/color_buttons.png");
 
+  public static final ResourceLocation auto_jukebox       = ADDSynthCore.getLocation("textures/gui/auto_jukebox.png");
+
 }

@@ -13,6 +13,7 @@ public final class Core {
   public static final RegistryObject<Block> music_box     = RegistryObject.create(Names.MUSIC_BOX,     ForgeRegistries.BLOCKS);
   public static final RegistryObject<Item>  music_sheet   = RegistryObject.create(Names.MUSIC_SHEET,   ForgeRegistries.ITEMS);
   public static final RegistryObject<Block> team_manager  = RegistryObject.create(Names.TEAM_MANAGER,  ForgeRegistries.BLOCKS);
+  public static final RegistryObject<Block> auto_jukebox  = RegistryObject.create(Names.AUTO_JUKEBOX,  ForgeRegistries.BLOCKS);
 
   public static final RegistryObject<Item> conch_shell    = RegistryObject.create(Names.CONCH_SHELL,   ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> sand_dollar    = RegistryObject.create(Names.SAND_DOLLAR,   ForgeRegistries.ITEMS);

@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "Blok Perhatian",
 "block.addsynthcore.music_box": "Kotak muzik",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "Trofi Gangsa",
+"block.addsynthcore.silver_trophy": "Trofi Perak",
+"block.addsynthcore.gold_trophy": "Trofi Emas",
+"block.addsynthcore.platinum_trophy": "Trofi Platinum",
 
 "item.addsynthcore.music_sheet": "Lembaran Muzik",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "pangkalan piala",
-"block.addsynthcore.bronze_trophy": "Trofi Gangsa",
-"block.addsynthcore.silver_trophy": "Trofi Perak",
-"block.addsynthcore.gold_trophy": "Trofi Emas",
-"block.addsynthcore.platinum_trophy": "Trofi Platinum",
 
 "gui.addsynthcore.direction.north": "Utara",
 "gui.addsynthcore.direction.south": "Selatan",

@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "предостерегающий блок",
 "block.addsynthcore.music_box": "Музыкальная шкатулка",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "Бронзовый трофей",
+"block.addsynthcore.silver_trophy": "Серебряный трофей",
+"block.addsynthcore.gold_trophy": "Золотой трофей",
+"block.addsynthcore.platinum_trophy": "Платиновый трофей",
 
 "item.addsynthcore.music_sheet": "Музыкальный лист",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "Трофейная база",
-"block.addsynthcore.bronze_trophy": "Бронзовый трофей",
-"block.addsynthcore.silver_trophy": "Серебряный трофей",
-"block.addsynthcore.gold_trophy": "Золотой трофей",
-"block.addsynthcore.platinum_trophy": "Платиновый трофей",
 
 "gui.addsynthcore.direction.north": "к северу",
 "gui.addsynthcore.direction.south": "юг",

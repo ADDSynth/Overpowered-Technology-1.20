@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "μπλοκ προειδοποίησης",
 "block.addsynthcore.music_box": "Μουσικό κουτί",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "Χάλκινο τρόπαιο",
+"block.addsynthcore.silver_trophy": "Αργυρό Trophy",
+"block.addsynthcore.gold_trophy": "Χρυσό τρόπαιο",
+"block.addsynthcore.platinum_trophy": "Πλατινένιο τρόπαιο",
 
 "item.addsynthcore.music_sheet": "Φύλλο μουσικής",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "Βάση τροπαίων",
-"block.addsynthcore.bronze_trophy": "Χάλκινο τρόπαιο",
-"block.addsynthcore.silver_trophy": "Αργυρό Trophy",
-"block.addsynthcore.gold_trophy": "Χρυσό τρόπαιο",
-"block.addsynthcore.platinum_trophy": "Πλατινένιο τρόπαιο",
 
 "gui.addsynthcore.direction.north": "Βόρειος",
 "gui.addsynthcore.direction.south": "Νότος",

@@ -43,7 +43,7 @@ public final class StringUtil {
   }
 
   public static final String toPercentageString(final double value){
-    return (int)CommonMath.toPercentage(value, 0, RoundMode.Round) + "%";
+    return CommonMath.toPercentage(value) + "%";
   }
   
   public static final String toPercentageString(final double value, final RoundMode mode){
@@ -59,7 +59,7 @@ public final class StringUtil {
   }
   
   public static final String toPercentageString(final int top, final int bottom){
-    return (int)CommonMath.toPercentage(top, bottom, 0, RoundMode.Round) + "%";
+    return CommonMath.toPercentage(top, bottom) + "%";
   }
   
   public static final String toPercentageString(final int top, final int bottom, final RoundMode mode){
@@ -84,11 +84,25 @@ public final class StringUtil {
     return Arrays.deepToString(array);
   }
 
+  /** Prints a time given the number of ticks provided in the form of 'h# m# s#'. */
   public static final String print_time(final int ticks){
     final int seconds = (int)Math.ceil(((double)ticks) / TimeConstants.ticks_per_second);
     final int minutes = (int)Math.floor(((double)seconds) / 60);
     final int hours = (int)Math.floor(((double)minutes) / 60);
-    return hours+"h "+(minutes % 60)+"m "+(seconds % 60)+"s";
+    return StringUtil.build(hours, "h ", minutes % 60, "m ", seconds % 60, "s");
+  }
+
+  /** Prints a time given the number of ticks in the form of m:ss or h:mm:ss if there are hours. */
+  public static final String print_time2(final int ticks){
+    final int seconds = (int)Math.floor(((double)ticks) / TimeConstants.ticks_per_second);
+    final int minutes = (int)Math.floor(((double)seconds) / 60);
+    final int hours = (int)Math.floor(((double)minutes) / 60);
+    final String second_string = String.format("%02d", seconds % 60);
+    if(hours > 0){
+      final String minute_string = String.format("%02d", minutes % 60);
+      return StringUtil.build(hours, ':', minute_string, ':', second_string);
+    }
+    return minutes+":"+second_string;
   }
 
   public static final String print_time(final double total_energy, final double rate){

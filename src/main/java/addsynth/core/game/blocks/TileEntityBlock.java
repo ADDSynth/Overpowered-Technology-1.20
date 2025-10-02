@@ -17,6 +17,7 @@ public abstract class TileEntityBlock extends BaseEntityBlock {
   }
 
   @Override
+  @SuppressWarnings("deprecation")
   public RenderShape getRenderShape(BlockState blockstate){
     return RenderShape.MODEL;
   }

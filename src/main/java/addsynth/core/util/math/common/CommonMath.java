@@ -1,6 +1,5 @@
 package addsynth.core.util.math.common;
 
-import addsynth.core.ADDSynthCore;
 import addsynth.core.util.java.JavaUtils;
 
 /** This class is meant to hold commom math functions, such as Rounds, Clamps, getMin, and getMax.
@@ -211,22 +210,32 @@ public final class CommonMath {
     return Math.ceil(value / multiple) * multiple;
   }
 
+  public static final int toPercentage(int top, int bottom){
+    if(bottom == 0){
+      // Divide by 0 error
+      return 0;
+    }
+    return Math.round(((float)top / bottom) * 100);
+  }
+
   public static final double toPercentage(int top, int bottom, int number_of_decimals, RoundMode mode){
     if(bottom == 0){
-      ADDSynthCore.log.error(new ArithmeticException("Divide by 0 Error"));
+      // Divide by 0 error
       return 0.0;
     }
     return toPercentage((double)top / bottom, number_of_decimals, mode);
   }
   
+  public static final int toPercentage(double value){
+    return (int)Math.round(value * 100);
+  }
+
   public static final double toPercentage(double value, int number_of_decimals, RoundMode mode){
-    double percent_value = 0.0;
-    switch(mode){
-    case Round:   percent_value =      round(value * 100, number_of_decimals); break;
-    case Floor:   percent_value = Math.floor(value * 100); break;
-    case Ceiling: percent_value = Math.ceil(value * 100); break;
-    }
-    return percent_value;
+    return switch (mode) {
+    case Round   ->      round(value * 100, number_of_decimals);
+    case Floor   -> Math.floor(value * 100);
+    case Ceiling -> Math.ceil (value * 100);
+    };
   }
 
   /** Checks a value against a left value and a right value and returns whichever value it is closest to.

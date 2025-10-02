@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "警告塊",
 "block.addsynthcore.music_box": "音樂盒",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "青銅獎杯",
+"block.addsynthcore.silver_trophy": "銀色獎杯",
+"block.addsynthcore.gold_trophy": "金獎杯",
+"block.addsynthcore.platinum_trophy": "白金獎杯",
 
 "item.addsynthcore.music_sheet": "音樂表",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "獎杯基地",
-"block.addsynthcore.bronze_trophy": "青銅獎杯",
-"block.addsynthcore.silver_trophy": "銀色獎杯",
-"block.addsynthcore.gold_trophy": "金獎杯",
-"block.addsynthcore.platinum_trophy": "白金獎杯",
 
 "gui.addsynthcore.direction.north": "北",
 "gui.addsynthcore.direction.south": "南",

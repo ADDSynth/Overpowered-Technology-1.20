@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "Varning Block",
 "block.addsynthcore.music_box": "Speldosa",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "Brons trofé",
+"block.addsynthcore.silver_trophy": "silver trofé",
+"block.addsynthcore.gold_trophy": "guld trofé",
+"block.addsynthcore.platinum_trophy": "platina trofi",
 
 "item.addsynthcore.music_sheet": "Notblad",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "Trofé basen",
-"block.addsynthcore.bronze_trophy": "Brons trofé",
-"block.addsynthcore.silver_trophy": "silver trofé",
-"block.addsynthcore.gold_trophy": "guld trofé",
-"block.addsynthcore.platinum_trophy": "platina trofi",
 
 "gui.addsynthcore.direction.north": "Norr",
 "gui.addsynthcore.direction.south": "söder",

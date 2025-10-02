@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "blokuj ostrożność",
 "block.addsynthcore.music_box": "Pozytywka",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "Brązowe trofeum",
+"block.addsynthcore.silver_trophy": "Srebrne trofeum",
+"block.addsynthcore.gold_trophy": "Złote trofeum",
+"block.addsynthcore.platinum_trophy": "Platynowe trofeum",
 
 "item.addsynthcore.music_sheet": "papier muzyczny",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "stojak na trofeum",
-"block.addsynthcore.bronze_trophy": "Brązowe trofeum",
-"block.addsynthcore.silver_trophy": "Srebrne trofeum",
-"block.addsynthcore.gold_trophy": "Złote trofeum",
-"block.addsynthcore.platinum_trophy": "Platynowe trofeum",
 
 "gui.addsynthcore.direction.north": "Północ",
 "gui.addsynthcore.direction.south": "południe",

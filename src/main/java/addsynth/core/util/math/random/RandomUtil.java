@@ -33,6 +33,44 @@ public final class RandomUtil {
     return list[random.nextInt(list.length)];
   }
 
+  public static final int[] get_random_list(int max_number){
+    return get_random_list(new Random(), max_number, max_number);
+  }
+
+  public static final int[] get_random_list(int max_number, int max_needed){
+    return get_random_list(new Random(), max_number, max_needed);
+  }
+
+  public static final int[] get_random_list(Random random, int max_number){
+    return get_random_list(random, max_number, max_number);
+  }
+
+  public static final int[] get_random_list(Random random, int max_number, int max_needed){
+    final int[] list = new int[max_needed];
+    final boolean[] used = new boolean[max_number];
+    int i;
+    int j;
+    int count;
+    int random_number;
+    int max_count = max_number;
+    for(i = 0; i < max_needed; i++){
+      random_number = random.nextInt(max_count);
+      count = 0;
+      for(j = 0; j < max_number; j++){
+        if(!used[j]){
+          if(count == random_number){
+            break;
+          }
+          count++;
+        }
+      }
+      list[i] = j;
+      used[j] = true;
+      max_count--;
+    }
+    return list;
+  }
+
   /** Returns a random value between -1.0 and 1.0 (so the total range is 2), with most values being picked
    *  closer to 0. The probability graph is in a shape of a triangle. It's not quite a normal distribution
    *  graph, but it's pretty similar. I would normally get this by adding 2 random values then dividing by 2,

@@ -1,6 +1,7 @@
 package addsynth.core.gameplay;
 
 import addsynth.core.ADDSynthCore;
+import addsynth.core.gameplay.blocks.jukebox.JukeboxMessage;
 import addsynth.core.gameplay.blocks.music_box.network_messages.ChangeInstrumentMessage;
 import addsynth.core.gameplay.blocks.music_box.network_messages.MusicBoxMessage;
 import addsynth.core.gameplay.blocks.music_box.network_messages.NoteMessage;
@@ -141,6 +142,12 @@ public final class NetworkHandler {
       TeamManagerCommand.ClearDisplaySlot::encode,
       TeamManagerCommand.ClearDisplaySlot::decode,
       TeamManagerCommand.ClearDisplaySlot::handle
+    );
+    INSTANCE.registerMessage(21,
+      JukeboxMessage.class,
+      JukeboxMessage::encode,
+      JukeboxMessage::decode,
+      JukeboxMessage::handle
     );
     ADDSynthCore.log.info("Done registering ADDSynthCore network messages.");
   }

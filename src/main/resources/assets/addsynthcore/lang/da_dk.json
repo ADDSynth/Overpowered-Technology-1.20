@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "Forsigtighedsblok",
 "block.addsynthcore.music_box": "Musik boks",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "Bronze tropi",
+"block.addsynthcore.silver_trophy": "Sølv trofæ",
+"block.addsynthcore.gold_trophy": "Guld trofæ",
+"block.addsynthcore.platinum_trophy": "Platin trofæ",
 
 "item.addsynthcore.music_sheet": "Musikark",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "Trofæ Base",
-"block.addsynthcore.bronze_trophy": "Bronze tropi",
-"block.addsynthcore.silver_trophy": "Sølv trofæ",
-"block.addsynthcore.gold_trophy": "Guld trofæ",
-"block.addsynthcore.platinum_trophy": "Platin trofæ",
 
 "gui.addsynthcore.direction.north": "Nord",
 "gui.addsynthcore.direction.south": "Syd",

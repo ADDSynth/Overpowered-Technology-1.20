@@ -5,6 +5,8 @@ import addsynth.core.game.registry.BlockItemHolder;
 import addsynth.core.gameplay.CreativeTab;
 import addsynth.core.gameplay.blocks.CautionBlock;
 import addsynth.core.gameplay.blocks.TrophyBlock;
+import addsynth.core.gameplay.blocks.jukebox.JukeboxContainer;
+import addsynth.core.gameplay.blocks.jukebox.JukeboxPlayer;
 import addsynth.core.gameplay.blocks.music_box.MusicBox;
 import addsynth.core.gameplay.blocks.music_box.MusicSheet;
 import addsynth.core.gameplay.blocks.team_manager.TeamManagerBlock;
@@ -19,6 +21,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -38,11 +41,11 @@ public final class CoreRegister {
       registry.register(Names.CAUTION_BLOCK,   new CautionBlock());
       registry.register(Names.MUSIC_BOX,       new MusicBox());
       registry.register(Names.TEAM_MANAGER,    new TeamManagerBlock());
+      registry.register(Names.AUTO_JUKEBOX,    new JukeboxPlayer());
       registry.register(Names.BRONZE_TROPHY,   new TrophyBlock());
       registry.register(Names.SILVER_TROPHY,   new TrophyBlock());
       registry.register(Names.GOLD_TROPHY,     new TrophyBlock());
       registry.register(Names.PLATINUM_TROPHY, new TrophyBlock());
-      // registry.register(Names.TEST_BLOCK, new TestBlock());
     }
     if(key.equals(ForgeRegistries.Keys.ITEMS)){
       final IForgeRegistry<Item> registry = event.getForgeRegistry();
@@ -50,6 +53,12 @@ public final class CoreRegister {
       BlockItemHolder.register(registry, Core.music_box);
       registry.register(Names.MUSIC_SHEET,     new MusicSheet());
       BlockItemHolder.register(registry, Core.team_manager);
+      BlockItemHolder.register(registry, Core.auto_jukebox);
+      registry.register(Names.TROPHY_BASE,     new Item(new Item.Properties()));
+      BlockItemHolder.register(registry, Trophy.bronze);
+      BlockItemHolder.register(registry, Trophy.silver);
+      BlockItemHolder.register(registry, Trophy.gold);
+      BlockItemHolder.register(registry, Trophy.platinum);
       registry.register(Names.CONCH_SHELL,     new Item(new Item.Properties()));
       registry.register(Names.SAND_DOLLAR,     new Item(new Item.Properties()));
       registry.register(Names.COWRIE,          new Item(new Item.Properties()));
@@ -59,12 +68,6 @@ public final class CoreRegister {
       registry.register(Names.WENTLETRAP,      new Item(new Item.Properties()));
       registry.register(Names.VENUS_COMB,      new Item(new Item.Properties()));
       registry.register(Names.PEARL,           new Item(new Item.Properties()));
-      registry.register(Names.TROPHY_BASE,     new Item(new Item.Properties()));
-      BlockItemHolder.register(registry, Trophy.bronze);
-      BlockItemHolder.register(registry, Trophy.silver);
-      BlockItemHolder.register(registry, Trophy.gold);
-      BlockItemHolder.register(registry, Trophy.platinum);
-      // registry.register(Names.TEST_BLOCK, newBlockItem(Core.test_block));
     }
     if(key.equals(Registries.CREATIVE_MODE_TAB)){
       final Registry<CreativeModeTab> registry = event.getVanillaRegistry();
@@ -73,9 +76,11 @@ public final class CoreRegister {
     if(key.equals(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES)){
       final IForgeRegistry<BlockEntityType> registry = event.getForgeRegistry();
       Tiles.MUSIC_BOX.register(registry);
+      Tiles.AUTO_JUKEBOX.register(registry);
     }
     if(key.equals(ForgeRegistries.Keys.MENU_TYPES)){
       final IForgeRegistry<MenuType> registry = event.getForgeRegistry();
+      registry.register(Names.AUTO_JUKEBOX, IForgeMenuType.create(JukeboxContainer::new));
     }
   }
 

@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "Khối chú ý",
 "block.addsynthcore.music_box": "Hộp nhạc",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "Cúp đồng",
+"block.addsynthcore.silver_trophy": "Cúp bạc",
+"block.addsynthcore.gold_trophy": "Cúp vàng",
+"block.addsynthcore.platinum_trophy": "Cúp bạch kim",
 
 "item.addsynthcore.music_sheet": "Bản nhạc",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "Cơ sở cúp",
-"block.addsynthcore.bronze_trophy": "Cúp đồng",
-"block.addsynthcore.silver_trophy": "Cúp bạc",
-"block.addsynthcore.gold_trophy": "Cúp vàng",
-"block.addsynthcore.platinum_trophy": "Cúp bạch kim",
 
 "gui.addsynthcore.direction.north": "Bắc",
 "gui.addsynthcore.direction.south": "miền Nam",

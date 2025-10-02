@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "بلوک احتیاط",
 "block.addsynthcore.music_box": "جعبه موسیقی",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "جایزه برنز",
+"block.addsynthcore.silver_trophy": "جایزه نقره ای",
+"block.addsynthcore.gold_trophy": "جایزه طلا",
+"block.addsynthcore.platinum_trophy": "جایزه پلاتین",
 
 "item.addsynthcore.music_sheet": "ورق موسیقی",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "پایه ی جایزه",
-"block.addsynthcore.bronze_trophy": "جایزه برنز",
-"block.addsynthcore.silver_trophy": "جایزه نقره ای",
-"block.addsynthcore.gold_trophy": "جایزه طلا",
-"block.addsynthcore.platinum_trophy": "جایزه پلاتین",
 
 "gui.addsynthcore.direction.north": "شمال",
 "gui.addsynthcore.direction.south": "جنوب",

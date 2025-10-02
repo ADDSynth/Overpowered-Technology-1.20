@@ -26,6 +26,12 @@ public final class CreativeTab {
         output.accept(Core.music_box.get());
         output.accept(Core.music_sheet.get());
         output.accept(Core.team_manager.get());
+        output.accept(Core.auto_jukebox.get());
+        output.accept(Trophy.trophy_base.get());
+        output.accept(Trophy.bronze.get());
+        output.accept(Trophy.silver.get());
+        output.accept(Trophy.gold.get());
+        output.accept(Trophy.platinum.get());
         output.accept(Core.conch_shell.get());
         output.accept(Core.sand_dollar.get());
         output.accept(Core.cowrie.get());
@@ -35,11 +41,6 @@ public final class CreativeTab {
         output.accept(Core.wentletrap.get());
         output.accept(Core.venus_comb.get());
         output.accept(Core.pearl.get());
-        output.accept(Trophy.trophy_base.get());
-        output.accept(Trophy.bronze.get());
-        output.accept(Trophy.silver.get());
-        output.accept(Trophy.gold.get());
-        output.accept(Trophy.platinum.get());
       }).build();
     Registry.register(registry, key, creative_tab);
   }

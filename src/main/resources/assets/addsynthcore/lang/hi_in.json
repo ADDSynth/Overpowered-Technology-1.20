@@ -22,6 +22,11 @@
 "block.addsynthcore.caution_block": "सावधानी ब्लॉक",
 "block.addsynthcore.music_box": "संगीत बक्सा",
 "block.addsynthcore.team_manager": "Team Manager",
+"block.addsynthcore.auto_jukebox": "Auto Jukebox",
+"block.addsynthcore.bronze_trophy": "कांस्य ट्रॉफी",
+"block.addsynthcore.silver_trophy": "सिल्वर ट्रॉफी",
+"block.addsynthcore.gold_trophy": "गोल्ड ट्रॉफी",
+"block.addsynthcore.platinum_trophy": "प्लेटिनम ट्रॉफी",
 
 "item.addsynthcore.music_sheet": "संगीत नोटशीट",
 "item.addsynthcore.conch_shell": "Conch Shell",
@@ -34,10 +39,6 @@
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
 "item.addsynthcore.trophy_base": "ट्रॉफी बेस",
-"block.addsynthcore.bronze_trophy": "कांस्य ट्रॉफी",
-"block.addsynthcore.silver_trophy": "सिल्वर ट्रॉफी",
-"block.addsynthcore.gold_trophy": "गोल्ड ट्रॉफी",
-"block.addsynthcore.platinum_trophy": "प्लेटिनम ट्रॉफी",
 
 "gui.addsynthcore.direction.north": "उत्तर",
 "gui.addsynthcore.direction.south": "दक्षिण",

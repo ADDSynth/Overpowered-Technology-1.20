@@ -11,6 +11,13 @@ public final class Names {
   public static final ResourceLocation MUSIC_BOX       = ADDSynthCore.getLocation("music_box");
   public static final ResourceLocation MUSIC_SHEET     = ADDSynthCore.getLocation("music_sheet");
   public static final ResourceLocation TEAM_MANAGER    = ADDSynthCore.getLocation("team_manager");
+  public static final ResourceLocation AUTO_JUKEBOX    = ADDSynthCore.getLocation("auto_jukebox");
+
+  public static final ResourceLocation TROPHY_BASE     = ADDSynthCore.getLocation("trophy_base");
+  public static final ResourceLocation BRONZE_TROPHY   = ADDSynthCore.getLocation("bronze_trophy");
+  public static final ResourceLocation SILVER_TROPHY   = ADDSynthCore.getLocation("silver_trophy");
+  public static final ResourceLocation GOLD_TROPHY     = ADDSynthCore.getLocation("gold_trophy");
+  public static final ResourceLocation PLATINUM_TROPHY = ADDSynthCore.getLocation("platinum_trophy");
 
   public static final ResourceLocation CONCH_SHELL     = ADDSynthCore.getLocation("conch_shell");
   public static final ResourceLocation SAND_DOLLAR     = ADDSynthCore.getLocation("sand_dollar");
@@ -21,11 +28,5 @@ public final class Names {
   public static final ResourceLocation WENTLETRAP      = ADDSynthCore.getLocation("wentletrap");
   public static final ResourceLocation VENUS_COMB      = ADDSynthCore.getLocation("venus_comb");
   public static final ResourceLocation PEARL           = ADDSynthCore.getLocation("pearl");
-
-  public static final ResourceLocation TROPHY_BASE     = ADDSynthCore.getLocation("trophy_base");
-  public static final ResourceLocation BRONZE_TROPHY   = ADDSynthCore.getLocation("bronze_trophy");
-  public static final ResourceLocation SILVER_TROPHY   = ADDSynthCore.getLocation("silver_trophy");
-  public static final ResourceLocation GOLD_TROPHY     = ADDSynthCore.getLocation("gold_trophy");
-  public static final ResourceLocation PLATINUM_TROPHY = ADDSynthCore.getLocation("platinum_trophy");
 
 }

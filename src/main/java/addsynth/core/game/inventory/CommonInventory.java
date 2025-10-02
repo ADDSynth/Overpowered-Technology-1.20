@@ -62,6 +62,25 @@ public class CommonInventory extends ItemStackHandler {
     insertItem(slot, stack, false);
   }
 
+  /** Attempts to add the Itemstack to the inventory. Adds as much as possible, and respects slot restrictions.
+   * @param itemstack
+   * @return The remaining Itemstack that could not be added. Will be EMPTY if the entire Itemstack was added.
+   */
+  public final ItemStack add(ItemStack itemstack){
+    if(itemstack.isEmpty()){
+      return ItemStack.EMPTY;
+    }
+    final int slots = stacks.size();
+    int i;
+    for(i = 0; i < slots; i++){
+      itemstack = insertItem(i, itemstack, false);
+      if(itemstack.isEmpty()){
+        return ItemStack.EMPTY;
+      }
+    }
+    return itemstack;
+  }
+
   /** Extracts the entire ItemStack from the slot. */
   public final ItemStack extractItemStack(final int slot){
     final ItemStack stack = getStackInSlot(slot);

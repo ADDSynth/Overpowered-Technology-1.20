@@ -137,11 +137,25 @@ public abstract class GuiContainerBase<T extends AbstractContainerMenu> extends 
     graphics.drawString(font, text, right_edge - font.width(text), y, GuiUtil.text_color);
   }
 
+  /** Draws along the right-edge of the gui.<br />
+   *  This will render the string in a different color if you prefix the string with
+   *  {@link net.minecraft.ChatFormatting ChatFormatting.COLOR.toString()}. */
+  protected final void draw_text_right(final GuiGraphics graphics, final Component component, final int y){
+    graphics.drawString(font, component, right_edge - font.width(component), y, GuiUtil.text_color);
+  }
+
   /** Draws the text right-aligned.
    *  This will render the string in a different color if you prefix the string with
    *  {@link net.minecraft.ChatFormatting ChatFormatting.COLOR.toString()}. */
   protected final void draw_text_right(final GuiGraphics graphics, final String text, final int x, final int y){
     graphics.drawString(font, text, x - font.width(text), y, GuiUtil.text_color);
+  }
+
+  /** Draws the text right-aligned.
+   *  This will render the string in a different color if you prefix the string with
+   *  {@link net.minecraft.ChatFormatting ChatFormatting.COLOR.toString()}. */
+  protected final void draw_text_right(final GuiGraphics graphics, final Component component, final int x, final int y){
+    graphics.drawString(font, component, x - font.width(component), y, GuiUtil.text_color);
   }
 
 // ========================================================================================================
