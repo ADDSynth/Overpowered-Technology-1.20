@@ -12,7 +12,7 @@ import addsynth.energy.lib.main.IEnergyConsumer;
 import addsynth.energy.lib.main.IEnergyGenerator;
 import addsynth.energy.lib.main.IEnergyUser;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 // original inspiration from canitzp:
@@ -32,7 +32,7 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   private final ArrayList<EnergyNode> batteries = new ArrayList<>();
   private final ArrayList<EnergyNode> generators = new ArrayList<>();
 
-  public EnergyNetwork(final Level world, final AbstractEnergyNetworkTile energy_network_tile){
+  public EnergyNetwork(final ServerLevel world, final AbstractEnergyNetworkTile energy_network_tile){
     super(world, energy_network_tile);
   }
 
@@ -62,7 +62,7 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   }
 
   @Override
-  protected final void tick(final Level world){
+  protected final void tick(final ServerLevel world){
     final long start = TimeUtil.get_start_time();
     
     remove_invalid_nodes(all_machines);
@@ -95,7 +95,7 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   }
 
   @Override
-  protected final void customSearch(final Node node, final Level world){
+  protected final void customSearch(final Node node, final ServerLevel world){
     final BlockEntity tile = node.getTile();
     if(tile != null){
       if(tile instanceof ICustomEnergyUser){
@@ -125,7 +125,7 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   }
 
   @Override
-  public void neighbor_was_changed(final Level world, final BlockPos current_position, final BlockPos position_of_neighbor){
+  public void neighbor_was_changed(final ServerLevel world, final BlockPos current_position, final BlockPos position_of_neighbor){
     final BlockEntity tile = world.getBlockEntity(position_of_neighbor);
     if(tile != null){
       if(tile instanceof IEnergyUser){

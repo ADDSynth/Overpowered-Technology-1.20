@@ -12,11 +12,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -51,8 +51,8 @@ public final class TileUniversalEnergyInterface extends BasicEnergyNetworkTile
   }
 
   @Override
-  public final void serverTick(Level level){
-    super.serverTick(level); // handles Energy Network stuff
+  public final void serverTick(ServerLevel level, BlockState blockstate){
+    super.serverTick(level, blockstate); // handles Energy Network stuff
     final EnergyCompat.CompatEnergyNode[] energy_nodes = EnergyCompat.getConnectedEnergy(worldPosition, level);
     if(energy_nodes.length > 0){
       if(transfer_mode.canReceive){

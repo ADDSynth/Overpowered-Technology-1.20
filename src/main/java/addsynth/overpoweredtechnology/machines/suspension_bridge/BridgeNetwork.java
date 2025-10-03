@@ -16,7 +16,7 @@ import addsynth.overpoweredtechnology.config.Config;
 import addsynth.overpoweredtechnology.game.NetworkHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -57,7 +57,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
    *  in the middle of updating. */
   private boolean updating;
 
-  public BridgeNetwork(final Level world, final TileSuspensionBridge tile){
+  public BridgeNetwork(final ServerLevel world, final TileSuspensionBridge tile){
     super(world, tile);
   }
 
@@ -69,19 +69,19 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   public final int get_max_z(){ return shape.max_z; }
 
   @Override
-  protected final void onUpdateNetworkFinished(final Level world){
+  protected final void onUpdateNetworkFinished(final ServerLevel world){
     check_and_update(world);
     check_neighbor_bridges(world);
   }
 
   /** Main check function. Only runs when needed, such as when you open the gui,
    *  When it is redstone powered, changed lenses, or when the BlockNetwork changes. */
-  public final void check_and_update(final Level world){
+  public final void check_and_update(final ServerLevel world){
     updating = true;
     bridge_message = BridgeMessage.PENDING;
     longest_distance = 0;
     
-    check_shape(world); // Checks the Bridge Machine itself.
+    check_shape(); // Checks the Bridge Machine itself.
 
     // Only changes the check area. Doesn't set the area until we activate a bridge.
     maximum_length = Config.energy_bridge_max_distance.get();
@@ -111,7 +111,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
 
   /** Sets the {@link shape} and {@link valid_shape} fields. */
-  private final void check_shape(final Level world){
+  private final void check_shape(){
     final ArrayList<BlockPos> positions = blocks.getBlockPositions();
     shape = BlockArea.get(positions);
     valid_shape = shape.isFullRectangle(positions);
@@ -145,7 +145,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
 
   // -Y
-  private final void check_down(final Level world){
+  private final void check_down(final ServerLevel world){
     final int direction = DirectionConstant.DOWN;
     final BridgeData bridge_data = this.bridge_data[direction];
     bridge_data.clear();
@@ -166,7 +166,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
   
   // +Y
-  private final void check_up(final Level world){
+  private final void check_up(final ServerLevel world){
     final int direction = DirectionConstant.UP;
     final BridgeData bridge_data = this.bridge_data[direction];
     bridge_data.clear();
@@ -186,7 +186,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
   
   // -Z
-  private final void check_north(final Level world){
+  private final void check_north(final ServerLevel world){
     final int direction = DirectionConstant.NORTH;
     final BridgeData bridge_data = this.bridge_data[direction];
     bridge_data.clear();
@@ -205,7 +205,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
   
   // +Z
-  private final void check_south(final Level world){
+  private final void check_south(final ServerLevel world){
     final int direction = DirectionConstant.SOUTH;
     final BridgeData bridge_data = this.bridge_data[direction];
     bridge_data.clear();
@@ -224,7 +224,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
   
   // -X
-  private final void check_west(final Level world){
+  private final void check_west(final ServerLevel world){
     final int direction = DirectionConstant.WEST;
     final BridgeData bridge_data = this.bridge_data[direction];
     bridge_data.clear();
@@ -243,7 +243,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
   
   // +X
-  private final void check_east(final Level world){
+  private final void check_east(final ServerLevel world){
     final int direction = DirectionConstant.EAST;
     final BridgeData bridge_data = this.bridge_data[direction];
     bridge_data.clear();
@@ -261,7 +261,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
     finalize_direction(direction, pass ? 0 : area.getWidth());
   }
 
-  private final boolean check_position(final Level world, final BridgeData bridge_data, final int direction, final BlockPos position){
+  private final boolean check_position(final ServerLevel world, final BridgeData bridge_data, final int direction, final BlockPos position){
     final TileSuspensionBridge tile = MinecraftUtility.getTileEntity(position, world, TileSuspensionBridge.class);
     
     // empty space, check if obstructed and return
@@ -279,14 +279,14 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
     }
     bridge_data.network = tile.getBlockNetwork();
     
-    setBridgeMessage(world, direction, bridge_data);
+    setBridgeMessage(direction, bridge_data);
     
     return false;
   }
 
-  private final void setBridgeMessage(final Level world, final int direction, final BridgeData bridge_data){
+  private final void setBridgeMessage(final int direction, final BridgeData bridge_data){
     // check bridge shape
-    if(bridge_data.network.check(world, direction, shape)){
+    if(bridge_data.network.check(direction, shape)){
       if(bridge_data.obstructed){
         bridge_data.message = BridgeMessage.OBSTRUCTED;
       }
@@ -300,7 +300,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
 
   /** This is an internal method. Only OTHER Bridge Networks should be calling this. */
-  private final boolean check(final Level world, final int direction, final BlockArea shape){
+  private final boolean check(final int direction, final BlockArea shape){
     // Other BridgeNetwork should've already been created, and Updated by now.
     // check_shape(world);
     if(valid_shape){
@@ -319,7 +319,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
     return false;
   }
 
-  private final void check_neighbor_bridges(final Level world){
+  private final void check_neighbor_bridges(final ServerLevel world){
     int direction;
     int opposite;
     BridgeNetwork network;
@@ -343,7 +343,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
 
   /** Called whenever a player inserts or removes a Lens to/from the TileEntity. */
-  public final void update_lens(final Level world, final int index){
+  public final void update_lens(final ServerLevel world, final int index){
     if(index != lens_index){
       this.lens_index = index;
       check_and_update(world);
@@ -362,7 +362,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
 
   /** This updates all TileEntities in the network whenever something changes that must be propogated to the rest of them. */
-  private final void syncBridgeNetworkData(final Level world){
+  private final void syncBridgeNetworkData(final ServerLevel world){
     blocks.remove_invalid();
     blocks.forAllTileEntities((TileSuspensionBridge tile) -> {
       tile.save_block_network_data(lens_index, redstone, bridge_data);
@@ -373,7 +373,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
 
   @Override
-  protected final void tick(final Level world){
+  protected final void tick(final ServerLevel world){
     redstone.update(world, blocks.getBlockPositions());
     if(redstone.changed()){
       if(redstone.isPowered()){
@@ -396,7 +396,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
     }
   }
 
-  private final void set_active(final Level world, final boolean active){
+  private final void set_active(final ServerLevel world, final boolean active){
     this.active = active;
     update_direction(world, 0); // down
     update_direction(world, 1); // up
@@ -411,7 +411,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
     }
   }
 
-  private final void award_players(final Level world){
+  private final void award_players(final ServerLevel world){
     final ArrayList<String> players = new ArrayList<>();
     String player;
     for(BlockEntity tile : blocks.getTileEntities()){
@@ -426,7 +426,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
 
   /** This is the function that actually turns on/off the bridge depending on the active state. */
-  private final void update_direction(final Level world, final int direction){
+  private final void update_direction(final ServerLevel world, final int direction){
     final BridgeData bridge = this.bridge_data[direction];
     bridge.handleLegacy(check_area[direction]);
     if(bridge.message == BridgeMessage.OKAY){
@@ -451,21 +451,21 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
     }
   }
 
-  private final void maintain_bridge(final Level world){
+  private final void maintain_bridge(final ServerLevel world){
     int direction;
     for(direction = 0; direction < 6; direction++){
       bridge_data[direction].maintain(world, lens_index);
     }
   }
 
-  public final void rotate(final Level world){
+  public final void rotate(final ServerLevel world){
     // still only rotates the top and bottom bridges for now
     rotate(world, DirectionConstant.DOWN);
     rotate(world, DirectionConstant.UP);
     data_changed = true;
   }
 
-  private final void rotate(final Level world, final int direction){
+  private final void rotate(final ServerLevel world, final int direction){
     // only rotate bridgees if we're active
     if(bridge_data[direction].relation == BridgeRelation.MASTER){
       bridge_data[direction].rotate();
@@ -483,7 +483,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
   }
 
   @Override
-  protected final void lastTileWasRemoved(final Level world, final TileSuspensionBridge removed_tile){
+  protected final void lastTileWasRemoved(final ServerLevel world, final TileSuspensionBridge removed_tile){
     int direction;
     for(direction = 0; direction < 6; direction++){
       if(bridge_data[direction].relation == BridgeRelation.MASTER){

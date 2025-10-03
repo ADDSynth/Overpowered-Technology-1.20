@@ -14,7 +14,7 @@ import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -32,7 +32,7 @@ public final class TileFusionEnergyConverter extends TileBase implements IEnergy
   }
 
   @Override
-  public final void serverTick(Level level){
+  public final void serverTick(ServerLevel level, BlockState blockstate){
     if(level.getGameTime() % sync_timer == 0){
       
       final BlockPos previous_position = fusion_chamber != null ? fusion_chamber.getBlockPos() : null;
@@ -76,7 +76,7 @@ public final class TileFusionEnergyConverter extends TileBase implements IEnergy
     savePlayerData(nbt);
   }
 
-  private final void check_connection(Level level){
+  private final void check_connection(final ServerLevel level){
     get_networks(level);
     valid = false;
     fusion_chamber = null;
@@ -97,7 +97,7 @@ public final class TileFusionEnergyConverter extends TileBase implements IEnergy
     }
   }
 
-  private final void get_networks(Level level){
+  private final void get_networks(final ServerLevel level){
     data_cable_networks.clear();
     BlockEntity tile;
     DataCableNetwork data_network;

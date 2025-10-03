@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -25,7 +26,7 @@ public class TileEntityUtil {
    * Well starting in Minecraft 1.17, the tick method must now be a static method. I use this as an abstraction
    * to ease the transition. Many tick functions use instance variables because they were designed to be called
    * as an instance method.
-   * Using this, your TileEntity is only expected to have the {@link ITickingTileEntity#serverTick(Level) serverTick()} method.
+   * Using this, your TileEntity is only expected to have the {@link ITickingTileEntity#serverTick(ServerLevel, BlockState) serverTick()} method.
    * @param <T>
    * @param world
    * @param position
@@ -36,7 +37,7 @@ public class TileEntityUtil {
   public static final <T extends BlockEntity & ITickingTileEntity> void tick(Level world, BlockPos position, BlockState state, T tile){
     if(tile != null){
       try{
-        tile.serverTick(world);
+        tile.serverTick((ServerLevel)world, state);
       }
       catch(Exception e){
         report_ticking_error(world, position, tile, e);

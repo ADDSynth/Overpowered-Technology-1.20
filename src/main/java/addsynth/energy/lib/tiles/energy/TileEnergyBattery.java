@@ -8,7 +8,7 @@ import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.main.IEnergyUser;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -25,7 +25,7 @@ public abstract class TileEnergyBattery extends AbstractEnergyNetworkTile implem
   }
 
   @Override
-  public void serverTick(Level level){
+  public void serverTick(ServerLevel level, BlockState blockstate){
     BlockNetwork.tick(network, level, this, EnergyNetwork::new);
     if(energy.tick()){
       update_data();

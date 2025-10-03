@@ -7,6 +7,7 @@ import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -48,10 +49,9 @@ public class SolarPanelTile extends BlockEntity implements IBlockNetworkUser<Sol
   }
 
   @Override
-  public void serverTick(Level level){
+  public void serverTick(ServerLevel level, BlockState blockstate){
     BlockNetwork.tick(network, level, this, SolarPanelNetwork::new);
     // Handle life
-    final BlockState blockstate = getBlockState();
     final boolean wet = level.isRainingAt(worldPosition.above()) || blockstate.getValue(BlockStateProperties.WATERLOGGED);
     final int max_life = Config.SOLAR_PANEL.max_life.get();
     final int life_sections = max_life / SolarPanel.max_dirt_level;

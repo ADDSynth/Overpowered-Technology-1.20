@@ -17,11 +17,11 @@ import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TileLaserHousing extends TileBase implements IBlockNetworkUser<LaserNetwork>,
@@ -45,7 +45,7 @@ public final class TileLaserHousing extends TileBase implements IBlockNetworkUse
   }
 
   @Override
-  public final void serverTick(Level level){
+  public final void serverTick(ServerLevel level, BlockState blockstate){
     BlockNetwork.tick(network, level, this, LaserNetwork::new);
   }
 
@@ -78,7 +78,7 @@ public final class TileLaserHousing extends TileBase implements IBlockNetworkUse
       return energy; // only guis should use this.
     }
     if(network == null){
-      BlockNetworkUtil.createBlockNetwork(level, this, LaserNetwork::new);
+      BlockNetworkUtil.createBlockNetwork((ServerLevel)level, this, LaserNetwork::new);
     }
     return network.energy;
   }

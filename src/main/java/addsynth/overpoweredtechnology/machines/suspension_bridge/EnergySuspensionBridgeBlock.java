@@ -11,6 +11,7 @@ import addsynth.overpoweredtechnology.OverpoweredTechnology;
 import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -64,7 +65,7 @@ public final class EnergySuspensionBridgeBlock extends MachineBlock {
       if(tile != null){
         final BridgeNetwork network = tile.getBlockNetwork();
         if(network != null){
-          network.check_and_update(world);
+          network.check_and_update((ServerLevel)world);
           NetworkHooks.openScreen((ServerPlayer)player, tile, pos);
         }
         else{

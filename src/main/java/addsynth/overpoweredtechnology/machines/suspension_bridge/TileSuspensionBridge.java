@@ -15,12 +15,12 @@ import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TileSuspensionBridge extends TileBasicMachine implements IBlockNetworkUser<BridgeNetwork>, MenuProvider {
@@ -45,7 +45,7 @@ public final class TileSuspensionBridge extends TileBasicMachine implements IBlo
   }
 
   @Override
-  public final void serverTick(Level level){
+  public final void serverTick(ServerLevel level, BlockState blockstate){
     BlockNetwork.tick(network, level, this, BridgeNetwork::new);
   }
 
@@ -93,7 +93,7 @@ public final class TileSuspensionBridge extends TileBasicMachine implements IBlo
   @Override
   public final void onInventoryChanged(){
     if(onServerSide()){
-      network.update_lens(level, LensItem.get_index(inventory.getStackInSlot(0)));
+      network.update_lens((ServerLevel)level, LensItem.get_index(inventory.getStackInSlot(0)));
     }
   }
 

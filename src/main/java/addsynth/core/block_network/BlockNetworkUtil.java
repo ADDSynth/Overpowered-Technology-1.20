@@ -4,6 +4,7 @@ import java.util.function.BiFunction;
 import addsynth.core.util.game.MinecraftUtility;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -21,7 +22,7 @@ public final class BlockNetworkUtil {
    *        The default method is to just pass in your BlockNetwork's constructor such as:
    *        <code>MyBlockNetwork::new</code>.
    */
-  static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B create_or_join(final Level world, final T tile, final BiFunction<Level, T, B> constructor){
+  static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B create_or_join(final ServerLevel world, final T tile, final BiFunction<ServerLevel, T, B> constructor){
     if(world == null){
       throw new NullPointerException("Can't create BlockNetwork because the world isn't loaded yet.");
     }
@@ -41,7 +42,7 @@ public final class BlockNetworkUtil {
 
   /** Only call this if a BlockNetwork requires data from another BlockNetwork during their tick event,
    *  but calling {@link IBlockNetworkUser#getBlockNetwork()} returned {@code null}. Normal BlockNetwork
-   *  initialization is achieved by calling {@link BlockNetwork#check(B, Level, T, BiFunction)}.
+   *  initialization is achieved by calling {@link BlockNetwork#check(B, ServerLevel, T, BiFunction)}.
    * @param <B>
    * @param <T>
    * @param world
@@ -49,24 +50,21 @@ public final class BlockNetworkUtil {
    * @param constructor
    * @return A new BlockNetwork that has already been updated and had it's data loaded from the TileEntity.
    */
-  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B createBlockNetwork(final Level world, final T tile, final BiFunction<Level, T, B> constructor){
-    if(!world.isClientSide){
-      final BlockPos pos = tile.getBlockPos();
-      final B network = constructor.apply(world, tile); // The BlockNetwork MUST be allowed to fully construct before we update!
-      
-      // Network data must be loaded BEFORE update, because BlockNetworks might perform certain actions after an update.
-      tile.setBlockNetwork(network);
-      tile.load_block_network_data();
-      DebugBlockNetwork.DATA_LOADED(network, pos);
-      
-      network.updateBlockNetwork(world, pos);
-      return network;
-    }
-    return null;
+  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B createBlockNetwork(final ServerLevel world, final T tile, final BiFunction<ServerLevel, T, B> constructor){
+    final BlockPos pos = tile.getBlockPos();
+    final B network = constructor.apply(world, tile); // The BlockNetwork MUST be allowed to fully construct before we update!
+    
+    // Network data must be loaded BEFORE update, because BlockNetworks might perform certain actions after an update.
+    tile.setBlockNetwork(network);
+    tile.load_block_network_data();
+    DebugBlockNetwork.DATA_LOADED(network, pos);
+    
+    network.updateBlockNetwork(world, pos);
+    return network;
   }
 
   @SuppressWarnings({ "unchecked" })
-  private static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B find_existing_network(final Level world, final T tile){
+  private static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B find_existing_network(final ServerLevel world, final T tile){
     final BlockPos position = tile.getBlockPos();
     BlockPos offset;
     T check_tile;
@@ -93,7 +91,7 @@ public final class BlockNetworkUtil {
    *    BlockNetworkUtil.onRemove(super::onRemove, MyTileEntity.class, MyBlockNetwork::new, state, world, pos, newState, isMoving);
    *  }</code></pre> */
   public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> void onRemove(BlockRemoveFunction remove_method,
-      Class<T> tile_class, BiFunction<Level, T, B> constructor, BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving){
+      Class<T> tile_class, BiFunction<ServerLevel, T, B> constructor, BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving){
     final T tile = MinecraftUtility.getTileEntity(pos, world, tile_class);
     remove_method.onRemove(state, world, pos, newState, isMoving);
     if(tile != null){
@@ -106,22 +104,22 @@ public final class BlockNetworkUtil {
 
   /** This must be called in your Block's {@link Block#onRemove} function to remove the TileEntity from your
    *  BlockNetwork's list of TileEntities. If this is the only thing you need to do, then we actually prefer
-   *  you call {@link #onRemove}. This is only separated if you need to do other things. First get a reference
-   *  to the TileEntity by calling {@link MinecraftUtility#getTileEntity}, then the super.onRemove method to
-   *  remove the TileEntity from the world (just marks it for removal), then call this function to remove the
-   *  TileEntity from the BlockNetwork, but only if the TileEntity exists, and has actually been removed by
-   *  super.onRemove(). Check by calling {@link BlockEntity#isRemoved()}.
+   *  you call {@link BlockNetworkUtil#onRemove}. This is only separated if you need to do other things.
+   *  First get a reference to the TileEntity by calling {@link MinecraftUtility#getTileEntity}, then the
+   *  {@code super.onRemove()} method to remove the TileEntity from the world (just marks it for removal), then
+   *  call this function to remove the TileEntity from the BlockNetwork, but only if the TileEntity exists,
+   *  and has actually been removed by {@code super.onRemove()}. Check by calling {@link BlockEntity#isRemoved()}.
    * @param <B>
    * @param <T>
    * @param world
    * @param destroyed_tile
    * @param constructor
    */
-  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> void removeTile(final Level world, final T destroyed_tile, final BiFunction<Level, T, B> constructor){
+  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> void removeTile(final Level world, final T destroyed_tile, final BiFunction<ServerLevel, T, B> constructor){
     if(destroyed_tile != null){
       final B network = destroyed_tile.getBlockNetwork();
       if(network != null){
-        network.removeTile(world, destroyed_tile, constructor);
+        network.removeTile((ServerLevel)world, destroyed_tile, constructor);
         destroyed_tile.setBlockNetwork(null);
       }
     }
@@ -129,7 +127,7 @@ public final class BlockNetworkUtil {
 
   /** Helper function. Call in block's {@link Block#neighborChanged} function.
    *  Used to cause the BlockNetwork to respond to an adjacent block being added or removed.
-   *  @see BlockNetwork#neighbor_was_changed(Level, BlockPos, BlockPos)
+   *  @see BlockNetwork#neighbor_was_changed(ServerLevel, BlockPos, BlockPos)
    **/
   public static final void neighbor_changed(final Level world, final BlockPos pos, final BlockPos position_of_neighbor){
     if(world.isClientSide == false){
@@ -138,7 +136,7 @@ public final class BlockNetworkUtil {
         if(tile instanceof IBlockNetworkUser){
           final BlockNetwork block_network = ((IBlockNetworkUser)tile).getBlockNetwork();
           if(block_network != null){
-            block_network.neighbor_was_changed(world, pos, position_of_neighbor);
+            block_network.neighbor_was_changed((ServerLevel)world, pos, position_of_neighbor);
           }
         }
       }

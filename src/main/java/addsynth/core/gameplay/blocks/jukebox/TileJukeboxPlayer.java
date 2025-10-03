@@ -216,7 +216,7 @@ public class TileJukeboxPlayer extends TileStorageMachine implements MenuProvide
   }
 
   @Override
-  public final void serverTick(final Level level){
+  public final void serverTick(final ServerLevel level, BlockState blockstate){
     if(reloaded){
       if(hasMusicDiscs()){
         if(is_playing){

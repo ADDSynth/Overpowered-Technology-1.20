@@ -12,7 +12,7 @@ import addsynth.energy.lib.energy_network.tiles.BasicEnergyNetworkTile;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -28,7 +28,7 @@ public final class TileEnergyDiagnostics extends TileBaseNoData implements ITick
   }
 
   @Override
-  public final void serverTick(Level level){
+  public final void serverTick(ServerLevel level, BlockState blockstate){
     // Impossible to access the Energy Network on the client side, because it doesn't exist.
     // So we need to access it on the server side, get all the variables, then send them to the clients.
     

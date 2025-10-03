@@ -12,13 +12,13 @@ import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TileMatterCompressor extends TileMachine implements ITickingTileEntity, IEnergyConsumer, MenuProvider {
@@ -39,7 +39,7 @@ public final class TileMatterCompressor extends TileMachine implements ITickingT
   }
 
   @Override
-  public final void serverTick(Level level){
+  public final void serverTick(ServerLevel level, BlockState blockstate){
     final ItemStack input = input_inventory.getStackInSlot(1);
     if(input.isEmpty() == false){
       final Item unimatter_item = OverpoweredItems.unimatter.get();

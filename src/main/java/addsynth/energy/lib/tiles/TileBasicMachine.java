@@ -9,8 +9,8 @@ import addsynth.energy.lib.main.Receiver;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -42,7 +42,7 @@ public abstract class TileBasicMachine extends TileAbstractMachine implements II
   }
 
   @Override
-  public void serverTick(Level level){
+  public void serverTick(ServerLevel level, BlockState blockstate){
     if(energy.tick()){
       changed = true;
     }

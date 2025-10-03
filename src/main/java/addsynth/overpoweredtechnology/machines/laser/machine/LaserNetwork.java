@@ -51,7 +51,7 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
   public boolean running;
   public boolean auto_shutoff;
 
-  public LaserNetwork(final Level world, final TileLaserHousing tile){
+  public LaserNetwork(final ServerLevel world, final TileLaserHousing tile){
     super(world, tile);
   }
 
@@ -61,12 +61,12 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
   }
 
   @Override
-  protected final void onUpdateNetworkFinished(final Level world){
+  protected final void onUpdateNetworkFinished(final ServerLevel world){
     check_if_lasers_changed(world);
   }
 
   @Override
-  protected final void customSearch(final Node node, final Level world){
+  protected final void customSearch(final Node node, final ServerLevel world){
     final BlockEntity tile = node.getTile();
     if(tile != null){
       if(tile.getClass() == TileLaserHousing.class){
@@ -82,7 +82,7 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
   }
 
   /** Checks position if it is a valid LaserCannon, and adds it. */
-  private final void check_and_add_LaserCannon(final Level world, final BlockPos position, final Direction direction){
+  private final void check_and_add_LaserCannon(final ServerLevel world, final BlockPos position, final Direction direction){
     BlockState state = world.getBlockState(position);
     LaserCannon laser_block;
     if(state.getBlock() instanceof LaserCannon){
@@ -94,7 +94,7 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
   }
 
   @Override
-  public void neighbor_was_changed(final Level world, final BlockPos current_position, final BlockPos position_of_neighbor){
+  public void neighbor_was_changed(final ServerLevel world, final BlockPos current_position, final BlockPos position_of_neighbor){
     check_and_add_LaserCannon(world, position_of_neighbor, DirectionUtil.getDirection(current_position, position_of_neighbor));
     lasers.removeIf((BlockPos pos) -> world.getBlockState(pos).getBlock() instanceof LaserCannon == false);
     // if(world.getBlockState(position_of_neighbor).getBlock() instanceof LaserCannon == false){
@@ -120,7 +120,7 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
     update_energy_requirements();
   }
 
-  private final void check_if_lasers_changed(final Level world){
+  private final void check_if_lasers_changed(final ServerLevel world){
     if(lasers.size() != number_of_lasers){
       number_of_lasers = lasers.size();
       update_energy_requirements();
@@ -145,7 +145,7 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
    * {@link #fire_lasers()} function, if certain conditions are met.
    */
   @Override
-  protected final void tick(final Level world){
+  protected final void tick(final ServerLevel world){
     changed = redstone.update(world, blocks.getBlockPositions(), changed);
     if(redstone.onRisingEdge()){
       if(lasers.size() > 0 && laser_distance > 0){
@@ -197,8 +197,8 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
    * @see ServerLevel#playSound(net.minecraft.world.entity.player.Player, double, double, double, net.minecraft.sounds.SoundEvent, SoundSource, float, float)
    * @see PlayerList#broadcast(net.minecraft.world.entity.player.Player, double, double, double, double, ResourceKey, net.minecraft.network.protocol.Packet)
    */
+  @SuppressWarnings("resource")
   private final void playSound(final ServerLevel world){
-    @SuppressWarnings("resource")
     final MinecraftServer server = world.getServer();
     final ResourceKey<Level> dimension = world.dimension();
     final ArrayList<BlockPos> positions = blocks.getBlockPositions();

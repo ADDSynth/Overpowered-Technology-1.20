@@ -10,6 +10,7 @@ import addsynth.overpoweredtechnology.machines.fusion.converter.TileFusionEnergy
 import addsynth.overpoweredtechnology.machines.laser.cannon.LaserCannon;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -41,7 +42,7 @@ public final class DataCableNetwork extends BlockNetwork<TileDataCable> {
     }
   }
 
-  public DataCableNetwork(final Level world, final TileDataCable tile){
+  public DataCableNetwork(final ServerLevel world, final TileDataCable tile){
     super(world, tile);
     fusion_converter_block = OverpoweredBlocks.fusion_converter.get();
     fusion_control_unit    = OverpoweredBlocks.fusion_control_unit.get();
@@ -56,7 +57,7 @@ public final class DataCableNetwork extends BlockNetwork<TileDataCable> {
   }
 
   @Override
-  protected final void customSearch(final Node node, final Level world){
+  protected final void customSearch(final Node node, final ServerLevel world){
     if(node.block == fusion_control_unit){
       if(scanning_units.contains(node.position) == false){
         scanning_units.add(node.position);
@@ -70,7 +71,7 @@ public final class DataCableNetwork extends BlockNetwork<TileDataCable> {
   }
 
   @Override
-  public final void neighbor_was_changed(final Level world, final BlockPos current_position, final BlockPos position_of_neighbor){
+  public final void neighbor_was_changed(final ServerLevel world, final BlockPos current_position, final BlockPos position_of_neighbor){
     // Is this optimized? Wouldn't it be better just to call updateBlockNetwork() regardless?
     Block block = world.getBlockState(position_of_neighbor).getBlock();
     if(block == fusion_converter_block || block == fusion_control_unit){
@@ -102,7 +103,7 @@ public final class DataCableNetwork extends BlockNetwork<TileDataCable> {
   }
 
   @Override
-  protected final void onUpdateNetworkFinished(final Level world){
+  protected final void onUpdateNetworkFinished(final ServerLevel world){
     // What we're doing here is, even if the player has a valid fusion chamber constructed properly,
     //   its energy output can be divided amongst multiple Fusion Energy Converter machines.
     // check_singularity_container();

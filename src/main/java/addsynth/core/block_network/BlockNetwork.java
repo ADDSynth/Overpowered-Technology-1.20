@@ -13,6 +13,7 @@ import addsynth.overpoweredtechnology.machines.laser.machine.LaserNetwork;
 import addsynth.overpoweredtechnology.machines.suspension_bridge.BridgeNetwork;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -39,7 +40,7 @@ import net.minecraft.world.level.block.state.BlockState;
  * 
  * <p><b>Step 3:</b> In your TileEntity's {@link ITickingTileEntity#serverTick serverTick()} method,
  *    you must call either {@link BlockNetwork#check} to just initialize the BlockNetwork or call
- *    {@link BlockNetwork#tick(BlockNetwork, Level, BlockEntity, BiFunction)}. These methods
+ *    {@link BlockNetwork#tick(BlockNetwork, ServerLevel, BlockEntity, BiFunction)}. These methods
  *    automatically ensure your BlockNetwork is initialized on the first tick using your passed
  *    in constructor. It also ensures that the BlockNetwork is only ticked once, by checking the
  *    passed in TileEntity is the first one listed in our internal saved list of TileEntities.
@@ -88,10 +89,10 @@ import net.minecraft.world.level.block.state.BlockState;
  *    {@link Block#neighborChanged(BlockState, Level, BlockPos, Block, BlockPos, boolean)} function
  *    and call {@link BlockNetworkUtil#neighbor_changed(Level, BlockPos, BlockPos)}.
  * <p>If you checking for several types of blocks, then we need to do another approach. You need to call
- *    {@link #updateBlockNetwork(Level, BlockPos)} In the {@link #neighbor_was_changed} function.
+ *    {@link #updateBlockNetwork(ServerLevel, BlockPos)} In the {@link #neighbor_was_changed} function.
  *    It's best to only update the BlockNetwork if the neighbor block is relevant to your BlockNetwork,
  *    so you need to check what kind of block it is. You'll also need to implement the {@link #clear_custom_data()}
- *    and {@link #customSearch(Node, Level)} methods, to clear your data and add new blocks respectively.
+ *    and {@link #customSearch(Node, ServerLevel)} methods, to clear your data and add new blocks respectively.
  * 
  * <p>-----------------------------------------------------------------------------------------------
  * <p>Here I will describe how BlockNetworks function for my own sanity and others:
@@ -214,24 +215,18 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
    *  will just use the {@link StandardBlockSearch}. */
   private final IBlockSearchAlgorithm search_algorithm;
 
-  public BlockNetwork(final Level world, final T tile){
+  public BlockNetwork(final ServerLevel world, final T tile){
     if(world == null){
       throw new NullPointerException("Loaded Block Network too early! Level hasn't been loaded yet.");
-    }
-    if(world.isClientSide){
-      throw new RuntimeException("Block Networks SHOULD NOT be created on the Client side!");
     }
     class_type = tile.getClass();
     search_algorithm = new StandardBlockSearch(this::is_valid);
     DebugBlockNetwork.CREATED(this, tile.getBlockPos());
   }
 
-  public BlockNetwork(final Level world, final T tile, final IBlockSearchAlgorithm search_algorithm){
+  public BlockNetwork(final ServerLevel world, final T tile, final IBlockSearchAlgorithm search_algorithm){
     if(world == null){
       throw new NullPointerException("Loaded Block Network too early! Level hasn't been loaded yet.");
-    }
-    if(world.isClientSide){
-      throw new RuntimeException("Block Networks SHOULD NOT be created on the Client side!");
     }
     this.search_algorithm = search_algorithm;
     class_type = tile.getClass();
@@ -244,9 +239,9 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   }
 
   /** This is a static helper function, used to initialize your BlockNetwork
-   *  in the {@link ITickingTileEntity#serverTick(Level)} function. Use this if
+   *  in the {@link ITickingTileEntity#serverTick(ServerLevel, BlockState)} function. Use this if
    *  your BlockNetwork does not need to be ticked. */
-  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B check(final B network, final Level world, final T tile, final BiFunction<Level, T, B> constructor){
+  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B check(final B network, final ServerLevel world, final T tile, final BiFunction<ServerLevel, T, B> constructor){
     if(network == null){
       if(!tile.isRemoved()){
         return BlockNetworkUtil.create_or_join(world, tile, constructor);
@@ -257,13 +252,11 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   }
 
   /** Static helper function that automatically initializes your BlockNetwork if needed
-   *  and ticks it. This must be called in the {@link ITickingTileEntity#serverTick(Level)}
-   *  method and your BlockNetwork should override the {@link #tick(Level)} method. */
-  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> void tick(final B network, final Level world, final T tile, final BiFunction<Level, T, B> constructor){
-    if(!world.isClientSide){
-      final B good_network = check(network, world, tile, constructor);
-      good_network.baseTick(world, tile);
-    }
+   *  and ticks it. This must be called in the {@link ITickingTileEntity#serverTick(ServerLevel, BlockState)}
+   *  method and your BlockNetwork should override the {@link #tick(ServerLevel)} method. */
+  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> void tick(final B network, final ServerLevel world, final T tile, final BiFunction<ServerLevel, T, B> constructor){
+    final B good_network = check(network, world, tile, constructor);
+    good_network.baseTick(world, tile);
   }
 
   // This can't be removed as it is used when Removing TileEntities to create a new Network if blocks get disconnected.
@@ -281,32 +274,27 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
    * Must be called when splitting or joining BlockNetworks, and right after creating BlockNetworks during TileEntity load.
    * @param from
    */
-  public final void updateBlockNetwork(final Level world, final BlockPos from){
+  public final void updateBlockNetwork(final ServerLevel world, final BlockPos from){
     if(world != null){
-      if(world.isClientSide == false){
-        try{
-          DebugBlockNetwork.UPDATED(this, from);
-          clear_custom_data();
-          blocks.update(search_algorithm, world, from, this, this::customSearch);
-          onUpdateNetworkFinished(world);
-        }
-        catch(Exception e){
-          ADDSynthCore.log.fatal("Error occured in BlockNetwork update! WHAT HAPPENED???", e);
-        }
-        return;
+      try{
+        DebugBlockNetwork.UPDATED(this, from);
+        clear_custom_data();
+        blocks.update(search_algorithm, world, from, this, this::customSearch);
+        onUpdateNetworkFinished(world);
+      }
+      catch(Exception e){
+        ADDSynthCore.log.fatal("Error occured in BlockNetwork update! WHAT HAPPENED???", e);
       }
     }
-    ADDSynthCore.log.error("BlockNetwork.updateNetwork() method is not supposed to be called on client-side.");
-    // Thread.dumpStack();
   }
 
-  /** This is called by {@link BlockNetworkUtil#removeTile(Level, BlockEntity, BiFunction)}.
+  /** This is called by {@link BlockNetworkUtil#removeTile(ServerLevel, BlockEntity, BiFunction)}.
    *  This checks all adjacent positions next to the TileEntity that was removed. For the
    *  first valid TileEntity we find, remains as the original BlockNetwork and gets updated.
    *  Any blocks that WERE part of the BlockNetwork but are now separated must be turned
    *  new BlockNetworks. */
   @SuppressWarnings("unchecked")
-  final <B extends BlockNetwork> void removeTile(final Level world, final T destroyed_tile, final BiFunction<Level, T, B> constructor){
+  final <B extends BlockNetwork> void removeTile(final ServerLevel world, final T destroyed_tile, final BiFunction<ServerLevel, T, B> constructor){
     final BlockPos tile_position = destroyed_tile.getBlockPos();
     DebugBlockNetwork.TILE_REMOVED(this, tile_position);
     blocks.remove(destroyed_tile);
@@ -357,7 +345,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
     return true;
   }
 
-  final void baseTick(final Level world, final T tile){
+  final void baseTick(final ServerLevel world, final T tile){
     if(blocks.isFirstTile(tile)){
       tick(world);
     }
@@ -365,9 +353,9 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
 
   /** Override this method if you want your BlockNetwork to execute code every tick. We have internal
    *  code that ensures your BlockNetwork is only ticked once per tick. To tick your BlockNetwork you
-   *  must call the static {@link BlockNetwork#tick(BlockNetwork, Level, BlockEntity, BiFunction)}
+   *  must call the static {@link BlockNetwork#tick(BlockNetwork, ServerLevel, BlockEntity, BiFunction)}
    *  in your TileEntity's {@link ITickingTileEntity#serverTick()} method. */
-  protected void tick(final Level world){
+  protected void tick(final ServerLevel world){
   }
 
   public final int getCount(){
@@ -377,10 +365,10 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   protected abstract void clear_custom_data();
 
   /** Called when {@link #updateBlockNetwork} function is completed. */
-  protected void onUpdateNetworkFinished(final Level level){
+  protected void onUpdateNetworkFinished(final ServerLevel level){
   }
 
-  protected void customSearch(final Node node, final Level world){
+  protected void customSearch(final Node node, final ServerLevel world){
   }
 
   // TODO: Once we start coding for MC 1.16 and leave 1.12 behind, retest the onNeighborChange / neighborChanged issue, and
@@ -406,8 +394,8 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
    * <p>
    *   First, you do not want to update on EVERY neighbor block change, only the blocks that affect your
    *   BlockNetwork. Once you detect the type of block, the simplest way to update is to call your
-   *   BlockNetwork's {@link #updateBlockNetwork(Level, BlockPos)} function. This will automatically clear
-   *   your custom data and call {@link #customSearch(Node, Level)} which again checks the block and then
+   *   BlockNetwork's {@link #updateBlockNetwork(ServerLevel, BlockPos)} function. This will automatically clear
+   *   your custom data and call {@link #customSearch(Node, ServerLevel)} which again checks the block and then
    *   you can decide what to do with it. This is recommended if your BlockNetwork keeps track of lots of
    *   different kinds of blocks. But if you only track one type of block then we recommend doing the
    *   optimized approach, by checking the position of the neighbor and adding or removing it from your
@@ -416,18 +404,18 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
    *   If the list of TileEntities you keep track of utilize {@link Node Nodes}, then you can call
    *   {@link #remove_invalid_nodes(Collection)} to automatically remove TileEntities that were removed.
    *   Otherwise you'll have to check for removed TileEntities yourself!
-   * @see EnergyNetwork#neighbor_was_changed(Level, BlockPos, BlockPos)
-   * @see DataCableNetwork#neighbor_was_changed(Level, BlockPos, BlockPos)
-   * @see LaserNetwork#neighbor_was_changed(Level, BlockPos, BlockPos)
+   * @see EnergyNetwork#neighbor_was_changed(ServerLevel, BlockPos, BlockPos)
+   * @see DataCableNetwork#neighbor_was_changed(ServerLevel, BlockPos, BlockPos)
+   * @see LaserNetwork#neighbor_was_changed(ServerLevel, BlockPos, BlockPos)
    * @param current_position
    * @param position_of_neighbor
    */
-  public void neighbor_was_changed(final Level world, final BlockPos current_position, final BlockPos position_of_neighbor){
+  public void neighbor_was_changed(final ServerLevel world, final BlockPos current_position, final BlockPos position_of_neighbor){
   }
 
   /** Override this to perform special actions when the last TileEntity
    *  belongs to this BlockNetwork has been removed. */
-  protected void lastTileWasRemoved(final Level world, final T last_tile){
+  protected void lastTileWasRemoved(final ServerLevel world, final T last_tile){
   }
 
 }

@@ -17,6 +17,7 @@ import addsynth.overpoweredtechnology.items.DimensionalAnchor;
 import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
@@ -66,7 +67,7 @@ public final class TileBlackHole extends BlockEntity implements ITickingTileEnti
   }
 
   @Override
-  public void serverTick(Level level){
+  public void serverTick(ServerLevel level, BlockState blockstate){
     begin_tick_time = TimeUtil.get_start_time();
     if(first_tick){
       first_tick();

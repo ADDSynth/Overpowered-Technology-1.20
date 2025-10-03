@@ -9,7 +9,7 @@ import addsynth.core.block_network.IBlockNetworkUser;
 import addsynth.core.block_network.Node;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public final class StandardBlockSearch implements IBlockSearchAlgorithm {
@@ -41,7 +41,7 @@ public final class StandardBlockSearch implements IBlockSearchAlgorithm {
    * @param from Starting Position. Predicate must return true otherwise an empty list is returned.
    * @param world
    */
-  public final HashSet<Node> find_blocks(final BlockPos from, final Level world){
+  public final HashSet<Node> find_blocks(final BlockPos from, final ServerLevel world){
     return find_blocks(from, world, null);
   }
 
@@ -53,7 +53,7 @@ public final class StandardBlockSearch implements IBlockSearchAlgorithm {
    * @param consumer Supply a function that takes a Node as an argument. Allows you to run additional code on all Nodes searched.
    */
   @Override
-  public final HashSet<Node> find_blocks(final BlockPos from, final Level world, final BiConsumer<Node, Level> consumer){
+  public final HashSet<Node> find_blocks(final BlockPos from, final ServerLevel world, final BiConsumer<Node, ServerLevel> consumer){
     final HashSet<Node> list = new HashSet<>(100);
     try{
       searched.clear();
@@ -72,7 +72,7 @@ public final class StandardBlockSearch implements IBlockSearchAlgorithm {
     return list;
   }
 
-  private final void search(BlockPos from, HashSet<Node> list, Level world, BiConsumer<Node, Level> consumer){
+  private final void search(BlockPos from, HashSet<Node> list, ServerLevel world, BiConsumer<Node, ServerLevel> consumer){
     BlockPos position;
     for(final Direction side : Direction.values()){
       position = from.relative(side);
@@ -85,7 +85,7 @@ public final class StandardBlockSearch implements IBlockSearchAlgorithm {
     }
   }
 
-  private final boolean check(BlockPos position, HashSet<Node> list, Level world, BiConsumer<Node, Level> consumer){
+  private final boolean check(BlockPos position, HashSet<Node> list, ServerLevel world, BiConsumer<Node, ServerLevel> consumer){
     final Node node = new Node(position, world);
     if(consumer != null){
       consumer.accept(node, world);

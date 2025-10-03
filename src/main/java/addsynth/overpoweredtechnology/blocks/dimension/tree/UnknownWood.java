@@ -7,6 +7,7 @@ import addsynth.core.util.world.WorldUtil;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -25,7 +26,7 @@ public final class UnknownWood extends Block {
   public void playerWillDestroy(Level world, BlockPos position, BlockState state, Player player){
     super.playerWillDestroy(world, position, state, player);
     if(world.isClientSide == false){
-      final HashSet<Node> blocks = search.find_blocks(position, world);
+      final HashSet<Node> blocks = search.find_blocks(position, (ServerLevel)world);
       blocks.forEach(
         (Node node) -> {
           if(node.position != position){

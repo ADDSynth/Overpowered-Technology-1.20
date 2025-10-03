@@ -3,7 +3,7 @@ package addsynth.energy.gameplay.machines.solar_panel;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.util.time.WorldTime;
 import addsynth.energy.gameplay.config.Config;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.dimension.DimensionType;
 
 public class SolarPanelNetwork extends BlockNetwork<SolarPanelTile> {
@@ -16,12 +16,12 @@ public class SolarPanelNetwork extends BlockNetwork<SolarPanelTile> {
   private double time_multiplier;
   private double thunder_multiplier;
 
-  public SolarPanelNetwork(Level world, SolarPanelTile tile){
+  public SolarPanelNetwork(ServerLevel world, SolarPanelTile tile){
     super(world, tile);
   }
 
   @Override
-  protected void tick(Level level){
+  protected void tick(ServerLevel level){
     panels_blocked = 0;
     total_energy = 0;
     // Part 1: Check if dimension even has sky
