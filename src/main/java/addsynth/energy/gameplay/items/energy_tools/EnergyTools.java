@@ -1,7 +1,6 @@
 package addsynth.energy.gameplay.items.energy_tools;
 
 import addsynth.energy.lib.items.energy.ItemEnergy;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -36,16 +35,11 @@ public final class EnergyTools {
   }
 
   public static final void reduceEnergy(ItemStack itemstack){
-    reduceEnergy(itemstack, ENERGY_USAGE);
+    ItemEnergy.useEnergy(itemstack, ENERGY_USAGE);
   }
   
   public static final void reduceEnergy(ItemStack itemstack, int energy_used){
-    final CompoundTag tag = itemstack.getOrCreateTag();
-    final int energy = tag.getInt(ItemEnergy.ENERGY_LABEL);
-    if(energy > 0){
-      tag.putInt(ItemEnergy.ENERGY_LABEL, Math.max(energy - energy_used, 0));
-      itemstack.setTag(tag);
-    }
+    ItemEnergy.useEnergy(itemstack, energy_used);
   }
 
 }

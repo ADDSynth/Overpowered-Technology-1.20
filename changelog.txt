@@ -1,6 +1,8 @@
 version 6 - TBD
 ===ADDSynthCore:
 NEW:
+  Added Auto Jukebox.
+    Can hold up to 27 Music Discs. Plays them in order or shuffled. Can also play Music Discs from other mods.
   Added Seashells.
   Added the /addsynthcore map_colors Command. Spawns blocks of each MapColor at the highest point in the world.
    - Another command meant to help developers.
@@ -46,6 +48,7 @@ INFO:
    - This WILL make your existing worlds incompatible when upgrading to this version.
 NEW:
   Added Infinity Tools, made from Unimatter.
+  Added Laser Swords.
 CHANGED:
   Celestial Sword was renamed to Celestial Blade.
 

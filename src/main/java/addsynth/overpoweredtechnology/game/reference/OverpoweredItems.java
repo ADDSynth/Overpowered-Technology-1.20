@@ -45,6 +45,15 @@ public final class OverpoweredItems {
   public static final RegistryObject<Item> dimensional_anchor        = RegistryObject.create(Names.DIMENSIONAL_ANCHOR,        ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> unimatter                 = RegistryObject.create(Names.UNIMATTER,                 ForgeRegistries.ITEMS);
   
+  public static final RegistryObject<Item> white_laser_sword   = RegistryObject.create(DeviceColor.WHITE.laser_sword,   ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> red_laser_sword     = RegistryObject.create(DeviceColor.RED.laser_sword,     ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> orange_laser_sword  = RegistryObject.create(DeviceColor.ORANGE.laser_sword,  ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> yellow_laser_sword  = RegistryObject.create(DeviceColor.YELLOW.laser_sword,  ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> green_laser_sword   = RegistryObject.create(DeviceColor.GREEN.laser_sword,   ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> cyan_laser_sword    = RegistryObject.create(DeviceColor.CYAN.laser_sword,    ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> blue_laser_sword    = RegistryObject.create(DeviceColor.BLUE.laser_sword,    ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> magenta_laser_sword = RegistryObject.create(DeviceColor.MAGENTA.laser_sword, ForgeRegistries.ITEMS);
+  
   public static final RegistryObject<Item> celestial_sword   = RegistryObject.create(Names.CELESTIAL_SWORD,   ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> celestial_shovel  = RegistryObject.create(Names.CELESTIAL_SHOVEL,  ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> celestial_pickaxe = RegistryObject.create(Names.CELESTIAL_PICKAXE, ForgeRegistries.ITEMS);

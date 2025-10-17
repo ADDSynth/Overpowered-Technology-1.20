@@ -10,8 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.energy.IEnergyStorage;
 
-/** This implements an {@link IEnergyStorage} capability around an ItemStack.
- *  <del>Uses the ItemStack's durability as the energy level.</del> */
+/** This implements an {@link IEnergyStorage} capability around an ItemStack. */
 public class ItemEnergy implements IEnergyStorage {
 
   private static final int DEFAULT_TRANSFER_RATE = 20;
@@ -68,6 +67,15 @@ public class ItemEnergy implements IEnergyStorage {
     return Component.translatable("gui.addsynth_energy.tooltip.energy", energy, capacity);
   }
 
+  public static final void useEnergy(ItemStack itemstack, int energy_used){
+    final CompoundTag tag = itemstack.getOrCreateTag();
+    final int energy = tag.getInt(ENERGY_LABEL);
+    if(energy > 0){
+      tag.putInt(ENERGY_LABEL, Math.max(energy - energy_used, 0));
+      itemstack.setTag(tag);
+    }
+  }
+
   // ============================================================================================
 
   public static final int getEnergy(final ItemStack itemstack){
@@ -115,14 +123,12 @@ public class ItemEnergy implements IEnergyStorage {
   @Override
   public int receiveEnergy(int maxReceive, boolean simulate){
     if(canReceive()){
-      // final int energy_needed = itemstack.getMaxDamage() - itemstack.getDamageValue();
       final CompoundTag tag = itemstack.getOrCreateTag();
       final int energy = tag.getInt(ENERGY_LABEL);
       final int capacity = tag.getInt(CAPACITY_LABEL);
       final int energy_needed = capacity - energy;
       final int energy_received = Math.min(Math.min(energy_needed, maxReceive), maxTransferRate);
       if(!simulate){
-        // itemstack.setDamageValue(itemstack.getDamageValue() + energy_received);
         setEnergy(itemstack, energy + energy_received);
       }
       return energy_received;
@@ -136,7 +142,6 @@ public class ItemEnergy implements IEnergyStorage {
       final int energy = getEnergy(itemstack);
       final int energy_extracted = Math.min(Math.min(energy, maxExtract), maxTransferRate);
       if(!simulate){
-        // itemstack.setDamageValue(itemstack.getDamageValue() - energy_extracted);
         setEnergy(itemstack, energy - energy_extracted);
       }
       return energy_extracted;
@@ -146,13 +151,11 @@ public class ItemEnergy implements IEnergyStorage {
 
   @Override
   public int getEnergyStored(){
-    // return itemstack.getDamageValue();
     return getEnergy(itemstack);
   }
 
   @Override
   public int getMaxEnergyStored(){
-    // return itemstack.getMaxDamage();
     return getCapacity(itemstack);
   }
 

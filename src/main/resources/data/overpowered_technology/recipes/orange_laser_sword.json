@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "overpowered_technology:orange_lens"},
+    {"tag": "forge:plates/aluminum"},
+    {"item": "overpowered_technology:destructive_laser"},
+    {"item": "addsynth_energy:power_regulator"},
+    {"item": "addsynth_energy:battery"}
+  ],
+  "result": {
+    "item": "overpowered_technology:orange_laser_sword"
+  }
+}

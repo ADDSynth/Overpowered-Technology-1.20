@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "overpowered_technology:item/laser_sword/empty_laser_sword"
+  }
+}

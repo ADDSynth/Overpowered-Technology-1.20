@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "overpowered_technology:item/laser_sword/green_laser_sword"
+  },
+  "overrides": [
+    {"predicate": {"addsynth_energy:energy": 0 }, "model": "overpowered_technology:item/empty_laser_sword"},
+    {"predicate": {"addsynth_energy:energy": 1 }, "model": "overpowered_technology:item/green_laser_sword"}
+  ]
+}

@@ -17,6 +17,7 @@ import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import addsynth.overpoweredtechnology.items.*;
 import addsynth.overpoweredtechnology.items.basic.*;
+import addsynth.overpoweredtechnology.items.tools.LaserSword;
 import addsynth.overpoweredtechnology.items.tools.celestial.*;
 import addsynth.overpoweredtechnology.items.tools.infinity.*;
 import addsynth.overpoweredtechnology.items.tools.void_tools.*;
@@ -210,6 +211,15 @@ public final class Registers {
       
       BlockItemHolder.register(registry, OverpoweredBlocks.iron_frame_block);
       registry.register(Names.BLACK_HOLE,                 new BlackHoleItem());
+      
+      registry.register(DeviceColor.WHITE.laser_sword,   new LaserSword());
+      registry.register(DeviceColor.RED.laser_sword,     new LaserSword());
+      registry.register(DeviceColor.ORANGE.laser_sword,  new LaserSword());
+      registry.register(DeviceColor.YELLOW.laser_sword,  new LaserSword());
+      registry.register(DeviceColor.GREEN.laser_sword,   new LaserSword());
+      registry.register(DeviceColor.CYAN.laser_sword,    new LaserSword());
+      registry.register(DeviceColor.BLUE.laser_sword,    new LaserSword());
+      registry.register(DeviceColor.MAGENTA.laser_sword, new LaserSword());
       
       registry.register(Names.CELESTIAL_SWORD,            new CelestialSword());
       registry.register(Names.CELESTIAL_SHOVEL,           new CelestialShovel());

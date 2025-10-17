@@ -86,6 +86,14 @@ public final class CreativeTab {
         output.accept(OverpoweredBlocks.matter_compressor.get());
         output.accept(OverpoweredBlocks.iron_frame_block.get());
         output.accept(OverpoweredItems.black_hole.get());
+        output.accept(OverpoweredItems.white_laser_sword.get());
+        output.accept(OverpoweredItems.red_laser_sword.get());
+        output.accept(OverpoweredItems.orange_laser_sword.get());
+        output.accept(OverpoweredItems.yellow_laser_sword.get());
+        output.accept(OverpoweredItems.green_laser_sword.get());
+        output.accept(OverpoweredItems.cyan_laser_sword.get());
+        output.accept(OverpoweredItems.blue_laser_sword.get());
+        output.accept(OverpoweredItems.magenta_laser_sword.get());
         output.accept(OverpoweredItems.celestial_sword.get());
         output.accept(OverpoweredItems.celestial_shovel.get());
         output.accept(OverpoweredItems.celestial_pickaxe.get());

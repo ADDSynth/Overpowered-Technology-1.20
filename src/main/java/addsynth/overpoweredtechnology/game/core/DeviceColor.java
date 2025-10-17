@@ -29,6 +29,7 @@ public enum DeviceColor {
   public final ResourceLocation lens_name;
   public final ResourceLocation laser_cannon;
   public final ResourceLocation laser_beam;
+  public final ResourceLocation laser_sword;
   public final ChatFormatting format_code;
   public final MapColor color;
 
@@ -39,6 +40,7 @@ public enum DeviceColor {
         lens_name = ResourceLocation.fromNamespaceAndPath(OverpoweredTechnology.MOD_ID, index == 0 ? "focus_lens" : name+"_lens");
      laser_cannon = ResourceLocation.fromNamespaceAndPath(OverpoweredTechnology.MOD_ID, name+"_laser");
        laser_beam = ResourceLocation.fromNamespaceAndPath(OverpoweredTechnology.MOD_ID, name+"_laser_beam");
+      laser_sword = ResourceLocation.fromNamespaceAndPath(OverpoweredTechnology.MOD_ID, name+"_laser_sword");
     this.format_code = format_code;
     this.color       = material;
   }
