@@ -6,6 +6,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
 public enum MachineState {
+// TODO: Separate MachineState and MachineStatus, where MachineStatus is things like no energy and output full.
+//       The things that only needs to display on the Client side. PROBABLY WILL Remove POWERING ON/OFF
+
 
   OFF                 ("gui.addsynth_energy.machine_state.off"),
   POWERING_ON         ("gui.addsynth_energy.machine_state.powering_on"),

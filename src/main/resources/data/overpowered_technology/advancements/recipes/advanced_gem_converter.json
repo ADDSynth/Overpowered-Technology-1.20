@@ -1,0 +1,71 @@
+{
+  "parent": "overpowered_technology:recipes/root",
+  "criteria": {
+    "platinum_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:plates/platinum"
+          }
+        ]
+      }
+    },
+    "nullified_power_core": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:nullified_power_core"
+            ]
+          }
+        ]
+      }
+    },
+    "circuit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "addsynth_energy:circuit_tier_8"
+            ]
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "overpowered_technology:advanced_gem_converter"
+      }
+    },
+    "has_advanced_gem_converter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:advanced_gem_converter"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "platinum_plate",
+      "nullified_power_core",
+      "circuit",
+      "has_recipe",
+      "has_advanced_gem_converter"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "overpowered_technology:advanced_gem_converter"
+    ]
+  }
+}

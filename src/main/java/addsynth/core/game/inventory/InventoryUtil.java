@@ -12,6 +12,59 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public final class InventoryUtil {
 
+  /**
+   * Attempts to transfer the entire contents of the Input Slot to the Output Slot.<br>
+   * Returns true if anything changed.
+   * @param input_inventory
+   * @param input_slot
+   * @param output_inventory
+   * @param output_slot
+   * @return
+   */
+  public static final boolean transfer(CommonInventory input_inventory, int input_slot, CommonInventory output_inventory, int output_slot){
+    if(input_inventory == output_inventory && input_slot == output_slot){
+      return false;
+    }
+    ItemStack itemstack = input_inventory.getStackInSlot(input_slot);
+    final int count = itemstack.getCount();
+    if(itemstack.isEmpty()){
+      return false;
+    }
+    itemstack = output_inventory.insertItem(output_slot, itemstack, false);
+    input_inventory.setStackInSlot(input_slot, itemstack);
+    return itemstack.getCount() != count;
+  }
+
+  /**
+   * Attempts to transfer the specified amount of items from the Input Slot to the Output Slot.<br>
+   * The items will NOT transfer if the amount specified do not fit in the output slot.<br>
+   * Returns true if a transfer occured.
+   * @param input_inventory
+   * @param input_slot
+   * @param output_inventory
+   * @param output_slot
+   * @param count
+   * @return
+   */
+  public static final boolean transfer(CommonInventory input_inventory, int input_slot, CommonInventory output_inventory, int output_slot, int count){
+    if(count == 0){
+      return false;
+    }
+    if(input_inventory == output_inventory && input_slot == output_slot){
+      return false;
+    }
+    final ItemStack itemstack = input_inventory.extractItem(input_slot, count, true);
+    if(itemstack.isEmpty()){
+      return false;
+    }
+    if(output_inventory.can_add(output_slot, itemstack)){
+      output_inventory.add(output_slot, itemstack);
+      input_inventory.getStackInSlot(input_slot).shrink(itemstack.getCount());
+      return true;
+    }
+    return false;
+  }
+
   /** <p>Used to safely return the Inventory Capability. Use this if your inventory allows bi-directional
    *  transfer of items because we return the inventory regardless of which side we're checking from.<br />
    *  <b>Remember:</b> ONLY USE THIS if you're checking for the

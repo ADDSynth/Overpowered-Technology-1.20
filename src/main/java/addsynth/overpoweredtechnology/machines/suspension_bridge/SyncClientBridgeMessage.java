@@ -69,7 +69,7 @@ public final class SyncClientBridgeMessage {
       
       @SuppressWarnings("resource")
       final Minecraft minecraft = Minecraft.getInstance();
-      @SuppressWarnings("null")
+      @SuppressWarnings({ "null", "resource" })
       final Level world = minecraft.player.level();
       
       TileSuspensionBridge tile;

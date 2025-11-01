@@ -166,6 +166,10 @@ public final class MachineInventory implements IInventoryResponder, IInventorySy
     InventoryUtil.drop_inventories(pos, world, input_inventory, working_inventory, output_inventory);
   }
 
+  public final boolean isOutputEmpty(){
+    return output_inventory.isEmpty();
+  }
+
   public final InputInventory getInputInventory(){
     return input_inventory;
   }

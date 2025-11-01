@@ -44,6 +44,7 @@
 "block.overpowered_technology.crystal_matter_generator": "கிரிஸ்டல் மேட்டர் ஜெனரேட்டர்",
 "block.overpowered_technology.advanced_ore_refinery": "மேம்பட்ட தாது சுத்திகரிப்பு",
 "block.overpowered_technology.matter_compressor": "Matter Compressor",
+"block.overpowered_technology.advanced_gem_converter": "Advanced Gem Converter",
 
 "block.overpowered_technology.fusion_chamber": "ஃப்யூஷன் சேம்பர்",
 "block.overpowered_technology.fusion_control_unit": "இணைவு கட்டுப்பாட்டு பிரிவு",
@@ -294,6 +295,8 @@
 "advancements.overpowered_technology.inverter.title": "இன்வெர்ட்டர்",
 "advancements.overpowered_technology.inverter.description": "ஒரு இன்வெர்ட்டர் கைவினை",
 
+"advancements.overpowered_technology.advanced_gem_converter.title": "Advanced Gem Converter",
+"advancements.overpowered_technology.advanced_gem_converter.description": "Craft an Advanced Gem Converter",
 "advancements.overpowered_technology.advanced_ore_refinery.title": "Advanced Ore Refinery",
 "advancements.overpowered_technology.advanced_ore_refinery.description": "Craft an Advanced Ore Refinery",
 "advancements.overpowered_technology.crystal_matter_generator.title": "Crystal Matter Generator",

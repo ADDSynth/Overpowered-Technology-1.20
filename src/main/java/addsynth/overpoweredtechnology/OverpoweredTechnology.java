@@ -11,6 +11,7 @@ import addsynth.overpoweredtechnology.compatability.CompatabilityManager;
 import addsynth.overpoweredtechnology.config.*;
 import addsynth.overpoweredtechnology.game.NetworkHandler;
 import addsynth.overpoweredtechnology.game.OverpoweredSavedData;
+import addsynth.overpoweredtechnology.machines.advanced_gem_converter.AdvancedGemConverterGui;
 import addsynth.overpoweredtechnology.machines.advanced_ore_refinery.GuiAdvancedOreRefinery;
 import addsynth.overpoweredtechnology.machines.crystal_matter_generator.GuiCrystalMatterGenerator;
 import addsynth.overpoweredtechnology.machines.energy_extractor.GuiEnergyExtractor;
@@ -133,6 +134,7 @@ public class OverpoweredTechnology {
     MenuScreens.register(Containers.CRYSTAL_MATTER_GENERATOR.get(),   GuiCrystalMatterGenerator::new);
     MenuScreens.register(Containers.FUSION_CHAMBER.get(),             GuiFusionChamber::new);
     MenuScreens.register(Containers.MATTER_COMPRESSOR.get(),          GuiMatterCompressor::new);
+    MenuScreens.register(Containers.ADVANCED_GEM_CONVERTER.get(),     AdvancedGemConverterGui::new);
   }
 
 }

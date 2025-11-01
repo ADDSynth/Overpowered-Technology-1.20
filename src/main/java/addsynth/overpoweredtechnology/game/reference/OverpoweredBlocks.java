@@ -25,6 +25,7 @@ public final class OverpoweredBlocks {
   public static final RegistryObject<Block> advanced_ore_refinery     = RegistryObject.create(Names.ADVANCED_ORE_REFINERY,       ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> plasma_generator          = RegistryObject.create(Names.PLASMA_GENERATOR,            ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> matter_compressor         = RegistryObject.create(Names.MATTER_COMPRESSOR,           ForgeRegistries.BLOCKS);
+  public static final RegistryObject<Block> advanced_gem_converter    = RegistryObject.create(Names.ADVANCED_GEM_CONVERTER,      ForgeRegistries.BLOCKS);
 
   public static final RegistryObject<Block> fusion_converter          = RegistryObject.create(Names.FUSION_CONVERTER,            ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> fusion_chamber            = RegistryObject.create(Names.FUSION_CHAMBER,              ForgeRegistries.BLOCKS);

@@ -83,6 +83,7 @@ public final class CreativeTab {
         output.accept(OverpoweredBlocks.fusion_chamber.get());
         output.accept(OverpoweredBlocks.fusion_control_unit.get());
         output.accept(OverpoweredBlocks.fusion_control_laser.get());
+        output.accept(OverpoweredBlocks.advanced_gem_converter.get());
         output.accept(OverpoweredBlocks.matter_compressor.get());
         output.accept(OverpoweredBlocks.iron_frame_block.get());
         output.accept(OverpoweredItems.black_hole.get());

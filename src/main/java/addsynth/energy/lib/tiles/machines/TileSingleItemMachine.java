@@ -61,6 +61,7 @@ public abstract class TileSingleItemMachine extends TileAbstractWorkMachine impl
     if(state == MachineState.IDLE){
       if(canDoWork()){
         state = MachineState.RUNNING;
+        changed = true;
       }
     }
     if(state == MachineState.RUNNING){
@@ -70,6 +71,7 @@ public abstract class TileSingleItemMachine extends TileAbstractWorkMachine impl
       }
       if(!canDoWork()){ // check every tick if there's an item in the Input.
         state = MachineState.IDLE;
+        changed = true;
       }
     }
     // if(energy.tick()){

@@ -49,6 +49,7 @@ INFO:
 NEW:
   Added Infinity Tools, made from Unimatter.
   Added Laser Swords.
+  Added Advanced Gem Converter.
 CHANGED:
   Celestial Sword was renamed to Celestial Blade.
 

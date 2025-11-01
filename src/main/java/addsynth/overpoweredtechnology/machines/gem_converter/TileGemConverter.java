@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 import addsynth.core.game.inventory.filter.TagFilter;
 import addsynth.core.util.game.data.AdvancementUtil;
 import addsynth.core.util.player.PlayerUtil;
-import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
+import addsynth.energy.lib.tiles.machines.TileAlwaysOnMachine;
 import addsynth.material.Material;
 import addsynth.overpoweredtechnology.assets.CustomAdvancements;
 import addsynth.overpoweredtechnology.assets.CustomStats;
@@ -23,13 +23,14 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TileGemConverter extends TileStandardWorkMachine implements MenuProvider {
+public final class TileGemConverter extends TileAlwaysOnMachine implements MenuProvider {
 
   private static final TagFilter filter = new TagFilter(OverpoweredItemTags.convertable_gems);
 
-  private byte selection;
+  private byte selection = 1;
   private ItemStack gem_selected = new ItemStack(Material.RUBY.gem.get(), 1);
   private byte converting_to;
   
@@ -105,16 +106,17 @@ public final class TileGemConverter extends TileStandardWorkMachine implements M
   }
 
   @Override
-  protected final void perform_work(){
+  protected final void finishWork(){
+    energy.setEmpty();
     inventory.getOutputInventory().insertItem(0, Gems.getGem(converting_to), false);
     
-    increment_gems_stat(last_used_by);
+    increment_gems_stat(this.level, last_used_by);
     
     inventory.getWorkingInventory().setEmpty();
     // inventory.recheck();    recheck is called every tick when the inventory changes.
   }
 
-  private final void increment_gems_stat(final String player_name){
+  public static final void increment_gems_stat(final Level level, final String player_name){
     final ServerPlayer player = PlayerUtil.getPlayer(level, player_name);
     if(player != null){
       final Stat gems_converted_stat = Stats.CUSTOM.get(CustomStats.GEMS_CONVERTED);

@@ -44,6 +44,7 @@
 "block.overpowered_technology.crystal_matter_generator": "Генератор кристаллической материи",
 "block.overpowered_technology.advanced_ore_refinery": "Расширенный рудный нефтеперерабатывающий завод",
 "block.overpowered_technology.matter_compressor": "Matter Compressor",
+"block.overpowered_technology.advanced_gem_converter": "Advanced Gem Converter",
 
 "block.overpowered_technology.fusion_chamber": "фьюжн палата",
 "block.overpowered_technology.fusion_control_unit": "Контрольная машина",
@@ -294,6 +295,8 @@
 "advancements.overpowered_technology.inverter.title": "инвертор",
 "advancements.overpowered_technology.inverter.description": "Создание инвертора",
 
+"advancements.overpowered_technology.advanced_gem_converter.title": "Advanced Gem Converter",
+"advancements.overpowered_technology.advanced_gem_converter.description": "Craft an Advanced Gem Converter",
 "advancements.overpowered_technology.advanced_ore_refinery.title": "Advanced Ore Refinery",
 "advancements.overpowered_technology.advanced_ore_refinery.description": "Craft an Advanced Ore Refinery",
 "advancements.overpowered_technology.crystal_matter_generator.title": "Crystal Matter Generator",

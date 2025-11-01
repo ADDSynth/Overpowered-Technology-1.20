@@ -1,8 +1,6 @@
 package addsynth.core.game.inventory;
 
-import javax.annotation.Nullable;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.ItemStack;
 
 public final class OutputInventory extends CommonInventory {
 
@@ -12,20 +10,6 @@ public final class OutputInventory extends CommonInventory {
 
   public static final OutputInventory create(final IOutputInventory responder, final int number_of_slots){
     return number_of_slots > 0 ? new OutputInventory(responder, number_of_slots) : null;
-  }
-
-  /** This is useful for machines. Tests whether the input stack can fully be added to the output slot. */
-  public final boolean can_add(final int slot, @Nullable final ItemStack input_stack){
-    if(input_stack == null){   return false; }
-    if(input_stack.isEmpty()){ return false; }
-    if(is_valid_slot(slot)){
-      final ItemStack existing_stack = getStackInSlot(slot);
-      if(existing_stack.isEmpty()){
-        return true;
-      }
-      return ItemStack.isSameItem(existing_stack, input_stack) && existing_stack.getCount() + input_stack.getCount() <= getStackLimit(slot, existing_stack);
-    }
-    return false;
   }
 
   @Override

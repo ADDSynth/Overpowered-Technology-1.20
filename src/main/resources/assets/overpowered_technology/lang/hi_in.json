@@ -44,6 +44,7 @@
 "block.overpowered_technology.crystal_matter_generator": "क्रिस्टल मैटर जेनरेटर",
 "block.overpowered_technology.advanced_ore_refinery": "उन्नत अयस्क रिफाइनरी",
 "block.overpowered_technology.matter_compressor": "Matter Compressor",
+"block.overpowered_technology.advanced_gem_converter": "Advanced Gem Converter",
 
 "block.overpowered_technology.fusion_chamber": "फ़्यूज़न चैम्बर",
 "block.overpowered_technology.fusion_control_unit": "फ़्यूज़न कंट्रोल यूनिट",
@@ -294,6 +295,8 @@
 "advancements.overpowered_technology.inverter.title": "पलटनेवाला",
 "advancements.overpowered_technology.inverter.description": "एक इन्वर्टर क्राफ्ट करें",
 
+"advancements.overpowered_technology.advanced_gem_converter.title": "Advanced Gem Converter",
+"advancements.overpowered_technology.advanced_gem_converter.description": "Craft an Advanced Gem Converter",
 "advancements.overpowered_technology.advanced_ore_refinery.title": "Advanced Ore Refinery",
 "advancements.overpowered_technology.advanced_ore_refinery.description": "Craft an Advanced Ore Refinery",
 "advancements.overpowered_technology.crystal_matter_generator.title": "Crystal Matter Generator",

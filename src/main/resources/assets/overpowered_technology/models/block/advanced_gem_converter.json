@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "particle": "overpowered_technology:block/machines/gem_converter",
+        "bottom":   "overpowered_technology:block/machines/default_machine_texture",
+        "top":      "overpowered_technology:block/machines/top_texture",
+        "side":     "overpowered_technology:block/machines/gem_converter"
+    }
+}

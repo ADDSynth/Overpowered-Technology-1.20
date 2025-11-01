@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "pup",
+    "hgr",
+    "pcp"
+  ],
+  "key": {
+    "g": {
+      "item": "overpowered_technology:gem_converter"
+    },
+    "p": {
+      "tag": "forge:plates/platinum"
+    },
+    "c": {
+      "item": "addsynth_energy:circuit_tier_8"
+    },
+    "h": {
+      "item": "minecraft:chest"
+    },
+    "r": {
+      "item": "minecraft:crafting_table"
+    },
+    "u": {
+      "item": "overpowered_technology:nullified_power_core"
+    }
+  },
+  "result": {
+    "item": "overpowered_technology:advanced_gem_converter"
+  }
+}

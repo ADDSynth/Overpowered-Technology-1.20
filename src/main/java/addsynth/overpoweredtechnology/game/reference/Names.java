@@ -53,6 +53,7 @@ public final class Names {
   public static final ResourceLocation ENERGY_SUSPENSION_BRIDGE = OverpoweredTechnology.getLocation("energy_suspension_bridge");
   public static final ResourceLocation PLASMA_GENERATOR         = OverpoweredTechnology.getLocation("plasma_generator");
   public static final ResourceLocation MATTER_COMPRESSOR        = OverpoweredTechnology.getLocation("matter_compressor");
+  public static final ResourceLocation ADVANCED_GEM_CONVERTER   = OverpoweredTechnology.getLocation("advanced_gem_converter");
 
   public static final ResourceLocation PORTAL_CONTROL_PANEL     = OverpoweredTechnology.getLocation("portal_control_panel");
   public static final ResourceLocation PORTAL_FRAME             = OverpoweredTechnology.getLocation("portal_frame");

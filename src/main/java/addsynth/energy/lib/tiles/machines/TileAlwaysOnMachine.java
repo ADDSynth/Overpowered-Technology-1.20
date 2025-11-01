@@ -38,7 +38,7 @@ public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
   }
 
   @Override
-  public final void serverTick(ServerLevel level, BlockState blockstate){
+  public void serverTick(ServerLevel level, BlockState blockstate){
     machine_tick();
     if(inventory.tick()){
       changed = true;
@@ -56,24 +56,24 @@ public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
   protected void machine_tick(){
     switch(state){
     case RUNNING:
-      if(energy.isFull()){
-        inventory.finish_work();
-        energy.setEmpty();
-        if(inventory.can_work()){
-          inventory.begin_work();
+      if(canFinishWork()){
+        finishWork();
+        if(can_work()){
+          begin_work();
         }
         else{
           state = MachineState.IDLE;
         }
         changed = true;
       }
+      machine_running();
       break;
 
     case IDLE:
-      if(inventory.can_work()){
+      if(can_work()){
         state = MachineState.RUNNING;
-        inventory.begin_work();
         changed = true;
+        begin_work();
       }
       break;
     
@@ -83,11 +83,29 @@ public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
     }
   }
 
-  // Even though this is meant to be somewhat of a library or API, there's currently no way
-  // to specify non-default behiavour for this type of machine. See TileStandardWorkMachine.
+  /** Override this to specify additional instructions while the machine is actively working on something.
+   *  This is called every tick on the server side. There is no need to call the super method! */
+  protected void machine_running(){}
+
+  protected boolean can_work(){
+    return inventory.can_work();
+  }
+
+  protected void begin_work(){
+    inventory.begin_work();
+  }
+
+  protected boolean canFinishWork(){
+    return energy.isFull();
+  }
+
+  protected void finishWork(){
+    energy.setEmpty();
+    inventory.finish_work();
+  }
 
   @Override
-  public final void onInventoryChanged(){
+  public void onInventoryChanged(){
     changed = true;
   }
 

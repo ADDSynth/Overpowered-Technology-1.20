@@ -20,7 +20,7 @@ public abstract class TileEntityContainer<T extends BlockEntity> extends Abstrac
     this.tile = tile;
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "resource" })
   public TileEntityContainer(final MenuType type, final int id, final Inventory player_inventory, final FriendlyByteBuf data){
     super(type, id, player_inventory, data);
     this.tile = (T)(player_inventory.player.level().getBlockEntity(data.readBlockPos()));

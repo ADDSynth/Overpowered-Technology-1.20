@@ -30,6 +30,7 @@ public final class PlayerUtil {
     }
   }
 
+  @SuppressWarnings("resource")
   public static final void allPlayersInWorld(final MinecraftServer server, final Level world, final Consumer<ServerPlayer> action){
     for(ServerPlayer player : server.getPlayerList().getPlayers()){
       if(player.serverLevel().dimensionType() == world.dimensionType()){
@@ -47,6 +48,7 @@ public final class PlayerUtil {
     }
   }
 
+  @SuppressWarnings("resource")
   public static final void allPlayersWithinHorizontalDistance(
   final MinecraftServer server, final Level world, final BlockPos position, final double distance, final Consumer<ServerPlayer> action){
     for(ServerPlayer player : server.getPlayerList().getPlayers()){
@@ -89,7 +91,8 @@ public final class PlayerUtil {
    *  Get the Player's name by calling {@link Player#getName()}.
    *  This must be called on the server side, otherwise it will return null.
    *  Also returns null if the player isn't on the server at the moment.
-   * @param player_name
+   *  @deprecated Use {@link #getPlayer(Level, String)}
+   *  @param player_name
    */
   @Nullable
   @Deprecated

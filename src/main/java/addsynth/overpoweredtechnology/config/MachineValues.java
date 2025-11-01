@@ -14,10 +14,11 @@ public final class MachineValues {
   public static ForgeConfigSpec.IntValue light_block_max_extract;
 
   // Standard Machines
-  public static final MachineDataConfig gem_converter = new MachineDataConfig("Gem Converter",    800,  28,    0.06 ,  60); // 22,400 for 40 seconds (allowing 12 conversions per Energy Crystal.)
-  public static final MachineDataConfig inverter      = new MachineDataConfig("Inverter"     , 18_000,  15,    0.1  , 200); // 1 full energy crystal for 15 minutes
-  public static final MachineDataConfig magic_infuser = new MachineDataConfig("Magic Infuser",  1_200,  50,    0.075,  60); // 60,000
-  public static final MachineDataConfig identifier    = new MachineDataConfig("Identifier"   ,    500,  16,    0.05 ,  10); //  8,000
+  public static final MachineDataConfig gem_converter          = new MachineDataConfig("Gem Converter"         ,    800,  28, 0.06 ,  60); // 22,400 for 40 seconds (allowing 12 conversions per Energy Crystal.)
+  public static final MachineDataConfig inverter               = new MachineDataConfig("Inverter"              , 18_000,  15, 0.1  , 200); // 1 full energy crystal for 15 minutes
+  public static final MachineDataConfig magic_infuser          = new MachineDataConfig("Magic Infuser"         ,  1_200,  50, 0.075,  60); // 60,000
+  public static final MachineDataConfig identifier             = new MachineDataConfig("Identifier"            ,    500,  16, 0.05 ,  10); //  8,000
+  public static final MachineDataConfig advanced_gem_converter = new MachineDataConfig("Advanced Gem Converter",    600,  75, 0, 0); // alternatively, you could do 400 and 120, to be even faster, each conversion would be 20 seconds.
 
   // Passive Machines
   public static final MachineDataConfig crystal_matter_generator =
@@ -94,6 +95,8 @@ public final class MachineValues {
     builder.push("Fusion Energy Converter");
     fusion_energy_output_per_tick = builder.defineInRange("Energy Produced per tick",
                                               DEFAULT_FUSION_ENERGY_PER_TICK, 0, Integer.MAX_VALUE);
+    advanced_gem_converter.build(builder);
+    
     builder.pop();
     
   }

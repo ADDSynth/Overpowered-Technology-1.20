@@ -5,7 +5,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.RegistryObject;
 
-/** Allows you to pass in any number of RegistryObjects to use as a filter. */
+/** Allows you to pass in any number of {@code RegistryObject<Item>s} to use as a filter. */
 public final class BasicFilter implements Predicate<ItemStack> {
 
   private final RegistryObject<Item>[] filter;

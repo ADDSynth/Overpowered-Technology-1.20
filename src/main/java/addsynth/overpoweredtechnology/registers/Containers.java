@@ -1,6 +1,7 @@
 package addsynth.overpoweredtechnology.registers;
 
 import addsynth.overpoweredtechnology.game.reference.Names;
+import addsynth.overpoweredtechnology.machines.advanced_gem_converter.AdvancedGemConverterContainer;
 import addsynth.overpoweredtechnology.machines.advanced_ore_refinery.ContainerOreRefinery;
 import addsynth.overpoweredtechnology.machines.crystal_matter_generator.ContainerCrystalGenerator;
 import addsynth.overpoweredtechnology.machines.energy_extractor.ContainerEnergyExtractor;
@@ -62,5 +63,8 @@ public final class Containers {
 
   public static final RegistryObject<MenuType<MatterCompressorContainer>> MATTER_COMPRESSOR =
     RegistryObject.create(Names.MATTER_COMPRESSOR, ForgeRegistries.MENU_TYPES);
+
+  public static final RegistryObject<MenuType<AdvancedGemConverterContainer>> ADVANCED_GEM_CONVERTER =
+    RegistryObject.create(Names.ADVANCED_GEM_CONVERTER, ForgeRegistries.MENU_TYPES);
 
 }

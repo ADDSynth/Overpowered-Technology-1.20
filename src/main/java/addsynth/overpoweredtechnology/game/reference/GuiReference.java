@@ -22,5 +22,6 @@ public final class GuiReference {
   public static final ResourceLocation portal_frame             = OverpoweredTechnology.getLocation("textures/gui/portal_frame.png");
   public static final ResourceLocation energy_suspension_bridge = OverpoweredTechnology.getLocation("textures/gui/energy_suspension_bridge.png");
   public static final ResourceLocation matter_compressor        = OverpoweredTechnology.getLocation("textures/gui/matter_compressor.png");
+  public static final ResourceLocation advanced_gem_converter   = OverpoweredTechnology.getLocation("textures/gui/advanced_gem_converter.png");
 
 }

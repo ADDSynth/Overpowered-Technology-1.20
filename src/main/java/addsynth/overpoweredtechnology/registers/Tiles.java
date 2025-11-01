@@ -3,6 +3,7 @@ package addsynth.overpoweredtechnology.registers;
 import addsynth.core.game.registry.BlockEntityHolder;
 import addsynth.overpoweredtechnology.game.reference.Names;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
+import addsynth.overpoweredtechnology.machines.advanced_gem_converter.TileAdvancedGemConverter;
 import addsynth.overpoweredtechnology.machines.advanced_ore_refinery.TileAdvancedOreRefinery;
 import addsynth.overpoweredtechnology.machines.black_hole.TileBlackHole;
 import addsynth.overpoweredtechnology.machines.crystal_matter_generator.TileCrystalMatterGenerator;
@@ -77,5 +78,8 @@ public final class Tiles {
 
   public static final BlockEntityHolder<TileMatterCompressor> MATTER_COMPRESSOR =
     new BlockEntityHolder<>(Names.MATTER_COMPRESSOR, TileMatterCompressor::new, OverpoweredBlocks.matter_compressor);
+
+  public static final BlockEntityHolder<TileAdvancedGemConverter> ADVANCED_GEM_CONVERTER =
+    new BlockEntityHolder<>(Names.ADVANCED_GEM_CONVERTER, TileAdvancedGemConverter::new, OverpoweredBlocks.advanced_gem_converter);
 
 }

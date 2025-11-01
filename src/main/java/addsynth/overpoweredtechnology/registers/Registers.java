@@ -21,6 +21,8 @@ import addsynth.overpoweredtechnology.items.tools.LaserSword;
 import addsynth.overpoweredtechnology.items.tools.celestial.*;
 import addsynth.overpoweredtechnology.items.tools.infinity.*;
 import addsynth.overpoweredtechnology.items.tools.void_tools.*;
+import addsynth.overpoweredtechnology.machines.advanced_gem_converter.AdvancedGemConverterBlock;
+import addsynth.overpoweredtechnology.machines.advanced_gem_converter.AdvancedGemConverterContainer;
 import addsynth.overpoweredtechnology.machines.advanced_ore_refinery.AdvancedOreRefineryBlock;
 import addsynth.overpoweredtechnology.machines.advanced_ore_refinery.ContainerOreRefinery;
 import addsynth.overpoweredtechnology.machines.black_hole.BlackHoleBlock;
@@ -138,6 +140,7 @@ public final class Registers {
       registry.register(Names.FUSION_CONTROL_LASER_BEAM,   new FusionControlLaserBeam());
       
       registry.register(Names.MATTER_COMPRESSOR,           new MatterCompressorBlock());
+      registry.register(Names.ADVANCED_GEM_CONVERTER,      new AdvancedGemConverterBlock());
     }
     if(key.equals(ForgeRegistries.Keys.ITEMS)){
       final IForgeRegistry<Item> registry = event.getForgeRegistry();
@@ -208,6 +211,7 @@ public final class Registers {
       BlockItemHolder.register(registry, OverpoweredBlocks.fusion_control_laser);
       
       BlockItemHolder.register(registry, OverpoweredBlocks.matter_compressor);
+      BlockItemHolder.register(registry, OverpoweredBlocks.advanced_gem_converter);
       
       BlockItemHolder.register(registry, OverpoweredBlocks.iron_frame_block);
       registry.register(Names.BLACK_HOLE,                 new BlackHoleItem());
@@ -289,6 +293,7 @@ public final class Registers {
       Tiles.FUSION_CHAMBER.register(registry);
       Tiles.BLACK_HOLE.register(registry);
       Tiles.MATTER_COMPRESSOR.register(registry);
+      Tiles.ADVANCED_GEM_CONVERTER.register(registry);
     }
     if(key.equals(ForgeRegistries.Keys.MENU_TYPES)){
       final IForgeRegistry<MenuType> registry = event.getForgeRegistry();
@@ -306,6 +311,7 @@ public final class Registers {
       registry.register(Names.PORTAL_CONTROL_PANEL,     IForgeMenuType.create(ContainerPortalControlPanel::new));
       registry.register(Names.PORTAL_FRAME,             IForgeMenuType.create(ContainerPortalFrame::new));
       registry.register(Names.MATTER_COMPRESSOR,        IForgeMenuType.create(MatterCompressorContainer::new));
+      registry.register(Names.ADVANCED_GEM_CONVERTER,   IForgeMenuType.create(AdvancedGemConverterContainer::new));
     }
     if(key.equals(ForgeRegistries.Keys.RECIPE_TYPES)){
       final IForgeRegistry<RecipeType<?>> registry = event.getForgeRegistry();

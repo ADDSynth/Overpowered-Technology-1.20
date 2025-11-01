@@ -156,6 +156,12 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
     }
   }
 
+  /** Prints machine's time left at the bottom-center of the gui. Allows you to specify the ticks yourself,
+   *  so a machine can have custom behaviour instead of just using the Energy's charge rate. */
+  protected void draw_time_left_center(final GuiGraphics graphics, final int draw_y, final int ticks){
+    draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+StringUtil.print_time(ticks), imageWidth/2, draw_y);
+  }
+
   /** Draws charge time at bottom-left of gui. */
   protected final void draw_energy_difference(GuiGraphics graphics, final int draw_y){
     if(energy == null){

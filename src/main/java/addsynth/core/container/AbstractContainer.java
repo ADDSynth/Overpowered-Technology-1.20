@@ -1,5 +1,9 @@
 package addsynth.core.container;
 
+import addsynth.core.container.slots.InputSlot;
+import addsynth.core.container.slots.OutputSlot;
+import addsynth.core.game.inventory.IInputInventory;
+import addsynth.core.game.inventory.IOutputInventory;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -40,6 +44,48 @@ public abstract class AbstractContainer extends AbstractContainerMenu {
     for(i = 0; i < 9; i++){
       addSlot(new Slot(player_inventory, i, x + (i*18), y + 58));
     }  
+  }
+
+  /**
+   * This is a helper method that quickly adds {@link InputSlot InputSlots} in succession. All you need to
+   * specify is the starting index, the position of the first slot, and how many rows and columns of slots.
+   * Increments slot index from top to bottom, left to right.
+   * @param tile
+   * @param index Starting Index of first slot
+   * @param x X Position of top-left slot (inside border)
+   * @param y Y Position of top-left slot (inside border)
+   * @param width
+   * @param height
+   */
+  protected final void addInputSlots(final IInputInventory tile, int index, int x, int y, int width, int height){
+    int i, j;
+    for(j = 0; j < height; j++){
+      for(i = 0; i < width; i++){
+        addSlot(new InputSlot(tile, index, x + (i * 18), y + (j * 18)));
+        index++;
+      }
+    }
+  }
+
+  /**
+   * This is a helper method that quickly adds {@link OutputSlot OutputSlots} in succession. All you need to
+   * specify is the starting index, the position of the first slot, and how many rows and columns of slots.
+   * Increments slot index from top to bottom, left to right.
+   * @param tile
+   * @param index Starting Index of first slot
+   * @param x X Position of top-left slot (inside border)
+   * @param y Y Position of top-left slot (inside border)
+   * @param width 
+   * @param height
+   */
+  protected final void addOutputSlots(final IOutputInventory tile, int index, int x, int y, int width, int height){
+    int i, j;
+    for(j = 0; j < height; j++){
+      for(i = 0; i < width; i++){
+        addSlot(new OutputSlot(tile, index, x + (i * 18), y + (j * 18)));
+        index++;
+      }
+    }
   }
 
   /**

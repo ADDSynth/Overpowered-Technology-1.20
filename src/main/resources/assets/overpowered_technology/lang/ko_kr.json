@@ -44,6 +44,7 @@
 "block.overpowered_technology.crystal_matter_generator": "수정 물질 생성기",
 "block.overpowered_technology.advanced_ore_refinery": "광석 정제소",
 "block.overpowered_technology.matter_compressor": "Matter Compressor",
+"block.overpowered_technology.advanced_gem_converter": "Advanced Gem Converter",
 
 "block.overpowered_technology.fusion_chamber": "융합 챔버",
 "block.overpowered_technology.fusion_control_unit": "융합 제어 장치",
@@ -294,6 +295,8 @@
 "advancements.overpowered_technology.inverter.title": "인버터",
 "advancements.overpowered_technology.inverter.description": "인버터 제작",
 
+"advancements.overpowered_technology.advanced_gem_converter.title": "Advanced Gem Converter",
+"advancements.overpowered_technology.advanced_gem_converter.description": "Craft an Advanced Gem Converter",
 "advancements.overpowered_technology.advanced_ore_refinery.title": "Advanced Ore Refinery",
 "advancements.overpowered_technology.advanced_ore_refinery.description": "Craft an Advanced Ore Refinery",
 "advancements.overpowered_technology.crystal_matter_generator.title": "Crystal Matter Generator",

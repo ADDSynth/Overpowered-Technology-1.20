@@ -1,6 +1,8 @@
 package addsynth.overpoweredtechnology.game;
 
 import addsynth.overpoweredtechnology.OverpoweredTechnology;
+import addsynth.overpoweredtechnology.machines.advanced_gem_converter.AdvancedGemConverterCommand;
+import addsynth.overpoweredtechnology.machines.advanced_gem_converter.GemConverterSyncClientMessage;
 import addsynth.overpoweredtechnology.machines.gem_converter.CycleGemConverterMessage;
 import addsynth.overpoweredtechnology.machines.laser.network_messages.LaserClientSyncMessage;
 import addsynth.overpoweredtechnology.machines.laser.network_messages.SetLaserDistanceMessage;
@@ -73,6 +75,19 @@ public final class NetworkHandler {
       SetOutputThresholdMessage::encode,
       SetOutputThresholdMessage::decode,
       SetOutputThresholdMessage::handle
+    );
+    
+    INSTANCE.registerMessage(9,
+      GemConverterSyncClientMessage.class,
+      GemConverterSyncClientMessage::encode,
+      GemConverterSyncClientMessage::decode,
+      GemConverterSyncClientMessage::handle
+    );
+    INSTANCE.registerMessage(10,
+      AdvancedGemConverterCommand.class,
+      AdvancedGemConverterCommand::encode,
+      AdvancedGemConverterCommand::decode,
+      AdvancedGemConverterCommand::handle
     );
   }
 

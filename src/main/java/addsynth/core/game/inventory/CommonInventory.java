@@ -56,8 +56,22 @@ public class CommonInventory extends ItemStackHandler {
     }
   }
 
+  /** This is useful for machines. Tests whether the input stack can fully be added to the slot. */
+  public final boolean can_add(final int slot, @Nullable final ItemStack input_stack){
+    if(input_stack == null){   return false; }
+    if(input_stack.isEmpty()){ return false; }
+    if(is_valid_slot(slot)){
+      final ItemStack existing_stack = getStackInSlot(slot);
+      if(existing_stack.isEmpty()){
+        return true;
+      }
+      return ItemStack.isSameItem(existing_stack, input_stack) && existing_stack.getCount() + input_stack.getCount() <= getStackLimit(slot, existing_stack);
+    }
+    return false;
+  }
+
   /** <p>Alias for {@link #insertItem(int, ItemStack, boolean)} with {@code simulate} set to false.
-   *     Commonly used right after calling {@link OutputInventory#can_add(int, ItemStack)}. */
+   *     Commonly used right after calling {@link #can_add(int, ItemStack)}. */
   public final void add(final int slot, final @NotNull ItemStack stack){
     insertItem(slot, stack, false);
   }

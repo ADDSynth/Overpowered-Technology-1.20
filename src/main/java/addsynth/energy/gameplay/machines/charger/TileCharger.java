@@ -68,6 +68,8 @@ public final class TileCharger extends TileSingleItemMachine implements MenuProv
     changed = true;
   }
 
+  /** Since the Charger charges items at a rate of 1 Energy per tick, this returns the
+   *  number of ticks needed to charge items to full charge. */
   public final int getTimeLeft(){
     if(item_energy != null){
       final IEnergyStorage item_energy = this.item_energy;
