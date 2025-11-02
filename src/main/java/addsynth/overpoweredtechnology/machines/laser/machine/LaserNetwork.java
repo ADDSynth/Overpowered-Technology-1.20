@@ -18,6 +18,7 @@ import addsynth.overpoweredtechnology.assets.Sounds;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.NetworkHandler;
 import addsynth.overpoweredtechnology.machines.laser.LaserJobs;
+import addsynth.overpoweredtechnology.machines.laser.cannon.AbstractLaserCannon;
 import addsynth.overpoweredtechnology.machines.laser.cannon.LaserCannon;
 import addsynth.overpoweredtechnology.machines.laser.network_messages.LaserClientSyncMessage;
 import net.minecraft.core.BlockPos;
@@ -83,11 +84,9 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
 
   /** Checks position if it is a valid LaserCannon, and adds it. */
   private final void check_and_add_LaserCannon(final ServerLevel world, final BlockPos position, final Direction direction){
-    BlockState state = world.getBlockState(position);
-    LaserCannon laser_block;
+    final BlockState state = world.getBlockState(position);
     if(state.getBlock() instanceof LaserCannon){
-      laser_block = (LaserCannon)state.getBlock();
-      if(laser_block.color >= 0 && state.getValue(LaserCannon.FACING) == direction){
+      if(state.getValue(AbstractLaserCannon.FACING) == direction){
         lasers.add(position);
       }
     }

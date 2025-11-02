@@ -7,7 +7,7 @@ import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
 import addsynth.overpoweredtechnology.machines.fusion.chamber.TileFusionChamber;
 import addsynth.overpoweredtechnology.machines.fusion.converter.TileFusionEnergyConverter;
-import addsynth.overpoweredtechnology.machines.laser.cannon.LaserCannon;
+import addsynth.overpoweredtechnology.machines.laser.cannon.AbstractLaserCannon;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -44,6 +44,7 @@ public final class DataCableNetwork extends BlockNetwork<TileDataCable> {
 
   public DataCableNetwork(final ServerLevel world, final TileDataCable tile){
     super(world, tile);
+    // MAYBE: Is this safe?
     fusion_converter_block = OverpoweredBlocks.fusion_converter.get();
     fusion_control_unit    = OverpoweredBlocks.fusion_control_unit.get();
     fusion_control_laser   = OverpoweredBlocks.fusion_control_laser.get();
@@ -133,7 +134,7 @@ public final class DataCableNetwork extends BlockNetwork<TileDataCable> {
         for(Direction side : Direction.values()){
           block_state = world.getBlockState(scanning_unit.relative(side));
           if(block_state.getBlock() == fusion_control_laser){
-            if(block_state.getValue(LaserCannon.FACING) == side){
+            if(block_state.getValue(AbstractLaserCannon.FACING) == side){
               position = scanning_unit.relative(side, TileFusionChamber.container_radius);
               if(world.getBlockState(position).getBlock() == fusion_chamber_block){
                 // FIX: we need to keep a list of singularity containers, otherwise, if the scanning units are out of order, we immediately replace the current one.

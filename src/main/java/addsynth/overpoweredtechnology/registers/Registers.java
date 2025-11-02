@@ -34,8 +34,7 @@ import addsynth.overpoweredtechnology.machines.energy_extractor.ContainerEnergyE
 import addsynth.overpoweredtechnology.machines.energy_extractor.EnergyExtractorBlock;
 import addsynth.overpoweredtechnology.machines.fusion.chamber.ContainerFusionChamber;
 import addsynth.overpoweredtechnology.machines.fusion.chamber.FusionChamberBlock;
-import addsynth.overpoweredtechnology.machines.fusion.control.FusionControlLaserBeam;
-import addsynth.overpoweredtechnology.machines.fusion.control.FusionControlUnit;
+import addsynth.overpoweredtechnology.machines.fusion.control.*;
 import addsynth.overpoweredtechnology.machines.fusion.converter.FusionEnergyConverterBlock;
 import addsynth.overpoweredtechnology.machines.gem_converter.ContainerGemConverter;
 import addsynth.overpoweredtechnology.machines.gem_converter.GemConverterBlock;
@@ -43,7 +42,6 @@ import addsynth.overpoweredtechnology.machines.identifier.ContainerIdentifier;
 import addsynth.overpoweredtechnology.machines.identifier.IdentifierBlock;
 import addsynth.overpoweredtechnology.machines.inverter.ContainerInverter;
 import addsynth.overpoweredtechnology.machines.inverter.InverterBlock;
-import addsynth.overpoweredtechnology.machines.laser.cannon.LaserCannon;
 import addsynth.overpoweredtechnology.machines.laser.machine.ContainerLaserHousing;
 import addsynth.overpoweredtechnology.machines.laser.machine.LaserHousingBlock;
 import addsynth.overpoweredtechnology.machines.magic_infuser.ContainerMagicInfuser;
@@ -136,7 +134,7 @@ public final class Registers {
       registry.register(Names.FUSION_CONVERTER,            new FusionEnergyConverterBlock());
       registry.register(Names.FUSION_CONTROL_UNIT,         new FusionControlUnit());
       registry.register(Names.FUSION_CHAMBER,              new FusionChamberBlock());
-      registry.register(Names.FUSION_CONTROL_LASER,        new LaserCannon());
+      registry.register(Names.FUSION_CONTROL_LASER,        new FusionLaser());
       registry.register(Names.FUSION_CONTROL_LASER_BEAM,   new FusionControlLaserBeam());
       
       registry.register(Names.MATTER_COMPRESSOR,           new MatterCompressorBlock());

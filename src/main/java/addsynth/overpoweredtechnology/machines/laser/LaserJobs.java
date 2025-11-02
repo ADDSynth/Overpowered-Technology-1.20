@@ -7,6 +7,7 @@ import addsynth.overpoweredtechnology.OverpoweredTechnology;
 import addsynth.overpoweredtechnology.game.OverpoweredSavedData;
 import addsynth.overpoweredtechnology.game.core.Laser;
 import addsynth.overpoweredtechnology.machines.laser.beam.LaserBeam;
+import addsynth.overpoweredtechnology.machines.laser.cannon.AbstractLaserCannon;
 import addsynth.overpoweredtechnology.machines.laser.cannon.LaserCannon;
 import addsynth.overpoweredtechnology.machines.laser.machine.LaserNetwork;
 import net.minecraft.core.BlockPos;
@@ -135,7 +136,7 @@ public final class LaserJobs {
         state = world.getBlockState(position);
         if(state.getBlock() instanceof LaserCannon){
           block = (LaserCannon)state.getBlock();
-          beams.add(new LaserBeamData(position, block.color, state.getValue(LaserCannon.FACING)));
+          beams.add(new LaserBeamData(position, block.color, state.getValue(AbstractLaserCannon.FACING)));
         }
       }
     }

@@ -31,7 +31,7 @@ public enum Laser {
   }
 
   public final void registerBlocks(final IForgeRegistry<Block> registry){
-    registry.register(color.laser_cannon, new LaserCannon(color.index));
+    registry.register(color.laser_cannon, new LaserCannon(color));
     registry.register(color.laser_beam,   new LaserBeam());
   }
   

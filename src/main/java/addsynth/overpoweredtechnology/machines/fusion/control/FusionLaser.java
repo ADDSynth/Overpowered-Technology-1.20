@@ -1,11 +1,10 @@
-package addsynth.overpoweredtechnology.machines.laser.cannon;
+package addsynth.overpoweredtechnology.machines.fusion.control;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import addsynth.overpoweredtechnology.game.core.DeviceColor;
-import addsynth.overpoweredtechnology.game.core.Laser;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
 import addsynth.overpoweredtechnology.game.reference.TextReference;
+import addsynth.overpoweredtechnology.machines.laser.cannon.AbstractLaserCannon;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -16,28 +15,25 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 
-public final class LaserCannon extends AbstractLaserCannon {
+public class FusionLaser extends AbstractLaserCannon {
 
-  public final int color;
-
-  public LaserCannon(final DeviceColor color){
-    super(MapColor.STONE);
-    this.color = color.index;
+  public FusionLaser(){
+    super(MapColor.COLOR_GRAY);
   }
-  
+
   @Override
   public final void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn){
-    tooltip.add(TextReference.laser_machine);
+    tooltip.add(TextReference.fusion_machine);
   }
 
   @Override
   @SuppressWarnings("deprecation")
   public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos){
     final Block block = world.getBlockState(pos.relative(state.getValue(FACING).getOpposite())).getBlock();
-    return block == OverpoweredBlocks.laser_housing.get();
+    return block == OverpoweredBlocks.fusion_control_unit.get();
   }
 
   @Override
-  protected final ItemStack getItemStack(){return new ItemStack(Laser.index[color].cannon.get(), 1);}
+  protected final ItemStack getItemStack(){return new ItemStack(OverpoweredBlocks.fusion_control_laser.get(), 1);}
 
 }

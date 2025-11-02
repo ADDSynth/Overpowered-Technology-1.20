@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -37,11 +36,10 @@ public final class TrophyBlock extends Block implements SimpleWaterloggedBlock {
   @Nullable
   @SuppressWarnings("resource")
   public BlockState getStateForPlacement(final BlockPlaceContext context){
-    final Level world = context.getLevel();
-    final BlockPos position  = context.getClickedPos();
+    final FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
     return defaultBlockState()
       .setValue(FACING, context.getHorizontalDirection())
-      .setValue(WATERLOGGED, world.getFluidState(position).getType() == Fluids.WATER);
+      .setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
   }
 
   @Override
