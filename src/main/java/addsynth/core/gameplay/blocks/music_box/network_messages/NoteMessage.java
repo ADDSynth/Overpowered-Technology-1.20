@@ -1,25 +1,22 @@
 package addsynth.core.gameplay.blocks.music_box.network_messages;
 
-import java.util.function.Supplier;
 import addsynth.core.gameplay.blocks.music_box.TileMusicBox;
-import addsynth.core.util.game.MinecraftUtility;
+import addsynth.core.util.network.TileEntityNetworkMessage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
 
-public final class NoteMessage {
+public final class NoteMessage extends TileEntityNetworkMessage<TileMusicBox> {
 
-  private BlockPos position;
-  private byte frame;
-  private byte track;
-  private boolean on;
-  private byte note;
-  private float volume;
+  private final byte frame;
+  private final byte track;
+  private final boolean on;
+  private final byte note;
+  private final float volume;
 
   public NoteMessage(BlockPos position, byte frame, byte track, byte note, float volume){
-    this.position = position;
+    super(position, TileMusicBox.class);
     this.frame = frame;
     this.track = track;
     this.on = true;
@@ -28,51 +25,39 @@ public final class NoteMessage {
   }
 
   public NoteMessage(BlockPos position, byte frame, byte track){
-    this.position = position;
+    super(position, TileMusicBox.class);
     this.frame = frame;
     this.track = track;
     this.on = false;
+    note = 0;
+    volume = 0;
   }
 
-  public static final void encode(final NoteMessage message, final FriendlyByteBuf buf){
-    buf.writeInt(message.position.getX());
-    buf.writeInt(message.position.getY());
-    buf.writeInt(message.position.getZ());
-    buf.writeBoolean(message.on);
-    buf.writeByte(message.frame);
-    buf.writeByte(message.track);
-    buf.writeByte(message.note);
-    buf.writeFloat(message.volume);
+  @Override
+  public final void encode(final FriendlyByteBuf buf){
+    buf.writeBlockPos(position);
+    buf.writeBoolean(on);
+    buf.writeByte(frame);
+    buf.writeByte(track);
+    buf.writeByte(note);
+    buf.writeFloat(volume);
   }
 
   public static final NoteMessage decode(final FriendlyByteBuf buf){
-    final BlockPos position = new BlockPos(buf.readInt(),buf.readInt(),buf.readInt());
+    final BlockPos position = buf.readBlockPos();
     if(buf.readBoolean()){
       return new NoteMessage(position, buf.readByte(), buf.readByte(), buf.readByte(), buf.readFloat());
     }
     return new NoteMessage(position, buf.readByte(), buf.readByte());
   }
 
-  public static void handle(final NoteMessage message, final Supplier<NetworkEvent.Context> context_supplier){
-    final NetworkEvent.Context context = context_supplier.get();
-    final ServerPlayer player = context.getSender();
-    if(player != null){
-      @SuppressWarnings("resource")
-      final ServerLevel world = player.serverLevel();
-      context.enqueueWork(() -> {
-        if(world.isLoaded(message.position)){
-          final TileMusicBox tile = MinecraftUtility.getTileEntity(message.position,world, TileMusicBox.class);
-          if(tile != null){
-            if(message.on){
-              tile.set_note(message.track, message.frame, message.note);
-            }
-            else{
-              tile.disable_note(message.track, message.frame);
-            }
-          }
-        }
-      });
-      context.setPacketHandled(true);
+  @Override
+  protected final void handle(final ServerLevel level, final ServerPlayer player, final TileMusicBox tile){
+    if(on){
+      tile.set_note(track, frame, note);
+    }
+    else{
+      tile.disable_note(track, frame);
     }
   }
 

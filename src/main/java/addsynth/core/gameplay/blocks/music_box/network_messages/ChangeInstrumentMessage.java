@@ -1,55 +1,37 @@
 package addsynth.core.gameplay.blocks.music_box.network_messages;
 
-import java.util.function.Supplier;
 import addsynth.core.gameplay.blocks.music_box.TileMusicBox;
-import addsynth.core.util.game.MinecraftUtility;
+import addsynth.core.util.network.TileEntityNetworkMessage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
 
-public final class ChangeInstrumentMessage {
+public final class ChangeInstrumentMessage extends TileEntityNetworkMessage<TileMusicBox> {
 
-  private BlockPos position;
-  private byte track;
-  private byte instrument;
+  private final byte track;
+  private final byte instrument;
 
   public ChangeInstrumentMessage(final BlockPos position, final byte track, final byte instrument){
-    this.position = position;
+    super(position, TileMusicBox.class);
     this.track = track;
     this.instrument = instrument;
   }
 
-  public static final void encode(final ChangeInstrumentMessage message, final FriendlyByteBuf buf){
-    buf.writeInt(message.position.getX());
-    buf.writeInt(message.position.getY());
-    buf.writeInt(message.position.getZ());
-    buf.writeByte(message.track);
-    buf.writeByte(message.instrument);
+  @Override
+  public final void encode(final FriendlyByteBuf buf){
+    buf.writeBlockPos(position);
+    buf.writeByte(track);
+    buf.writeByte(instrument);
   }
 
   public static final ChangeInstrumentMessage decode(final FriendlyByteBuf buf){
-    final BlockPos position = new BlockPos(buf.readInt(),buf.readInt(),buf.readInt());
-    return new ChangeInstrumentMessage(position, buf.readByte(), buf.readByte());
+    return new ChangeInstrumentMessage(buf.readBlockPos(), buf.readByte(), buf.readByte());
   }
 
-  public static void handle(final ChangeInstrumentMessage message, final Supplier<NetworkEvent.Context> context_supplier){
-    final NetworkEvent.Context context = context_supplier.get();
-    final ServerPlayer player = context.getSender();
-    if(player != null){
-      @SuppressWarnings("resource")
-      final ServerLevel world = player.serverLevel();
-      context.enqueueWork(() -> {
-        if(world.isLoaded(message.position)){
-          final TileMusicBox music_box = MinecraftUtility.getTileEntity(message.position, world, TileMusicBox.class);
-          if(music_box != null){
-            music_box.change_track_instrument(message.track, message.instrument);
-          }
-        }
-      });
-      context.setPacketHandled(true);
-    }
+  @Override
+  protected final void handle(final ServerLevel level, final ServerPlayer player, final TileMusicBox music_box){
+    music_box.change_track_instrument(track, instrument);
   }
 
 }

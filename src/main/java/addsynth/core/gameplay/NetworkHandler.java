@@ -9,146 +9,34 @@ import addsynth.core.gameplay.blocks.team_manager.network_messages.PlayerScoreMe
 import addsynth.core.gameplay.blocks.team_manager.network_messages.RequestPlayerScoreMessage;
 import addsynth.core.gameplay.blocks.team_manager.network_messages.TeamManagerCommand;
 import addsynth.core.gameplay.blocks.team_manager.network_messages.TeamManagerSyncMessage;
-import net.minecraftforge.network.NetworkRegistry;
+import addsynth.core.util.network.ADDSynthNetworkHandler;
 import net.minecraftforge.network.simple.SimpleChannel;
 
-public final class NetworkHandler {
+public final class NetworkHandler extends ADDSynthNetworkHandler {
 
-  private static final String PROTOCAL_VERSION = "1";
-
-  public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-    ADDSynthCore.getLocation("network_channel"),
-    () -> PROTOCAL_VERSION, PROTOCAL_VERSION::equals, PROTOCAL_VERSION::equals
-  );
+  public static final SimpleChannel INSTANCE = createChannel(ADDSynthCore.getLocation("network_channel"));
 
   public static final void registerMessages(){
-    ADDSynthCore.log.info("Begin registering ADDSynthCore network messages...");
-    INSTANCE.registerMessage(0,
-      MusicBoxMessage.class,
-      MusicBoxMessage::encode,
-      MusicBoxMessage::decode,
-      MusicBoxMessage::handle
-    );
-    INSTANCE.registerMessage(1,
-      NoteMessage.class,
-      NoteMessage::encode,
-      NoteMessage::decode,
-      NoteMessage::handle
-    );
-    INSTANCE.registerMessage(2,
-      ChangeInstrumentMessage.class,
-      ChangeInstrumentMessage::encode,
-      ChangeInstrumentMessage::decode,
-      ChangeInstrumentMessage::handle
-    );
-    INSTANCE.registerMessage(3,
-      TeamManagerSyncMessage.class,
-      TeamManagerSyncMessage::encode,
-      TeamManagerSyncMessage::decode,
-      TeamManagerSyncMessage::handle
-    );
-    INSTANCE.registerMessage(5,
-      RequestPlayerScoreMessage.class,
-      RequestPlayerScoreMessage::encode,
-      RequestPlayerScoreMessage::decode,
-      RequestPlayerScoreMessage::handle
-    );
-    INSTANCE.registerMessage(6,
-      PlayerScoreMessage.class,
-      PlayerScoreMessage::encode,
-      PlayerScoreMessage::decode,
-      PlayerScoreMessage::handle
-    );
-    INSTANCE.registerMessage(7,
-      TeamManagerCommand.AddTeam.class,
-      TeamManagerCommand.AddTeam::encode,
-      TeamManagerCommand.AddTeam::decode,
-      TeamManagerCommand.AddTeam::handle
-    );
-    INSTANCE.registerMessage(8,
-      TeamManagerCommand.EditTeam.class,
-      TeamManagerCommand.EditTeam::encode,
-      TeamManagerCommand.EditTeam::decode,
-      TeamManagerCommand.EditTeam::handle
-    );
-    INSTANCE.registerMessage(9,
-      TeamManagerCommand.DeleteTeam.class,
-      TeamManagerCommand.DeleteTeam::encode,
-      TeamManagerCommand.DeleteTeam::decode,
-      TeamManagerCommand.DeleteTeam::handle
-    );
-    INSTANCE.registerMessage(10,
-      TeamManagerCommand.AddPlayerToTeam.class,
-      TeamManagerCommand.AddPlayerToTeam::encode,
-      TeamManagerCommand.AddPlayerToTeam::decode,
-      TeamManagerCommand.AddPlayerToTeam::handle
-    );
-    INSTANCE.registerMessage(11,
-      TeamManagerCommand.RemovePlayerFromTeam.class,
-      TeamManagerCommand.RemovePlayerFromTeam::encode,
-      TeamManagerCommand.RemovePlayerFromTeam::decode,
-      TeamManagerCommand.RemovePlayerFromTeam::handle
-    );
-    INSTANCE.registerMessage(12,
-      TeamManagerCommand.AddObjective.class,
-      TeamManagerCommand.AddObjective::encode,
-      TeamManagerCommand.AddObjective::decode,
-      TeamManagerCommand.AddObjective::handle
-    );
-    INSTANCE.registerMessage(13,
-      TeamManagerCommand.EditObjective.class,
-      TeamManagerCommand.EditObjective::encode,
-      TeamManagerCommand.EditObjective::decode,
-      TeamManagerCommand.EditObjective::handle
-    );
-    INSTANCE.registerMessage(14,
-      TeamManagerCommand.DeleteObjective.class,
-      TeamManagerCommand.DeleteObjective::encode,
-      TeamManagerCommand.DeleteObjective::decode,
-      TeamManagerCommand.DeleteObjective::handle
-    );
-    INSTANCE.registerMessage(15,
-      TeamManagerCommand.SetScore.class,
-      TeamManagerCommand.SetScore::encode,
-      TeamManagerCommand.SetScore::decode,
-      TeamManagerCommand.SetScore::handle
-    );
-    INSTANCE.registerMessage(16,
-      TeamManagerCommand.AddScore.class,
-      TeamManagerCommand.AddScore::encode,
-      TeamManagerCommand.AddScore::decode,
-      TeamManagerCommand.AddScore::handle
-    );
-    INSTANCE.registerMessage(17,
-      TeamManagerCommand.SubtractScore.class,
-      TeamManagerCommand.SubtractScore::encode,
-      TeamManagerCommand.SubtractScore::decode,
-      TeamManagerCommand.SubtractScore::handle
-    );
-    INSTANCE.registerMessage(18,
-      TeamManagerCommand.ResetScore.class,
-      TeamManagerCommand.ResetScore::encode,
-      TeamManagerCommand.ResetScore::decode,
-      TeamManagerCommand.ResetScore::handle
-    );
-    INSTANCE.registerMessage(19,
-      TeamManagerCommand.SetDisplaySlot.class,
-      TeamManagerCommand.SetDisplaySlot::encode,
-      TeamManagerCommand.SetDisplaySlot::decode,
-      TeamManagerCommand.SetDisplaySlot::handle
-    );
-    INSTANCE.registerMessage(20,
-      TeamManagerCommand.ClearDisplaySlot.class,
-      TeamManagerCommand.ClearDisplaySlot::encode,
-      TeamManagerCommand.ClearDisplaySlot::decode,
-      TeamManagerCommand.ClearDisplaySlot::handle
-    );
-    INSTANCE.registerMessage(21,
-      JukeboxMessage.class,
-      JukeboxMessage::encode,
-      JukeboxMessage::decode,
-      JukeboxMessage::handle
-    );
-    ADDSynthCore.log.info("Done registering ADDSynthCore network messages.");
+    registerServerMessage( 0, INSTANCE, MusicBoxMessage.class,                     MusicBoxMessage::decode);
+    registerServerMessage( 1, INSTANCE, NoteMessage.class,                         NoteMessage::decode);
+    registerServerMessage( 2, INSTANCE, ChangeInstrumentMessage.class,             ChangeInstrumentMessage::decode);
+    registerClientMessage( 3, INSTANCE, TeamManagerSyncMessage.class,              TeamManagerSyncMessage::decode);
+    registerServerMessage( 5, INSTANCE, RequestPlayerScoreMessage.class,           RequestPlayerScoreMessage::decode);
+    registerClientMessage( 6, INSTANCE, PlayerScoreMessage.class,                  PlayerScoreMessage::decode);
+    registerServerMessage( 7, INSTANCE, TeamManagerCommand.AddTeam.class,          TeamManagerCommand.AddTeam::decode);
+    registerServerMessage( 8, INSTANCE, TeamManagerCommand.EditTeam.class,         TeamManagerCommand.EditTeam::decode);
+    registerServerMessage( 9, INSTANCE, TeamManagerCommand.DeleteTeam.class,       TeamManagerCommand.DeleteTeam::decode);
+    registerServerMessage(10, INSTANCE, TeamManagerCommand.AddPlayerToTeam.class,  TeamManagerCommand.AddPlayerToTeam::decode);
+    registerServerMessage(11, INSTANCE, TeamManagerCommand.RemovePlayerFromTeam.class, TeamManagerCommand.RemovePlayerFromTeam::decode);
+    registerServerMessage(12, INSTANCE, TeamManagerCommand.AddObjective.class,     TeamManagerCommand.AddObjective::decode);
+    registerServerMessage(13, INSTANCE, TeamManagerCommand.EditObjective.class,    TeamManagerCommand.EditObjective::decode);
+    registerServerMessage(14, INSTANCE, TeamManagerCommand.DeleteObjective.class,  TeamManagerCommand.DeleteObjective::decode);
+    registerServerMessage(15, INSTANCE, TeamManagerCommand.SetScore.class,         TeamManagerCommand.SetScore::decode);
+    registerServerMessage(16, INSTANCE, TeamManagerCommand.AddScore.class,         TeamManagerCommand.AddScore::decode);
+    registerServerMessage(17, INSTANCE, TeamManagerCommand.SubtractScore.class,    TeamManagerCommand.SubtractScore::decode);
+    registerServerMessage(18, INSTANCE, TeamManagerCommand.ResetScore.class,       TeamManagerCommand.ResetScore::decode);
+    registerServerMessage(19, INSTANCE, TeamManagerCommand.SetDisplaySlot.class,   TeamManagerCommand.SetDisplaySlot::decode);
+    registerServerMessage(20, INSTANCE, TeamManagerCommand.ClearDisplaySlot.class, TeamManagerCommand.ClearDisplaySlot::decode);
+    registerServerMessage(21, INSTANCE, JukeboxMessage.class,                      JukeboxMessage::decode);
   }
 }

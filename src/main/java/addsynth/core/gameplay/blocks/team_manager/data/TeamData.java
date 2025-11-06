@@ -61,7 +61,7 @@ public final class TeamData {
     }
   }
 
-  /** Gets data from server. */
+  /** Gets data from the server and sends to the client. */
   public static final void sync(final MinecraftServer server, final Scoreboard scoreboard){
     
     // Teams

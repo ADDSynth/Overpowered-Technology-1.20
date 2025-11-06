@@ -1,47 +1,29 @@
 package addsynth.energy.gameplay.machines.universal_energy_interface;
 
-import java.util.function.Supplier;
-import addsynth.core.util.game.MinecraftUtility;
+import addsynth.core.util.network.TileEntityNetworkMessage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
 
-public final class CycleTransferModeMessage {
-
-  private final BlockPos position;
+public final class CycleTransferModeMessage extends TileEntityNetworkMessage<TileUniversalEnergyInterface> {
 
   public CycleTransferModeMessage(final BlockPos position){
-    this.position = position;
+    super(position, TileUniversalEnergyInterface.class);
   }
 
-  public static final void encode(final CycleTransferModeMessage message, final FriendlyByteBuf buf){
-    buf.writeInt(message.position.getX());
-    buf.writeInt(message.position.getY());
-    buf.writeInt(message.position.getZ());
+  @Override
+  public final void encode(final FriendlyByteBuf buf){
+    buf.writeBlockPos(position);
   }
 
   public static final CycleTransferModeMessage decode(final FriendlyByteBuf buf){
-    return new CycleTransferModeMessage(new BlockPos(buf.readInt(),buf.readInt(),buf.readInt()));
+    return new CycleTransferModeMessage(buf.readBlockPos());
   }
 
-  public static void handle(final CycleTransferModeMessage message, final Supplier<NetworkEvent.Context> context_supplier){
-    final NetworkEvent.Context context = context_supplier.get();
-    final ServerPlayer player = context.getSender();
-    if(player != null){
-      @SuppressWarnings("resource")
-      final ServerLevel world = player.serverLevel();
-      context.enqueueWork(() -> {
-        if(world.isLoaded(message.position)){
-          final TileUniversalEnergyInterface tile = MinecraftUtility.getTileEntity(message.position, world, TileUniversalEnergyInterface.class);
-          if(tile != null){
-            tile.set_next_transfer_mode();
-          }
-        }
-      });
-      context.setPacketHandled(true);
-    }
+  @Override
+  protected final void handle(final ServerLevel level, final ServerPlayer player, final TileUniversalEnergyInterface tile){
+    tile.set_next_transfer_mode();
   }
 
 }

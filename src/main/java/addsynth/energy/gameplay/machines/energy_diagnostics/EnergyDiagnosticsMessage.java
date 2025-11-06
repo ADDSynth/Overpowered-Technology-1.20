@@ -1,37 +1,34 @@
 package addsynth.energy.gameplay.machines.energy_diagnostics;
 
 import java.util.Collection;
-import java.util.function.Supplier;
-import addsynth.core.util.game.MinecraftUtility;
-import net.minecraft.client.Minecraft;
+import addsynth.core.util.network.TileEntityClientMessage;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkEvent;
 
-public final class EnergyDiagnosticsMessage {
+public final class EnergyDiagnosticsMessage extends TileEntityClientMessage<TileEnergyDiagnostics> {
 
-  private final BlockPos position;
   private final int number_of_machine_data;
   private final EnergyDiagnosticData[] diagnostic_data;
   private final EnergyDiagnosticData totals;
 
   public EnergyDiagnosticsMessage(BlockPos position){
-    this.position = position;
+    super(position, TileEnergyDiagnostics.class);
     number_of_machine_data = -1;
     diagnostic_data = null;
     totals = null;
   }
 
   public EnergyDiagnosticsMessage(BlockPos position, Collection<EnergyDiagnosticData> diagnostic_data, EnergyDiagnosticData totals){
-    this.position = position;
+    super(position, TileEnergyDiagnostics.class);
     number_of_machine_data = diagnostic_data.size();
     this.diagnostic_data = diagnostic_data.toArray(new EnergyDiagnosticData[number_of_machine_data]);
     this.totals = totals;
   }
 
-  private EnergyDiagnosticsMessage(FriendlyByteBuf buf){
-    this.position = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
+  public EnergyDiagnosticsMessage(final FriendlyByteBuf buf){
+    super(buf.readBlockPos(), TileEnergyDiagnostics.class);
     number_of_machine_data = buf.readInt();
     if(number_of_machine_data >= 0){
       diagnostic_data = new EnergyDiagnosticData[number_of_machine_data];
@@ -47,43 +44,24 @@ public final class EnergyDiagnosticsMessage {
     }
   }
 
-  public static final void encode(final EnergyDiagnosticsMessage message, final FriendlyByteBuf buf){
-    buf.writeInt(message.position.getX());
-    buf.writeInt(message.position.getY());
-    buf.writeInt(message.position.getZ());
-    if(message.diagnostic_data != null && message.number_of_machine_data >= 0){
-      buf.writeInt(message.number_of_machine_data);
-      for(EnergyDiagnosticData data : message.diagnostic_data){
+  @Override
+  public final void encode(final FriendlyByteBuf buf){
+    buf.writeBlockPos(position);
+    if(diagnostic_data != null && number_of_machine_data >= 0){
+      buf.writeInt(number_of_machine_data);
+      for(EnergyDiagnosticData data : diagnostic_data){
         data.save(buf);
       }
-      message.totals.save(buf);
+      totals.save(buf);
     }
     else{
       buf.writeInt(-1);
     }
   }
 
-  public static final EnergyDiagnosticsMessage decode(final FriendlyByteBuf buf){
-    return new EnergyDiagnosticsMessage(buf);
-  }
-
-  public static void handle(final EnergyDiagnosticsMessage message, final Supplier<NetworkEvent.Context> context_supplier){
-    final NetworkEvent.Context context = context_supplier.get();
-    context.enqueueWork(() -> {
-
-      @SuppressWarnings("resource")
-      final Minecraft minecraft = Minecraft.getInstance();
-      @SuppressWarnings({ "null", "resource" })
-      final Level world = minecraft.player.level();
-
-      if(world.isLoaded(message.position)){
-        final TileEnergyDiagnostics energy_diagnostics_machine = MinecraftUtility.getTileEntity(message.position, world, TileEnergyDiagnostics.class);
-        if(energy_diagnostics_machine != null){
-          energy_diagnostics_machine.set(message.diagnostic_data, message.totals);
-        }
-      }
-    });
-    context.setPacketHandled(true);
+  @Override
+  protected final void handle(final ClientLevel level, final LocalPlayer player, final TileEnergyDiagnostics diagnostics_machine){
+    diagnostics_machine.set(diagnostic_data, totals);
   }
 
 }

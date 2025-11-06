@@ -27,7 +27,7 @@ public final class EnergyDiagnosticData implements Comparable<EnergyDiagnosticDa
   
   public EnergyDiagnosticData(final FriendlyByteBuf data){
     name = data.readComponent();
-    type = EnergyType.values()[data.readInt()];
+    type = data.readEnum(EnergyType.class);
     energy       = data.readDouble();
     capacity     = data.readDouble();
     in           = data.readDouble();
@@ -75,7 +75,7 @@ public final class EnergyDiagnosticData implements Comparable<EnergyDiagnosticDa
 
   public final void save(final FriendlyByteBuf data){
     data.writeComponent(name);
-    data.writeInt(type.ordinal());
+    data.writeEnum(type);
     data.writeDouble(energy);
     data.writeDouble(capacity);
     data.writeDouble(in);

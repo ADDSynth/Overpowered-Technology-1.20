@@ -1,7 +1,8 @@
 package addsynth.core.gameplay.blocks.team_manager.network_messages;
 
-import java.util.function.Supplier;
 import addsynth.core.gameplay.blocks.team_manager.data.TeamData;
+import addsynth.core.util.game.data.ScoreUtil;
+import addsynth.core.util.network.INetworkMessage;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -9,187 +10,155 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.scores.Objective;
 import net.minecraft.world.scores.PlayerTeam;
-import net.minecraft.world.scores.Score;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraft.world.scores.Team.Visibility;
 import net.minecraft.world.scores.criteria.ObjectiveCriteria;
-import net.minecraftforge.network.NetworkEvent;
 
 public final class TeamManagerCommand {
 
-  public static final class ClearDisplaySlot {
+  public static final class ClearDisplaySlot extends INetworkMessage {
     private final int display_slot;
     public ClearDisplaySlot(int display_slot){
       this.display_slot = display_slot;
     }
-    public static void encode(ClearDisplaySlot message, FriendlyByteBuf data){
-      data.writeInt(message.display_slot);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeInt(display_slot);
     }
-    public static ClearDisplaySlot decode(FriendlyByteBuf data){
+    public static final ClearDisplaySlot decode(final FriendlyByteBuf data){
       return new ClearDisplaySlot(data.readInt());
     }
-    public static void handle(ClearDisplaySlot message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          scoreboard.setDisplayObjective(message.display_slot, null);
-          TeamData.sync(server, scoreboard);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer player){
+      final MinecraftServer server = player.server;
+      final Scoreboard scoreboard = server.getScoreboard();
+      scoreboard.setDisplayObjective(display_slot, null);
+      TeamData.sync(server, scoreboard);
     }
   }
   
-  public static final class DeleteTeam {
+  public static final class DeleteTeam extends INetworkMessage {
     private final String team_name;
     public DeleteTeam(String team_name){
       this.team_name = team_name;
     }
-    public static void encode(DeleteTeam message, FriendlyByteBuf data){
-      data.writeUtf(message.team_name);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(team_name);
     }
-    public static DeleteTeam decode(FriendlyByteBuf data){
+    public static final DeleteTeam decode(final FriendlyByteBuf data){
       return new DeleteTeam(data.readUtf());
     }
-    public static void handle(DeleteTeam message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          scoreboard.removePlayerTeam(scoreboard.getPlayerTeam(message.team_name));
-          TeamData.sync(server, scoreboard);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer player){
+      final MinecraftServer server = player.server;
+      final Scoreboard scoreboard = server.getScoreboard();
+      scoreboard.removePlayerTeam(scoreboard.getPlayerTeam(team_name));
+      TeamData.sync(server, scoreboard);
     }
   }
   
-  public static final class DeleteObjective {
+  public static final class DeleteObjective extends INetworkMessage {
     private final String objective_name;
     public DeleteObjective(String objective_name){
       this.objective_name = objective_name;
     }
-    public static void encode(DeleteObjective message, FriendlyByteBuf data){
-      data.writeUtf(message.objective_name);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(objective_name);
     }
-    public static DeleteObjective decode(FriendlyByteBuf data){
+    public static final DeleteObjective decode(final FriendlyByteBuf data){
       return new DeleteObjective(data.readUtf());
     }
-    public static void handle(DeleteObjective message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          scoreboard.removeObjective(scoreboard.getObjective(message.objective_name));
-          TeamData.sync(server, scoreboard);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer player){
+      final MinecraftServer server = player.server;
+      final Scoreboard scoreboard = server.getScoreboard();
+      scoreboard.removeObjective(scoreboard.getObjective(objective_name));
+      TeamData.sync(server, scoreboard);
     }
   }
   
-  public static final class SetDisplaySlot {
-    private final String objective;
+  public static final class SetDisplaySlot extends INetworkMessage {
+    private final String objective_name;
     private final int display_slot;
     public SetDisplaySlot(String objective, int display_slot){
-      this.objective = objective;
+      this.objective_name = objective;
       this.display_slot = display_slot;
     }
-    public static void encode(SetDisplaySlot message, FriendlyByteBuf data){
-      data.writeUtf(message.objective);
-      data.writeInt(message.display_slot);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(objective_name);
+      data.writeInt(display_slot);
     }
-    public static SetDisplaySlot decode(FriendlyByteBuf data){
+    public static final SetDisplaySlot decode(final FriendlyByteBuf data){
       return new SetDisplaySlot(data.readUtf(), data.readInt());
     }
-    public static void handle(SetDisplaySlot message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          final Objective objective = scoreboard.getObjective(message.objective);
-          scoreboard.setDisplayObjective(message.display_slot, objective);
-          TeamData.sync(server, scoreboard);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer player){
+      final MinecraftServer server = player.server;
+      final Scoreboard scoreboard = server.getScoreboard();
+      final Objective objective = scoreboard.getObjective(objective_name);
+      scoreboard.setDisplayObjective(display_slot, objective);
+      TeamData.sync(server, scoreboard);
     }
   }
   
-  public static final class AddPlayerToTeam {
+  public static final class AddPlayerToTeam extends INetworkMessage {
     private final String player;
     private final String team;
     public AddPlayerToTeam(String player, String team){
       this.player = player;
       this.team = team;
     }
-    public static void encode(AddPlayerToTeam message, FriendlyByteBuf data){
-      data.writeUtf(message.player);
-      data.writeUtf(message.team);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(player);
+      data.writeUtf(team);
     }
-    public static AddPlayerToTeam decode(FriendlyByteBuf data){
+    public static final AddPlayerToTeam decode(final FriendlyByteBuf data){
       return new AddPlayerToTeam(data.readUtf(), data.readUtf());
     }
-    public static void handle(AddPlayerToTeam message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          if(scoreboard.addPlayerToTeam(message.player, scoreboard.getPlayerTeam(message.team))){
-            TeamData.sync(server, scoreboard);
-          }
-        });
+    @Override
+    protected final void handle(final ServerPlayer sender){
+      final MinecraftServer server = sender.server;
+      final Scoreboard scoreboard = server.getScoreboard();
+      if(scoreboard.addPlayerToTeam(player, scoreboard.getPlayerTeam(team))){
+        TeamData.sync(server, scoreboard);
       }
-      context.setPacketHandled(true);
     }
   }
   
-  public static final class RemovePlayerFromTeam {
+  public static final class RemovePlayerFromTeam extends INetworkMessage {
     private final String player;
     private final String team_name;
     public RemovePlayerFromTeam(String player, String team){
       this.player = player;
       this.team_name = team;
     }
-    public static void encode(RemovePlayerFromTeam message, FriendlyByteBuf data){
-      data.writeUtf(message.player);
-      data.writeUtf(message.team_name);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(player);
+      data.writeUtf(team_name);
     }
-    public static RemovePlayerFromTeam decode(FriendlyByteBuf data){
+    public static final RemovePlayerFromTeam decode(final FriendlyByteBuf data){
       return new RemovePlayerFromTeam(data.readUtf(), data.readUtf());
     }
-    public static void handle(RemovePlayerFromTeam message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          PlayerTeam team = scoreboard.getPlayersTeam(message.player);
-          if(team != null){ // player is on a team
-            if(team.getName().equals(message.team_name)){ // players team is the one we want him out of
-              scoreboard.removePlayerFromTeam(message.player, team);
-              TeamData.sync(server, scoreboard);
-            }
-          }
-        });
+    @Override
+    protected final void handle(final ServerPlayer sender){
+      final MinecraftServer server = sender.server;
+      final Scoreboard scoreboard = server.getScoreboard();
+      final PlayerTeam team = scoreboard.getPlayersTeam(player);
+      if(team != null){ // player is on a team
+        if(team.getName().equals(team_name)){ // players team is the one we want him out of
+          scoreboard.removePlayerFromTeam(player, team);
+          TeamData.sync(server, scoreboard);
+        }
       }
-      context.setPacketHandled(true);
     }
   }
   
-  public static final class SetScore {
+  public static final class SetScore extends INetworkMessage {
     private final String objective;
     private final String player;
     private final int new_score_value;
@@ -198,31 +167,22 @@ public final class TeamManagerCommand {
       this.player = player;
       this.new_score_value = new_score_value;
     }
-    public static void encode(SetScore message, FriendlyByteBuf data){
-      data.writeUtf(message.objective);
-      data.writeUtf(message.player);
-      data.writeInt(message.new_score_value);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(objective);
+      data.writeUtf(player);
+      data.writeInt(new_score_value);
     }
-    public static SetScore decode(FriendlyByteBuf data){
+    public static final SetScore decode(final FriendlyByteBuf data){
       return new SetScore(data.readUtf(), data.readUtf(), data.readInt());
     }
-    public static void handle(SetScore message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          final Objective objective = scoreboard.getObjective(message.objective);
-          final Score score = scoreboard.getOrCreatePlayerScore(message.player, objective);
-          score.setScore(message.new_score_value);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer sender){
+      ScoreUtil.getScore(sender, player, objective).setScore(new_score_value);
     }
   }
   
-  public static final class AddScore {
+  public static final class AddScore extends INetworkMessage {
     private final String objective;
     private final String player;
     private final int score_to_add;
@@ -231,31 +191,22 @@ public final class TeamManagerCommand {
       this.player = player;
       this.score_to_add = score_to_add;
     }
-    public static void encode(AddScore message, FriendlyByteBuf data){
-      data.writeUtf(message.objective);
-      data.writeUtf(message.player);
-      data.writeInt(message.score_to_add);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(objective);
+      data.writeUtf(player);
+      data.writeInt(score_to_add);
     }
-    public static AddScore decode(FriendlyByteBuf data){
+    public static final AddScore decode(final FriendlyByteBuf data){
       return new AddScore(data.readUtf(), data.readUtf(), data.readInt());
     }
-    public static void handle(AddScore message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          final Objective objective = scoreboard.getObjective(message.objective);
-          final Score score = scoreboard.getOrCreatePlayerScore(message.player, objective);
-          score.add(message.score_to_add);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer sender){
+      ScoreUtil.getScore(sender, player, objective).add(score_to_add);
     }
   }
   
-  public static final class SubtractScore {
+  public static final class SubtractScore extends INetworkMessage {
     private final String objective;
     private final String player;
     private final int score_to_subtract;
@@ -264,61 +215,43 @@ public final class TeamManagerCommand {
       this.player = player;
       this.score_to_subtract = score_to_subtract;
     }
-    public static void encode(SubtractScore message, FriendlyByteBuf data){
-      data.writeUtf(message.objective);
-      data.writeUtf(message.player);
-      data.writeInt(message.score_to_subtract);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(objective);
+      data.writeUtf(player);
+      data.writeInt(score_to_subtract);
     }
-    public static SubtractScore decode(FriendlyByteBuf data){
+    public static final SubtractScore decode(final FriendlyByteBuf data){
       return new SubtractScore(data.readUtf(), data.readUtf(), data.readInt());
     }
-    public static void handle(SubtractScore message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          final Objective objective = scoreboard.getObjective(message.objective);
-          final Score score = scoreboard.getOrCreatePlayerScore(message.player, objective);
-          score.add(-message.score_to_subtract);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer sender){
+      ScoreUtil.getScore(sender, player, objective).add(-score_to_subtract);
     }
   }
   
-  public static final class ResetScore {
+  public static final class ResetScore extends INetworkMessage {
     private final String objective;
     private final String player;
     public ResetScore(String objective, String player){
       this.objective = objective;
       this.player = player;
     }
-    public static void encode(ResetScore message, FriendlyByteBuf data){
-      data.writeUtf(message.objective);
-      data.writeUtf(message.player);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(objective);
+      data.writeUtf(player);
     }
-    public static ResetScore decode(FriendlyByteBuf data){
+    public static final ResetScore decode(final FriendlyByteBuf data){
       return new ResetScore(data.readUtf(), data.readUtf());
     }
-    public static void handle(ResetScore message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          final Scoreboard scoreboard = server.getScoreboard();
-          final Objective objective = scoreboard.getObjective(message.objective);
-          final Score score = scoreboard.getOrCreatePlayerScore(message.player, objective);
-          score.reset();
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer sender){
+      ScoreUtil.getScore(sender, player, objective).reset();
     }
   }
   
-  public static final class AddObjective {
+  public static final class AddObjective extends INetworkMessage {
     private final String objective_id;
     private final String display_name;
     private final String criteria;
@@ -327,28 +260,22 @@ public final class TeamManagerCommand {
       this.display_name = display_name;
       this.criteria = criteria;
     }
-    public static void encode(AddObjective message, FriendlyByteBuf data){
-      data.writeUtf(message.objective_id);
-      data.writeUtf(message.display_name);
-      data.writeUtf(message.criteria);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(objective_id);
+      data.writeUtf(display_name);
+      data.writeUtf(criteria);
     }
-    public static AddObjective decode(FriendlyByteBuf data){
+    public static final AddObjective decode(final FriendlyByteBuf data){
       return new AddObjective(data.readUtf(), data.readUtf(), data.readUtf());
     }
-    public static void handle(AddObjective message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          edit_objective(server, player, message.objective_id, message.display_name, message.criteria);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer player){
+      edit_objective(player, objective_id, display_name, criteria);
     }
   }
   
-  public static final class EditObjective {
+  public static final class EditObjective extends INetworkMessage {
     private final String objective_id;
     private final String display_name;
     private final String criteria;
@@ -357,28 +284,22 @@ public final class TeamManagerCommand {
       this.display_name = display_name;
       this.criteria = criteria;
     }
-    public static void encode(EditObjective message, FriendlyByteBuf data){
-      data.writeUtf(message.objective_id);
-      data.writeUtf(message.display_name);
-      data.writeUtf(message.criteria);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(objective_id);
+      data.writeUtf(display_name);
+      data.writeUtf(criteria);
     }
-    public static EditObjective decode(FriendlyByteBuf data){
+    public static final EditObjective decode(final FriendlyByteBuf data){
       return new EditObjective(data.readUtf(), data.readUtf(), data.readUtf());
     }
-    public static void handle(EditObjective message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          edit_objective(server, player, message.objective_id, message.display_name, message.criteria);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer player){
+      edit_objective(player, objective_id, display_name, criteria);
     }
   }
   
-  public static final class AddTeam {
+  public static final class AddTeam extends INetworkMessage {
     private final String team_id;
     private final String display_name;
     private final boolean pvp;
@@ -400,18 +321,19 @@ public final class TeamManagerCommand {
       this.member_prefix = member_prefix;
       this.member_suffix = member_suffix;
     }
-    public static void encode(AddTeam message, FriendlyByteBuf data){
-      data.writeUtf(message.team_id);
-      data.writeUtf(message.display_name);
-      data.writeBoolean(message.pvp);
-      data.writeBoolean(message.see_invisible_allys);
-      data.writeInt(message.team_color);
-      data.writeInt(message.nametag_option);
-      data.writeInt(message.death_message_option);
-      data.writeUtf(message.member_prefix);
-      data.writeUtf(message.member_suffix);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(team_id);
+      data.writeUtf(display_name);
+      data.writeBoolean(pvp);
+      data.writeBoolean(see_invisible_allys);
+      data.writeInt(team_color);
+      data.writeInt(nametag_option);
+      data.writeInt(death_message_option);
+      data.writeUtf(member_prefix);
+      data.writeUtf(member_suffix);
     }
-    public static AddTeam decode(FriendlyByteBuf data){
+    public static final AddTeam decode(final FriendlyByteBuf data){
       return new AddTeam(
         data.readUtf(),
         data.readUtf(),
@@ -424,22 +346,13 @@ public final class TeamManagerCommand {
         data.readUtf()
       );
     }
-    public static void handle(AddTeam message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          edit_team(server, player, message.team_id, message.display_name, message.pvp,
-                    message.see_invisible_allys, message.team_color, message.nametag_option,
-                    message.death_message_option, message.member_prefix, message.member_suffix);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer player){
+      edit_team(player, team_id, display_name, pvp, see_invisible_allys, team_color, nametag_option, death_message_option, member_prefix, member_suffix);
     }
   }
   
-  public static final class EditTeam {
+  public static final class EditTeam extends INetworkMessage {
     private final String team_id;
     private final String display_name;
     private final boolean pvp;
@@ -461,18 +374,19 @@ public final class TeamManagerCommand {
       this.member_prefix = member_prefix;
       this.member_suffix = member_suffix;
     }
-    public static void encode(EditTeam message, FriendlyByteBuf data){
-      data.writeUtf(message.team_id);
-      data.writeUtf(message.display_name);
-      data.writeBoolean(message.pvp);
-      data.writeBoolean(message.see_invisible_allys);
-      data.writeInt(message.team_color);
-      data.writeInt(message.nametag_option);
-      data.writeInt(message.death_message_option);
-      data.writeUtf(message.member_prefix);
-      data.writeUtf(message.member_suffix);
+    @Override
+    public final void encode(final FriendlyByteBuf data){
+      data.writeUtf(team_id);
+      data.writeUtf(display_name);
+      data.writeBoolean(pvp);
+      data.writeBoolean(see_invisible_allys);
+      data.writeInt(team_color);
+      data.writeInt(nametag_option);
+      data.writeInt(death_message_option);
+      data.writeUtf(member_prefix);
+      data.writeUtf(member_suffix);
     }
-    public static EditTeam decode(FriendlyByteBuf data){
+    public static final EditTeam decode(final FriendlyByteBuf data){
       return new EditTeam(
         data.readUtf(),
         data.readUtf(),
@@ -485,24 +399,16 @@ public final class TeamManagerCommand {
         data.readUtf()
       );
     }
-    public static void handle(EditTeam message, Supplier<NetworkEvent.Context> context_supplier){
-      final NetworkEvent.Context context = context_supplier.get();
-      final ServerPlayer player = context.getSender();
-      if(player != null){
-        context.enqueueWork(() -> {
-          final MinecraftServer server = player.server;
-          edit_team(server, player, message.team_id, message.display_name, message.pvp,
-                    message.see_invisible_allys, message.team_color, message.nametag_option,
-                    message.death_message_option, message.member_prefix, message.member_suffix);
-        });
-      }
-      context.setPacketHandled(true);
+    @Override
+    protected final void handle(final ServerPlayer player){
+      edit_team(player, team_id, display_name, pvp, see_invisible_allys, team_color, nametag_option, death_message_option, member_prefix, member_suffix);
     }
   }
   
-  private static final void edit_team(final MinecraftServer server, final ServerPlayer player, final String team_name, final String display_name,
-                                      final boolean pvp, final boolean see_invisible_allys, final int team_color, final int nametag_option,
+  private static final void edit_team(final ServerPlayer player, final String team_name, final String display_name, final boolean pvp,
+                                      final boolean see_invisible_allys, final int team_color, final int nametag_option,
                                       final int death_message_option, final String member_prefix, final String member_suffix){
+    final MinecraftServer server = player.server;
     final Scoreboard scoreboard = server.getScoreboard();
     if(team_name.isEmpty()){
       final Component message = Component.translatable("gui.addsynthcore.team_manager.message.create_team_failed");
@@ -527,7 +433,8 @@ public final class TeamManagerCommand {
     TeamData.sync(server, scoreboard);
   }
 
-  private static final void edit_objective(final MinecraftServer server, final ServerPlayer player, final String objective_name, final String display_name, final String criteria_name){
+  private static final void edit_objective(final ServerPlayer player, final String objective_name, final String display_name, final String criteria_name){
+    final MinecraftServer server = player.server;
     final Scoreboard scoreboard = server.getScoreboard();
     if(objective_name.isEmpty()){
       final Component message = Component.translatable("gui.addsynthcore.team_manager.message.create_objective_failed");

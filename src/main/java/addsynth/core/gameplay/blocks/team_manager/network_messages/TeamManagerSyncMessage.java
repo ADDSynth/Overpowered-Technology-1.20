@@ -1,16 +1,15 @@
 package addsynth.core.gameplay.blocks.team_manager.network_messages;
 
 import java.util.ArrayList;
-import java.util.function.Supplier;
 import addsynth.core.gameplay.blocks.team_manager.data.ObjectiveDataUnit;
 import addsynth.core.gameplay.blocks.team_manager.data.TeamData;
 import addsynth.core.gameplay.blocks.team_manager.data.TeamDataUnit;
 import addsynth.core.util.game.data.CombinedNameComponent;
+import addsynth.core.util.network.IClientMessage;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
 
 /** Sent from the server to the client, to sync the {@link TeamData} */
-public final class TeamManagerSyncMessage {
+public final class TeamManagerSyncMessage extends IClientMessage {
 
   private final ArrayList<CombinedNameComponent> non_team_players;
   private final TeamDataUnit[] teams;
@@ -25,19 +24,20 @@ public final class TeamManagerSyncMessage {
   }
 
   /** Send data to Clients. */
-  public static final void encode(final TeamManagerSyncMessage message, final FriendlyByteBuf data){
-    CombinedNameComponent.encodeArray(data, message.non_team_players);
-    data.writeInt(message.teams.length);
-    for(final TeamDataUnit t : message.teams){
+  @Override
+  public final void encode(final FriendlyByteBuf data){
+    CombinedNameComponent.encodeArray(data, non_team_players);
+    data.writeInt(teams.length);
+    for(final TeamDataUnit t : teams){
       t.encode(data);
     }
-    data.writeInt(message.objectives.length);
-    for(final ObjectiveDataUnit o : message.objectives){
+    data.writeInt(objectives.length);
+    for(final ObjectiveDataUnit o : objectives){
       o.encode(data);
     }
-    data.writeUtf(message.display_slot_objectives[0]);
-    data.writeUtf(message.display_slot_objectives[1]);
-    data.writeUtf(message.display_slot_objectives[2]);
+    data.writeUtf(display_slot_objectives[0]);
+    data.writeUtf(display_slot_objectives[1]);
+    data.writeUtf(display_slot_objectives[2]);
   }
 
   /** Receiving data on client side. */
@@ -61,16 +61,9 @@ public final class TeamManagerSyncMessage {
     return new TeamManagerSyncMessage(non_team_players, teams, objectives, display_slot_objectives);
   }
 
-  public static void handle(final TeamManagerSyncMessage message, final Supplier<NetworkEvent.Context> context_supplier){
-    final NetworkEvent.Context context = context_supplier.get();
-    context.enqueueWork(() -> {
-      // The decode method is executed on the Network Thread, which runs independantly from the main Client Thread.
-      // That explains why clients using the Team manager would get random crashes. It's becuase the Network Thread
-      // was altering the data. This is probably my first experience of a race condition between two threads.
-      // That is why we ENQUEUE work on the Client thread.
-      TeamData.syncClientData(message.non_team_players, message.teams, message.objectives, message.display_slot_objectives);
-    });
-    context.setPacketHandled(true);
+  @Override
+  protected final void handle(){
+    TeamData.syncClientData(non_team_players, teams, objectives, display_slot_objectives);
   }
 
 }

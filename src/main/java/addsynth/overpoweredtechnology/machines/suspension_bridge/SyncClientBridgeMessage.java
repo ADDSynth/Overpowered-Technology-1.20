@@ -1,30 +1,25 @@
 package addsynth.overpoweredtechnology.machines.suspension_bridge;
 
 import java.util.List;
-import java.util.function.Supplier;
-import addsynth.core.util.game.MinecraftUtility;
 import addsynth.core.util.network.NetworkUtil;
-import net.minecraft.client.Minecraft;
+import addsynth.core.util.network.BlockNetworkClientMessage;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkEvent;
 
-public final class SyncClientBridgeMessage {
+public final class SyncClientBridgeMessage extends BlockNetworkClientMessage<TileSuspensionBridge> {
 
-  private final BlockPos[] positions;
   private BridgeMessage bridge_message;
-  private final BridgeMessage[] messages = new BridgeMessage[6];
+  private final BridgeMessage[] messages;
 
   public SyncClientBridgeMessage(final BlockPos[] positions, final BridgeMessage bridge_message, final BridgeData[] bridge_data){
-    this.positions = positions;
+    super(positions, TileSuspensionBridge.class);
     this.bridge_message = bridge_message;
-    messages[0] = bridge_data[0].message;
-    messages[1] = bridge_data[1].message;
-    messages[2] = bridge_data[2].message;
-    messages[3] = bridge_data[3].message;
-    messages[4] = bridge_data[4].message;
-    messages[5] = bridge_data[5].message;
+    messages = new BridgeMessage[]{
+      bridge_data[0].message, bridge_data[1].message, bridge_data[2].message,
+      bridge_data[3].message, bridge_data[4].message, bridge_data[5].message
+    };
   }
 
   public SyncClientBridgeMessage(final List<BlockPos> positions, final BridgeMessage bridge_message, final BridgeData[] bridge_data){
@@ -32,57 +27,35 @@ public final class SyncClientBridgeMessage {
   }
 
   public SyncClientBridgeMessage(final BlockPos[] positions, final BridgeMessage bridge_message, final BridgeMessage[] messages){
-    this.positions = positions;
+    super(positions, TileSuspensionBridge.class);
     this.bridge_message = bridge_message;
-    this.messages[0] = messages[0];
-    this.messages[1] = messages[1];
-    this.messages[2] = messages[2];
-    this.messages[3] = messages[3];
-    this.messages[4] = messages[4];
-    this.messages[5] = messages[5];
+    this.messages = messages;
   }
 
-  public static final void encode(final SyncClientBridgeMessage message, final FriendlyByteBuf buf){
-    NetworkUtil.writeBlockPositions(buf, message.positions);
-    buf.writeInt(message.bridge_message.ordinal());
-    buf.writeInt(message.messages[0].ordinal());
-    buf.writeInt(message.messages[1].ordinal());
-    buf.writeInt(message.messages[2].ordinal());
-    buf.writeInt(message.messages[3].ordinal());
-    buf.writeInt(message.messages[4].ordinal());
-    buf.writeInt(message.messages[5].ordinal());
+  public SyncClientBridgeMessage(final FriendlyByteBuf buf){
+    super(NetworkUtil.readBlockPositions(buf), TileSuspensionBridge.class);
+    bridge_message = buf.readEnum(BridgeMessage.class);
+    messages = new BridgeMessage[]{
+      buf.readEnum(BridgeMessage.class), buf.readEnum(BridgeMessage.class), buf.readEnum(BridgeMessage.class),
+      buf.readEnum(BridgeMessage.class), buf.readEnum(BridgeMessage.class), buf.readEnum(BridgeMessage.class)
+    };
   }
 
-  public static final SyncClientBridgeMessage decode(final FriendlyByteBuf buf){
-    final BlockPos[] positions = NetworkUtil.readBlockPositions(buf);
-    final BridgeMessage[] v = BridgeMessage.values();
-    final BridgeMessage bridge_message = v[buf.readInt()];
-    final BridgeMessage[] messages = {
-      v[buf.readInt()], v[buf.readInt()], v[buf.readInt()],
-      v[buf.readInt()], v[buf.readInt()], v[buf.readInt()]};
-    return new SyncClientBridgeMessage(positions, bridge_message, messages);
+  @Override
+  public final void encode(final FriendlyByteBuf buf){
+    NetworkUtil.writeBlockPositions(buf, positions);
+    buf.writeEnum(bridge_message);
+    buf.writeEnum(messages[0]);
+    buf.writeEnum(messages[1]);
+    buf.writeEnum(messages[2]);
+    buf.writeEnum(messages[3]);
+    buf.writeEnum(messages[4]);
+    buf.writeEnum(messages[5]);
   }
 
-  public static final void handle(final SyncClientBridgeMessage message, final Supplier<NetworkEvent.Context> context_supplier){
-    final NetworkEvent.Context context = context_supplier.get();
-    context.enqueueWork(() -> {
-      
-      @SuppressWarnings("resource")
-      final Minecraft minecraft = Minecraft.getInstance();
-      @SuppressWarnings({ "null", "resource" })
-      final Level world = minecraft.player.level();
-      
-      TileSuspensionBridge tile;
-      for(final BlockPos pos : message.positions){
-        if(world.isLoaded(pos)){
-          tile = MinecraftUtility.getTileEntity(pos, world, TileSuspensionBridge.class);
-          if(tile != null){
-            tile.setMessages(message.bridge_message, message.messages);
-          }
-        }
-      }
-    });
-    context.setPacketHandled(true);
+  @Override
+  protected final void handle(final ClientLevel level, final LocalPlayer player, final TileSuspensionBridge tile){
+    tile.setMessages(bridge_message, messages);
   }
 
 }

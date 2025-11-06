@@ -1,5 +1,6 @@
 package addsynth.overpoweredtechnology.game;
 
+import addsynth.core.util.network.ADDSynthNetworkHandler;
 import addsynth.overpoweredtechnology.OverpoweredTechnology;
 import addsynth.overpoweredtechnology.machines.advanced_gem_converter.AdvancedGemConverterCommand;
 import addsynth.overpoweredtechnology.machines.advanced_gem_converter.GemConverterSyncClientMessage;
@@ -11,84 +12,25 @@ import addsynth.overpoweredtechnology.machines.portal.control_panel.GeneratePort
 import addsynth.overpoweredtechnology.machines.portal.control_panel.SyncPortalDataMessage;
 import addsynth.overpoweredtechnology.machines.suspension_bridge.RotateBridgeMessage;
 import addsynth.overpoweredtechnology.machines.suspension_bridge.SyncClientBridgeMessage;
-import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
-// http://mcforge.readthedocs.io/en/latest/networking/simpleimpl/
+// https://docs.minecraftforge.net/en/latest/networking/simpleimpl/
 
-public final class NetworkHandler {
+public final class NetworkHandler extends ADDSynthNetworkHandler {
 
-  private static final String PROTOCAL_VERSION = "1";
-
-  public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-    OverpoweredTechnology.getLocation("network_channel"),
-    () -> PROTOCAL_VERSION, PROTOCAL_VERSION::equals, PROTOCAL_VERSION::equals
-  );
+  public static final SimpleChannel INSTANCE = createChannel(OverpoweredTechnology.getLocation("network_channel"));
 
   public static final void registerMessages(){
-    INSTANCE.registerMessage(0,
-      CycleGemConverterMessage.class,
-      CycleGemConverterMessage::encode,
-      CycleGemConverterMessage::decode,
-      CycleGemConverterMessage::handle
-    );
-    INSTANCE.registerMessage(1,
-      SetLaserDistanceMessage.class,
-      SetLaserDistanceMessage::encode,
-      SetLaserDistanceMessage::decode,
-      SetLaserDistanceMessage::handle
-    );
-    INSTANCE.registerMessage(2,
-      LaserClientSyncMessage.class,
-      LaserClientSyncMessage::encode,
-      LaserClientSyncMessage::decode,
-      LaserClientSyncMessage::handle
-    );
-    INSTANCE.registerMessage(3,
-      GeneratePortalMessage.class,
-      GeneratePortalMessage::encode,
-      GeneratePortalMessage::decode,
-      GeneratePortalMessage::handle
-    );
-    INSTANCE.registerMessage(4,
-      SyncPortalDataMessage.class,
-      SyncPortalDataMessage::encode,
-      SyncPortalDataMessage::decode,
-      SyncPortalDataMessage::handle
-    );
-    INSTANCE.registerMessage(6,
-      SyncClientBridgeMessage.class,
-      SyncClientBridgeMessage::encode,
-      SyncClientBridgeMessage::decode,
-      SyncClientBridgeMessage::handle
-    );
-
-    INSTANCE.registerMessage(7,
-      RotateBridgeMessage.class,
-      RotateBridgeMessage::encode,
-      RotateBridgeMessage::decode,
-      RotateBridgeMessage::handle
-    );
-    
-    INSTANCE.registerMessage(8,
-      SetOutputThresholdMessage.class,
-      SetOutputThresholdMessage::encode,
-      SetOutputThresholdMessage::decode,
-      SetOutputThresholdMessage::handle
-    );
-    
-    INSTANCE.registerMessage(9,
-      GemConverterSyncClientMessage.class,
-      GemConverterSyncClientMessage::encode,
-      GemConverterSyncClientMessage::decode,
-      GemConverterSyncClientMessage::handle
-    );
-    INSTANCE.registerMessage(10,
-      AdvancedGemConverterCommand.class,
-      AdvancedGemConverterCommand::encode,
-      AdvancedGemConverterCommand::decode,
-      AdvancedGemConverterCommand::handle
-    );
+    registerServerMessage( 0, INSTANCE, CycleGemConverterMessage.class,      CycleGemConverterMessage::decode);
+    registerServerMessage( 1, INSTANCE, SetLaserDistanceMessage.class,       SetLaserDistanceMessage::decode);
+    registerClientMessage( 2, INSTANCE, LaserClientSyncMessage.class,        LaserClientSyncMessage::decode);
+    registerServerMessage( 3, INSTANCE, GeneratePortalMessage.class,         GeneratePortalMessage::decode);
+    registerClientMessage( 4, INSTANCE, SyncPortalDataMessage.class,         SyncPortalDataMessage::new);
+    registerClientMessage( 6, INSTANCE, SyncClientBridgeMessage.class,       SyncClientBridgeMessage::new);
+    registerServerMessage( 7, INSTANCE, RotateBridgeMessage.class,           RotateBridgeMessage::decode);
+    registerServerMessage( 8, INSTANCE, SetOutputThresholdMessage.class,     SetOutputThresholdMessage::decode);
+    registerClientMessage( 9, INSTANCE, GemConverterSyncClientMessage.class, GemConverterSyncClientMessage::decode);
+    registerServerMessage(10, INSTANCE, AdvancedGemConverterCommand.class,   AdvancedGemConverterCommand::decode);
   }
 
 }
