@@ -1,6 +1,5 @@
 package addsynth.energy.registers;
 
-import addsynth.core.game.registry.BlockItemHolder;
 import addsynth.core.game.registry.RegistryUtil;
 import addsynth.energy.ADDSynthEnergy;
 import addsynth.energy.gameplay.CreativeTab;
@@ -68,19 +67,19 @@ public final class Registers {
       final IForgeRegistry<Item> registry = event.getForgeRegistry();
       // BlockItemHolder.register(registry, EnergyBlocks.low_voltage_wire);
       registry.register(Names.LOW_VOLTAGE_WIRE, new Item(new Item.Properties()));
-      BlockItemHolder.register(registry, EnergyBlocks.wire);
-      BlockItemHolder.register(registry, EnergyBlocks.generator);
-      BlockItemHolder.register(registry, EnergyBlocks.charger);
-      BlockItemHolder.register(registry, EnergyBlocks.energy_storage);
-      BlockItemHolder.register(registry, EnergyBlocks.compressor);
-      BlockItemHolder.register(registry, EnergyBlocks.electric_furnace);
-      BlockItemHolder.register(registry, EnergyBlocks.circuit_fabricator);
-      BlockItemHolder.register(registry, EnergyBlocks.universal_energy_machine);
-      BlockItemHolder.register(registry, EnergyBlocks.energy_diagnostics_block);
+      RegistryUtil.register(registry, EnergyBlocks.wire);
+      RegistryUtil.register(registry, EnergyBlocks.generator);
+      RegistryUtil.register(registry, EnergyBlocks.charger);
+      RegistryUtil.register(registry, EnergyBlocks.energy_storage);
+      RegistryUtil.register(registry, EnergyBlocks.compressor);
+      RegistryUtil.register(registry, EnergyBlocks.electric_furnace);
+      RegistryUtil.register(registry, EnergyBlocks.circuit_fabricator);
+      RegistryUtil.register(registry, EnergyBlocks.universal_energy_machine);
+      RegistryUtil.register(registry, EnergyBlocks.energy_diagnostics_block);
 
       registry.register(Names.PHOTOVOLTAIC_CELL, new Item(new Item.Properties()));
-      BlockItemHolder.register(registry, EnergyBlocks.solar_panel);
-      BlockItemHolder.register(registry, EnergyBlocks.solar_panel_controller);
+      RegistryUtil.register(registry, EnergyBlocks.solar_panel);
+      RegistryUtil.register(registry, EnergyBlocks.solar_panel_controller);
       registry.register(Names.BATTERY,             new BatteryItem());
       registry.register(Names.POWER_CORE,          new Item(new Item.Properties()));
       registry.register(Names.ADVANCED_POWER_CORE, new Item(new Item.Properties()));

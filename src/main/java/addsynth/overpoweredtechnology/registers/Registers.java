@@ -2,9 +2,9 @@ package addsynth.overpoweredtechnology.registers;
 
 import java.util.List;
 import addsynth.core.compat.Compatibility;
+import addsynth.core.game.item.AdvancedItem;
 import addsynth.core.game.item.constants.ArmorMaterial;
 import addsynth.core.game.item.constants.EquipmentType;
-import addsynth.core.game.registry.BlockItemHolder;
 import addsynth.core.game.registry.RegistryUtil;
 import addsynth.overpoweredtechnology.OverpoweredTechnology;
 import addsynth.overpoweredtechnology.assets.CreativeTab;
@@ -59,6 +59,7 @@ import addsynth.overpoweredtechnology.machines.portal.rift.PortalEnergyBlock;
 import addsynth.overpoweredtechnology.machines.suspension_bridge.ContainerSuspensionBridge;
 import addsynth.overpoweredtechnology.machines.suspension_bridge.EnergyBridge;
 import addsynth.overpoweredtechnology.machines.suspension_bridge.EnergySuspensionBridgeBlock;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -146,9 +147,9 @@ public final class Registers {
       registry.register(Names.CELESTIAL_GEM,              new Item(new Item.Properties()));
       registry.register(Names.ENERGY_CRYSTAL_SHARDS,      new EnergyCrystalShards());
       registry.register(Names.ENERGY_CRYSTAL,             new EnergyCrystal());
-      BlockItemHolder.register(registry, OverpoweredBlocks.light_block);
+      RegistryUtil.register(registry, OverpoweredBlocks.light_block);
       registry.register(Names.VOID_CRYSTAL,               new VoidCrystal());
-      BlockItemHolder.register(registry, OverpoweredBlocks.null_block);
+      RegistryUtil.register(registry, OverpoweredBlocks.null_block);
       
       registry.register(Names.ENERGIZED_POWER_CORE,       new Item(new Item.Properties()));
       registry.register(Names.NULLIFIED_POWER_CORE,       new Item(new Item.Properties()));
@@ -173,45 +174,45 @@ public final class Registers {
       registry.register(DeviceColor.BLUE.lens_name,       new LensItem(DeviceColor.BLUE));
       registry.register(DeviceColor.MAGENTA.lens_name,    new LensItem(DeviceColor.MAGENTA));
       
-      registry.register(Names.PLASMA,                     new PlasmaItem());
-      registry.register(Names.FUSION_CORE,                new FusionCore());
+      registry.register(Names.PLASMA,                     new AdvancedItem(ChatFormatting.AQUA));
+      registry.register(Names.FUSION_CORE,                new AdvancedItem(ChatFormatting.GOLD));
       registry.register(Names.MATTER_ENERGY_CORE,         new Item(new Item.Properties()));
-      registry.register(Names.DIMENSIONAL_FLUX,           new DimensionalFlux());
+      registry.register(Names.DIMENSIONAL_FLUX,           new AdvancedItem(ChatFormatting.LIGHT_PURPLE));
       registry.register(Names.DIMENSIONAL_ANCHOR,         new DimensionalAnchor());
-      registry.register(Names.UNIMATTER,                  new Item(new Item.Properties()));
+      registry.register(Names.UNIMATTER,                  new AdvancedItem(ChatFormatting.GRAY));
       
-      BlockItemHolder.register(registry, OverpoweredBlocks.data_cable);
-      BlockItemHolder.register(registry, OverpoweredBlocks.energy_extractor);
-      BlockItemHolder.register(registry, OverpoweredBlocks.gem_converter);
-      BlockItemHolder.register(registry, OverpoweredBlocks.identifier);
-      BlockItemHolder.register(registry, OverpoweredBlocks.inverter);
-      BlockItemHolder.register(registry, OverpoweredBlocks.magic_infuser);
-      BlockItemHolder.register(registry, OverpoweredBlocks.energy_suspension_bridge);
-      BlockItemHolder.register(registry, OverpoweredBlocks.portal_control_panel);
-      BlockItemHolder.register(registry, OverpoweredBlocks.portal_frame);
-      BlockItemHolder.register(registry, OverpoweredBlocks.plasma_generator);
-      BlockItemHolder.register(registry, OverpoweredBlocks.crystal_matter_generator);
-      BlockItemHolder.register(registry, OverpoweredBlocks.advanced_ore_refinery);
+      RegistryUtil.register(registry, OverpoweredBlocks.data_cable);
+      RegistryUtil.register(registry, OverpoweredBlocks.energy_extractor);
+      RegistryUtil.register(registry, OverpoweredBlocks.gem_converter);
+      RegistryUtil.register(registry, OverpoweredBlocks.identifier);
+      RegistryUtil.register(registry, OverpoweredBlocks.inverter);
+      RegistryUtil.register(registry, OverpoweredBlocks.magic_infuser);
+      RegistryUtil.register(registry, OverpoweredBlocks.energy_suspension_bridge);
+      RegistryUtil.register(registry, OverpoweredBlocks.portal_control_panel);
+      RegistryUtil.register(registry, OverpoweredBlocks.portal_frame);
+      RegistryUtil.register(registry, OverpoweredBlocks.plasma_generator);
+      RegistryUtil.register(registry, OverpoweredBlocks.crystal_matter_generator);
+      RegistryUtil.register(registry, OverpoweredBlocks.advanced_ore_refinery);
       
-      BlockItemHolder.register(registry, OverpoweredBlocks.laser_housing);
-      BlockItemHolder.register(registry, Laser.WHITE.cannon);
-      BlockItemHolder.register(registry, Laser.RED.cannon);
-      BlockItemHolder.register(registry, Laser.ORANGE.cannon);
-      BlockItemHolder.register(registry, Laser.YELLOW.cannon);
-      BlockItemHolder.register(registry, Laser.GREEN.cannon);
-      BlockItemHolder.register(registry, Laser.CYAN.cannon);
-      BlockItemHolder.register(registry, Laser.BLUE.cannon);
-      BlockItemHolder.register(registry, Laser.MAGENTA.cannon);
+      RegistryUtil.register(registry, OverpoweredBlocks.laser_housing);
+      RegistryUtil.register(registry, Laser.WHITE.cannon);
+      RegistryUtil.register(registry, Laser.RED.cannon);
+      RegistryUtil.register(registry, Laser.ORANGE.cannon);
+      RegistryUtil.register(registry, Laser.YELLOW.cannon);
+      RegistryUtil.register(registry, Laser.GREEN.cannon);
+      RegistryUtil.register(registry, Laser.CYAN.cannon);
+      RegistryUtil.register(registry, Laser.BLUE.cannon);
+      RegistryUtil.register(registry, Laser.MAGENTA.cannon);
       
-      BlockItemHolder.register(registry, OverpoweredBlocks.fusion_converter);
-      BlockItemHolder.register(registry, OverpoweredBlocks.fusion_control_unit);
-      BlockItemHolder.register(registry, OverpoweredBlocks.fusion_chamber);
-      BlockItemHolder.register(registry, OverpoweredBlocks.fusion_control_laser);
+      RegistryUtil.register(registry, OverpoweredBlocks.fusion_converter);
+      RegistryUtil.register(registry, OverpoweredBlocks.fusion_control_unit);
+      RegistryUtil.register(registry, OverpoweredBlocks.fusion_chamber);
+      RegistryUtil.register(registry, OverpoweredBlocks.fusion_control_laser);
       
-      BlockItemHolder.register(registry, OverpoweredBlocks.matter_compressor);
-      BlockItemHolder.register(registry, OverpoweredBlocks.advanced_gem_converter);
+      RegistryUtil.register(registry, OverpoweredBlocks.matter_compressor);
+      RegistryUtil.register(registry, OverpoweredBlocks.advanced_gem_converter);
       
-      BlockItemHolder.register(registry, OverpoweredBlocks.iron_frame_block);
+      RegistryUtil.register(registry, OverpoweredBlocks.iron_frame_block);
       registry.register(Names.BLACK_HOLE,                 new BlackHoleItem());
       
       registry.register(DeviceColor.WHITE.laser_sword,   new LaserSword());

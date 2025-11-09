@@ -13,7 +13,6 @@ public final class LensItem extends Item {
 
   public final int index;
   private final ChatFormatting color_code;
-  // https://minecraft.gamepedia.com/Formatting_codes
 
   public LensItem(final DeviceColor color){
     super(new Item.Properties());

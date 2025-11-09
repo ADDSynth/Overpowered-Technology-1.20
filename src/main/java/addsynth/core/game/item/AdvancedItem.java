@@ -6,7 +6,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-// UNUSED: AdvancedItem(ChatFormatting style)
 public class AdvancedItem extends Item {
 
   private final ChatFormatting style;

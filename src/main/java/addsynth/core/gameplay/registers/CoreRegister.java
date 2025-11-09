@@ -1,7 +1,7 @@
 package addsynth.core.gameplay.registers;
 
 import addsynth.core.ADDSynthCore;
-import addsynth.core.game.registry.BlockItemHolder;
+import addsynth.core.game.registry.RegistryUtil;
 import addsynth.core.gameplay.CreativeTab;
 import addsynth.core.gameplay.blocks.CautionBlock;
 import addsynth.core.gameplay.blocks.TrophyBlock;
@@ -49,16 +49,16 @@ public final class CoreRegister {
     }
     if(key.equals(ForgeRegistries.Keys.ITEMS)){
       final IForgeRegistry<Item> registry = event.getForgeRegistry();
-      BlockItemHolder.register(registry, Core.caution_block);
-      BlockItemHolder.register(registry, Core.music_box);
+      RegistryUtil.register(registry, Core.caution_block);
+      RegistryUtil.register(registry, Core.music_box);
       registry.register(Names.MUSIC_SHEET,     new MusicSheet());
-      BlockItemHolder.register(registry, Core.team_manager);
-      BlockItemHolder.register(registry, Core.auto_jukebox);
+      RegistryUtil.register(registry, Core.team_manager);
+      RegistryUtil.register(registry, Core.auto_jukebox);
       registry.register(Names.TROPHY_BASE,     new Item(new Item.Properties()));
-      BlockItemHolder.register(registry, Trophy.bronze);
-      BlockItemHolder.register(registry, Trophy.silver);
-      BlockItemHolder.register(registry, Trophy.gold);
-      BlockItemHolder.register(registry, Trophy.platinum);
+      RegistryUtil.register(registry, Trophy.bronze);
+      RegistryUtil.register(registry, Trophy.silver);
+      RegistryUtil.register(registry, Trophy.gold);
+      RegistryUtil.register(registry, Trophy.platinum);
       registry.register(Names.CONCH_SHELL,     new Item(new Item.Properties()));
       registry.register(Names.SAND_DOLLAR,     new Item(new Item.Properties()));
       registry.register(Names.COWRIE,          new Item(new Item.Properties()));
