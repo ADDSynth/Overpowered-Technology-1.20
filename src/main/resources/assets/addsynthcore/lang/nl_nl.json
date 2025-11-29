@@ -29,6 +29,11 @@
 "block.addsynthcore.platinum_trophy": "Platina trofee",
 
 "item.addsynthcore.music_sheet": "Bladmuziek",
+"item.addsynthcore.personal_beacon": "Personal Beacon",
+"item.addsynthcore.watering_can": "Watering Can",
+"item.addsynthcore.hedge_trimmers": "Hedge Trimmers",
+"item.addsynthcore.iron_shield": "Iron Shield",
+"item.addsynthcore.trophy_base": "trofee basis",
 "item.addsynthcore.conch_shell": "Conch Shell",
 "item.addsynthcore.sand_dollar": "Sand Dollar",
 "item.addsynthcore.cowrie": "Cowrie",
@@ -38,7 +43,6 @@
 "item.addsynthcore.wentletrap": "Wentletrap",
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
-"item.addsynthcore.trophy_base": "trofee basis",
 
 "gui.addsynthcore.direction.north": "noorden",
 "gui.addsynthcore.direction.south": "zuiden",
@@ -62,7 +66,6 @@
 "gui.addsynthcore.instrument.square": "Vierkante golf",
 "gui.addsynthcore.instrument.banjo": "Banjo",
 "gui.addsynthcore.instrument.pling": "Elektrische piano",
-"gui.addsynthcore.jei_description.scythes": "zeisen worden gebruikt om bladeren zeer snel van bomen af te snijden.",
 "gui.addsynthcore.jei_description.music_box": "Druk op de toetsen op je toetsenbord om de noten te veranderen. Schik de noten in het muziekraster en druk op play om de huidige muziekdoos te horen. Activeer de muziekdoos met een rode draad om hem te spelen. Als de muziekdoos klaar is met spelen, zoekt hij in de volgende richting naar de volgende muziekdoos.",
 "gui.addsynthcore.jei_description.music_sheet": "Het muziekblad wordt gebruikt om muziekgegevens van de ene muziekdoos naar de andere te kopiëren.",
 "gui.addsynthcore.jei_description.team_manager": "Team Manager Description.",
@@ -157,10 +160,13 @@
 "gui.addsynthcore.team_manager.criteria.food": "Food",
 "gui.addsynthcore.team_manager.criteria.armor": "Armor",
 "gui.addsynthcore.tooltip.deprecated": "§c[Deprecated]",
+"gui.addsynthcore.tooltip.personal_beacon": "Gives the Glowing status effect",
+"gui.addsynthcore.tooltip.watering_can": "Bonemeals crops and other things",
+"gui.addsynthcore.tooltip.hedge_trimmers": "Mines plants in a large area",
 
 
 
-"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range %s and %s.",
+"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range of %s and %s.",
 "commands.addsynthcore.blackout.success": "%s has just summoned %s Bats.\nUse command §a/kill @e[type=minecraft:bat]§r to get rid of them.",
 "commands.addsynthcore.item_explosion.success": "Spawned %s items.",
 "commands.addsynthcore.lightning_storm.success": "Started lightning storm. Count: %s, Radius: %s, Every %s Ticks, Chance: %s",

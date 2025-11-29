@@ -29,6 +29,11 @@
 "block.addsynthcore.platinum_trophy": "platina trofeu",
 
 "item.addsynthcore.music_sheet": "hârtie muzicală",
+"item.addsynthcore.personal_beacon": "Personal Beacon",
+"item.addsynthcore.watering_can": "Watering Can",
+"item.addsynthcore.hedge_trimmers": "Hedge Trimmers",
+"item.addsynthcore.iron_shield": "Iron Shield",
+"item.addsynthcore.trophy_base": "Baza de trofee",
 "item.addsynthcore.conch_shell": "Conch Shell",
 "item.addsynthcore.sand_dollar": "Sand Dollar",
 "item.addsynthcore.cowrie": "Cowrie",
@@ -38,7 +43,6 @@
 "item.addsynthcore.wentletrap": "Wentletrap",
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
-"item.addsynthcore.trophy_base": "Baza de trofee",
 
 "gui.addsynthcore.direction.north": "Nord",
 "gui.addsynthcore.direction.south": "Sud",
@@ -62,7 +66,6 @@
 "gui.addsynthcore.instrument.square": "Valul pătrat",
 "gui.addsynthcore.instrument.banjo": "Banjo",
 "gui.addsynthcore.instrument.pling": "Pian electric",
-"gui.addsynthcore.jei_description.scythes": "zgârieturile sunt folosite pentru a tăia foarte repede frunzele copacilor.",
 "gui.addsynthcore.jei_description.music_box": "Apăsați tastele de pe tastatură pentru a schimba notele. Aranjați notele în grila muzicală și apăsați redare pentru a auzi caseta de muzică curentă. Activați caseta de muzică cu un fir roșu pentru a reda. Când caseta de muzică este terminată de redare, aceasta va căuta în următoarea direcție pentru următoarea casetă de muzică.",
 "gui.addsynthcore.jei_description.music_sheet": "Fișa muzicală este utilizată pentru a copia date muzicale de la o casetă de muzică la alta.",
 "gui.addsynthcore.jei_description.team_manager": "Team Manager Description.",
@@ -157,10 +160,13 @@
 "gui.addsynthcore.team_manager.criteria.food": "Food",
 "gui.addsynthcore.team_manager.criteria.armor": "Armor",
 "gui.addsynthcore.tooltip.deprecated": "§c[Deprecated]",
+"gui.addsynthcore.tooltip.personal_beacon": "Gives the Glowing status effect",
+"gui.addsynthcore.tooltip.watering_can": "Bonemeals crops and other things",
+"gui.addsynthcore.tooltip.hedge_trimmers": "Mines plants in a large area",
 
 
 
-"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range %s and %s.",
+"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range of %s and %s.",
 "commands.addsynthcore.blackout.success": "%s has just summoned %s Bats.\nUse command §a/kill @e[type=minecraft:bat]§r to get rid of them.",
 "commands.addsynthcore.item_explosion.success": "Spawned %s items.",
 "commands.addsynthcore.lightning_storm.success": "Started lightning storm. Count: %s, Radius: %s, Every %s Ticks, Chance: %s",

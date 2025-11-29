@@ -29,6 +29,11 @@
 "block.addsynthcore.platinum_trophy": "플래티넘 트로피",
 
 "item.addsynthcore.music_sheet": "음악 시트",
+"item.addsynthcore.personal_beacon": "Personal Beacon",
+"item.addsynthcore.watering_can": "Watering Can",
+"item.addsynthcore.hedge_trimmers": "Hedge Trimmers",
+"item.addsynthcore.iron_shield": "Iron Shield",
+"item.addsynthcore.trophy_base": "트로피베이스",
 "item.addsynthcore.conch_shell": "Conch Shell",
 "item.addsynthcore.sand_dollar": "Sand Dollar",
 "item.addsynthcore.cowrie": "Cowrie",
@@ -38,7 +43,6 @@
 "item.addsynthcore.wentletrap": "Wentletrap",
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
-"item.addsynthcore.trophy_base": "트로피베이스",
 
 "gui.addsynthcore.direction.north": "북쪽",
 "gui.addsynthcore.direction.south": "남쪽",
@@ -62,7 +66,6 @@
 "gui.addsynthcore.instrument.square": "네모 난 파동",
 "gui.addsynthcore.instrument.banjo": "밴조",
 "gui.addsynthcore.instrument.pling": "일렉트릭 피아노",
-"gui.addsynthcore.jei_description.scythes": "낫은 나무 잎을 매우 빨리 자르는 데 사용됩니다.",
 "gui.addsynthcore.jei_description.music_box": "키보드의 키를 눌러 메모를 변경하십시오. 음표에 음표를 정렬하고 재생을 눌러 현재 음표를 듣습니다. 빨간색 와이어로 뮤직 박스를 활성화하여 재생합니다. 뮤직 박스가 재생되면 다음 방향으로 다음 뮤직 박스를 검색합니다.",
 "gui.addsynthcore.jei_description.music_sheet": "악보는 한 음악 상자에서 다른 음악 상자로 음악 데이터를 복사하는 데 사용됩니다.",
 "gui.addsynthcore.jei_description.team_manager": "Team Manager Description.",
@@ -157,10 +160,13 @@
 "gui.addsynthcore.team_manager.criteria.food": "Food",
 "gui.addsynthcore.team_manager.criteria.armor": "Armor",
 "gui.addsynthcore.tooltip.deprecated": "§c[Deprecated]",
+"gui.addsynthcore.tooltip.personal_beacon": "Gives the Glowing status effect",
+"gui.addsynthcore.tooltip.watering_can": "Bonemeals crops and other things",
+"gui.addsynthcore.tooltip.hedge_trimmers": "Mines plants in a large area",
 
 
 
-"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range %s and %s.",
+"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range of %s and %s.",
 "commands.addsynthcore.blackout.success": "%s has just summoned %s Bats.\nUse command §a/kill @e[type=minecraft:bat]§r to get rid of them.",
 "commands.addsynthcore.item_explosion.success": "Spawned %s items.",
 "commands.addsynthcore.lightning_storm.success": "Started lightning storm. Count: %s, Radius: %s, Every %s Ticks, Chance: %s",

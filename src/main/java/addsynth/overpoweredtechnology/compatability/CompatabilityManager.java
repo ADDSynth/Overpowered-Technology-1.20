@@ -1,7 +1,6 @@
 package addsynth.overpoweredtechnology.compatability;
 
 import addsynth.core.compat.Compatibility;
-import addsynth.overpoweredtechnology.compatability.curios.OverpoweredCurios;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 
 public final class CompatabilityManager {
@@ -10,9 +9,6 @@ public final class CompatabilityManager {
     // if(Compatibility.PROJECT_E.isLoaded()){
     //   ProjectE.register_emc_values();
     // }
-    if(Compatibility.CURIOS.isLoaded()){
-      OverpoweredCurios.register_slots();
-    }
   }
 
 }

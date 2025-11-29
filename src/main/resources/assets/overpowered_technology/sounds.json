@@ -1,6 +1,5 @@
 {
   "block.laser.fire": {
-    "category": "block",
     "subtitle": "subtitle.overpowered_technology.laser_fire",
     "sounds": [ "overpowered_technology:sound65" ]
   }

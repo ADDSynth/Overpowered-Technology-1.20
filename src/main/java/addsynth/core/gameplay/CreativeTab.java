@@ -1,6 +1,7 @@
 package addsynth.core.gameplay;
 
 import addsynth.core.ADDSynthCore;
+import addsynth.core.compat.Compatibility;
 import addsynth.core.gameplay.reference.Core;
 import addsynth.core.gameplay.reference.Trophy;
 import net.minecraft.core.Registry;
@@ -27,6 +28,12 @@ public final class CreativeTab {
         output.accept(Core.music_sheet.get());
         output.accept(Core.team_manager.get());
         output.accept(Core.auto_jukebox.get());
+        if(Compatibility.CURIOS.isLoaded()){
+          output.accept(Core.personal_beacon.get());
+        }
+        output.accept(Core.watering_can.get());
+        output.accept(Core.hedge_trimmers.get());
+        // output.accept(Core.iron_shield.get());
         output.accept(Trophy.trophy_base.get());
         output.accept(Trophy.bronze.get());
         output.accept(Trophy.silver.get());

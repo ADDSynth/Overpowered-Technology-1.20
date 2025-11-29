@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "addsynthcore:personal_beacon",
     "overpowered_technology:dimensional_anchor"
   ]
 }

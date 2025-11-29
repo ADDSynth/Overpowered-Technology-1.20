@@ -29,6 +29,11 @@
 "block.addsynthcore.platinum_trophy": "प्लेटिनम ट्रॉफी",
 
 "item.addsynthcore.music_sheet": "संगीत नोटशीट",
+"item.addsynthcore.personal_beacon": "Personal Beacon",
+"item.addsynthcore.watering_can": "Watering Can",
+"item.addsynthcore.hedge_trimmers": "Hedge Trimmers",
+"item.addsynthcore.iron_shield": "Iron Shield",
+"item.addsynthcore.trophy_base": "ट्रॉफी बेस",
 "item.addsynthcore.conch_shell": "Conch Shell",
 "item.addsynthcore.sand_dollar": "Sand Dollar",
 "item.addsynthcore.cowrie": "Cowrie",
@@ -38,7 +43,6 @@
 "item.addsynthcore.wentletrap": "Wentletrap",
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
-"item.addsynthcore.trophy_base": "ट्रॉफी बेस",
 
 "gui.addsynthcore.direction.north": "उत्तर",
 "gui.addsynthcore.direction.south": "दक्षिण",
@@ -62,7 +66,6 @@
 "gui.addsynthcore.instrument.square": "स्क्वेर वेव",
 "gui.addsynthcore.instrument.banjo": "बैंजो",
 "gui.addsynthcore.instrument.pling": "इलेक्ट्रिक पियानो",
-"gui.addsynthcore.jei_description.scythes": "इसका उपयोग पेड़ की पत्तियों को बहुत जल्दी काटने के लिए किया जाता है।",
 "gui.addsynthcore.jei_description.music_box": "नोट बदलने के लिए अपने कीबोर्ड पर कीज दबाएं। संगीत ग्रिड में नोटों को व्यवस्थित करें और वर्तमान संगीत बॉक्स को सुनने के लिए प्ले प्रेस करें। इसे खेलने के लिए लाल संकेत के साथ संगीत बॉक्स को सक्रिय करें। जब संगीत बॉक्स किया जाता है, तो यह अगले संगीत बॉक्स के लिए अगली दिशा में खोज करेगा।",
 "gui.addsynthcore.jei_description.music_sheet": "म्यूजिक शीट का इस्तेमाल एक म्यूजिक बॉक्स से दूसरे म्यूजिक डेटा को कॉपी करने के लिए किया जाता है।",
 "gui.addsynthcore.jei_description.team_manager": "Team Manager Description.",
@@ -157,10 +160,13 @@
 "gui.addsynthcore.team_manager.criteria.food": "Food",
 "gui.addsynthcore.team_manager.criteria.armor": "Armor",
 "gui.addsynthcore.tooltip.deprecated": "§c[Deprecated]",
+"gui.addsynthcore.tooltip.personal_beacon": "Gives the Glowing status effect",
+"gui.addsynthcore.tooltip.watering_can": "Bonemeals crops and other things",
+"gui.addsynthcore.tooltip.hedge_trimmers": "Mines plants in a large area",
 
 
 
-"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range %s and %s.",
+"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range of %s and %s.",
 "commands.addsynthcore.blackout.success": "%s has just summoned %s Bats.\nUse command §a/kill @e[type=minecraft:bat]§r to get rid of them.",
 "commands.addsynthcore.item_explosion.success": "Spawned %s items.",
 "commands.addsynthcore.lightning_storm.success": "Started lightning storm. Count: %s, Radius: %s, Every %s Ticks, Chance: %s",

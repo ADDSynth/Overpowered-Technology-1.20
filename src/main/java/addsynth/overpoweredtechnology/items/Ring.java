@@ -1,9 +1,7 @@
 package addsynth.overpoweredtechnology.items;
 
 import java.util.List;
-import addsynth.core.compat.Compatibility;
 import addsynth.core.game.item.constants.ItemValue;
-import addsynth.overpoweredtechnology.compatability.curios.CuriosCapabilityProvider;
 import addsynth.overpoweredtechnology.compatability.curios.RingEffects;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -15,6 +13,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.Nullable;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
@@ -27,7 +26,7 @@ public final class Ring extends Item {
   @Override
   @Nullable
   public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt){
-    return Compatibility.CURIOS.isLoaded() ? new CuriosCapabilityProvider(
+    return CuriosApi.createCurioProvider(
       new ICurio(){
       
         @Override
@@ -42,8 +41,10 @@ public final class Ring extends Item {
         @Override
         public void curioTick(SlotContext slotContext){
           final LivingEntity livingEntity = slotContext.entity();
-          if(livingEntity.level().isClientSide == false){
-            // Example Ring in the Curios mod checks the livingEntity.ticksExisted and modulos it with 20,
+          @SuppressWarnings("resource")
+          final Level level = livingEntity.level();
+          if(level.isClientSide == false){
+            // Example Ring in the Curios mod checks the livingEntity.ticksExisted and modulos it with 19,
             // then Re-adds the effect every second. This is far superior than checking to see if the
             // entity has the effect, and then if the effect is about to run out.
             // But we still need the special case for the Extra Health effect.
@@ -57,7 +58,7 @@ public final class Ring extends Item {
         }
         
       }
-    ) : null;
+    );
   }
 
   @Override

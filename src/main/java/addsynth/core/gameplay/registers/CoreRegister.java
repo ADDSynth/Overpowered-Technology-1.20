@@ -1,8 +1,10 @@
 package addsynth.core.gameplay.registers;
 
 import addsynth.core.ADDSynthCore;
+import addsynth.core.compat.Compatibility;
 import addsynth.core.game.registry.RegistryUtil;
 import addsynth.core.gameplay.CreativeTab;
+import addsynth.core.gameplay.Sounds;
 import addsynth.core.gameplay.blocks.CautionBlock;
 import addsynth.core.gameplay.blocks.TrophyBlock;
 import addsynth.core.gameplay.blocks.jukebox.JukeboxContainer;
@@ -10,12 +12,14 @@ import addsynth.core.gameplay.blocks.jukebox.JukeboxPlayer;
 import addsynth.core.gameplay.blocks.music_box.MusicBox;
 import addsynth.core.gameplay.blocks.music_box.MusicSheet;
 import addsynth.core.gameplay.blocks.team_manager.TeamManagerBlock;
+import addsynth.core.gameplay.items.*;
 import addsynth.core.gameplay.reference.Core;
 import addsynth.core.gameplay.reference.Names;
 import addsynth.core.gameplay.reference.Trophy;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -54,6 +58,12 @@ public final class CoreRegister {
       registry.register(Names.MUSIC_SHEET,     new MusicSheet());
       RegistryUtil.register(registry, Core.team_manager);
       RegistryUtil.register(registry, Core.auto_jukebox);
+      if(Compatibility.CURIOS.isLoaded()){
+        registry.register(Names.PERSONAL_BEACON, new PersonalBeacon());
+      }
+      registry.register(Names.WATERING_CAN,    new WateringCan());
+      registry.register(Names.HEDGE_TRIMMERS,  new HedgeTrimmers());
+      // registry.register(Names.IRON_SHIELD,     new IronShield());
       registry.register(Names.TROPHY_BASE,     new Item(new Item.Properties()));
       RegistryUtil.register(registry, Trophy.bronze);
       RegistryUtil.register(registry, Trophy.silver);
@@ -81,6 +91,10 @@ public final class CoreRegister {
     if(key.equals(ForgeRegistries.Keys.MENU_TYPES)){
       final IForgeRegistry<MenuType> registry = event.getForgeRegistry();
       registry.register(Names.AUTO_JUKEBOX, IForgeMenuType.create(JukeboxContainer::new));
+    }
+    if(key.equals(ForgeRegistries.Keys.SOUND_EVENTS)){
+      final IForgeRegistry<SoundEvent> registry = event.getForgeRegistry();
+      registry.register(Sounds.Names.watering_can, SoundEvent.createVariableRangeEvent(Sounds.Names.watering_can));
     }
   }
 

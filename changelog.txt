@@ -3,6 +3,14 @@ version 6 - TBD
 NEW:
   Added Auto Jukebox.
     Can hold up to 27 Music Discs. Plays them in order or shuffled. Can also play Music Discs from other mods.
+  Added Personal Beacon:
+    Requires Curios. Place in Charm slot to apply Glowing Effect, allowing other players to see you through walls.
+  Added Watering Can:
+    Right-click water to fill. Up to 64 uses. Hydrates crops and sponge, and also bonemeals most things.
+  Added Hedge Trimmers:
+    Left-click any simple plant that breaks in one hit and will destroy all similar plants in a large radius.
+  // Added Iron Shield.
+   - TODO: A new shield is too complicated to implement right now.
   Added Seashells.
   Added the /addsynthcore map_colors Command. Spawns blocks of each MapColor at the highest point in the world.
    - Another command meant to help developers.
@@ -40,8 +48,8 @@ NEW:
    - Right-clicking the Solar Panel Controller will give you detailed info about the solar array.
   Charger machine, which can charge batteries and items (and probably items from other mods.)
   Energy tools, which need to be charged to function.
-   - Same mining level and number of uses as Diamond.
-   - Same speed and attack strength as Iron.
+   - Same mining level and number of uses as Diamond tools.
+   - Same speed and attack strength as Iron tools.
 ===Overpowered Technology:
 INFO:
   The mod ID has changed from 'overpowered' to 'overpowered_technology'.
@@ -52,6 +60,8 @@ NEW:
   Added Advanced Gem Converter.
 CHANGED:
   Celestial Sword was renamed to Celestial Blade.
+  Plasma now has an HD texture.
+  Fusion Core now has an HD texture.
 
 
 

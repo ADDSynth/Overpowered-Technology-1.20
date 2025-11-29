@@ -1,5 +1,6 @@
 package addsynth.overpoweredtechnology.items;
 
+import java.util.Optional;
 import addsynth.core.compat.Compatibility;
 import addsynth.overpoweredtechnology.OverpoweredTechnology;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
@@ -16,6 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 @EventBusSubscriber(modid = OverpoweredTechnology.MOD_ID, bus = Bus.FORGE)
 public final class DimensionalAnchor extends Item {
@@ -28,8 +30,11 @@ public final class DimensionalAnchor extends Item {
 
   public static final boolean player_has_dimensional_anchor(final Player player){
     if(Compatibility.CURIOS.isLoaded()){
-      if(CuriosApi.getCuriosHelper().findEquippedCurio(OverpoweredItems.dimensional_anchor.get(), player).isPresent()){
-        return true;
+      final Optional<ICuriosItemHandler> curios_inventory = CuriosApi.getCuriosInventory(player).resolve();
+      if(curios_inventory.isPresent()){
+        if(curios_inventory.get().findFirstCurio(OverpoweredItems.dimensional_anchor.get()).isPresent()){
+          return true;
+        }
       }
     }
     final Inventory inventory = player.getInventory();

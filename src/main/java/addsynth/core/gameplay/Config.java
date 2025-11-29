@@ -27,6 +27,13 @@ public final class Config {
   // Team Manager
   public static ForgeConfigSpec.BooleanValue translate_criteria_list;
 
+  // Hedge Trimmers
+  public static class HedgeTrimmers {
+    // public static ForgeConfigSpec.IntValue     horizontal_distance; Save this for a Values config file
+    // public static ForgeConfigSpec.IntValue     vertical_distance;
+    // public static ForgeConfigSpec.BooleanValue realistic_distance;
+  }
+
   public static ForgeConfigSpec.BooleanValue item_explosion_command;
   public static ForgeConfigSpec.BooleanValue zombie_raid_command;
   public static ForgeConfigSpec.BooleanValue blackout_command;
@@ -75,6 +82,12 @@ public final class Config {
       "or displays the ID names (false). You can also change this in the Team Manager Objective Edit screen.")
       .define("Translate Criteria List", true);
     builder.pop();
+
+    // builder.push("Hedge Trimmers");
+    //   HedgeTrimmers.realistic_distance = builder.comment(
+    //     "Destroy blocks in a spherical shape (true) or in a cube shape (false)."
+    //   ).define("Mine in Spherical Shape", true);
+    // builder.pop();
 
     builder.push("Compatibility");
       builder.push("Project E");

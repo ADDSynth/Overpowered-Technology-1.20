@@ -29,6 +29,11 @@
 "block.addsynthcore.platinum_trophy": "Trophée platine",
 
 "item.addsynthcore.music_sheet": "Feuille de musique",
+"item.addsynthcore.personal_beacon": "Personal Beacon",
+"item.addsynthcore.watering_can": "Watering Can",
+"item.addsynthcore.hedge_trimmers": "Hedge Trimmers",
+"item.addsynthcore.iron_shield": "Iron Shield",
+"item.addsynthcore.trophy_base": "Base de trophée",
 "item.addsynthcore.conch_shell": "Conch Shell",
 "item.addsynthcore.sand_dollar": "Sand Dollar",
 "item.addsynthcore.cowrie": "Cowrie",
@@ -38,7 +43,6 @@
 "item.addsynthcore.wentletrap": "Wentletrap",
 "item.addsynthcore.venus_comb": "Venus Comb",
 "item.addsynthcore.pearl": "Pearl",
-"item.addsynthcore.trophy_base": "Base de trophée",
 
 "gui.addsynthcore.direction.north": "Nord",
 "gui.addsynthcore.direction.south": "Sud",
@@ -62,7 +66,6 @@
 "gui.addsynthcore.instrument.square": "Vague carrée",
 "gui.addsynthcore.instrument.banjo": "Banjo",
 "gui.addsynthcore.instrument.pling": "Piano électrique",
-"gui.addsynthcore.jei_description.scythes": "les faux sont utilisés pour couper les feuilles des arbres très rapidement.",
 "gui.addsynthcore.jei_description.music_box": "Appuyez sur les touches de votre clavier pour modifier les notes. Organisez les notes dans la grille musicale et appuyez sur Lecture pour entendre la boîte à musique actuelle. Activez la boîte à musique avec un signal rouge pour la lire. Lorsque la boîte à musique a fini de jouer, elle cherchera dans la prochaine direction la boîte à musique suivante.",
 "gui.addsynthcore.jei_description.music_sheet": "La feuille de musique est utilisée pour copier des données musicales d'une boîte à musique à une autre.",
 "gui.addsynthcore.jei_description.team_manager": "Team Manager Description.",
@@ -157,10 +160,13 @@
 "gui.addsynthcore.team_manager.criteria.food": "Food",
 "gui.addsynthcore.team_manager.criteria.armor": "Armor",
 "gui.addsynthcore.tooltip.deprecated": "§c[Deprecated]",
+"gui.addsynthcore.tooltip.personal_beacon": "Gives the Glowing status effect",
+"gui.addsynthcore.tooltip.watering_can": "Bonemeals crops and other things",
+"gui.addsynthcore.tooltip.hedge_trimmers": "Mines plants in a large area",
 
 
 
-"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range %s and %s.",
+"commands.addsynthcore.argument_fail": "Argument \"%s\" must be in the range of %s and %s.",
 "commands.addsynthcore.blackout.success": "%s has just summoned %s Bats.\nUse command §a/kill @e[type=minecraft:bat]§r to get rid of them.",
 "commands.addsynthcore.item_explosion.success": "Spawned %s items.",
 "commands.addsynthcore.lightning_storm.success": "Started lightning storm. Count: %s, Radius: %s, Every %s Ticks, Chance: %s",

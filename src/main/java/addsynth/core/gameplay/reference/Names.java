@@ -13,6 +13,11 @@ public final class Names {
   public static final ResourceLocation TEAM_MANAGER    = ADDSynthCore.getLocation("team_manager");
   public static final ResourceLocation AUTO_JUKEBOX    = ADDSynthCore.getLocation("auto_jukebox");
 
+  public static final ResourceLocation PERSONAL_BEACON = ADDSynthCore.getLocation("personal_beacon");
+  public static final ResourceLocation WATERING_CAN    = ADDSynthCore.getLocation("watering_can");
+  public static final ResourceLocation HEDGE_TRIMMERS  = ADDSynthCore.getLocation("hedge_trimmers");
+  public static final ResourceLocation IRON_SHIELD     = ADDSynthCore.getLocation("iron_shield");
+
   public static final ResourceLocation TROPHY_BASE     = ADDSynthCore.getLocation("trophy_base");
   public static final ResourceLocation BRONZE_TROPHY   = ADDSynthCore.getLocation("bronze_trophy");
   public static final ResourceLocation SILVER_TROPHY   = ADDSynthCore.getLocation("silver_trophy");
