@@ -7,8 +7,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public final class Core {
 
-  // public static final RegistryObject<Block> test_block    = RegistryObject.create(Names.TEST_BLOCK,    ForgeRegistries.BLOCKS);
-
   public static final RegistryObject<Block> caution_block = RegistryObject.create(Names.CAUTION_BLOCK, ForgeRegistries.BLOCKS);
   public static final RegistryObject<Block> music_box     = RegistryObject.create(Names.MUSIC_BOX,     ForgeRegistries.BLOCKS);
   public static final RegistryObject<Item>  music_sheet   = RegistryObject.create(Names.MUSIC_SHEET,   ForgeRegistries.ITEMS);

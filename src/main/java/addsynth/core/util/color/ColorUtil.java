@@ -167,7 +167,7 @@ public final class ColorUtil {
       map_colors[i] = MapColor.byId(i);
     }
 
-    // Part 2: create difference list. get the difference for each MapColor aggainst each color we're testing.
+    // Part 2: create difference list. get the difference for each MapColor against each color we're testing.
     final Colors[] color_values = Colors.values();
     final int length = color_values.length;
     final int[][] difference = new int[number_of_colors][length];

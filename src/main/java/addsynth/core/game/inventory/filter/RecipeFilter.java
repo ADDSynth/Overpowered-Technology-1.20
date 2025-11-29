@@ -13,7 +13,7 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 
 /** This filter is used if you want to set the slots to accept 1 recipe at a time.
- *  It is likely you want different machines of the same type to be set to different
+ *  It is likely you'll want each machine of the same type to be set to different
  *  recipes, therefore you should make this an instance field, NOT STATIC.
  *  You can get a list of recipes by calling either {@link RecipeCollection#getRecipes()}
  *  or {@link RecipeManager#getAllRecipesFor(RecipeType)}.

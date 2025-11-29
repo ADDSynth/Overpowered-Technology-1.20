@@ -5,8 +5,6 @@ import net.minecraft.resources.ResourceLocation;
 
 public final class Names {
 
-  public static final ResourceLocation TEST_BLOCK      = ADDSynthCore.getLocation("test_block");
-
   public static final ResourceLocation CAUTION_BLOCK   = ADDSynthCore.getLocation("caution_block");
   public static final ResourceLocation MUSIC_BOX       = ADDSynthCore.getLocation("music_box");
   public static final ResourceLocation MUSIC_SHEET     = ADDSynthCore.getLocation("music_sheet");
