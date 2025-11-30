@@ -179,7 +179,7 @@ public final class Registers {
       registry.register(Names.MATTER_ENERGY_CORE,         new Item(new Item.Properties()));
       registry.register(Names.DIMENSIONAL_FLUX,           new AdvancedItem(ChatFormatting.LIGHT_PURPLE));
       registry.register(Names.DIMENSIONAL_ANCHOR,         new DimensionalAnchor());
-      registry.register(Names.UNIMATTER,                  new AdvancedItem(ChatFormatting.GRAY));
+      registry.register(Names.UNIMATTER,                  new AdvancedItem(ChatFormatting.GRAY, new Item.Properties().fireResistant()));
       
       RegistryUtil.register(registry, OverpoweredBlocks.data_cable);
       RegistryUtil.register(registry, OverpoweredBlocks.energy_extractor);

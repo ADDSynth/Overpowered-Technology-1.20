@@ -12,7 +12,7 @@ import net.minecraft.world.item.ShovelItem;
 public final class InfinityShovel extends ShovelItem {
 
   public InfinityShovel(){
-    super(OverpoweredTiers.INFINITY, ToolConstants.axe_damage, ToolConstants.axe_speed, new Item.Properties());
+    super(OverpoweredTiers.INFINITY, ToolConstants.axe_damage, ToolConstants.axe_speed, new Item.Properties().fireResistant());
   }
 
   @Override

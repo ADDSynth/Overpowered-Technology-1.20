@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 public class InfinityHoe extends HoeItem {
 
   public InfinityHoe(){
-    super(OverpoweredTiers.INFINITY, -4, 0.0f, new Item.Properties());
+    super(OverpoweredTiers.INFINITY, -4, 0.0f, new Item.Properties().fireResistant());
   }
 
   @Override

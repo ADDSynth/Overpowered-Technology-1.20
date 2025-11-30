@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 public final class InfinityAxe extends AxeItem {
 
   public InfinityAxe(){
-    super(OverpoweredTiers.INFINITY, 6.0f, -3.0f, new Item.Properties());
+    super(OverpoweredTiers.INFINITY, 6.0f, -3.0f, new Item.Properties().fireResistant());
   }
 
   @Override

@@ -12,7 +12,7 @@ import net.minecraft.world.item.PickaxeItem;
 public class InfinityPickaxe extends PickaxeItem {
 
   public InfinityPickaxe(){
-    super(OverpoweredTiers.INFINITY, ToolConstants.pickaxe_damage, ToolConstants.pickaxe_speed, new Item.Properties());
+    super(OverpoweredTiers.INFINITY, ToolConstants.pickaxe_damage, ToolConstants.pickaxe_speed, new Item.Properties().fireResistant());
   }
 
   @Override

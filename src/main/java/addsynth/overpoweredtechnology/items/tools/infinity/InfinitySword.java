@@ -18,7 +18,7 @@ import net.minecraft.world.item.SwordItem;
 public final class InfinitySword extends SwordItem {
 
   public InfinitySword(){
-    super(OverpoweredTiers.INFINITY, ToolConstants.sword_damage, ToolConstants.sword_damage, new Item.Properties());
+    super(OverpoweredTiers.INFINITY, ToolConstants.sword_damage, ToolConstants.sword_damage, new Item.Properties().fireResistant());
   }
 
   @Override
