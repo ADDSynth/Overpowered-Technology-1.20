@@ -38,8 +38,8 @@ public final class EnergyTools {
     ItemEnergy.useEnergy(itemstack, ENERGY_USAGE);
   }
   
-  public static final void reduceEnergy(ItemStack itemstack, int energy_used){
-    ItemEnergy.useEnergy(itemstack, energy_used);
+  public static final void attackEntity(ItemStack itemstack){
+    ItemEnergy.useEnergy(itemstack, ENERGY_USAGE * 2);
   }
 
 }

@@ -40,7 +40,6 @@ public final class EnergyShovel extends ShovelItem {
   public boolean mineBlock(ItemStack itemstack, Level level, BlockState blockstate, BlockPos position, LivingEntity entity){
     if(ToolUtil.mine(level, blockstate, position)){
       EnergyTools.reduceEnergy(itemstack);
-      return super.mineBlock(itemstack, level, blockstate, position, entity);
     }
     return true;
   }
@@ -48,10 +47,9 @@ public final class EnergyShovel extends ShovelItem {
   @Override
   public boolean hurtEnemy(ItemStack itemstack, LivingEntity target, LivingEntity attacker){
     if(ItemEnergy.hasEnergy(itemstack)){
-      EnergyTools.reduceEnergy(itemstack, EnergyTools.ENERGY_USAGE * 2);
-      return super.hurtEnemy(itemstack, target, attacker);
+      EnergyTools.attackEntity(itemstack);
     }
-    return false;
+    return true;
   }
 
   @Override
