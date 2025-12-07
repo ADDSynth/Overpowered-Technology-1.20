@@ -13,6 +13,7 @@ import addsynth.core.gameplay.blocks.music_box.MusicBox;
 import addsynth.core.gameplay.blocks.music_box.MusicSheet;
 import addsynth.core.gameplay.blocks.team_manager.TeamManagerBlock;
 import addsynth.core.gameplay.items.*;
+import addsynth.core.gameplay.items.backpack.*;
 import addsynth.core.gameplay.reference.Core;
 import addsynth.core.gameplay.reference.Names;
 import addsynth.core.gameplay.reference.Trophy;
@@ -58,6 +59,7 @@ public final class CoreRegister {
       registry.register(Names.MUSIC_SHEET,     new MusicSheet());
       RegistryUtil.register(registry, Core.team_manager);
       RegistryUtil.register(registry, Core.auto_jukebox);
+      registry.register(Names.BACKPACK,        new Backpack());
       if(Compatibility.CURIOS.isLoaded()){
         registry.register(Names.PERSONAL_BEACON, new PersonalBeacon());
       }
@@ -91,6 +93,7 @@ public final class CoreRegister {
     if(key.equals(ForgeRegistries.Keys.MENU_TYPES)){
       final IForgeRegistry<MenuType> registry = event.getForgeRegistry();
       registry.register(Names.AUTO_JUKEBOX, IForgeMenuType.create(JukeboxContainer::new));
+      registry.register(Names.BACKPACK,     IForgeMenuType.create(BackpackContainer::new));
     }
     if(key.equals(ForgeRegistries.Keys.SOUND_EVENTS)){
       final IForgeRegistry<SoundEvent> registry = event.getForgeRegistry();

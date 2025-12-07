@@ -3,6 +3,8 @@ version 6 - TBD
 NEW:
   Added Auto Jukebox.
     Can hold up to 27 Music Discs. Plays them in order or shuffled. Can also play Music Discs from other mods.
+  Added simple Backpacks:
+    Holds up to 27 items, and of course, you cannot insert a Backpack into another Backpack. Use Anvil to rename.
   Added Personal Beacon:
     Requires Curios. Place in Charm slot to apply Glowing Effect, allowing other players to see you through walls.
   Added Watering Can:

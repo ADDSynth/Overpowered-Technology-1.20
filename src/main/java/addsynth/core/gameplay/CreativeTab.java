@@ -28,6 +28,7 @@ public final class CreativeTab {
         output.accept(Core.music_sheet.get());
         output.accept(Core.team_manager.get());
         output.accept(Core.auto_jukebox.get());
+        output.accept(Core.backpack.get());
         if(Compatibility.CURIOS.isLoaded()){
           output.accept(Core.personal_beacon.get());
         }

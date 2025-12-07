@@ -52,8 +52,8 @@ public abstract class AbstractContainer extends AbstractContainerMenu {
    * Increments slot index from top to bottom, left to right.
    * @param tile
    * @param index Starting Index of first slot
-   * @param x X Position of top-left slot (inside border)
-   * @param y Y Position of top-left slot (inside border)
+   * @param x X Position of top-left slot (inside the slot border)
+   * @param y Y Position of top-left slot (inside the slot border)
    * @param width
    * @param height
    */
@@ -73,8 +73,8 @@ public abstract class AbstractContainer extends AbstractContainerMenu {
    * Increments slot index from top to bottom, left to right.
    * @param tile
    * @param index Starting Index of first slot
-   * @param x X Position of top-left slot (inside border)
-   * @param y Y Position of top-left slot (inside border)
+   * @param x X Position of top-left slot (inside the slot border)
+   * @param y Y Position of top-left slot (inside the slot border)
    * @param width 
    * @param height
    */

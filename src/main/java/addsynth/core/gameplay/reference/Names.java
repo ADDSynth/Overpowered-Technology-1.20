@@ -11,6 +11,7 @@ public final class Names {
   public static final ResourceLocation TEAM_MANAGER    = ADDSynthCore.getLocation("team_manager");
   public static final ResourceLocation AUTO_JUKEBOX    = ADDSynthCore.getLocation("auto_jukebox");
 
+  public static final ResourceLocation BACKPACK        = ADDSynthCore.getLocation("backpack");
   public static final ResourceLocation PERSONAL_BEACON = ADDSynthCore.getLocation("personal_beacon");
   public static final ResourceLocation WATERING_CAN    = ADDSynthCore.getLocation("watering_can");
   public static final ResourceLocation HEDGE_TRIMMERS  = ADDSynthCore.getLocation("hedge_trimmers");

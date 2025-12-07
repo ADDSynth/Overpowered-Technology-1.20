@@ -4,7 +4,11 @@ import java.util.function.Predicate;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-/** This is the simplest filter. It only allows one item in the slot. */
+/** This is the simplest filter. It only allows one item in the slot.
+ *  @Deprecated Registry Objects SHOULD NOT BE CACHED. Forge will dynamically
+ *              load mods during runtime in the future! REMOVE SingleItemFilter.
+ */
+@Deprecated
 public final class SingleItemFilter implements Predicate<ItemStack> {
 
   private final Item item;

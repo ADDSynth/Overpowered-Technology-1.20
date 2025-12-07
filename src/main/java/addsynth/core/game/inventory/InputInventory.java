@@ -33,14 +33,32 @@ public final class InputInventory extends CommonInventory {
     };
   }
 
+  /** 
+   * @deprecated Machines usually have small inventories that are filtered on a per-slot basis.
+   *             All other uses of Input Inventory will NOT use per-slot data, and will use a global filter.
+   *             Create a new Storage Inventory class?
+   */
+  @Deprecated
   public static final InputInventory create(final IInputInventory responder, final int number_of_slots){
     return number_of_slots > 0 ? new InputInventory(responder, SlotData.create_new_array(number_of_slots)) : null;
   }
 
+  /**
+   * @deprecated Machines usually have small inventories that are filtered on a per-slot basis.
+   *             All other uses of Input Inventory will NOT use per-slot data, and will use a global filter.
+   *             Create a new Storage Inventory class?
+   */
+  @Deprecated
   public static final InputInventory create(final IInputInventory responder, final int number_of_slots, final int maxStackSize){
     return number_of_slots > 0 ? new InputInventory(responder, SlotData.create_new_array(number_of_slots, maxStackSize)) : null;
   }
 
+  /**
+   * @deprecated Machines usually have small inventories that are filtered on a per-slot basis.
+   *             All other uses of Input Inventory will NOT use per-slot data, and will use a global filter.
+   *             Create a new Storage Inventory class?
+   */
+  @Deprecated
   public static final InputInventory create(final IInputInventory responder, final int number_of_slots, final Predicate<ItemStack> filter){
     return number_of_slots > 0 ? new InputInventory(responder, SlotData.create_new_array(number_of_slots, filter)) : null;
   }

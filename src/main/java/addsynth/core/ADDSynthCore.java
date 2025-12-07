@@ -8,6 +8,7 @@ import addsynth.core.gameplay.blocks.jukebox.JukeboxPlayerGui;
 import addsynth.core.gameplay.blocks.team_manager.data.CriteriaData;
 import addsynth.core.gameplay.blocks.team_manager.data.TeamData;
 import addsynth.core.gameplay.commands.ADDSynthCommands;
+import addsynth.core.gameplay.items.backpack.BackpackGui;
 import addsynth.core.gameplay.registers.Containers;
 import addsynth.core.recipe.FurnaceRecipes;
 import addsynth.core.util.CommonUtil;
@@ -86,6 +87,7 @@ public final class ADDSynthCore {
 
   private static final void client_setup(final FMLClientSetupEvent event){
     MenuScreens.register(Containers.AUTO_JUKEBOX.get(), JukeboxPlayerGui::new);
+    MenuScreens.register(Containers.BACKPACK.get(), BackpackGui::new);
     CriteriaData.calculate();
   }
 
