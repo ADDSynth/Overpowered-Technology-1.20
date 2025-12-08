@@ -22,12 +22,12 @@ public final class GuiMusicBox extends GuiBase {
   private static final int gui_height = 210;
   
   // gui text
-  private static final Component next_text         = Component.translatable("gui.addsynthcore.music_box.next");
-  private static final Component tempo_text        = Component.translatable("gui.addsynthcore.music_box.tempo");
-  private static final Component ticks_text        = Component.translatable("gui.addsynthcore.music_box.ticks");
-  private static final Component bpm_text          = Component.translatable("gui.addsynthcore.music_box.bpm");
+  private static final Component         next_text = Component.translatable("gui.addsynthcore.music_box.next").append(":");
+  private static final Component        tempo_text = Component.translatable("gui.addsynthcore.music_box.tempo").append(":");
+  private static final String           ticks_text = "gui.addsynthcore.music_box.ticks";
+  private static final String             bpm_text = "gui.addsynthcore.music_box.bpm";
   private static final Component current_note_text = Component.translatable("gui.addsynthcore.music_box.current_note");
-  private static final Component instrument_text   = Component.translatable("gui.addsynthcore.music_box.instrument");
+  private static final Component   instrument_text = Component.translatable("gui.addsynthcore.music_box.instrument");
   private static final Component[] instrument = new Component[] {
     Component.translatable("gui.addsynthcore.instrument.harp"),
     Component.translatable("gui.addsynthcore.instrument.bass"),
@@ -220,11 +220,11 @@ public final class GuiMusicBox extends GuiBase {
   protected final void drawGuiForegroundLayer(GuiGraphics graphics, final int mouseX, final int mouseY){
     draw_title(graphics);
     // draw tempo:
-    draw_text_center(graphics, tempo_text.getString()+":",         tempo_text_x_center,  6);
-    draw_text_center(graphics, ticks + " "+ticks_text.getString(), tempo_text_x_center, 17);
-    draw_text_center(graphics, bpm + " "+bpm_text.getString(),     tempo_text_x_center, 27);
+    draw_text_center(graphics,                        tempo_text,         tempo_text_x_center,  6);
+    draw_text_center(graphics, Component.translatable(ticks_text, ticks), tempo_text_x_center, 17);
+    draw_text_center(graphics, Component.translatable(  bpm_text, bpm  ), tempo_text_x_center, 27);
     
-    draw_text_center(graphics, next_text.getString()+":", right_edge - (next_direction_button_width / 2), 6);
+    draw_text_center(graphics, next_text, right_edge - (next_direction_button_width / 2), 6);
     
     draw_text_left(graphics, current_note_text.getString()+": "+NoteButton.note[note_selected].getString(),            6, info_text_y);
     draw_text_left(graphics, instrument_text.getString()+": "+instrument[instrument_selected].getString(), center_x - 10, info_text_y);

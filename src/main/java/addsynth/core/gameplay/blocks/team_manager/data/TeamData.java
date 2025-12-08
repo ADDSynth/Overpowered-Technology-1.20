@@ -19,6 +19,7 @@ import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraft.world.scores.Team;
 import net.minecraft.world.scores.criteria.ObjectiveCriteria;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent.Phase;
@@ -279,8 +280,14 @@ public final class TeamData {
     return objective;
   }
 
-  public static final String getDisplaySlotObjective(final int display_slot){
-    return display_slot_objective[display_slot];
+  // This is only used in the TeamManagerGui and nowhere else.
+  public static final Component getDisplaySlotObjective(final int display_slot){
+    if(display_slot == 0 || display_slot == 1 || display_slot == 2){
+      if(display_slot_objective[display_slot] != null){
+        return Component.literal(display_slot_objective[display_slot]);
+      }
+    }
+    return Component.empty();
   }
 
   /** Used by {@link TeamManagerGui#tick} to determine whether the selected objective can be modified. */

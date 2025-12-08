@@ -32,6 +32,15 @@ public final class GuiEnergyDiagnostics extends GuiBase {
   private static final GuiSection  recieve_column = GuiSection.dimensions(391, text_y,  83, 282);
   private static final GuiSection  extract_column = GuiSection.dimensions(478, text_y,  83, 282);
   private static final GuiSection transfer_column = GuiSection.dimensions(565, text_y,  60, 282);
+  private static final Component     name_text = Component.translatable("gui.addsynth_energy.diagnostics.device").append(":");
+  private static final Component     type_text = Component.translatable("gui.addsynth_energy.diagnostics.type").append(":");
+  private static final Component   energy_text = Component.translatable("gui.addsynth_energy.diagnostics.energy").append(":");
+  private static final Component capacity_text = Component.translatable("gui.addsynth_energy.diagnostics.capacity").append(":");
+  private static final Component  receive_text = Component.translatable("gui.addsynth_energy.diagnostics.receive").append(":");
+  private static final Component  extract_text = Component.translatable("gui.addsynth_energy.diagnostics.extract").append(":");
+  private static final Component transfer_text = Component.translatable("gui.addsynth_energy.diagnostics.transfer").append(":");
+  private static final Component   totals_text = Component.translatable("gui.addsynth_energy.diagnostics.totals").append(":");
+  private static final Component not_connected = Component.translatable("gui.addsynth_energy.diagnostics.not_connected");
 
   public GuiEnergyDiagnostics(final TileEnergyDiagnostics tile, final Component title){
     super(631, 288, title, GuiReference.energy_diagnostics);
@@ -49,13 +58,13 @@ public final class GuiEnergyDiagnostics extends GuiBase {
     graphics.drawString(font, "Page: "+(page+1), 36, 6, GuiUtil.text_color);
     if(tile.network_exists){
       // draw column headers
-      draw_text_center(graphics, "TileEntity:",   name_column.horizontal_center, text_y);
-      draw_text_center(graphics, "Type:",         type_column.horizontal_center, text_y);
-      draw_text_center(graphics, "Energy:",     energy_column.horizontal_center, text_y);
-      draw_text_center(graphics, "Capacity:", capacity_column.horizontal_center, text_y);
-      draw_text_center(graphics, "Recieve:",   recieve_column.horizontal_center, text_y);
-      draw_text_center(graphics, "Extract:",   extract_column.horizontal_center, text_y);
-      draw_text_center(graphics, "Transfer:", transfer_column.horizontal_center, text_y);
+      draw_text_center(graphics,     name_text,     name_column.horizontal_center, text_y);
+      draw_text_center(graphics,     type_text,     type_column.horizontal_center, text_y);
+      draw_text_center(graphics,   energy_text,   energy_column.horizontal_center, text_y);
+      draw_text_center(graphics, capacity_text, capacity_column.horizontal_center, text_y);
+      draw_text_center(graphics,  receive_text,  recieve_column.horizontal_center, text_y);
+      draw_text_center(graphics,  extract_text,  extract_column.horizontal_center, text_y);
+      draw_text_center(graphics, transfer_text, transfer_column.horizontal_center, text_y);
       // set variables
       begin = 0 + (page * entries_per_page);
       end = Math.min(begin + entries_per_page, tile.diagnostics_data.size());
@@ -65,7 +74,7 @@ public final class GuiEnergyDiagnostics extends GuiBase {
         diag_line = tile.diagnostics_data.get(begin + draw_i);
         draw_y = text_y + y_space + (draw_i * y_space);
         draw_text_left(graphics, diag_line.name, name_column.left, draw_y);
-        draw_text_center(graphics, diag_line.type.toString(), type_column.horizontal_center, draw_y);
+        draw_text_center(graphics, diag_line.type.component, type_column.horizontal_center, draw_y);
         draw_text_right(graphics, String.format("%.2f", diag_line.energy),     energy_column.right, draw_y);
         draw_text_right(graphics, String.format("%.2f", diag_line.capacity), capacity_column.right, draw_y);
         draw_text_right(graphics, String.format("%.2f", diag_line.in) +" / "+String.format("%.2f", diag_line.max_receive),  recieve_column.right, draw_y);
@@ -74,7 +83,7 @@ public final class GuiEnergyDiagnostics extends GuiBase {
       }
       // Draw Totals:
       draw_y = text_y + y_space + (y_space * entries_per_page);
-      draw_text_center(graphics, "Totals:", name_column.horizontal_center, draw_y);
+      draw_text_center(graphics, totals_text, name_column.horizontal_center, draw_y);
       draw_text_right(graphics, String.format("%.2f", tile.totals.energy),     energy_column.right, draw_y);
       draw_text_right(graphics, String.format("%.2f", tile.totals.capacity), capacity_column.right, draw_y);
       draw_text_right(graphics, String.format("%.2f", tile.totals.in) +" / "+String.format("%.2f", tile.totals.max_receive),  recieve_column.right, draw_y);
@@ -82,7 +91,7 @@ public final class GuiEnergyDiagnostics extends GuiBase {
       draw_text_right(graphics, String.format("%.2f", tile.totals.transfer), transfer_column.right, draw_y);
     }
     else{
-      draw_text_center(graphics, "Not connected to an Energy Network.", (154 - text_y)/2);
+      draw_text_center(graphics, not_connected, (154 - text_y)/2);
     }
   }
 
