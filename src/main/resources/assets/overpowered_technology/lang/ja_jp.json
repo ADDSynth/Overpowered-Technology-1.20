@@ -225,7 +225,7 @@
 "gui.overpowered_technology.ring_effect.fire_immune": "耐火性",
 "gui.overpowered_technology.ring_effect.water_breathing": "水中で呼吸する",
 "gui.overpowered_technology.ring_effect.night_vision": "夜間視力",
-"gui.overpowered_technology.ring_effect.invisiblity": "不可視",
+"gui.overpowered_technology.ring_effect.invisibility": "不可視",
 "gui.overpowered_technology.ring_effect.tier": "Lv",
 "gui.overpowered_technology.tooltip.fusion_machine": "Fusion Energy Machine",
 "gui.overpowered_technology.tooltip.laser_machine": "Laser Machine",

@@ -64,6 +64,8 @@ CHANGED:
   Celestial Sword was renamed to Celestial Blade.
   Plasma now has an HD texture.
   Fusion Core now has an HD texture.
+FIXED:
+  Ring Effects are now translated.
 
 
 

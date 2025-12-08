@@ -10,6 +10,7 @@ import addsynth.overpoweredtechnology.config.UnidentifiedItemsConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,17 +20,16 @@ import net.minecraft.world.item.ItemStack;
 public enum RingEffects {
 
   NONE           ( 0, null, null, false),
-  SPEED          ( 1, "Speed",           MobEffects.MOVEMENT_SPEED,   true),
-  STRENGTH       ( 2, "Strength",        MobEffects.DAMAGE_BOOST,     true),
-  HASTE          ( 3, "Haste",           MobEffects.DIG_SPEED,        true),
-  LUCK           ( 4, "Luck",            MobEffects.LUCK,             true),
-  EXTRA_HEALTH   ( 5, "Extra Health",    MobEffects.HEALTH_BOOST,     true),
-  JUMP           ( 6, "Jump Boost",      MobEffects.JUMP,             true),
-  FIRE_IMMUNITY  ( 7, "Fire Immunity",   MobEffects.FIRE_RESISTANCE, false),
-  WATER_BREATHING( 8, "Water Breathing", MobEffects.WATER_BREATHING, false),
-  NIGHT_VISION   ( 9, "Night Vision",    MobEffects.NIGHT_VISION,    false),
-  INVISIBILITY   (10, "Invisibility",    MobEffects.INVISIBILITY,    false);
-  // TODO: Ring Effects still aren't being translated!
+  SPEED          ( 1, "gui.overpowered_technology.ring_effect.strength",        MobEffects.MOVEMENT_SPEED,   true),
+  STRENGTH       ( 2, "gui.overpowered_technology.ring_effect.speed",           MobEffects.DAMAGE_BOOST,     true),
+  HASTE          ( 3, "gui.overpowered_technology.ring_effect.haste",           MobEffects.DIG_SPEED,        true),
+  LUCK           ( 4, "gui.overpowered_technology.ring_effect.luck",            MobEffects.LUCK,             true),
+  EXTRA_HEALTH   ( 5, "gui.overpowered_technology.ring_effect.extra_health",    MobEffects.HEALTH_BOOST,     true),
+  JUMP           ( 6, "gui.overpowered_technology.ring_effect.jump",            MobEffects.JUMP,             true),
+  FIRE_IMMUNITY  ( 7, "gui.overpowered_technology.ring_effect.fire_immune",     MobEffects.FIRE_RESISTANCE, false),
+  WATER_BREATHING( 8, "gui.overpowered_technology.ring_effect.water_breathing", MobEffects.WATER_BREATHING, false),
+  NIGHT_VISION   ( 9, "gui.overpowered_technology.ring_effect.night_vision",    MobEffects.NIGHT_VISION,    false),
+  INVISIBILITY   (10, "gui.overpowered_technology.ring_effect.invisibility",    MobEffects.INVISIBILITY,    false);
 
   public final int id;
   private final String translation_key;
@@ -98,13 +98,11 @@ public enum RingEffects {
     final int effect_id = get_ring_effect(stack);
     if(effect_id > 0){
       final RingEffects ring_effect = RingEffects.values()[effect_id];
+      final MutableComponent effect_component = Component.translatable(ring_effect.translation_key);
       if(ring_effect.has_levels){
-        final int level = get_ring_effect_level(stack);
-        tooltip.add(Component.translatable(ring_effect.translation_key + " " + level).withStyle(ChatFormatting.GRAY));
+        effect_component.append(" "+get_ring_effect_level(stack));
       }
-      else{
-        tooltip.add(Component.translatable(ring_effect.translation_key).withStyle(ChatFormatting.GRAY));
-      }
+      tooltip.add(effect_component.withStyle(ChatFormatting.GRAY));
     }
   }
 

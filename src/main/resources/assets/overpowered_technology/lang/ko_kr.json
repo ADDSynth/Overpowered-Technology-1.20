@@ -225,7 +225,7 @@
 "gui.overpowered_technology.ring_effect.fire_immune": "내화성",
 "gui.overpowered_technology.ring_effect.water_breathing": "수중 호흡",
 "gui.overpowered_technology.ring_effect.night_vision": "나이트 비전",
-"gui.overpowered_technology.ring_effect.invisiblity": "보이지 않는",
+"gui.overpowered_technology.ring_effect.invisibility": "보이지 않는",
 "gui.overpowered_technology.ring_effect.tier": "Lv",
 "gui.overpowered_technology.tooltip.fusion_machine": "Fusion Energy Machine",
 "gui.overpowered_technology.tooltip.laser_machine": "Laser Machine",
