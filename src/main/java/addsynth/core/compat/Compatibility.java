@@ -11,7 +11,7 @@ import net.minecraftforge.fml.ModList;
  *    All Mod IDs are listed here in case they ever change in the future.</p>
  * @author ADDSynth
  * @since October 28, 2019
- * @version 1.5.2 March 25, 2025
+ * @version 1.0 December 9, 2025
  */
 public final class Compatibility {
 
@@ -36,12 +36,15 @@ public final class Compatibility {
     public boolean isAPI(){
       return type == ModType.API || type == ModType.Library || type == ModType.CoreMod;
     }
+    public boolean isTechMod(){
+      return type == ModType.Tech || type == ModType.Computer || type == ModType.Rail_Transport;
+    }
   }
 
   public enum ModType {
     Tech, Magic, Library, Misc, Vanilla, Client, Recipe, Biomes, Food, Decoration,
-    Blocks, Tools, Weapons, Computer, Rail_Transport, Info, Map, Compatibility,
-    API, Dimension, CoreMod, Shader, Tweak, Diagnostics, Materials, Utility
+    Blocks, Tools, Weapons, Computer, Rail_Transport, Info, Map, Compatibility, API,
+    Dimension, CoreMod, Shader, Tweak, Diagnostics, Materials, Utility, Performance
   }
 
   public static final CompatInfo ACTUALLY_ADDITIONS =
@@ -53,11 +56,20 @@ public final class Compatibility {
   public static final CompatInfo ADDSYNTH_MATERIALS = // currently bundled with ADDSynthCore, so it will always be loaded.
     new CompatInfo("ADDSynth Materials",                 "addsynth_materials",   ModType.Materials);
 
+  public static final CompatInfo APPLESKIN =
+    new CompatInfo("AppleSkin",                          "appleskin",            ModType.Info);
+
   public static final CompatInfo APPLIED_ENERGISTICS =
     new CompatInfo("Applied Energistics 2",              "appliedenergistics2",  ModType.Tech);
 
   public static final CompatInfo ARCHERS_PARADOX =
     new CompatInfo("Archer's Paradox",                   "archers_paradox",      ModType.Weapons);
+
+  public static final CompatInfo ARCHITECTURY =
+    new CompatInfo("Architectury API",                   "architectury",         ModType.API);
+
+  public static final CompatInfo BAD_PACKETS =
+    new CompatInfo("bad packets",                        "badpackets",           ModType.API);
 
   public static final CompatInfo BIOMES_O_PLENTY =
     new CompatInfo("Biomes O' Plenty",                   "biomesoplenty",        ModType.Biomes);
@@ -68,11 +80,17 @@ public final class Compatibility {
   public static final CompatInfo BLOOD_MAGIC =
     new CompatInfo("Blood Magic",                        "bloodmagic",           ModType.Magic);
   
+  public static final CompatInfo BOOKSHELF =
+    new CompatInfo("Bookshelf",                          "bookshelf",            ModType.API);
+  
   public static final CompatInfo BOTANIA =
     new CompatInfo("Botania",                            "botania",              ModType.Magic);
   
   public static final CompatInfo BUILDCRAFT =
     new CompatInfo("Buildcraft",                         "buildcraftcore",       ModType.Tech);
+  
+  public static final CompatInfo CHANCE_CUBES =
+    new CompatInfo("Chance Cubes",                       "chancecubes",          ModType.Misc);
   
   public static final CompatInfo CHISELS_AND_BITS =
     new CompatInfo("Chisels & Bits",                     "chiselsandbits",       ModType.Decoration);
@@ -83,12 +101,18 @@ public final class Compatibility {
   public static final CompatInfo COFH_CORE =
     new CompatInfo("CoFH Core",                          "cofh_core",            ModType.CoreMod);
   
+  public static final CompatInfo COMMON_CAPABILITIES =
+    new CompatInfo("Common Capabilities",                "commoncapabilities",   ModType.Compatibility);
+  
+  public static final CompatInfo CONFIGURED =
+    new CompatInfo("Configured",                         "configured",           ModType.Utility);
+  
   public static final CompatInfo COOKING_FOR_BLOCKHEADS =
     new CompatInfo("Cooking for Blockheads",             "cookingforblockheads", ModType.Food);
   
   public static final CompatInfo CRAFTTWEAKER =
     // helps modders modify the game
-    new CompatInfo("CraftTweaker",                       "crafttweaker",         ModType.Utility);
+    new CompatInfo("CraftTweaker",                       "crafttweaker",         ModType.API);
   
   public static final CompatInfo CREATE =
     new CompatInfo("Create",                             "create",               ModType.Tech);
@@ -118,6 +142,9 @@ public final class Compatibility {
   public static final CompatInfo ENVIRONMENTAL_MATERIALS =
     new CompatInfo("Environmental Materials",            "enviromats",           ModType.Blocks);
   
+  public static final CompatInfo EVILCRAFT =
+    new CompatInfo("EvilCraft",                          "evilcraft",            ModType.Magic);
+  
   // Ex Nihilo (1.7.10) -> Ex Nihilo: Adscensio (1.10) -> Ex Nihilo: Creatio (1.12) -> Ex Nihilo: Sequentia (1.15+)
   public static final CompatInfo EX_NIHILO_SEQUENTIA =
     new CompatInfo("Ex Nihilo: Sequentia",               "exnihilosequentia",    ModType.Misc);
@@ -125,8 +152,11 @@ public final class Compatibility {
   public static final CompatInfo EXTREME_REACTORS =
     new CompatInfo("Extreme Reactors",                   "bigreactors",          ModType.Tech);
   
+  public static final CompatInfo FASTWORKBENCH =
+    new CompatInfo("FastWorkbench",                      "fastbench",            ModType.Performance);
+  
   public static final CompatInfo FOAMFIX =
-    new CompatInfo("FoamFix",                            "foamfix",              ModType.Diagnostics);
+    new CompatInfo("FoamFix",                            "foamfix",              ModType.Performance);
   
   public static final CompatInfo FORESTRY =
     new CompatInfo("Forestry",                           "forestry",             ModType.Misc);
@@ -136,6 +166,16 @@ public final class Compatibility {
   
   public static final CompatInfo GALACTICRAFT =
     new CompatInfo("Galacticraft",                       "galacticraftcore",     ModType.Tech);
+  
+  public static final CompatInfo GRAVESTONE_MOD =
+    new CompatInfo("GraveStone Mod",                     "gravestone",           ModType.Misc);
+  
+  // Probably the latest version of Greg Tech, been rewritten various times to be keep up with Minecraft
+  public static final CompatInfo GREGTECH =
+    new CompatInfo("GregTech CEu Modern",                "gtceu",                ModType.Tech);
+  
+  public static final CompatInfo GUNPOWDERLIB =
+    new CompatInfo("GunpowderLib",                       "gunpowderlib",         ModType.Library);
   
   public static final CompatInfo IMMERSIVE_ENGINEERING =
     new CompatInfo("Immersive Engineering",              "immersiveengineering", ModType.Tech);
@@ -148,10 +188,6 @@ public final class Compatibility {
   
   public static final CompatInfo INDUSTRIAL_FOREGOING =
     new CompatInfo("Industrial Foregoing",               "industrialforegoing",  ModType.Tech);
-  
-  public static final CompatInfo INTEGRATION_FOREGOING =
-    // Compatibility module for Industrial Foregoing
-    new CompatInfo("Integration Foregoing",              "integrationforegoing", ModType.Compatibility);
   
   public static final CompatInfo INTEGRATED_DYNAMICS =
     new CompatInfo("Integrated Dynamics",                "integrateddynamics",   ModType.Tech);
@@ -166,7 +202,7 @@ public final class Compatibility {
     new CompatInfo("Inventory Tweaks Renewed",           "invtweaks",            ModType.Tweak);
   
   public static final CompatInfo ITEM_ZOOM =
-    new CompatInfo("Item Zoom",                          "itemzoom",             ModType.Client);
+    new CompatInfo("Item Zoom",                          "itemzoom",             ModType.Utility);
   
   public static final CompatInfo JEI =
     new CompatInfo("JEI",                                "jei",                  ModType.Recipe);
@@ -182,6 +218,8 @@ public final class Compatibility {
   
   public static final CompatInfo MEKANISM =
     new CompatInfo("Mekanism",                           "mekanism",             ModType.Tech);
+
+  // More Blocks Mod: https://www.curseforge.com/minecraft/mc-mods/mbm-more-blocks-mod (Fabric Only)
 
   public static final CompatInfo MOUSE_TWEAKS =
     new CompatInfo("Mouse Tweaks",                       "mousetweaks",          ModType.Tweak);
@@ -203,6 +241,9 @@ public final class Compatibility {
     // Uses Forge API to change the shape of blocks, no collisions, High compatibility with other mods, Low FPS
     new CompatInfo("No Cubes Reloaded",                  "nocubesreloadedbase",  ModType.Shader);
   
+  public static final CompatInfo OH_MY_GOURD =
+    new CompatInfo("Oh My Gourd",                        "omgourd",              ModType.Blocks);
+  
   public static final CompatInfo OPENCOMPUTERS =
     new CompatInfo("OpenComputers",                      "opencomputers",        ModType.Computer);
   
@@ -222,7 +263,11 @@ public final class Compatibility {
     new CompatInfo("Pam's Harvestcraft 2 - Food Extended", "pamhc2foodextended", ModType.Food);
   
   public static final CompatInfo PATCHOULI =
-    new CompatInfo("Patchouli",                          "patchouli",            ModType.Info);
+    new CompatInfo("Patchouli",                          "patchouli",            ModType.API);
+  
+  public static final CompatInfo PORTAL_GUN =
+    new CompatInfo("Portal Gun Mod",                     "portalgun",            ModType.Misc);
+    // Can't decide which portal gun mod is the OFFICIAL Portal Gun Mod, there's Immersive Portal Gun as well.
   
   public static final CompatInfo PROJECT_E =
     new CompatInfo("Project E",                          "projecte",             ModType.Magic);
@@ -241,6 +286,9 @@ public final class Compatibility {
   
   public static final CompatInfo SOUND_FILTERS =
     new CompatInfo("Sound Filters",                      "soundfilters",         ModType.Client);
+  
+  public static final CompatInfo STEVES_CARTS =
+    new CompatInfo("Steve's Carts",                      "stevescarts",          ModType.Rail_Transport);
   
   public static final CompatInfo THE_BENEATH =
     new CompatInfo("The Beneath",                        "beneath",              ModType.Dimension);
@@ -279,8 +327,17 @@ public final class Compatibility {
   public static final CompatInfo TRACK_API =
     new CompatInfo("Track API",                          "trackapi",             ModType.API);
 
+  public static final CompatInfo TRASH_SLOT =
+    new CompatInfo("TrashSlot",                          "trashslot",            ModType.Misc);
+
   public static final CompatInfo WTHIT = // What The Hell Is That? replacement of Hwyla for MC 1.16+
     new CompatInfo("WTHIT",                              "wthit",                ModType.Info);
+  
+  public static final CompatInfo XAEROS_MINI_MAP =
+    new CompatInfo("Xaero's Minimap",                    "xaerominimap",         ModType.Map);
+  
+  public static final CompatInfo XAEROS_WORLD_MAP =
+    new CompatInfo("Xaero's World Map",                  "xaeroworldmap",        ModType.Map);
   
   public static final CompatInfo XNET =
     new CompatInfo("XNet",                               "xnet",                 ModType.Tech);
