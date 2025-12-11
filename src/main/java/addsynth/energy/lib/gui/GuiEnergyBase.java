@@ -7,6 +7,7 @@ import addsynth.core.util.java.StringUtil;
 import addsynth.energy.gameplay.reference.EnergyText;
 import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.main.IEnergyUser;
+import addsynth.energy.lib.tiles.machines.TileAbstractWorkMachine;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -98,24 +99,24 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
   }
 
   /** Draws the status at the default location, below the energy capacity line. */
-  protected final void draw_status(GuiGraphics graphics, final String status){
-    draw_text_left(graphics, EnergyText.status_text.getString()+": "+status, 6, 28);
+  protected final void draw_status(GuiGraphics graphics, final TileAbstractWorkMachine machine){
+    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), 6, 28);
   }
 
-  protected final void draw_status(GuiGraphics graphics, final String status, final int y){
-    draw_text_left(graphics, EnergyText.status_text.getString()+": "+status, 6, y);
+  protected final void draw_status(GuiGraphics graphics, final TileAbstractWorkMachine machine, final int y){
+    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), 6, y);
   }
 
-  protected final void draw_status(GuiGraphics graphics, final String status, final int x, final int y){
-    draw_text_left(graphics, EnergyText.status_text.getString()+": "+status, x, y);
+  protected final void draw_status(GuiGraphics graphics, final TileAbstractWorkMachine machine, final int x, final int y){
+    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), x, y);
   }
 
-  protected final void draw_status_after_switch(GuiGraphics graphics, final String status){
-    draw_text_left(graphics, EnergyText.status_text.getString()+": "+status, 50, 21);
+  protected final void draw_status_after_switch(GuiGraphics graphics, final TileAbstractWorkMachine machine){
+    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), 50, 21);
   }
 
-  protected final void draw_status_below_switch(GuiGraphics graphics, final String status){
-    draw_text_left(graphics, EnergyText.status_text.getString()+": "+status, 6, 37);
+  protected final void draw_status_below_switch(GuiGraphics graphics, final TileAbstractWorkMachine machine){
+    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), 6, 37);
   }
 
   /** Draws machine time left at the bottom-left corner of the gui. */

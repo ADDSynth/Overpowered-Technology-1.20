@@ -25,7 +25,7 @@ public final class GuiAdvancedOreRefinery extends GuiEnergyBase<TileAdvancedOreR
   protected final void renderLabels(GuiGraphics graphics, int mouseX, int mouseY){
     draw_title(graphics);
     draw_energy_usage(graphics);
-    draw_status(graphics, tile.getStatus());
+    draw_status(graphics, tile);
     graphics.renderItem(tile.getWorkingInventory().getStackInSlot(0), 76, 43);
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), 69);
     draw_time_left(graphics, 92);

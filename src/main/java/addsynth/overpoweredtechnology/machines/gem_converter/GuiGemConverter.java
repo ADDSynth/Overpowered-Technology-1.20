@@ -58,7 +58,7 @@ public final class GuiGemConverter extends GuiEnergyBase<TileGemConverter, Conta
   protected final void renderLabels(GuiGraphics graphics, final int mouseX, final int mouseY){
     draw_title(graphics);
     draw_energy_usage(graphics);
-    draw_status(graphics, tile.getStatus());
+    draw_status(graphics, tile);
     
     final ItemStack s1 = tile.getWorkingInventory().getStackInSlot(0);
     if(Config.blend_working_item.get()){

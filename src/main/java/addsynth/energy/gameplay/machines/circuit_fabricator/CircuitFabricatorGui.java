@@ -140,7 +140,7 @@ public final class CircuitFabricatorGui extends GuiEnergyBase<TileCircuitFabrica
   protected final void renderLabels(GuiGraphics graphics, int mouseX, int mouseY){
     draw_title(graphics);
     draw_energy_usage(graphics);
-    draw_status(graphics, tile.getStatus());
+    draw_status(graphics, tile);
     draw_text_left(graphics, EnergyText.selected_text.getString()+": "+selected_item.getString(), 6, 39);
     // itemRenderer.renderGuiItem(circuit_stack[tile.getCircuitID()], 102, 29);
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), 270, 113);

@@ -6,6 +6,7 @@ import addsynth.energy.lib.config.MachineData;
 import addsynth.energy.lib.network_messages.SwitchMachineMessage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -103,11 +104,14 @@ public abstract class TileSwitchableMachine extends TileAbstractWorkMachine impl
   }
 
   @Override
-  public String getStatus(){
-    if(state == MachineState.POWERING_OFF || state == MachineState.POWERING_ON){
-      return super.getStatus() + " " + StringUtil.toPercentageString(getPowerCycleTimePercentage(), RoundMode.Floor);
+  public MutableComponent getStatus(){
+    if(status.isError()){
+      return status.get();
     }
-    return state.getStatus();
+    if(state == MachineState.POWERING_OFF || state == MachineState.POWERING_ON){
+      return state.get().append(" ").append(StringUtil.toPercentageString(getPowerCycleTimePercentage(), RoundMode.Floor));
+    }
+    return state.get();
   }
 
 }

@@ -25,7 +25,7 @@ public final class GuiCompressor extends GuiEnergyBase<TileCompressor, Container
   protected final void renderLabels(GuiGraphics graphics, final int mouseX, final int mouseY){
     draw_title(graphics);
     draw_energy_usage(graphics);
-    draw_status(graphics, tile.getStatus());
+    draw_status(graphics, tile);
     graphics.renderItem(tile.getWorkingInventory().getStackInSlot(0), 80, 42);
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), 67);
     draw_time_left(graphics, 88);

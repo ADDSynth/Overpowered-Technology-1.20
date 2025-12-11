@@ -2,6 +2,7 @@ package addsynth.energy.gameplay.reference;
 
 import addsynth.energy.gameplay.EnergyBlocks;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 /** The TextReference class should only be used for common words
  *  or commonly used text that can be used in multiple projects.
@@ -21,7 +22,7 @@ public final class EnergyText {
   public static final Component efficiency_text       = Component.translatable("gui.addsynth_energy.common.efficiency");
   public static final Component max_extract_text      = Component.translatable("gui.addsynth_energy.common.max_extract");
   public static final Component extraction_text       = Component.translatable("gui.addsynth_energy.common.extraction");
-  public static final Component status_text           = Component.translatable("gui.addsynth_energy.common.status");
+  public static final MutableComponent status_text    = Component.translatable("gui.addsynth_energy.common.status");
   public static final Component time_left_text        = Component.translatable("gui.addsynth_energy.common.time_remaining");
   public static final Component charge_remaining_text = Component.translatable("gui.addsynth_energy.common.charge_time_remaining");
   public static final Component full_charge_time_text = Component.translatable("gui.addsynth_energy.common.time_to_full_charge");

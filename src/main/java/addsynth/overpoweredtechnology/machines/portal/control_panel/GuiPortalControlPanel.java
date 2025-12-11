@@ -87,7 +87,7 @@ public final class GuiPortalControlPanel extends GuiEnergyBase<TilePortalControl
   protected final void renderLabels(GuiGraphics graphics, final int mouseX, final int mouseY){
     draw_title(graphics);
     draw_energy_below_switch(graphics);
-    draw_status(graphics, tile.getStatus(), energy_percentage_y);
+    draw_status(graphics, tile, energy_percentage_y);
     draw_text_right(graphics, WorkProgressBar.getWorkTimeProgress(tile), energy_percentage_y);
     draw_energy_difference(graphics, energy_change_y);
     draw_text_center(graphics, tile.getMessage(), status_message_y);

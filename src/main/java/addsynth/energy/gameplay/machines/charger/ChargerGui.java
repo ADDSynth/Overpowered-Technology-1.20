@@ -16,7 +16,7 @@ public final class ChargerGui extends GuiEnergyBase<TileCharger, ChargerContaine
   protected final void renderLabels(GuiGraphics graphics, int mouseX, int mouseY){
     draw_title(graphics);
     //draw_energy_usage(graphics);
-    draw_status(graphics, tile.getStatus(), 17);
+    draw_status(graphics, tile, 17);
     draw_time_left_center(graphics, 76, tile.getTimeLeft());
   }
 

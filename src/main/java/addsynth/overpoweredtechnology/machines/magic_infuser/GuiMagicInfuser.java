@@ -25,7 +25,7 @@ public final class GuiMagicInfuser extends GuiEnergyBase<TileMagicInfuser, Conta
   protected final void renderLabels(GuiGraphics graphics, int mouseX, int mouseY){
     draw_title(graphics);
     draw_energy_usage(graphics);
-    draw_status(graphics, tile.getStatus());
+    draw_status(graphics, tile);
     graphics.renderItem(tile.getWorkingInventory().getStackInSlot(0), 78, 44);
     graphics.renderItem(tile.getWorkingInventory().getStackInSlot(1), 95, 44);
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), center_x, 72);

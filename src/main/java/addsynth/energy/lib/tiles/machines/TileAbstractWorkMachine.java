@@ -6,6 +6,7 @@ import addsynth.energy.lib.main.Receiver;
 import addsynth.energy.lib.tiles.TileAbstractMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -20,6 +21,7 @@ public abstract class TileAbstractWorkMachine extends TileAbstractMachine implem
    */
   protected boolean changed;
   protected MachineState state;
+  protected MachineStatus status;
 
   public TileAbstractWorkMachine(final BlockEntityType type, BlockPos position, BlockState blockstate,
                                  final MachineState initial_state, final MachineData data){
@@ -56,12 +58,8 @@ public abstract class TileAbstractWorkMachine extends TileAbstractMachine implem
     return 0;
   }
 
-  public final MachineState getState(){
-    return state;
-  }
-
-  public String getStatus(){
-    return state.getStatus();
+  public MutableComponent getStatus(){
+    return status.isError() ? status.get() : state.get();
   }
 
 }

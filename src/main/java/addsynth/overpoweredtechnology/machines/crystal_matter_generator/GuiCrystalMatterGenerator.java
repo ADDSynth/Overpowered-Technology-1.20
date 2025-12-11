@@ -31,7 +31,7 @@ public final class GuiCrystalMatterGenerator extends GuiEnergyBase<TileCrystalMa
   @Override
   protected final void renderLabels(GuiGraphics graphics, int mouseX, int mouseY){
     draw_title(graphics);
-    draw_status_after_switch(graphics, tile.getStatus());
+    draw_status_after_switch(graphics, tile);
     draw_energy_usage(graphics, 6, 38);
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), 77);
     draw_time_left_center(graphics, 98);

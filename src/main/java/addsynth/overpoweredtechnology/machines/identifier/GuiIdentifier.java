@@ -25,7 +25,7 @@ public final class GuiIdentifier extends GuiEnergyBase<TileIdentifier, Container
   protected final void renderLabels(GuiGraphics graphics, final int mouseX, final int mouseY){
     draw_title(graphics);
     draw_energy_usage(graphics);
-    draw_status(graphics, tile.getStatus());
+    draw_status(graphics, tile);
     graphics.renderItem(tile.getWorkingInventory().getStackInSlot(0), 76, 41);
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), center_x, 63);
   }
