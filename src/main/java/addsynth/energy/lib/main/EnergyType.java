@@ -18,14 +18,14 @@ public enum EnergyType {
   }
 
   public static final EnergyType determine(final BlockEntity tile){
+    if(tile instanceof IBattery){
+      return BATTERY;
+    }
     if(tile instanceof IEnergyGenerator){
       return GENERATOR;
     }
     if(tile instanceof IEnergyConsumer){
       return RECEIVER;
-    }
-    if(tile instanceof IEnergyUser){
-      return BATTERY;
     }
     return null;
   }

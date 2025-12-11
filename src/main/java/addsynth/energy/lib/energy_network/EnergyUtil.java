@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
 import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.ICustomEnergyUser;
+import addsynth.energy.lib.main.IBattery;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 /*
@@ -62,8 +62,8 @@ public final class EnergyUtil {
       node = from.get(i);
       tile = node.getTile();
 
-      if(tile instanceof ICustomEnergyUser){
-        available_energy[i] = (long)(((ICustomEnergyUser)tile).getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY);
+      if(tile instanceof IBattery){
+        available_energy[i] = (long)(((IBattery)tile).getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY);
       }
       else{
         available_energy[i] = (long)(node.getEnergy().getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY);
@@ -76,8 +76,8 @@ public final class EnergyUtil {
       node = to.get(i);
       tile = node.getTile();
 
-      if(tile instanceof ICustomEnergyUser){
-        requested_energy[i] = (long)(((ICustomEnergyUser)tile).getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY);
+      if(tile instanceof IBattery){
+        requested_energy[i] = (long)(((IBattery)tile).getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY);
       }
       else{
         requested_energy[i] = (long)(node.getEnergy().getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY);

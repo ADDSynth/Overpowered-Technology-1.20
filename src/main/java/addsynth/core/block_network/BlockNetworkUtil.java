@@ -1,6 +1,7 @@
 package addsynth.core.block_network;
 
 import java.util.function.BiFunction;
+import javax.annotation.Nullable;
 import addsynth.core.util.game.MinecraftUtility;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -141,6 +142,22 @@ public final class BlockNetworkUtil {
         }
       }
     }
+  }
+
+  /** Whenever you want to save a list of BlockEntities, and you expect some of those BlockEntities
+   *  to be part of a BlockNetwork, you most likely will only want to save the FIRST BlockEntity
+   *  that belongs to that BlockNetwork, to act as a representative of the entire BlockNetwork.
+   */
+  @Nullable
+  public static final BlockEntity getTileEntity(Level level, BlockPos position){
+    final BlockEntity tile = level.getBlockEntity(position);
+    if(tile instanceof IBlockNetworkUser network_tile){
+      final BlockNetwork network = network_tile.getBlockNetwork();
+      if(network != null){
+        return network.getFirstTile();
+      }
+    }
+    return tile;
   }
 
 }

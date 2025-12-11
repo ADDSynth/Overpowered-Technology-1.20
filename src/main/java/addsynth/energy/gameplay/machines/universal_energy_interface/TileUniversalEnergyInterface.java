@@ -6,7 +6,7 @@ import addsynth.energy.compat.energy.forge.ForgeEnergyIntermediary;
 import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.lib.energy_network.tiles.BasicEnergyNetworkTile;
 import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.ICustomEnergyUser;
+import addsynth.energy.lib.main.IBattery;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 public final class TileUniversalEnergyInterface extends BasicEnergyNetworkTile
   // The Universal Energy Interface should REMAIN as an ICustomEnergyUser
   // and SHOULD NOT be treated as a Battery. Confirmed.
-  implements ICustomEnergyUser, MenuProvider {
+  implements IBattery, MenuProvider {
 
   private final Energy energy = new Energy(Config.universal_energy_interface_buffer.get());
 

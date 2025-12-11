@@ -7,7 +7,7 @@ import addsynth.core.util.time.TimeUtil;
 import addsynth.energy.ADDSynthEnergy;
 import addsynth.energy.lib.energy_network.tiles.AbstractEnergyNetworkTile;
 import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.ICustomEnergyUser;
+import addsynth.energy.lib.main.IBattery;
 import addsynth.energy.lib.main.IEnergyConsumer;
 import addsynth.energy.lib.main.IEnergyGenerator;
 import addsynth.energy.lib.main.IEnergyUser;

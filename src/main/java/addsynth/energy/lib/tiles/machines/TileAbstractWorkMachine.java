@@ -1,7 +1,7 @@
 package addsynth.energy.lib.tiles.machines;
 
 import addsynth.energy.lib.config.MachineData;
-import addsynth.energy.lib.main.ICustomEnergyUser;
+import addsynth.energy.lib.main.IBattery;
 import addsynth.energy.lib.main.Receiver;
 import addsynth.energy.lib.tiles.TileAbstractMachine;
 import net.minecraft.core.BlockPos;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
  *  specifically defined and are well managed.
  * @author ADDSynth
  */
-public abstract class TileAbstractWorkMachine extends TileAbstractMachine implements ICustomEnergyUser {
+public abstract class TileAbstractWorkMachine extends TileAbstractMachine implements IBattery {
 
   /** Do not call {@link #update_data()}. Instead set this to true whenever
    *  important data is changed. Check for this in the TileEntity's tick() function.

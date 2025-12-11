@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import javax.annotation.Nullable;
 import addsynth.core.block_network.search.IBlockSearchAlgorithm;
 import addsynth.core.util.java.ArrayUtil;
 import net.minecraft.core.BlockPos;
@@ -23,6 +24,15 @@ public final class BlockList<T extends BlockEntity & IBlockNetworkUser> {
   public BlockList(final int size){
     list = new ArrayList<>(size);
   }
+
+  @Nullable
+  public final T getFirstTile(){
+    if(list.size() == 0){
+      return null;
+    }
+    return list.get(0);
+  }
+      
 
   public final boolean isFirstTile(final BlockEntity tile){
     if(list.size() > 0){

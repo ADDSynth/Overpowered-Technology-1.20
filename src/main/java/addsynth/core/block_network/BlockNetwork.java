@@ -2,6 +2,7 @@ package addsynth.core.block_network;
 
 import java.util.Collection;
 import java.util.function.BiFunction;
+import javax.annotation.Nullable;
 import addsynth.core.ADDSynthCore;
 import addsynth.core.block_network.search.IBlockSearchAlgorithm;
 import addsynth.core.block_network.search.StandardBlockSearch;
@@ -234,8 +235,8 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   }
 
   // This works perfectly and very efficiently. Never change it!
-  protected static final void remove_invalid_nodes(final Collection<? extends Node> node_list){
-    node_list.removeIf((Node n) -> n == null ? true : n.isInvalid());
+  protected static final void remove_invalid_nodes(final Collection<? extends AbstractNode> node_list){
+    node_list.removeIf((AbstractNode n) -> n == null ? true : n.isInvalid());
   }
 
   /** This is a static helper function, used to initialize your BlockNetwork
@@ -360,6 +361,11 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
 
   public final int getCount(){
     return blocks == null ? 0 : blocks.size();
+  }
+
+  @Nullable
+  public final T getFirstTile(){
+    return blocks.getFirstTile();
   }
 
   protected abstract void clear_custom_data();
