@@ -21,6 +21,7 @@ public abstract class TilePassiveMachine extends TileSwitchableMachine {
 
   @Override
   public void serverTick(ServerLevel level, BlockState blockstate){
+    checkIfPowerTimeChanged();
     machine_tick();
     if(energy.tick()){
       changed = true;

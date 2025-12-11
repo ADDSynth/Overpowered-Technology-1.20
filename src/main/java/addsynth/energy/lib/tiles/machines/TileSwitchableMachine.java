@@ -18,8 +18,8 @@ public abstract class TileSwitchableMachine extends TileAbstractWorkMachine impl
 
   protected boolean power_switch;
   protected int power_time;
-  protected final int power_on_time;
-  protected final int power_off_time;
+  protected int power_on_time;
+  protected int power_off_time;
 
   public TileSwitchableMachine(BlockEntityType type, BlockPos position, BlockState blockstate,
                                MachineState initial_state, MachineData data){
@@ -32,6 +32,16 @@ public abstract class TileSwitchableMachine extends TileAbstractWorkMachine impl
     power_on_time  = data.get_power_time();
     power_off_time = data.get_power_time();
     power_switch = initial_power_state;
+  }
+
+  protected void checkIfPowerTimeChanged(){
+    // TODO: I was against it all this time, but yeah, SWITCH TO A BEHAVIOUR SYSTEM!!!!
+    //       That way, certain machines can derive from standardized abstract classes, but also customize their behaviour.
+    final int power_time = data.get_power_time();
+    if(power_time != power_on_time){
+      power_on_time  = power_time;
+      power_off_time = power_time;
+    }
   }
 
   @Override

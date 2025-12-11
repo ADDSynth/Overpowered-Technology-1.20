@@ -2,6 +2,7 @@ package addsynth.energy.lib.tiles.machines;
 
 import addsynth.energy.lib.config.MachineData;
 import addsynth.energy.lib.main.IBattery;
+import addsynth.energy.lib.main.MachineReceiver;
 import addsynth.energy.lib.main.Receiver;
 import addsynth.energy.lib.tiles.TileAbstractMachine;
 import net.minecraft.core.BlockPos;
@@ -20,18 +21,20 @@ public abstract class TileAbstractWorkMachine extends TileAbstractMachine implem
    *  important data is changed. Check for this in the TileEntity's tick() function.
    */
   protected boolean changed;
+  protected final MachineData data;
   protected MachineState state;
   protected MachineStatus status;
 
-  public TileAbstractWorkMachine(final BlockEntityType type, BlockPos position, BlockState blockstate,
-                                 final MachineState initial_state, final MachineData data){
-    super(type, position, blockstate, new Receiver(data.get_total_energy_needed(), data.get_max_receive()));
+  public TileAbstractWorkMachine(BlockEntityType type, BlockPos position, BlockState blockstate, MachineState initial_state, MachineData data){
+    super(type, position, blockstate, new MachineReceiver(data));
+    this.data = data;
     this.state = initial_state;
   }
 
   public TileAbstractWorkMachine(final BlockEntityType type, BlockPos position, BlockState blockstate,
                                  final MachineState initial_state, final Receiver energy){
     super(type, position, blockstate, energy);
+    this.data = null;
     this.state = initial_state;
   }
 

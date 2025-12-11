@@ -56,6 +56,9 @@ NEW:
   Energy tools, which need to be charged to function.
    - Same mining level and number of uses as Diamond tools.
    - Same speed and attack strength as Iron tools.
+FIXED:
+  Machines will now immediately update their data if it was changed in the config. Previously they
+    would only update if you removed the machine and placed it back down again.
 ===Overpowered Technology:
 INFO:
   The mod ID has changed from 'overpowered' to 'overpowered_technology'.
