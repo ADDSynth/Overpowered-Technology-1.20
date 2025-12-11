@@ -1,6 +1,7 @@
 package addsynth.energy.lib.energy_network;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
 import addsynth.energy.lib.main.Energy;
@@ -35,7 +36,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 
 public final class EnergyUtil {
 
-  public static final void transfer_energy(final ArrayList<EnergyNode> from, final ArrayList<EnergyNode> to){
+  public static final void transfer_energy(final HashSet<EnergyNode> from, final HashSet<EnergyNode> to){
   
     int i;
     EnergyNode node;
@@ -107,7 +108,7 @@ public final class EnergyUtil {
     
   }
 
-  public static final void balance_batteries(final ArrayList<EnergyNode> batteries){
+  public static final void balance_batteries(final HashSet<EnergyNode> batteries){
 
     int i;
     final int length = batteries.size();

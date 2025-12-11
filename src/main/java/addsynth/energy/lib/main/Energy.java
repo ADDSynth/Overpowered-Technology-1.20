@@ -66,7 +66,6 @@ public class Energy {
 
   /**
    * Read and set all values from the data inside the given {@link CompoundTag}
-   * 
    * @param nbt The {@link CompoundTag} with all the data
    */
   public final void loadFromNBT(final CompoundTag nbt){
@@ -82,7 +81,6 @@ public class Energy {
 
   /**
    * Write all of the data to the {@link CompoundTag} provided
-   * 
    * @param nbt The {@link CompoundTag} to write to
    */
   public final void saveToNBT(final CompoundTag nbt){
@@ -421,7 +419,7 @@ public class Energy {
 // ======================================== MISC =======================================
 
   /** This should be called in your TileEntity's update() or tick() function. */
-  public final boolean tick(){
+  public boolean tick(){
     if(changed){
       changed = false;
       return true;

@@ -126,4 +126,14 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
     return energy;
   }
 
+  @Override
+  public double getAvailableEnergy(){
+    return energy.getAvailableEnergy();
+  }
+
+  @Override
+  public boolean isFreeEnergy(){
+    return true;
+  }
+
 }

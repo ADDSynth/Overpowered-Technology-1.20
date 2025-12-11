@@ -1,6 +1,6 @@
 package addsynth.energy.lib.energy_network;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.Node;
 import addsynth.core.util.time.TimeUtil;
@@ -27,10 +27,11 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
 
   public long tick_time;
 
-  private final ArrayList<EnergyNode> all_machines = new ArrayList<>(); // This is temporary, but temporary solutions are often the most permanent.
-  private final ArrayList<EnergyNode> receivers = new ArrayList<>();
-  private final ArrayList<EnergyNode> batteries = new ArrayList<>();
-  private final ArrayList<EnergyNode> generators = new ArrayList<>();
+  private final HashSet<EnergyNode> all_machines = new HashSet<>(); // This is temporary, but temporary solutions are often the most permanent.
+  private final HashSet<EnergyNode> free_generators = new HashSet<>();
+  private final HashSet<EnergyNode> generators = new HashSet<>();
+  private final HashSet<EnergyNode> receivers = new HashSet<>();
+  private final HashSet<EnergyNode> batteries = new HashSet<>();
 
   public EnergyNetwork(final ServerLevel world, final AbstractEnergyNetworkTile energy_network_tile){
     super(world, energy_network_tile);
@@ -44,23 +45,6 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
     batteries.clear();
   }
 
-  /** Checks if we already have an EnergyNode for this TileEntity by checking to see if we've
-   *  already captured a reference to that TileEntity's {@link Energy} object.
-   * @param node
-   */
-  private static final void add_energy_node(final ArrayList<EnergyNode> list, final EnergyNode node){
-    boolean exists = false;
-    for(EnergyNode existing_node : list){
-      if(existing_node.getEnergy() == node.getEnergy()){
-        exists = true;
-        break;
-      }
-    }
-    if(exists == false){
-      list.add(node);
-    }
-  }
-
   @Override
   protected final void tick(final ServerLevel world){
     final long start = TimeUtil.get_start_time();
@@ -69,7 +53,20 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
     remove_invalid_nodes(batteries);
     remove_invalid_nodes(receivers);
     remove_invalid_nodes(generators);
+    
+    // Step 1: Gather all consumer data from all networks
+    // Step 2: Gather all 'free' energy data, which could be different per network because it's porportional to the consumer energy requested.
+    // Step 3: Transfer all 'free' energy.
+    // Step 4: If consumers still need energy, gather all 'non-free' energy data (which could be different per network because it's porportional)
+    // Step 5: Transfer all 'non-free' energy.
+    // Step 6: if consumers still need energy, transfer from batteries.
+    // Step 7: If PREVIOUS step 6 executed, skip 7 and 8.
+    
+    // every tick, we gather ALL data.
+    // Consumers will check if either side has any free energy sources.
+    // Generators will compare the requested energy from all networks.
 
+    // DO NOT query non-free generators, unless we need to.
     try{
       // TEST: Step 1 and 2 should probably be reversed.
     
@@ -95,31 +92,25 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   protected final void customSearch(final Node node, final ServerLevel world){
     final BlockEntity tile = node.getTile();
     if(tile != null){
-      if(tile instanceof ICustomEnergyUser){
-        add_energy_node(all_machines, new EnergyNode(tile, ((IEnergyUser)tile).getEnergy()));
-        add_energy_node(generators, new EnergyNode(tile, ((IEnergyUser)tile).getEnergy()));
-        add_energy_node(receivers, new EnergyNode(tile, ((IEnergyUser)tile).getEnergy()));
-        return;
-      }
-      // OPTIMIZE: replace with addsynth.energy.lib.main.EnergyType.determine()?
-      if(tile instanceof IEnergyConsumer){
-        add_energy_node(all_machines, new EnergyNode(tile, ((IEnergyUser)tile).getEnergy()));
-        add_energy_node(receivers, new EnergyNode(tile, ((IEnergyUser)tile).getEnergy()));
-        return;
-      }
-      if(tile instanceof IEnergyGenerator){
-        add_energy_node(all_machines, new EnergyNode(tile, ((IEnergyUser)tile).getEnergy()));
-        add_energy_node(generators, new EnergyNode(tile, ((IEnergyUser)tile).getEnergy()));
-        return;
-      }
-      // Already checked for machines that are specifically defined as a Generator or Receiver,
-      // all other machines that still handle energy are treated as a Battery.
-      if(tile instanceof IEnergyUser){
-        add_energy_node(all_machines, new EnergyNode(tile, ((IEnergyUser)tile).getEnergy()));
-        add_energy_node(batteries, new EnergyNode(tile, ((IEnergyUser)tile).getEnergy()));
+      if(EnergyNode.add(all_machines, tile)){
+        if(tile instanceof IEnergyConsumer){
+          receivers.add(new EnergyNode(tile));
+        }
+        if(tile instanceof IEnergyGenerator generator){
+          if(generator.isFreeEnergy()){
+            free_generators.add(new EnergyNode(tile));
+          }
+          else{
+            generators.add(new EnergyNode(tile));
+          }
+        }
+        if(tile instanceof IBattery){
+          batteries.add(new EnergyNode(tile));
+        }
       }
     }
   }

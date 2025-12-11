@@ -18,7 +18,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /** Standard Generators are generators that have an Input inventory and
- *  accept fuel items to be consumed to produce Energy. 
+ *  accept fuel items to be consumed to produce Energy.
+ *  
+ *  As of ADDSynth Energy version 1.0, Standard Generators will only consume fuel if
+ *  energy is requested by the Energy system. Free Energy sources are prioritized first.
  * @author ADDSynth
  */
 public abstract class TileStandardGenerator extends TileAbstractGenerator implements IInputInventory {
