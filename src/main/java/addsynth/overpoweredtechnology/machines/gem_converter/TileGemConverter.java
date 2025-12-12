@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 import addsynth.core.game.inventory.filter.TagFilter;
 import addsynth.core.util.game.data.AdvancementUtil;
 import addsynth.core.util.player.PlayerUtil;
-import addsynth.energy.lib.tiles.machines.TileAlwaysOnMachine;
+import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
 import addsynth.material.Material;
 import addsynth.overpoweredtechnology.assets.CustomAdvancements;
 import addsynth.overpoweredtechnology.assets.CustomStats;
@@ -26,7 +26,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TileGemConverter extends TileAlwaysOnMachine implements MenuProvider {
+public final class TileGemConverter extends TileStandardWorkMachine implements MenuProvider {
 
   private static final TagFilter filter = new TagFilter(OverpoweredItemTags.convertable_gems);
 

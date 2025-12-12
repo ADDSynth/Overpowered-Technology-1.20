@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import addsynth.core.util.math.random.RandomUtil;
 import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.gameplay.machines.compressor.recipe.CompressorRecipes;
-import addsynth.energy.lib.tiles.machines.TileAlwaysOnMachine;
+import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TileCompressor extends TileAlwaysOnMachine implements MenuProvider {
+public final class TileCompressor extends TileStandardWorkMachine implements MenuProvider {
 
   private int compress_step = -1;
   private int temp_compress_step;

@@ -40,7 +40,7 @@ public final class TileIdentifier extends TileStandardWorkMachine implements Men
   }
 
   @Override
-  protected final void perform_work(){
+  protected final void finishWork(){
     final ItemStack input = inventory.getWorkingInventory().getStackInSlot(0);
     if(input.isEmpty() == false){ // safety feature? couldn't hurt I guess. But getItem() returns AIR for Empty Itemstacks.
       if(input.getItem() instanceof UnidentifiedItem){

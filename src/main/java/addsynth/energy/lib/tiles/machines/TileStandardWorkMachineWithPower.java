@@ -18,27 +18,29 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/** Machines that are always running cannot be turned off. They switch to an
- *  Idle state when they can't do work. These machines don't have idle energy. */
-public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
+/** This is just like the {@link TileStandardWorkMachine} except it can be turned off and has idle energy.
+ * @author ADDSynth
+ */
+public abstract class TileStandardWorkMachineWithPower extends TileSwitchableMachine
   implements IInputInventory, IOutputInventory, IMachineInventory {
 
   protected final MachineInventory inventory;
 
-  public TileAlwaysOnMachine(BlockEntityType type, BlockPos position, BlockState blockstate,
-                             SlotData[] slots, int output_slots, MachineData data){
+  public TileStandardWorkMachineWithPower(BlockEntityType type, BlockPos position, BlockState blockstate,
+                                 SlotData[] slots, int output_slots, MachineData data){
     super(type, position, blockstate, MachineState.IDLE, data);
     this.inventory = new MachineInventory(slots, output_slots);
   }
 
-  public TileAlwaysOnMachine(BlockEntityType type, BlockPos position, BlockState blockstate,
-                             int input_slots, Predicate<ItemStack> filter, int output_slots, MachineData data){
+  public TileStandardWorkMachineWithPower(BlockEntityType type, BlockPos position, BlockState blockstate,
+                                 int input_slots, Predicate<ItemStack> filter, int output_slots, MachineData data){
     super(type, position, blockstate, MachineState.IDLE, data);
     this.inventory = new MachineInventory(input_slots, filter, output_slots);
   }
 
   @Override
-  public void serverTick(ServerLevel level, BlockState blockstate){
+  public final void serverTick(ServerLevel level, BlockState blockstate){
+    checkIfPowerTimeChanged();
     machine_tick();
     if(inventory.tick()){
       changed = true;
@@ -53,33 +55,70 @@ public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
   }
 
   @Override
-  protected void machine_tick(){
+  protected final void machine_tick(){
     switch(state){
-    case RUNNING:
-      if(canFinishWork()){
-        finishWork();
-        if(can_work()){
-          begin_work();
+    case OFF:
+      if(power_switch){
+        if(power_on_time > 0){
+          state = MachineState.POWERING_ON;
         }
         else{
           state = MachineState.IDLE;
         }
         changed = true;
       }
-      machine_running();
+      break;
+
+    case POWERING_ON:
+      power_time += 1;
+      if(power_time >= power_on_time){
+        state = MachineState.IDLE;
+        power_time = 0;
+      }
+      changed = true;
+      break;
+
+    case POWERING_OFF:
+      powering_off();
       break;
 
     case IDLE:
-      if(can_work()){
-        state = MachineState.RUNNING;
-        changed = true;
-        begin_work();
+      if(power_switch == false){
+        turn_off();
+      }
+      else{
+        if(can_work()){
+          state = MachineState.RUNNING;
+          begin_work();
+          changed = true;
+        }
       }
       break;
-    
-    default:
-      state = MachineState.IDLE;
-      changed = true;
+      
+    case RUNNING:
+      if(canFinishWork()){
+        finishWork();
+        if(power_switch == false){
+          turn_off();
+        }
+        else{
+          if(can_work()){
+            begin_work();
+          }
+          else{
+            state = MachineState.IDLE;
+          }
+        }
+        changed = true;
+      }
+      else{
+        if(power_switch == false){
+          turn_off();
+        }
+      }
+      machine_running();
+
+      break;
     }
   }
 
@@ -87,10 +126,16 @@ public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
    *  This is called every tick on the server side. There is no need to call the super method! */
   protected void machine_running(){}
 
+  /** Called multiple times a tick. Returns whether the machine can perform work.
+   *  Override to specify non-default behaviour.
+   */
   protected boolean can_work(){
     return inventory.can_work();
   }
 
+  /** This is called to start a job.
+   *  Override to specify non-default behaviour.
+   */
   protected void begin_work(){
     inventory.begin_work();
   }
@@ -99,9 +144,12 @@ public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
     return energy.isFull();
   }
 
+  /** Finishes working on the center ItemStack and increments the output.
+   *  Override to specify non-default behaviour.
+   */
   protected void finishWork(){
-    energy.setEmpty();
     inventory.finish_work();
+    energy.setEmpty();
   }
 
   @Override
@@ -110,7 +158,7 @@ public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
   }
 
   @Override
-  public final int getJobs(){
+  public int getJobs(){
     return inventory.getJobs();
   }
 
@@ -128,7 +176,7 @@ public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
 
   @Override
   @NotNull
-  public <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction side){
+  public <T> LazyOptional<T> getCapability(final @NotNull Capability<T> capability, final @Nullable Direction side){
     if(remove == false){
       if(capability == ForgeCapabilities.ITEM_HANDLER){
         return InventoryUtil.getInventoryCapability(inventory.getInputInventory(), inventory.getOutputInventory(), side);
@@ -143,21 +191,24 @@ public abstract class TileAlwaysOnMachine extends TileAbstractWorkMachine
     if(state == MachineState.RUNNING){
       return energy.getRequestedEnergy();
     }
-    return 0;
+    if(state == MachineState.OFF){
+      return 0;
+    }
+    return data.get_idle_energy();
   }
 
   @Override
-  public void drop_inventory(){
+  public final void drop_inventory(){
     inventory.drop(worldPosition, level);
   }
 
   @Override
-  public InputInventory getInputInventory(){
+  public final InputInventory getInputInventory(){
     return inventory.getInputInventory();
   }
-
+  
   @Override
-  public OutputInventory getOutputInventory(){
+  public final OutputInventory getOutputInventory(){
     return inventory.getOutputInventory();
   }
 

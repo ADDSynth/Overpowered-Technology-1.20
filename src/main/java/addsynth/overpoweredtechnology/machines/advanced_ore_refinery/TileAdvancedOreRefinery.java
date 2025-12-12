@@ -1,7 +1,7 @@
 package addsynth.overpoweredtechnology.machines.advanced_ore_refinery;
 
 import javax.annotation.Nullable;
-import addsynth.energy.lib.tiles.machines.TileAlwaysOnMachine;
+import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
@@ -13,7 +13,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 
 /** Doubles the output of any ores. Works with ores from other mods as well. Only works with ores. */
-public final class TileAdvancedOreRefinery extends TileAlwaysOnMachine implements MenuProvider {
+public final class TileAdvancedOreRefinery extends TileStandardWorkMachine implements MenuProvider {
 
   public TileAdvancedOreRefinery(BlockPos position, BlockState blockstate){
     super(Tiles.ADVANCED_ORE_REFINERY.get(), position, blockstate,

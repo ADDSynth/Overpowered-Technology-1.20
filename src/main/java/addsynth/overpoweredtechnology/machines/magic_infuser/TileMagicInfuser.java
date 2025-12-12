@@ -48,7 +48,7 @@ public final class TileMagicInfuser extends TileStandardWorkMachine implements M
   }
 
   @Override
-  protected final void perform_work(){
+  protected final void finishWork(){
     final ItemStack input = inventory.getWorkingInventory().getStackInSlot(1);
     final ItemStack enchant_book = MagicInfuserRecipes.getResult(input);
     inventory.getOutputInventory().setStackInSlot(0, enchant_book);
