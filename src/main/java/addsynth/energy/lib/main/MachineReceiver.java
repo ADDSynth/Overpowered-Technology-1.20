@@ -21,6 +21,11 @@ public class MachineReceiver extends Receiver {
       maxReceive.set(data.get_max_receive());
       changed = true;
     }
+    // reset energy I/O
+    if(energy_in.get() > 0){
+      energy_in.set(0);
+      changed = true;
+    }
     if(changed){
       changed = false;
       return true;

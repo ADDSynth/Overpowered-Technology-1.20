@@ -1,6 +1,6 @@
 package addsynth.energy.lib.main;
 
-import javax.annotation.Nonnegative;
+import addsynth.core.util.java.StringUtil;
 import addsynth.core.util.math.common.CommonMath;
 import addsynth.core.util.math.number.DecimalNumber;
 import net.minecraft.nbt.CompoundTag;
@@ -68,7 +68,7 @@ public class Energy {
    * Read and set all values from the data inside the given {@link CompoundTag}
    * @param nbt The {@link CompoundTag} with all the data
    */
-  public final void loadFromNBT(final CompoundTag nbt){
+  public void loadFromNBT(final CompoundTag nbt){
     final CompoundTag energy_tag = nbt.getCompound("EnergyStorage");
     this.energy.set(         energy_tag.getDouble("Energy")    );
     this.capacity.set(       energy_tag.getDouble("Capacity")  );
@@ -83,9 +83,7 @@ public class Energy {
    * Write all of the data to the {@link CompoundTag} provided
    * @param nbt The {@link CompoundTag} to write to
    */
-  public final void saveToNBT(final CompoundTag nbt){
-    difference.set(energy_in.get() - energy_out.get()); // record real energy difference
-
+  public void saveToNBT(final CompoundTag nbt){
     final CompoundTag energy_tag = new CompoundTag();
 	energy_tag.putDouble("Energy",     this.energy.get());
 	energy_tag.putDouble("Capacity",   this.capacity.get());
@@ -95,8 +93,6 @@ public class Energy {
 	energy_tag.putDouble("Energy Out", this.energy_out.get());
 	energy_tag.putDouble("Difference", this.difference.get());
 	nbt.put("EnergyStorage", energy_tag);
-	
-    updateEnergyIO();
   }
 
 // =========================== TRANSMIT / RECEIVE ===================================
@@ -267,26 +263,6 @@ public class Energy {
     changed = true;
   }
 
-  /** Use this to manually set the energy_in variable, which is just an indicator
-   *  of how much energy was inserted into this object. It is reset to 0 every tick.
-   *  It is recommended you don't use this and use the receiveEnergy() methods instead.
-   * @param energy_in
-   */
-  public final void setEnergyIn(final @Nonnegative double energy_in){
-    this.energy_in.set(energy_in);
-    changed = true;
-  }
-  
-  /** Use this to manually set the energy_out variable, which is just an indicator
-   *  of how much energy this Energy object received. It is reset to 0 every tick.
-   *  It is recommended you don't use this and use the extractEnergy() methods instead.
-   * @param energy_out
-   */
-  public final void setEnergyOut(final @Nonnegative double energy_out){
-    this.energy_out.set(energy_out);
-    changed = true;
-  }
-
 // ================================== GETTERS =================================
 
   public final double getEnergy(){
@@ -322,15 +298,15 @@ public class Energy {
     return energy < capacity ? CommonMath.round(capacity - energy, DecimalNumber.ACCURACY) : 0;
   }
 
-  public final double get_energy_in(){
+  public double get_energy_in(){
     return energy_in.get();
   }
 
-  public final double get_energy_out(){
+  public double get_energy_out(){
     return energy_out.get();
   }
 
-  public final double getDifference(){
+  public double getDifference(){
     return difference.get();
   }
 
@@ -416,10 +392,15 @@ public class Energy {
     return energy.get() > 0;
   }
 
+  public final boolean hasChanged(){
+    return difference.get() != 0;
+  }
+
 // ======================================== MISC =======================================
 
   /** This should be called in your TileEntity's update() or tick() function. */
   public boolean tick(){
+    updateEnergyIO();
     if(changed){
       changed = false;
       return true;
@@ -427,21 +408,23 @@ public class Energy {
     return false;
   }
 
-  /** This is only here to call it manually in instances where you don't save or load the Energy.<br />
-   *  Must be called after {@link #tick} to reset <code>changed</code> to true.<br />
-   *  Must be called after updating the TileEntity so the {@link #energy_in} and {@link #energy_out}
-   *  can be sent to the client. */
-  public final void updateEnergyIO(){
-    if(energy_in.get() != 0 || energy_out.get() != 0){
+  /** This is only here to call it manually in instances where you don't save or load the Energy.
+   *  Right now, the only thing that calls this are machines which produce energy all on their
+   *  own, such as the SolarPanelControllerTile and the TileFusionEnergyConverter. */
+  public void updateEnergyIO(){
+    // update difference BEFORE we reset the energy_out and energy_in values.
+    // Actually, I don't think we need this anymore, after this new Energy Rewrite. REMOVE Energy difference, and just calculate it.
+    difference.set(energy_in.get() - energy_out.get());
+    if(hasChanged()){
       energy_in.set(0);
       energy_out.set(0);
-      changed = true; // Update next frame to reset everything to 0.
+      changed = true;
     }
   }
 
   @Override
   public String toString(){
-    return "Energy: "+energy+"/"+capacity;
+    return StringUtil.build("Energy: ", energy, "/", capacity);
   }
 
 }

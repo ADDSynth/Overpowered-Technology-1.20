@@ -160,7 +160,6 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
       updateLaserNetwork();
       changed = false;
     }
-    energy.updateEnergyIO();
   }
 
   /** updates server (needs to be saved to world data) */

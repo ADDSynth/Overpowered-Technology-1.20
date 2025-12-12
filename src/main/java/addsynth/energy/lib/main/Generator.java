@@ -1,5 +1,7 @@
 package addsynth.energy.lib.main;
 
+import net.minecraft.nbt.CompoundTag;
+
 public final class Generator extends Energy {
 
   public Generator(){
@@ -14,15 +16,36 @@ public final class Generator extends Energy {
     super(capacity, 0, maxExtract, 0);
   }
 
+// ================================= NBT READ / WRITE =================================
+
+  /**
+   * Read and set all values from the data inside the given {@link CompoundTag}
+   * @param nbt The {@link CompoundTag} with all the data
+   */
   @Override
-  public final double getRequestedEnergy(){
-    return 0;
+  public void loadFromNBT(final CompoundTag nbt){
+    final CompoundTag energy_tag = nbt.getCompound("EnergyStorage");
+    this.energy.set(         energy_tag.getDouble("Energy")    );
+    this.capacity.set(       energy_tag.getDouble("Capacity")  );
+    this.maxExtract.set(     energy_tag.getDouble("MaxExtract"));
+    this.energy_out.set(     energy_tag.getDouble("Energy Out"));
   }
 
+  /**
+   * Write all of the data to the {@link CompoundTag} provided
+   * @param nbt The {@link CompoundTag} to write to
+   */
   @Override
-  public final boolean canReceive(){
-    return false;
+  public void saveToNBT(final CompoundTag nbt){
+    final CompoundTag energy_tag = new CompoundTag();
+    energy_tag.putDouble("Energy",     this.energy.get());
+    energy_tag.putDouble("Capacity",   this.capacity.get());
+    energy_tag.putDouble("MaxExtract", this.maxExtract.get());
+    energy_tag.putDouble("Energy Out", this.energy_out.get());
+    nbt.put("EnergyStorage", energy_tag);
   }
+
+// ================================= SETTERS =====================================
 
   @Override
   public final void setMaxReceive(final int maxReceive){
@@ -34,9 +57,33 @@ public final class Generator extends Energy {
     changed = true;
   }
 
+// ================================== GETTERS =================================
+
+  @Override
+  public final double getRequestedEnergy(){
+    return 0;
+  }
+
   @Override
   public final double getMaxReceive(){
-    return 0.0;
+    return 0;
+  }
+
+  @Override
+  public final double get_energy_in(){
+    return 0;
+  }
+
+  @Override
+  public final double getDifference(){
+    return -energy_out.get();
+  }
+
+// =================================== QUERIES ======================================
+
+  @Override
+  public final boolean canReceive(){
+    return false;
   }
 
 }
