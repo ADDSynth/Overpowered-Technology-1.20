@@ -290,10 +290,9 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   }
 
   /** This is called by {@link BlockNetworkUtil#removeTile(ServerLevel, BlockEntity, BiFunction)}.
-   *  This checks all adjacent positions next to the TileEntity that was removed. For the
-   *  first valid TileEntity we find, remains as the original BlockNetwork and gets updated.
-   *  Any blocks that WERE part of the BlockNetwork but are now separated must be turned
-   *  new BlockNetworks. */
+   *  This checks all adjacent positions next to the TileEntity that was removed. The first
+   *  valid TileEntity we find remains as the original BlockNetwork and gets updated. Any
+   *  adjacent blocks that are NOT part of the updated BlockNetwork becomes a new BlockNetwork. */
   @SuppressWarnings("unchecked")
   final <B extends BlockNetwork> void removeTile(final ServerLevel world, final T destroyed_tile, final BiFunction<ServerLevel, T, B> constructor){
     final BlockPos tile_position = destroyed_tile.getBlockPos();
