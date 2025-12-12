@@ -10,7 +10,7 @@ import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.main.IEnergyConsumer;
 import addsynth.energy.lib.main.Receiver;
-import addsynth.energy.lib.tiles.machines.IAutoShutoff;
+import addsynth.energy.lib.tiles.machines.switchable.IAutoShutoff;
 import addsynth.overpoweredtechnology.config.Config;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.registers.Tiles;

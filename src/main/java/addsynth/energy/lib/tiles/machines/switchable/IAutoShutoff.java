@@ -1,4 +1,4 @@
-package addsynth.energy.lib.tiles.machines;
+package addsynth.energy.lib.tiles.machines.switchable;
 
 /** This interface is used on TileEntities that have an
  *  {@link addsynth.energy.lib.gui.widgets.AutoShutoffCheckbox Auto Shutoff checkbox}

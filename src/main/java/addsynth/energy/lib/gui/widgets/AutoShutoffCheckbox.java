@@ -3,7 +3,7 @@ package addsynth.energy.lib.gui.widgets;
 import addsynth.core.gui.widgets.buttons.Checkbox;
 import addsynth.energy.gameplay.NetworkHandler;
 import addsynth.energy.lib.network_messages.ToggleAutoShutoffMessage;
-import addsynth.energy.lib.tiles.machines.IAutoShutoff;
+import addsynth.energy.lib.tiles.machines.switchable.IAutoShutoff;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntity;
 

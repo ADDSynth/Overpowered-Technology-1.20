@@ -2,7 +2,7 @@ package addsynth.energy.lib.network_messages;
 
 import addsynth.core.util.network.SimpleTileEntityNetworkMessage;
 import addsynth.energy.lib.gui.widgets.OnOffSwitch;
-import addsynth.energy.lib.tiles.machines.ISwitchableMachine;
+import addsynth.energy.lib.tiles.machines.switchable.ISwitchableMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;

@@ -3,7 +3,7 @@ package addsynth.energy.lib.gui.widgets;
 import addsynth.energy.gameplay.NetworkHandler;
 import addsynth.energy.gameplay.reference.GuiReference;
 import addsynth.energy.lib.network_messages.SwitchMachineMessage;
-import addsynth.energy.lib.tiles.machines.ISwitchableMachine;
+import addsynth.energy.lib.tiles.machines.switchable.ISwitchableMachine;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;

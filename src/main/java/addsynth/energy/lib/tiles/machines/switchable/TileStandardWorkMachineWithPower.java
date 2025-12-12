@@ -1,10 +1,12 @@
-package addsynth.energy.lib.tiles.machines;
+package addsynth.energy.lib.tiles.machines.switchable;
 
 import java.util.function.Predicate;
 import addsynth.core.game.inventory.*;
 import addsynth.core.game.inventory.machine.IMachineInventory;
 import addsynth.core.game.inventory.machine.MachineInventory;
 import addsynth.energy.lib.config.MachineData;
+import addsynth.energy.lib.tiles.machines.MachineState;
+import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

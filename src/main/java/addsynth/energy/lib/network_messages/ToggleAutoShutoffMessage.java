@@ -1,7 +1,7 @@
 package addsynth.energy.lib.network_messages;
 
 import addsynth.core.util.network.SimpleTileEntityNetworkMessage;
-import addsynth.energy.lib.tiles.machines.IAutoShutoff;
+import addsynth.energy.lib.tiles.machines.switchable.IAutoShutoff;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
