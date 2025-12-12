@@ -4,12 +4,11 @@ import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.block_network.IBlockNetworkUser;
-import addsynth.core.game.tiles.TileBase;
 import addsynth.core.util.game.redstone.RedstoneDetector;
 import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.IEnergyConsumer;
 import addsynth.energy.lib.main.Receiver;
+import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
 import addsynth.energy.lib.tiles.machines.switchable.IAutoShutoff;
 import addsynth.overpoweredtechnology.config.Config;
 import addsynth.overpoweredtechnology.config.MachineValues;
@@ -24,10 +23,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TileLaserHousing extends TileBase implements IBlockNetworkUser<LaserNetwork>,
-  ITickingTileEntity, IEnergyConsumer, IAutoShutoff, MenuProvider {
+public final class TileLaserHousing extends TileAbstractMachine implements IBlockNetworkUser<LaserNetwork>,
+  ITickingTileEntity, IAutoShutoff, MenuProvider {
 
-  private final Receiver energy = new Receiver(0, MachineValues.laser_max_receive.get());
   private boolean power_switch = true;
 
   private LaserNetwork network;
@@ -41,7 +39,7 @@ public final class TileLaserHousing extends TileBase implements IBlockNetworkUse
   private final RedstoneDetector redstone_state = new RedstoneDetector();
 
   public TileLaserHousing(BlockPos position, BlockState blockstate){
-    super(Tiles.LASER_MACHINE.get(), position, blockstate);
+    super(Tiles.LASER_MACHINE.get(), position, blockstate, new Receiver(0, MachineValues.laser_max_receive.get()));
   }
 
   @Override
@@ -52,7 +50,6 @@ public final class TileLaserHousing extends TileBase implements IBlockNetworkUse
   @Override
   public final void load(final CompoundTag nbt){
     super.load(nbt);
-    energy.loadFromNBT(nbt);
     power_switch = nbt.getBoolean("Power Switch");
     laser_distance = nbt.getInt("Laser Distance");
     auto_shutoff = nbt.getBoolean("Auto Shutoff");
@@ -63,7 +60,7 @@ public final class TileLaserHousing extends TileBase implements IBlockNetworkUse
   @Override
   protected final void saveAdditional(final CompoundTag nbt){
     super.saveAdditional(nbt);
-    energy.saveToNBT(nbt); // save everything just in case we need to save more than just Energy, and maintain backward compatability.
+    // save everything just in case we need to save more than just Energy, and maintain backward compatability.
     nbt.putBoolean("Power Switch", power_switch);
     nbt.putInt("Laser Distance", laser_distance);
     nbt.putBoolean("Auto Shutoff", auto_shutoff);
@@ -81,6 +78,11 @@ public final class TileLaserHousing extends TileBase implements IBlockNetworkUse
       BlockNetworkUtil.createBlockNetwork((ServerLevel)level, this, LaserNetwork::new);
     }
     return network.energy;
+  }
+
+  @Override
+  public double getRequestedEnergy(){
+    return getEnergy().getRequestedEnergy();
   }
 
   // Only the gui calls these

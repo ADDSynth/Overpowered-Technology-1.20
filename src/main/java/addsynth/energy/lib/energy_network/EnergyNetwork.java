@@ -6,11 +6,10 @@ import addsynth.core.block_network.Node;
 import addsynth.core.util.time.TimeUtil;
 import addsynth.energy.ADDSynthEnergy;
 import addsynth.energy.lib.energy_network.tiles.AbstractEnergyNetworkTile;
-import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.IBattery;
-import addsynth.energy.lib.main.IEnergyConsumer;
-import addsynth.energy.lib.main.IEnergyGenerator;
 import addsynth.energy.lib.main.IEnergyUser;
+import addsynth.energy.lib.tiles.energy.TileAbstractGenerator;
+import addsynth.energy.lib.tiles.energy.TileEnergyBattery;
+import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -28,10 +27,10 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   public long tick_time;
 
   private final HashSet<EnergyNode> all_machines = new HashSet<>(); // This is temporary, but temporary solutions are often the most permanent.
-  private final HashSet<EnergyNode> free_generators = new HashSet<>();
-  private final HashSet<EnergyNode> generators = new HashSet<>();
-  private final HashSet<EnergyNode> receivers = new HashSet<>();
-  private final HashSet<EnergyNode> batteries = new HashSet<>();
+  private final HashSet<EnergyNode<TileAbstractGenerator>> free_generators = new HashSet<>();
+  private final HashSet<EnergyNode<TileAbstractGenerator>> generators = new HashSet<>();
+  private final HashSet<EnergyNode<TileAbstractMachine>> receivers = new HashSet<>();
+  private final HashSet<EnergyNode<TileEnergyBattery>> batteries = new HashSet<>();
 
   public EnergyNetwork(final ServerLevel world, final AbstractEnergyNetworkTile energy_network_tile){
     super(world, energy_network_tile);
@@ -40,6 +39,7 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   @Override
   protected void clear_custom_data(){
     all_machines.clear();
+    free_generators.clear();
     generators.clear();
     receivers.clear();
     batteries.clear();
@@ -53,35 +53,28 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
     remove_invalid_nodes(batteries);
     remove_invalid_nodes(receivers);
     remove_invalid_nodes(generators);
+    remove_invalid_nodes(free_generators);
     
-    // Step 1: Gather all consumer data from all networks
-    // Step 2: Gather all 'free' energy data, which could be different per network because it's porportional to the consumer energy requested.
-    // Step 3: Transfer all 'free' energy.
-    // Step 4: If consumers still need energy, gather all 'non-free' energy data (which could be different per network because it's porportional)
-    // Step 5: Transfer all 'non-free' energy.
-    // Step 6: if consumers still need energy, transfer from batteries.
-    // Step 7: If PREVIOUS step 6 executed, skip 7 and 8.
-    
-    // every tick, we gather ALL data.
-    // Consumers will check if either side has any free energy sources.
-    // Generators will compare the requested energy from all networks.
-
-    // DO NOT query non-free generators, unless we need to.
     try{
-      // TEST: Step 1 and 2 should probably be reversed.
-    
+      // OPTIMIZE This by the requested energy / available energy WITH the Energy Node! Don't collect them EVERY TIME!
+      // Step 1: Transfer 'free energy' generators first
+      EnergyUtil.transfer_energy(free_generators, receivers);
+      
       // Step 1: subtract as much energy as we can from the generators.
       EnergyUtil.transfer_energy(generators, receivers);
       
       // Step 2: if receivers still need energy, subtract it from batteries.
       EnergyUtil.transfer_energy(batteries, receivers);
       
+      // Step 3: Transfer 'free energy' generators first
+      EnergyUtil.transfer_energy(free_generators, batteries);
+      
       // Step 3: put remaining energy from generators into batteries.
       EnergyUtil.transfer_energy(generators, batteries);
       
       // Step 4: balance all batteries
       if(batteries.size() >= 2){
-        EnergyUtil.balance_batteries(batteries);
+        EnergyUtil.balance_batteries(batteries.toArray(new EnergyNode[batteries.size()]));
       }
     }
     catch(Exception e){
@@ -92,24 +85,24 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   }
 
   @Override
-  @SuppressWarnings("unchecked")
   protected final void customSearch(final Node node, final ServerLevel world){
     final BlockEntity tile = node.getTile();
     if(tile != null){
-      if(EnergyNode.add(all_machines, tile)){
-        if(tile instanceof IEnergyConsumer){
-          receivers.add(new EnergyNode(tile));
+      if(tile instanceof IEnergyUser){
+        all_machines.add(new EnergyNode(tile));
+        if(tile instanceof TileAbstractMachine machine){
+          receivers.add(new EnergyNode<>(machine));
         }
-        if(tile instanceof IEnergyGenerator generator){
+        if(tile instanceof TileAbstractGenerator generator){
           if(generator.isFreeEnergy()){
-            free_generators.add(new EnergyNode(tile));
+            free_generators.add(new EnergyNode<>(generator));
           }
           else{
-            generators.add(new EnergyNode(tile));
+            generators.add(new EnergyNode<>(generator));
           }
         }
-        if(tile instanceof IBattery){
-          batteries.add(new EnergyNode(tile));
+        if(tile instanceof TileEnergyBattery battery){
+          batteries.add(new EnergyNode<>(battery));
         }
       }
     }

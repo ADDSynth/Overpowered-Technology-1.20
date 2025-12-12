@@ -5,7 +5,7 @@ import addsynth.core.block_network.BlockNetwork;
 import addsynth.energy.lib.energy_network.EnergyNetwork;
 import addsynth.energy.lib.energy_network.tiles.AbstractEnergyNetworkTile;
 import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.IEnergyUser;
+import addsynth.energy.lib.main.IBattery;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 /** TileEntities that act as standard Batteries that should be part of the Energy Network
  *  should extend from this class.
  */
-public abstract class TileEnergyBattery extends AbstractEnergyNetworkTile implements IEnergyUser {
+public abstract class TileEnergyBattery extends AbstractEnergyNetworkTile implements IBattery {
 
   protected final Energy energy;
 
@@ -62,6 +62,16 @@ public abstract class TileEnergyBattery extends AbstractEnergyNetworkTile implem
   @Override
   public final Energy getEnergy(){
     return energy;
+  }
+
+  @Override
+  public double getAvailableEnergy(){
+    return energy.getAvailableEnergy();
+  }
+
+  @Override
+  public double getRequestedEnergy(){
+    return energy.getRequestedEnergy();
   }
 
 }

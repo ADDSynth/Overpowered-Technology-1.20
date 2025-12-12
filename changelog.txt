@@ -56,6 +56,9 @@ NEW:
   Energy tools, which need to be charged to function.
    - Same mining level and number of uses as Diamond tools.
    - Same speed and attack strength as Iron tools.
+CHANGED:
+  As part of the energy rewrite, energy networks will now prioritize 'free' energy sources, such as Solar Panels.
+  The Generator will now 'use' energy every tick since a Generator is supposed to burn fuel.
 FIXED:
   Machines will now immediately update their data if it was changed in the config. Previously they
     would only update if you removed the machine and placed it back down again.

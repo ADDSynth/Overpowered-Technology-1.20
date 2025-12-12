@@ -1,18 +1,15 @@
 package addsynth.energy.lib.tiles;
 
-import java.util.ArrayList;
 import addsynth.core.game.tiles.TileBase;
-import addsynth.core.util.game.MinecraftUtility;
-import addsynth.energy.lib.energy_network.EnergyNetwork;
-import addsynth.energy.lib.energy_network.tiles.AbstractEnergyNetworkTile;
+import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import addsynth.energy.lib.main.Energy;
+import addsynth.energy.lib.main.IEnergyUser;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.Level;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class AbstractEnergyTile extends TileBase {
+public abstract class AbstractEnergyTile extends TileBase implements IEnergyUser, ITickingTileEntity  {
 
   protected final Energy energy;
 
@@ -21,23 +18,21 @@ public abstract class AbstractEnergyTile extends TileBase {
     this.energy = energy;
   }
 
-  public Energy getEnergy(){
-    return energy;
+  @Override
+  public void load(final CompoundTag nbt){
+    super.load(nbt);
+    if(energy != null){ energy.loadFromNBT(nbt);}
   }
 
-  public final EnergyNetwork[] getAdjacentEnergyNetworks(){
-    final Level level = this.level;
-    final ArrayList<EnergyNetwork> networks = new ArrayList<>(6);
-    BlockPos adjacent;
-    AbstractEnergyNetworkTile tile;
-    for(Direction direction : Direction.values()){
-      adjacent = worldPosition.relative(direction);
-      tile = MinecraftUtility.getTileEntity(adjacent, level, AbstractEnergyNetworkTile.class);
-      if(tile != null){
-        networks.add(tile.getBlockNetwork());
-      }
-    }
-    return networks.toArray(new EnergyNetwork[networks.size()]);
+  @Override
+  protected void saveAdditional(final CompoundTag nbt){
+    super.saveAdditional(nbt);
+    if(energy != null){ energy.saveToNBT(nbt);}
+  }
+  
+  @Override
+  public Energy getEnergy(){
+    return energy;
   }
 
 }

@@ -8,6 +8,7 @@ import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -25,6 +26,23 @@ public final class TileEnergyExtractor extends TileStandardGenerator implements 
 
   public TileEnergyExtractor(BlockPos position, BlockState blockstate){
     super(Tiles.ENERGY_EXTRACTOR.get(), position, blockstate, input_filter);
+  }
+
+  @Override
+  public void serverTick(ServerLevel level, BlockState blockstate){
+    if(energy.isEmpty()){
+      if(input_inventory.isEmpty() == false){
+        setGeneratorData();
+        changed = true;
+      }
+    }
+    if(energy.tick()){
+      changed = true;
+    }
+    if(changed){
+      update_data();
+      changed = false;
+    }
   }
 
   @Override

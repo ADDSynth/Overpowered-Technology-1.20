@@ -19,9 +19,6 @@ import org.jetbrains.annotations.Nullable;
 
 /** Standard Generators are generators that have an Input inventory and
  *  accept fuel items to be consumed to produce Energy.
- *  
- *  As of ADDSynth Energy version 1.0, Standard Generators will only consume fuel if
- *  energy is requested by the Energy system. Free Energy sources are prioritized first.
  * @author ADDSynth
  */
 public abstract class TileStandardGenerator extends TileAbstractGenerator implements IInputInventory {
@@ -42,12 +39,8 @@ public abstract class TileStandardGenerator extends TileAbstractGenerator implem
         changed = true;
       }
     }
-    // TODO: To enable the Generator to use energy every tick:
-    // Multiple energy networks could extract Energy from the Generator during a tick,
-    // Either before or after this is ticked. Therefore, we can only remove any remaining
-    // energy after all TileEntities have been ticked, such as a PostServerTick or something.
-    // This is also better suited to handle the Energy.updateEnergyIO task as well, instead
-    // of inside the saveToNBT function.
+    // if there's any energy left, subtract available energy before we reset the IO
+    energy.subtractAvailableEnergy();
     if(energy.tick()){
       changed = true;
     }

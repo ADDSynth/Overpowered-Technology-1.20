@@ -21,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
+// Not sure if this should be Manual machine or Passive machine, probably passive. This machine definitely has custom behaviour.
 public final class TileMatterCompressor extends TileMachine implements ITickingTileEntity, IEnergyConsumer, MenuProvider {
 
   private boolean changed;
@@ -108,6 +109,11 @@ public final class TileMatterCompressor extends TileMachine implements ITickingT
   @Override
   public final Receiver getEnergy(){
     return energy;
+  }
+
+  @Override
+  public double getRequestedEnergy(){
+    return energy.getRequestedEnergy();
   }
 
   @Override

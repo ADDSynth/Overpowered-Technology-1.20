@@ -11,4 +11,8 @@ public interface IEnergyGenerator extends IEnergyUser {
     return false;
   }
 
+  // too far / too restrictive
+  // @Override
+  // public Generator getEnergy();
+
 }

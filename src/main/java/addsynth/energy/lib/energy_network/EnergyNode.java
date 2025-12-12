@@ -1,6 +1,5 @@
 package addsynth.energy.lib.energy_network;
 
-import java.util.HashSet;
 import javax.annotation.Nonnull;
 import addsynth.core.block_network.AbstractNode;
 import addsynth.energy.lib.main.Energy;
@@ -11,15 +10,6 @@ public class EnergyNode<E extends BlockEntity & IEnergyUser> extends AbstractNod
 
   public EnergyNode(@Nonnull final E tile){
     super(tile);
-  }
-
-  @SuppressWarnings("unchecked")
-  public static boolean add(final HashSet<EnergyNode> set, @Nonnull BlockEntity tile){
-    if(tile instanceof IEnergyUser){
-      set.add(new EnergyNode(tile));
-      return true;
-    }
-    return false;
   }
 
   public Energy getEnergy(){

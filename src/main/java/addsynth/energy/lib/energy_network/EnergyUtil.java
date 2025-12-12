@@ -1,11 +1,11 @@
 package addsynth.energy.lib.energy_network;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
 import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.IBattery;
+import addsynth.energy.lib.main.IEnergyConsumer;
+import addsynth.energy.lib.main.IEnergyGenerator;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 /*
@@ -36,54 +36,42 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 
 public final class EnergyUtil {
 
-  public static final void transfer_energy(final HashSet<EnergyNode> from, final HashSet<EnergyNode> to){
+  @SuppressWarnings("unchecked") // I'm sure this is only temporary
+  public static final <G extends BlockEntity & IEnergyGenerator, R extends BlockEntity & IEnergyConsumer> void transfer_energy(final HashSet<EnergyNode<G>> from, final HashSet<EnergyNode<R>> to){
+    transfer_energy(from.toArray(new EnergyNode[from.size()]), to.toArray(new EnergyNode[to.size()]));
+  }
+
+  public static final <G extends BlockEntity & IEnergyGenerator, R extends BlockEntity & IEnergyConsumer> void transfer_energy(final EnergyNode<G>[] from, final EnergyNode<R>[] to){
   
     int i;
     EnergyNode node;
-    BlockEntity tile;
+    G generator;
+    R receiver;
   
-    final int from_size = from.size();
-    final int to_size   = to.size();
+    final int from_size = from.length;
+    final int to_size   = to.length;
 
     final long[] available_energy = new long[from_size];
     final long[] requested_energy = new long[to_size];
     long total_available_energy = 0;
     long total_requested_energy = 0;
-    
-    // TODO: I always forget one thing! What if a Generator is connected to 2 or more Energy Networks?
-    //       the first network will attempt to drain all the energy from it. Must call a function with
-    //       the Generator TileEntity to see how many Energy Networks are connected then divide the
-    //       available energy based on how many networks it's connected to.
-    //       Cache references? Instead of counting Energy Networks each tick, have Generators
-    //       keep a list of Energy Networks they are connected to. Have the Energy Network update
-    //       update its entry in the Generator's list every time the Energy Network updates.
 
     // Part 1a: Collect Generator Info
     for(i = 0; i < from_size; i++){
-      node = from.get(i);
-      tile = node.getTile();
-
-      if(tile instanceof IBattery){
-        available_energy[i] = (long)(((IBattery)tile).getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY);
+      generator = from[i].getTile();
+      if(generator != null){
+        available_energy[i] = (long)(generator.getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY);
+        total_available_energy += available_energy[i];
       }
-      else{
-        available_energy[i] = (long)(node.getEnergy().getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY);
-      }
-      total_available_energy += available_energy[i];
     }
     
     // Part 1b: Collect Receiver Info
     for(i = 0; i < to_size; i++){
-      node = to.get(i);
-      tile = node.getTile();
-
-      if(tile instanceof IBattery){
-        requested_energy[i] = (long)(((IBattery)tile).getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY);
+      receiver = to[i].getTile();
+      if(receiver != null){
+        requested_energy[i] = (long)(receiver.getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY);
+        total_requested_energy += requested_energy[i];
       }
-      else{
-        requested_energy[i] = (long)(node.getEnergy().getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY);
-      }
-      total_requested_energy += requested_energy[i];
     }
     
     // Part 2: Determine energy to transfer
@@ -96,22 +84,22 @@ public final class EnergyUtil {
     
     // Part 3a: Extract energy from Generators
     for(i = 0; i < from_size; i++){
-      node = from.get(i);
+      node = from[i];
       node.getEnergy().extractEnergy((double)energy_to_extract[i] / DecimalNumber.DECIMAL_ACCURACY);
     }
     
     // Part 3b: Insert energy into Receivers
     for(i = 0; i < to_size; i++){
-      node = to.get(i);
+      node = to[i];
       node.getEnergy().receiveEnergy((double)energy_to_receive[i] / DecimalNumber.DECIMAL_ACCURACY);
     }
     
   }
 
-  public static final void balance_batteries(final HashSet<EnergyNode> batteries){
+  public static final void balance_batteries(final EnergyNode[] batteries){
 
     int i;
-    final int length = batteries.size();
+    final int length = batteries.length;
     Energy energy_storage;
 
     long total_energy = 0;
@@ -119,7 +107,7 @@ public final class EnergyUtil {
     final long[] capacity = new long[length];
 
     for(i = 0; i < length; i++){
-      energy_storage = batteries.get(i).getEnergy();
+      energy_storage = batteries[i].getEnergy();
       total_energy   += (long)(energy_storage.getEnergy()   * DecimalNumber.DECIMAL_ACCURACY);
       capacity[i]     = (long)(energy_storage.getCapacity() * DecimalNumber.DECIMAL_ACCURACY);
       total_capacity += capacity[i];
@@ -132,7 +120,7 @@ public final class EnergyUtil {
     final long[] energy_to_insert = MathUtility.divide_evenly(total_energy, capacity);
     
     for(i = 0; i < length; i++){
-      energy_storage = batteries.get(i).getEnergy();
+      energy_storage = batteries[i].getEnergy();
       energy_storage.setEnergy((double)energy_to_insert[i] / DecimalNumber.DECIMAL_ACCURACY);
     }
   }

@@ -6,6 +6,7 @@ import addsynth.core.game.inventory.InputInventory;
 import addsynth.core.game.inventory.InventoryUtil;
 import addsynth.core.game.inventory.SlotData;
 import addsynth.energy.lib.main.Receiver;
+import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

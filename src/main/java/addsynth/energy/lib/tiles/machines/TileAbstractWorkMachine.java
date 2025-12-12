@@ -4,7 +4,6 @@ import addsynth.energy.lib.config.MachineData;
 import addsynth.energy.lib.main.IBattery;
 import addsynth.energy.lib.main.MachineReceiver;
 import addsynth.energy.lib.main.Receiver;
-import addsynth.energy.lib.tiles.TileAbstractMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.MutableComponent;
