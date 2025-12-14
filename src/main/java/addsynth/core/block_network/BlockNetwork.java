@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.function.BiFunction;
 import javax.annotation.Nullable;
 import addsynth.core.ADDSynthCore;
+import addsynth.core.block_network.node.AbstractNode;
+import addsynth.core.block_network.node.Node;
 import addsynth.core.block_network.search.IBlockSearchAlgorithm;
 import addsynth.core.block_network.search.StandardBlockSearch;
 import addsynth.core.game.tiles.TileBase;

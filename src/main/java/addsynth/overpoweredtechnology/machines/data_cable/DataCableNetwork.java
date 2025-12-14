@@ -2,7 +2,7 @@ package addsynth.overpoweredtechnology.machines.data_cable;
 
 import java.util.ArrayList;
 import addsynth.core.block_network.BlockNetwork;
-import addsynth.core.block_network.Node;
+import addsynth.core.block_network.node.Node;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
 import addsynth.overpoweredtechnology.machines.fusion.chamber.TileFusionChamber;

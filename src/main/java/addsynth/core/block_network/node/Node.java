@@ -1,4 +1,4 @@
-package addsynth.core.block_network;
+package addsynth.core.block_network.node;
 
 import javax.annotation.Nonnull;
 import net.minecraft.core.BlockPos;

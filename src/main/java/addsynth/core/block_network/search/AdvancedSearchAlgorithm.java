@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import addsynth.core.ADDSynthCore;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.IBlockNetworkUser;
-import addsynth.core.block_network.Node;
+import addsynth.core.block_network.node.Node;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

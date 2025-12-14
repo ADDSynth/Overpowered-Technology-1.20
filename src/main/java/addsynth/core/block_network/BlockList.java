@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
+import addsynth.core.block_network.node.Node;
 import addsynth.core.block_network.search.IBlockSearchAlgorithm;
 import addsynth.core.util.java.ArrayUtil;
 import net.minecraft.core.BlockPos;

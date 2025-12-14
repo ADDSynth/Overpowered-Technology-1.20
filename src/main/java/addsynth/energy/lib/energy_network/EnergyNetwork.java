@@ -2,7 +2,7 @@ package addsynth.energy.lib.energy_network;
 
 import java.util.HashSet;
 import addsynth.core.block_network.BlockNetwork;
-import addsynth.core.block_network.Node;
+import addsynth.core.block_network.node.Node;
 import addsynth.core.util.time.TimeUtil;
 import addsynth.energy.ADDSynthEnergy;
 import addsynth.energy.lib.energy_network.tiles.AbstractEnergyNetworkTile;

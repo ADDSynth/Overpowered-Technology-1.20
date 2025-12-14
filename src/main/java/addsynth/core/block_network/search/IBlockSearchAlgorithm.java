@@ -2,7 +2,7 @@ package addsynth.core.block_network.search;
 
 import java.util.HashSet;
 import java.util.function.BiConsumer;
-import addsynth.core.block_network.Node;
+import addsynth.core.block_network.node.Node;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 

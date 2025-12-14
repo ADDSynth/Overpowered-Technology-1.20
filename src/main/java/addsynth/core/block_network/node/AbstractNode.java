@@ -1,4 +1,4 @@
-package addsynth.core.block_network;
+package addsynth.core.block_network.node;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -29,7 +29,10 @@ public abstract class AbstractNode<T extends BlockEntity> {
     if(block == null || position == null){
       return true;
     }
-    return tile != null ? (tile.isRemoved() || !tile.getBlockPos().equals(position)) : false;
+    if(tile != null){
+      return tile.isRemoved() || !tile.getBlockPos().equals(position) || tile.getBlockState().getBlock() != block;
+    }
+    return false;
   }
 
   @Nullable

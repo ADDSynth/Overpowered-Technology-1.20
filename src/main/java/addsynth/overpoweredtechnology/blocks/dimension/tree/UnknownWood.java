@@ -1,7 +1,7 @@
 package addsynth.overpoweredtechnology.blocks.dimension.tree;
 
 import java.util.HashSet;
-import addsynth.core.block_network.Node;
+import addsynth.core.block_network.node.Node;
 import addsynth.core.block_network.search.StandardBlockSearch;
 import addsynth.core.util.world.WorldUtil;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;

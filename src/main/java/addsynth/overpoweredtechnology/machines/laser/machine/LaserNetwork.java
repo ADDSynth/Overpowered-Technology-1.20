@@ -3,7 +3,7 @@ package addsynth.overpoweredtechnology.machines.laser.machine;
 import java.util.ArrayList;
 import java.util.HashSet;
 import addsynth.core.block_network.BlockNetwork;
-import addsynth.core.block_network.Node;
+import addsynth.core.block_network.node.Node;
 import addsynth.core.util.game.data.AdvancementUtil;
 import addsynth.core.util.game.redstone.RedstoneDetector;
 import addsynth.core.util.math.block.BlockArea;
