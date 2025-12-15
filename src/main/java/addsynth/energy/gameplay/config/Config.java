@@ -7,6 +7,9 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class Config {
 
+  // general
+  public static ForgeConfigSpec.BooleanValue balance_batteries;
+
   public static final MachineDataConfig compressor         = new MachineDataConfig("Compressor",         MachineType.ALWAYS_ON,  200, 10, 0, 0); // 2,000
   public static final MachineDataConfig circuit_fabricator = new MachineDataConfig("Circuit Fabricator", MachineType.ALWAYS_ON, 1000, 25, 0, 0);
 
@@ -67,13 +70,17 @@ public final class Config {
 
   public Config(final ForgeConfigSpec.Builder builder){
   
+    builder.push("General");
+      balance_batteries = builder.define("Balance Battery Energy", false);
+    builder.pop();
+  
     compressor.build(builder);
     circuit_fabricator.build(builder);
     SOLAR_PANEL.build(builder);
     energy_storage.build(builder);
     
     builder.push("Universal Energy Interface");
-    universal_energy_interface_buffer     = builder.defineInRange("Universal Energy Interface Buffer",
+      universal_energy_interface_buffer   = builder.defineInRange("Universal Energy Interface Buffer",
                                               DEFAULT_UNIVERSAL_ENERGY_INTERFACE_BUFFER, 0, Integer.MAX_VALUE);
     builder.pop();
   }

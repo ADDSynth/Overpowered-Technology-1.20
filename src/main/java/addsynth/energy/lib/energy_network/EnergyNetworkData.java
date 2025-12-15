@@ -1,5 +1,6 @@
 package addsynth.energy.lib.energy_network;
 
+import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.lib.main.IEnergyUser;
 import addsynth.energy.lib.tiles.energy.TileAbstractGenerator;
 import addsynth.energy.lib.tiles.energy.TileEnergyBattery;
@@ -59,7 +60,9 @@ public class EnergyNetworkData {
     transfer(     generators, batteries);
     
     // Step 4: Balance Batteries
-    batteries.balance();
+    if(Config.balance_batteries.get()){
+      batteries.balance();
+    }
     
     tick_time = System.nanoTime() - start_time;
   }

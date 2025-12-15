@@ -59,6 +59,7 @@ NEW:
 CHANGED:
   As part of the energy rewrite, energy networks will now prioritize 'free' energy sources, such as Solar Panels.
   The Generator will now 'use' energy every tick since a Generator is supposed to burn fuel.
+  Batteries will no longer balance their energy by default, but this can now be changed in the config.
 FIXED:
   Machines will now immediately update their data if it was changed in the config. Previously they
     would only update if you removed the machine and placed it back down again.
