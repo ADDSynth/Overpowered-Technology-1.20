@@ -1,6 +1,7 @@
 package addsynth.overpoweredtechnology.machines.data_cable;
 
 import java.util.ArrayList;
+import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.node.Node;
 import addsynth.overpoweredtechnology.config.MachineValues;
@@ -58,7 +59,7 @@ public final class DataCableNetwork extends BlockNetwork<TileDataCable> {
   }
 
   @Override
-  protected final void customSearch(final Node node, final ServerLevel world){
+  protected final void customSearch(@Nullable final Node previous, final Node node, final ServerLevel world){
     if(node.block == fusion_control_unit){
       if(scanning_units.contains(node.position) == false){
         scanning_units.add(node.position);

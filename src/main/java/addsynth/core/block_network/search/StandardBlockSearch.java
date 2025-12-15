@@ -1,10 +1,10 @@
 package addsynth.core.block_network.search;
 
 import java.util.HashSet;
-import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import addsynth.core.ADDSynthCore;
 import addsynth.core.block_network.BlockNetwork;
+import addsynth.core.block_network.CustomSearch;
 import addsynth.core.block_network.IBlockNetworkUser;
 import addsynth.core.block_network.node.Node;
 import net.minecraft.core.BlockPos;
@@ -53,7 +53,7 @@ public final class StandardBlockSearch implements IBlockSearchAlgorithm {
    * @param consumer Supply a function that takes a Node as an argument. Allows you to run additional code on all Nodes searched.
    */
   @Override
-  public final HashSet<Node> find_blocks(final BlockPos from, final ServerLevel world, final BiConsumer<Node, ServerLevel> consumer){
+  public final HashSet<Node> find_blocks(final BlockPos from, final ServerLevel world, final CustomSearch consumer){
     final HashSet<Node> list = new HashSet<>(100);
     try{
       searched.clear();
@@ -72,7 +72,7 @@ public final class StandardBlockSearch implements IBlockSearchAlgorithm {
     return list;
   }
 
-  private final void search(BlockPos from, HashSet<Node> list, ServerLevel world, BiConsumer<Node, ServerLevel> consumer){
+  private final void search(BlockPos from, HashSet<Node> list, ServerLevel world, CustomSearch consumer){
     BlockPos position;
     for(final Direction side : Direction.values()){
       position = from.relative(side);
@@ -85,10 +85,10 @@ public final class StandardBlockSearch implements IBlockSearchAlgorithm {
     }
   }
 
-  private final boolean check(BlockPos position, HashSet<Node> list, ServerLevel world, BiConsumer<Node, ServerLevel> consumer){
+  private final boolean check(BlockPos position, HashSet<Node> list, ServerLevel world, CustomSearch consumer){
     final Node node = new Node(position, world);
     if(consumer != null){
-      consumer.accept(node, world);
+      consumer.accept(null, node, world);
     }
     if(isValid.test(node)){
       list.add(node);

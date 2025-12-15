@@ -375,7 +375,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   protected void onUpdateNetworkFinished(final ServerLevel level){
   }
 
-  protected void customSearch(final Node node, final ServerLevel world){
+  protected void customSearch(@Nullable final Node previous, final Node node, final ServerLevel world){
   }
 
   // TODO: Once we start coding for MC 1.16 and leave 1.12 behind, retest the onNeighborChange / neighborChanged issue, and

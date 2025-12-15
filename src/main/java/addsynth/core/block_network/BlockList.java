@@ -2,7 +2,6 @@ package addsynth.core.block_network;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 import addsynth.core.block_network.node.Node;
@@ -45,7 +44,7 @@ public final class BlockList<T extends BlockEntity & IBlockNetworkUser> {
   /** This is the main function that finds all blocks belonging to this BlockNetwork.
    *  This is called by {@link BlockNetwork#updateBlockNetwork(ServerLevel, BlockPos)}. */
   @SuppressWarnings({"unchecked", "null"})
-  public final void update(IBlockSearchAlgorithm search_algorithm, final ServerLevel world, final BlockPos from, final BlockNetwork network, final BiConsumer<Node, ServerLevel> custom_search){
+  public final void update(IBlockSearchAlgorithm search_algorithm, final ServerLevel world, final BlockPos from, final BlockNetwork network, final CustomSearch custom_search){
     // get tiles
     final HashSet<Node> found = search_algorithm.find_blocks(from, world, custom_search);
   

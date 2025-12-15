@@ -2,6 +2,7 @@ package addsynth.overpoweredtechnology.machines.laser.machine;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.node.Node;
 import addsynth.core.util.game.data.AdvancementUtil;
@@ -67,7 +68,7 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
   }
 
   @Override
-  protected final void customSearch(final Node node, final ServerLevel world){
+  protected final void customSearch(@Nullable final Node previous, final Node node, final ServerLevel world){
     final BlockEntity tile = node.getTile();
     if(tile != null){
       if(tile.getClass() == TileLaserHousing.class){

@@ -1,6 +1,7 @@
 package addsynth.energy.lib.energy_network;
 
 import java.util.HashSet;
+import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.node.Node;
 import addsynth.core.util.time.TimeUtil;
@@ -47,7 +48,7 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   }
 
   @Override
-  protected final void customSearch(final Node node, final ServerLevel world){
+  protected final void customSearch(@Nullable final Node previous, final Node node, final ServerLevel world){
     final BlockEntity tile = node.getTile();
     if(tile != null){
       if(tile instanceof IEnergyUser){
