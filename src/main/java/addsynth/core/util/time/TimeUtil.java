@@ -4,10 +4,12 @@ import net.minecraft.server.MinecraftServer;
 
 public final class TimeUtil {
 
+   /** @deprecated Skip this and just use {@link System#nanoTime()} */
    public static final long get_start_time(){
      return System.nanoTime();
    }
    
+   /** @deprecated Skip this and just use <code>elapsedTime = {@link System#nanoTime()} - startTime</code> */
    public static final long get_elapsed_time(final long start_time){
      return System.nanoTime() - start_time;
    }

@@ -141,7 +141,7 @@ public class IndexedSet<T> implements Iterable<T> /*, Collection<T>*/ {
     return false;
   }
 
-  public boolean removeAll(Predicate<T> predicate){
+  public boolean removeIf(Predicate<T> predicate){
     boolean changed = false;
     T value;
     // Iterate backwards so index removal is safe
@@ -150,6 +150,16 @@ public class IndexedSet<T> implements Iterable<T> /*, Collection<T>*/ {
       if(predicate.test(value)){
         list.remove(i);
         set.remove(value);
+        changed = true;
+      }
+    }
+    return changed;
+  }
+
+  public boolean removeAll(Collection<? extends T> collection){
+    boolean changed = false;
+    for(T o : collection){
+      if(remove(o)){
         changed = true;
       }
     }
