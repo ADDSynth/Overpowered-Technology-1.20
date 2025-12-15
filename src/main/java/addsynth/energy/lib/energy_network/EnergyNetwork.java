@@ -4,13 +4,15 @@ import java.util.HashSet;
 import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.node.Node;
+import addsynth.core.block_network.search.AdvancedSearchAlgorithm;
 import addsynth.core.util.time.TimeUtil;
 import addsynth.energy.ADDSynthEnergy;
-import addsynth.energy.lib.energy_network.tiles.AbstractEnergyNetworkTile;
+import addsynth.energy.gameplay.machines.universal_energy_interface.TileUniversalEnergyInterface;
 import addsynth.energy.lib.main.IEnergyUser;
-import addsynth.energy.lib.tiles.energy.TileAbstractGenerator;
-import addsynth.energy.lib.tiles.energy.TileEnergyBattery;
+import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
+import addsynth.energy.lib.tiles.generators.TileAbstractGenerator;
 import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
+import addsynth.energy.lib.tiles.network.AbstractEnergyNetworkTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,7 +35,38 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   private final EnergyNetworkData   transfer_data = new EnergyNetworkData();
 
   public EnergyNetwork(final ServerLevel world, final AbstractEnergyNetworkTile energy_network_tile){
-    super(world, energy_network_tile);
+    super(world, energy_network_tile, new AdvancedSearchAlgorithm(EnergyNetwork::canNavigate));
+  }
+
+  // To handle whether a Generator is connected to 2 or more Energy Networks, or a Receiver is connected
+  // to 2 or more Energy Networks, rather than trying to portion how much energy to give/take from the
+  // energy networks, the whole thing should be a single energy network, which means our search algorithm
+  // must 'pass through' the machine. But I still consider two machines adjacent to each other but NOT
+  // connected by wire, to be NOT be connected, and thus be two separate energy networks.
+  // I can't believe ChatGPT (or specifically Copilot using GPT-5) actually solved my issue.
+  // An energy network MUST consist of all machines connected, but FAIL if going from machine to machine.
+  private static final boolean canNavigate(final Node from, final Node to){
+    @Nullable BlockEntity to_tile = to.getTile();
+    if(to_tile != null){
+      if(isNavigable(to_tile)){
+        return true;
+      }
+      @Nullable BlockEntity from_tile = from.getTile();
+      if(from_tile != null){
+        if(isNavigable(from_tile) && isMachine(to_tile)){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  private static final boolean isMachine(final BlockEntity tile){
+    return tile instanceof TileAbstractMachine || tile instanceof TileAbstractGenerator || tile instanceof TileUniversalEnergyInterface;
+  }
+
+  private static final boolean isNavigable(final BlockEntity tile){
+    return tile instanceof AbstractEnergyNetworkTile && !isMachine(tile);
   }
 
   @Override

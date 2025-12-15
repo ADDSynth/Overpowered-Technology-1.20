@@ -1,8 +1,8 @@
-package addsynth.energy.lib.tiles.energy;
+package addsynth.energy.lib.tiles.generators;
 
 import addsynth.energy.lib.main.Generator;
 import addsynth.energy.lib.main.IEnergyGenerator;
-import addsynth.energy.lib.tiles.AbstractEnergyTile;
+import addsynth.energy.lib.tiles.network.AbstractEnergyTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;

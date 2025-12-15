@@ -2,14 +2,14 @@ package addsynth.overpoweredtechnology.machines.suspension_bridge;
 
 import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
-import addsynth.core.block_network.IBlockNetworkUser;
+import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.game.inventory.SlotData;
 import addsynth.core.game.inventory.filter.TypeFilter;
 import addsynth.core.gameplay.reference.ADDSynthCoreText;
 import addsynth.core.util.constants.DirectionConstant;
 import addsynth.core.util.game.redstone.RedstoneDetector;
 import addsynth.energy.lib.main.Receiver;
-import addsynth.energy.lib.tiles.TileBasicMachine;
+import addsynth.energy.lib.tiles.network.BlockNetworkMachineWithInventory;
 import addsynth.overpoweredtechnology.items.basic.LensItem;
 import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
@@ -23,12 +23,10 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TileSuspensionBridge extends TileBasicMachine implements IBlockNetworkUser<BridgeNetwork>, MenuProvider {
+public final class TileSuspensionBridge extends BlockNetworkMachineWithInventory<BridgeNetwork> implements MenuProvider {
 
   private static final TypeFilter filter = new TypeFilter(LensItem.class);
   private static final SlotData[] slot_data = {new SlotData(filter, 1)};
-
-  private BridgeNetwork network;
 
   private BridgeMessage bridge_message;
   
@@ -42,6 +40,7 @@ public final class TileSuspensionBridge extends TileBasicMachine implements IBlo
 
   public TileSuspensionBridge(BlockPos position, BlockState blockstate){
     super(Tiles.ENERGY_SUSPENSION_BRIDGE.get(), position, blockstate, slot_data, new Receiver());
+    // Energy doesn't need to be saved.
   }
 
   @Override
@@ -74,6 +73,17 @@ public final class TileSuspensionBridge extends TileBasicMachine implements IBlo
   }
 
   @Override
+  public Receiver getEnergy(){
+    if(onClientSide()){
+      return energy;
+    }
+    if(network == null){
+      BlockNetworkUtil.createBlockNetwork((ServerLevel)level, this, BridgeNetwork::new);
+    }
+    return network.energy;
+  }
+
+  @Override
   public void load_block_network_data(){
     network.load_data(LensItem.get_index(inventory.getStackInSlot(0)), redstone, bridge_data);
   }
@@ -95,17 +105,6 @@ public final class TileSuspensionBridge extends TileBasicMachine implements IBlo
     if(onServerSide()){
       network.update_lens((ServerLevel)level, LensItem.get_index(inventory.getStackInSlot(0)));
     }
-  }
-
-  @Override
-  public final void setBlockNetwork(BridgeNetwork network){
-    this.network = network;
-  }
-
-  @Override
-  @Nullable
-  public final BridgeNetwork getBlockNetwork(){
-    return network;
   }
 
   public final void setMessages(final BridgeMessage bridge_message, final BridgeMessage[] messages){

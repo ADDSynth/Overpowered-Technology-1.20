@@ -1,6 +1,6 @@
 package addsynth.energy.gameplay.machines.energy_wire;
 
-import addsynth.energy.lib.energy_network.tiles.BasicEnergyNetworkTile;
+import addsynth.energy.lib.tiles.network.AbstractEnergyNetworkTile;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
  * connect to other blocks of the same type.
  * @author ADDSynth
  */
-public final class TileEnergyWire extends BasicEnergyNetworkTile {
+public final class TileEnergyWire extends AbstractEnergyNetworkTile {
 
   public TileEnergyWire(BlockPos position, BlockState blockstate){
     super(Tiles.ENERGY_WIRE.get(), position, blockstate);

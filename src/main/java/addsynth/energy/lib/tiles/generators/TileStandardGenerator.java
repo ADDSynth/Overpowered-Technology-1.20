@@ -1,4 +1,4 @@
-package addsynth.energy.lib.tiles.energy;
+package addsynth.energy.lib.tiles.generators;
 
 import java.util.function.Predicate;
 import addsynth.core.game.inventory.IInputInventory;

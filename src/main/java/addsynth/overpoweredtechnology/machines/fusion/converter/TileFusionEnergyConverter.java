@@ -2,7 +2,7 @@ package addsynth.overpoweredtechnology.machines.fusion.converter;
 
 import java.util.ArrayList;
 import addsynth.core.util.game.MinecraftUtility;
-import addsynth.energy.lib.tiles.energy.TileAbstractGenerator;
+import addsynth.energy.lib.tiles.generators.TileAbstractGenerator;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.machines.data_cable.DataCableNetwork;
 import addsynth.overpoweredtechnology.machines.data_cable.TileDataCable;

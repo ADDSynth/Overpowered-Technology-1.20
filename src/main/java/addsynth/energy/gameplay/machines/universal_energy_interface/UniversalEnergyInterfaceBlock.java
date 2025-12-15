@@ -7,7 +7,7 @@ import addsynth.core.util.game.MinecraftUtility;
 import addsynth.energy.gameplay.reference.EnergyText;
 import addsynth.energy.lib.blocks.MachineBlock;
 import addsynth.energy.lib.energy_network.EnergyNetwork;
-import addsynth.energy.lib.energy_network.tiles.AbstractEnergyNetworkTile;
+import addsynth.energy.lib.tiles.network.AbstractEnergyNetworkTile;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

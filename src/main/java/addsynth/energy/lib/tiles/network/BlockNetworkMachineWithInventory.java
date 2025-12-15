@@ -1,16 +1,15 @@
-package addsynth.energy.lib.tiles;
+package addsynth.energy.lib.tiles.network;
 
 import java.util.function.Predicate;
+import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.game.inventory.IInputInventory;
 import addsynth.core.game.inventory.InputInventory;
 import addsynth.core.game.inventory.InventoryUtil;
 import addsynth.core.game.inventory.SlotData;
 import addsynth.energy.lib.main.Receiver;
-import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,32 +24,21 @@ import org.jetbrains.annotations.Nullable;
  *  work on the items, use one of the other Machine classes.
  * @author ADDSynth
  */
-public abstract class TileBasicMachine extends TileAbstractMachine implements IInputInventory {
+public abstract class BlockNetworkMachineWithInventory<B extends BlockNetwork> extends AbstractBlockNetworkMachine<B> implements IInputInventory {
 
-  private boolean changed;
+  protected boolean changed;
   protected final InputInventory inventory;
 
-  public TileBasicMachine(BlockEntityType type, BlockPos position, BlockState blockstate,
+  public BlockNetworkMachineWithInventory(BlockEntityType type, BlockPos position, BlockState blockstate,
                           SlotData[] slots, Receiver energy){
     super(type, position, blockstate, energy);
     this.inventory = InputInventory.create(this, slots);
   }
 
-  public TileBasicMachine(BlockEntityType type, BlockPos position, BlockState blockstate,
+  public BlockNetworkMachineWithInventory(BlockEntityType type, BlockPos position, BlockState blockstate,
                           int input_slots, Predicate<ItemStack> filter, Receiver energy){
     super(type, position, blockstate, energy);
     this.inventory = InputInventory.create(this, input_slots, filter);
-  }
-
-  @Override
-  public void serverTick(ServerLevel level, BlockState blockstate){
-    if(energy.tick()){
-      changed = true;
-    }
-    if(changed){
-      update_data();
-      changed = false;
-    }
   }
 
   @Override

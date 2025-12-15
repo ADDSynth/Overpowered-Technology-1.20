@@ -2,7 +2,7 @@ package addsynth.overpoweredtechnology.machines.energy_extractor;
 
 import javax.annotation.Nullable;
 import addsynth.core.game.inventory.filter.BasicFilter;
-import addsynth.energy.lib.tiles.energy.TileStandardGenerator;
+import addsynth.energy.lib.tiles.generators.TileStandardGenerator;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import addsynth.overpoweredtechnology.registers.Tiles;

@@ -2,8 +2,8 @@ package addsynth.energy.lib.energy_network;
 
 import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.lib.main.IEnergyUser;
-import addsynth.energy.lib.tiles.energy.TileAbstractGenerator;
-import addsynth.energy.lib.tiles.energy.TileEnergyBattery;
+import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
+import addsynth.energy.lib.tiles.generators.TileAbstractGenerator;
 import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
 import net.minecraft.world.level.block.entity.BlockEntity;
 

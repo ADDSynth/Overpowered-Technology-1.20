@@ -3,7 +3,7 @@ package addsynth.energy.gameplay.machines.energy_storage;
 import javax.annotation.Nullable;
 import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.tiles.energy.TileEnergyBattery;
+import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

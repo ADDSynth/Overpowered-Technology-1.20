@@ -2,7 +2,7 @@ package addsynth.energy.lib.tiles.machines;
 
 import addsynth.energy.lib.main.IEnergyConsumer;
 import addsynth.energy.lib.main.Receiver;
-import addsynth.energy.lib.tiles.AbstractEnergyTile;
+import addsynth.energy.lib.tiles.network.AbstractEnergyTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;

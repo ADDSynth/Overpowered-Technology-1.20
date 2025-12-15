@@ -2,7 +2,7 @@ package addsynth.energy.lib.energy_network;
 
 import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
-import addsynth.energy.lib.tiles.energy.TileEnergyBattery;
+import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
 
 public class BatteryData extends EnergyTransferData<TileEnergyBattery> implements IGeneratorData, IReceiverData {
 

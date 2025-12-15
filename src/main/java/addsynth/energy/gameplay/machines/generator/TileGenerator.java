@@ -1,7 +1,7 @@
 package addsynth.energy.gameplay.machines.generator;
 
 import javax.annotation.Nullable;
-import addsynth.energy.lib.tiles.energy.TileStandardGenerator;
+import addsynth.energy.lib.tiles.generators.TileStandardGenerator;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

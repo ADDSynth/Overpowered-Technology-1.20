@@ -44,8 +44,8 @@ public final class BlockNetworkUtil {
   /** Only call this if a BlockNetwork requires data from another BlockNetwork during their tick event,
    *  but calling {@link IBlockNetworkUser#getBlockNetwork()} returned {@code null}. Normal BlockNetwork
    *  initialization is achieved by calling {@link BlockNetwork#check(B, ServerLevel, T, BiFunction)}.
-   * @param <B>
-   * @param <T>
+   * @param <B> BlockNetwork
+   * @param <T> TileEntity & IBlockNetworkUser&ltB&gt
    * @param world
    * @param tile
    * @param constructor

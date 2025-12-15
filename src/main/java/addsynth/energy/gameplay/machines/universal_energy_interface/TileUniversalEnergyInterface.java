@@ -4,9 +4,9 @@ import addsynth.core.util.java.ArrayUtil;
 import addsynth.energy.compat.energy.EnergyCompat;
 import addsynth.energy.compat.energy.forge.ForgeEnergyIntermediary;
 import addsynth.energy.gameplay.config.Config;
-import addsynth.energy.lib.energy_network.tiles.BasicEnergyNetworkTile;
 import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.main.IBattery;
+import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,12 +24,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public final class TileUniversalEnergyInterface extends BasicEnergyNetworkTile
-  // The Universal Energy Interface should REMAIN as an ICustomEnergyUser
-  // and SHOULD NOT be treated as a Battery. Confirmed.
-  implements IBattery, MenuProvider {
-
-  private final Energy energy = new Energy(Config.universal_energy_interface_buffer.get());
+public final class TileUniversalEnergyInterface extends TileEnergyBattery implements IBattery, MenuProvider {
 
   private final ForgeEnergyIntermediary forge_energy = new ForgeEnergyIntermediary(energy){
     @Override
@@ -47,7 +42,7 @@ public final class TileUniversalEnergyInterface extends BasicEnergyNetworkTile
   private TRANSFER_MODE transfer_mode = TRANSFER_MODE.BI_DIRECTIONAL;
 
   public TileUniversalEnergyInterface(BlockPos position, BlockState blockstate){
-    super(Tiles.UNIVERSAL_ENERGY_INTERFACE.get(), position, blockstate);
+    super(Tiles.UNIVERSAL_ENERGY_INTERFACE.get(), position, blockstate, new Energy(Config.universal_energy_interface_buffer.get()));
   }
 
   @Override

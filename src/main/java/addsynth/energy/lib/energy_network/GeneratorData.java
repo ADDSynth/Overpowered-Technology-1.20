@@ -2,7 +2,7 @@ package addsynth.energy.lib.energy_network;
 
 import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
-import addsynth.energy.lib.tiles.energy.TileAbstractGenerator;
+import addsynth.energy.lib.tiles.generators.TileAbstractGenerator;
 
 public class GeneratorData extends EnergyTransferData<TileAbstractGenerator> implements IGeneratorData {
 

@@ -3,13 +3,11 @@ package addsynth.overpoweredtechnology.machines.laser.machine;
 import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.BlockNetworkUtil;
-import addsynth.core.block_network.IBlockNetworkUser;
 import addsynth.core.util.game.redstone.RedstoneDetector;
-import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.main.Receiver;
-import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
 import addsynth.energy.lib.tiles.machines.switchable.IAutoShutoff;
+import addsynth.energy.lib.tiles.network.AbstractBlockNetworkMachine;
 import addsynth.overpoweredtechnology.config.Config;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.registers.Tiles;
@@ -23,12 +21,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TileLaserHousing extends TileAbstractMachine implements IBlockNetworkUser<LaserNetwork>,
-  ITickingTileEntity, IAutoShutoff, MenuProvider {
+public final class TileLaserHousing extends AbstractBlockNetworkMachine<LaserNetwork> implements IAutoShutoff, MenuProvider {
 
   private boolean power_switch = true;
-
-  private LaserNetwork network;
   private int laser_distance = Config.default_laser_distance.get();
 
   /** Set by {@link LaserNetwork#updateLaserNetwork()} method and used by
@@ -80,11 +75,6 @@ public final class TileLaserHousing extends TileAbstractMachine implements IBloc
     return network.energy;
   }
 
-  @Override
-  public double getRequestedEnergy(){
-    return getEnergy().getRequestedEnergy();
-  }
-
   // Only the gui calls these
   public final int getLaserDistance(){     return laser_distance; }
   @Override
@@ -99,17 +89,6 @@ public final class TileLaserHousing extends TileAbstractMachine implements IBloc
     this.auto_shutoff = shutoff;
     this.redstone_state.setFrom(redstone);
     super.update_data();
-  }
-
-  @Override
-  public final void setBlockNetwork(final LaserNetwork network){
-    this.network = network;
-  }
-
-  @Override
-  @Nullable
-  public final LaserNetwork getBlockNetwork(){
-    return this.network;
   }
 
   @Override
