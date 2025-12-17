@@ -9,7 +9,6 @@ import addsynth.energy.lib.main.Receiver;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,9 +23,9 @@ import org.jetbrains.annotations.Nullable;
  *  work on the items, use one of the other Machine classes.
  * @author ADDSynth
  */
+// UNUSED: addsynth.energy.lib.tiles.machines.TileBasicMachine
 public abstract class TileBasicMachine extends TileAbstractMachine implements IInputInventory {
 
-  private boolean changed;
   protected final InputInventory inventory;
 
   public TileBasicMachine(BlockEntityType type, BlockPos position, BlockState blockstate,
@@ -39,17 +38,6 @@ public abstract class TileBasicMachine extends TileAbstractMachine implements II
                           int input_slots, Predicate<ItemStack> filter, Receiver energy){
     super(type, position, blockstate, energy);
     this.inventory = InputInventory.create(this, input_slots, filter);
-  }
-
-  @Override
-  public void serverTick(ServerLevel level, BlockState blockstate){
-    if(energy.tick()){
-      changed = true;
-    }
-    if(changed){
-      update_data();
-      changed = false;
-    }
   }
 
   @Override

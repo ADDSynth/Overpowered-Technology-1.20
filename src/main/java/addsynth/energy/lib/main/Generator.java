@@ -2,7 +2,7 @@ package addsynth.energy.lib.main;
 
 import net.minecraft.nbt.CompoundTag;
 
-public final class Generator extends Energy {
+public class Generator extends Energy {
 
   public Generator(){
     super(0, 0, 0, 0);

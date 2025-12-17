@@ -45,15 +45,8 @@ public abstract class TileSingleItemMachine extends TileAbstractWorkMachine impl
   }
 
   @Override
-  public void serverTick(ServerLevel world, BlockState blockstate){
+  public void derivedTick(ServerLevel world, BlockState blockstate){
     machine_tick();
-    if(energy.tick()){
-      changed = true;
-    }
-    if(changed){
-      update_data();
-      changed = false;
-    }
   }
 
   @Override
@@ -74,13 +67,6 @@ public abstract class TileSingleItemMachine extends TileAbstractWorkMachine impl
         changed = true;
       }
     }
-    // if(energy.tick()){
-    //   doWork();
-    //   changed = true;
-    // }
-    // else{
-    //   state = MachineState.NOT_RECEIVING_ENERGY;
-    // }
   }
 
   /** Default behaviour is to check if the Input Inventory has an item in it. */
@@ -117,16 +103,16 @@ public abstract class TileSingleItemMachine extends TileAbstractWorkMachine impl
   @Override
   public void load(final CompoundTag nbt){
     super.load(nbt);
-    if(input_inventory != null){input_inventory.load(nbt);}
-    if(output_inventory != null){output_inventory.load(nbt);}
+     input_inventory.load(nbt);
+    output_inventory.load(nbt);
   }
 
   @Override
   protected void saveAdditional(final CompoundTag nbt){
     super.saveAdditional(nbt);
-    if(input_inventory != null){input_inventory.save(nbt);}
-    if(output_inventory != null){output_inventory.save(nbt);}
-  }
+    input_inventory.save(nbt);
+    output_inventory.save(nbt);
+   }
 
   @Override
   @NotNull
@@ -154,17 +140,17 @@ public abstract class TileSingleItemMachine extends TileAbstractWorkMachine impl
   }
 
   @Override
-  public void drop_inventory(){
+  public final void drop_inventory(){
     InventoryUtil.drop_inventories(worldPosition, level, input_inventory, output_inventory);
   }
 
   @Override
-  public InputInventory getInputInventory(){
+  public final InputInventory getInputInventory(){
     return input_inventory;
   }
 
   @Override
-  public OutputInventory getOutputInventory(){
+  public final OutputInventory getOutputInventory(){
     return output_inventory;
   }
 

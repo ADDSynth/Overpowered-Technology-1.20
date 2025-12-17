@@ -1,8 +1,10 @@
 package addsynth.core.game.inventory.machine;
 
 import addsynth.core.game.inventory.CommonInventory;
+import addsynth.core.game.inventory.IInputInventory;
+import addsynth.core.game.inventory.IOutputInventory;
 
-public interface IMachineInventory {
+public interface IMachineInventory extends IInputInventory, IOutputInventory {
 
   public CommonInventory getWorkingInventory();
 

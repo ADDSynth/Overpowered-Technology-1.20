@@ -1,4 +1,4 @@
-package addsynth.energy.lib.tiles.network;
+package addsynth.energy.lib.tiles.machines.block_network;
 
 import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;

@@ -1,15 +1,11 @@
 package addsynth.energy.gameplay.machines.solar_panel;
 
-import addsynth.core.game.tiles.TileBase;
 import addsynth.core.gameplay.reference.ADDSynthCoreText;
 import addsynth.core.util.game.MinecraftUtility;
-import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import addsynth.core.util.network.NetworkUtil;
 import addsynth.core.util.time.WorldTime;
 import addsynth.energy.gameplay.NetworkHandler;
-import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.Generator;
-import addsynth.energy.lib.main.IEnergyGenerator;
+import addsynth.energy.lib.tiles.generators.TilePassiveGenerator;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,10 +15,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.dimension.DimensionType;
 
-public class SolarPanelControllerTile extends TileBase implements IEnergyGenerator, ITickingTileEntity {
+public class SolarPanelControllerTile extends TilePassiveGenerator {
 
   private SolarPanelStatus status;
-  private final Generator energy = new Generator();
   private int daytime;
   private double total_energy;
   private double phase;
@@ -33,7 +28,7 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
   private boolean found;
   private BlockPos adjacent;
   private SolarPanelTile solar_panel;
-  private SolarPanelNetwork network;
+  private SolarPanelNetwork solar_network;
   private SolarPanelData data;
 
   public SolarPanelControllerTile(BlockPos position, BlockState blockstate){
@@ -55,7 +50,7 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
   }
 
   @Override
-  public void serverTick(ServerLevel level, BlockState blockstate){
+  public final void derivedTick(ServerLevel level, BlockState blockstate){
     daytime = (int)(level.getDayTime() % WorldTime.minecraft_day_in_ticks);
     phase = (double)daytime / WorldTime.minecraft_day_in_ticks;
     if(status != SolarPanelStatus.DIMENSION_HAS_NO_LIGHT){
@@ -69,12 +64,12 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
         solar_panel = MinecraftUtility.getTileEntity(adjacent, level, SolarPanelTile.class);
         if(solar_panel != null){
           found = true;
-          network = solar_panel.getBlockNetwork();
-          if(network != null){
-            total_energy += network.getEnergy();
-            panel_count += network.getCount();
-            blocked_count += network.getBlockedCount();
-            theoretical_energy += network.getTheoreticalEnergy();
+          solar_network = solar_panel.getBlockNetwork();
+          if(solar_network != null){
+            total_energy += solar_network.getEnergy();
+            panel_count += solar_network.getCount();
+            blocked_count += solar_network.getBlockedCount();
+            theoretical_energy += solar_network.getTheoreticalEnergy();
           }
         }
       }
@@ -94,9 +89,7 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
         status = SolarPanelStatus.WORKING;
       }
     }
-    energy.setEnergyAndCapacity(total_energy);
-    energy.setMaxExtract(total_energy);
-    energy.updateEnergyIO();
+    energy.setAll(total_energy);
     data.set(status, daytime, phase, total_energy, panel_count, blocked_count, theoretical_energy);
     NetworkUtil.send_to_TileEntity(NetworkHandler.INSTANCE, this, data);
   }
@@ -119,21 +112,6 @@ public class SolarPanelControllerTile extends TileBase implements IEnergyGenerat
   public final int getBlockedCount(){ return blocked_count; }
   public final double getEfficiency(){
     return theoretical_energy > 0 ? total_energy / theoretical_energy * 100 : 0;
-  }
-
-  @Override
-  public Energy getEnergy(){
-    return energy;
-  }
-
-  @Override
-  public double getAvailableEnergy(){
-    return energy.getAvailableEnergy();
-  }
-
-  @Override
-  public boolean isFreeEnergy(){
-    return true;
   }
 
 }

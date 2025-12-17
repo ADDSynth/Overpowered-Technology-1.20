@@ -6,7 +6,7 @@ import addsynth.energy.gameplay.machines.energy_diagnostics.TileEnergyDiagnostic
 import addsynth.energy.lib.blocks.Wire;
 import addsynth.energy.lib.energy_network.EnergyNetwork;
 import addsynth.energy.lib.main.IEnergyUser;
-import addsynth.energy.lib.tiles.network.AbstractEnergyNetworkTile;
+import addsynth.energy.lib.tiles.AbstractEnergyNetworkTile;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

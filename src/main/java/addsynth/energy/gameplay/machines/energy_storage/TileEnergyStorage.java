@@ -7,6 +7,7 @@ import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -22,6 +23,12 @@ public final class TileEnergyStorage extends TileEnergyBattery implements MenuPr
         Config.energy_storage.getMaxTransferRate()
       )
     );
+  }
+
+  @Override
+  protected final void derivedTick(ServerLevel level, BlockState blockstate){
+    energy.setCapacity(Config.energy_storage.getCapacity());
+    energy.setTransferRate(Config.energy_storage.getMaxTransferRate());
   }
 
   @Override

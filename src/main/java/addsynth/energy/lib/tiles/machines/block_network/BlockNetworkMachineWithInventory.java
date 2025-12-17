@@ -1,4 +1,4 @@
-package addsynth.energy.lib.tiles.network;
+package addsynth.energy.lib.tiles.machines.block_network;
 
 import java.util.function.Predicate;
 import addsynth.core.block_network.BlockNetwork;
@@ -19,11 +19,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/** This is for TileEntities that need energy to do work, and also need an
- *  Input Inventory, but only for Input-only storage. If you need to do
- *  work on the items, use one of the other Machine classes.
- * @author ADDSynth
- */
 public abstract class BlockNetworkMachineWithInventory<B extends BlockNetwork> extends AbstractBlockNetworkMachine<B> implements IInputInventory {
 
   protected boolean changed;
@@ -44,13 +39,13 @@ public abstract class BlockNetworkMachineWithInventory<B extends BlockNetwork> e
   @Override
   public void load(final CompoundTag nbt){
     super.load(nbt);
-    if(inventory != null){ inventory.load(nbt);}
+    inventory.load(nbt);
   }
 
   @Override
   protected void saveAdditional(final CompoundTag nbt){
     super.saveAdditional(nbt);
-    if(inventory != null){ inventory.save(nbt);}
+    inventory.save(nbt);
   }
 
   @Override

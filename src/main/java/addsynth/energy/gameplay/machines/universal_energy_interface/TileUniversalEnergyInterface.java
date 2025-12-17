@@ -4,8 +4,9 @@ import addsynth.core.util.java.ArrayUtil;
 import addsynth.energy.compat.energy.EnergyCompat;
 import addsynth.energy.compat.energy.forge.ForgeEnergyIntermediary;
 import addsynth.energy.gameplay.config.Config;
+import addsynth.energy.lib.energy_network.EnergyTransferStage;
 import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.IBattery;
+import addsynth.energy.lib.tiles.battery.ICustomEnergyTile;
 import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
@@ -24,7 +25,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public final class TileUniversalEnergyInterface extends TileEnergyBattery implements IBattery, MenuProvider {
+public final class TileUniversalEnergyInterface extends TileEnergyBattery implements ICustomEnergyTile, MenuProvider {
 
   private final ForgeEnergyIntermediary forge_energy = new ForgeEnergyIntermediary(energy){
     @Override
@@ -37,8 +38,6 @@ public final class TileUniversalEnergyInterface extends TileEnergyBattery implem
     }
   };
 
-  private boolean changed;
-
   private TRANSFER_MODE transfer_mode = TRANSFER_MODE.BI_DIRECTIONAL;
 
   public TileUniversalEnergyInterface(BlockPos position, BlockState blockstate){
@@ -46,8 +45,7 @@ public final class TileUniversalEnergyInterface extends TileEnergyBattery implem
   }
 
   @Override
-  public final void serverTick(ServerLevel level, BlockState blockstate){
-    super.serverTick(level, blockstate); // handles Energy Network stuff
+  public final void derivedTick(ServerLevel level, BlockState blockstate){
     final EnergyCompat.CompatEnergyNode[] energy_nodes = EnergyCompat.getConnectedEnergy(worldPosition, level);
     if(energy_nodes.length > 0){
       if(transfer_mode.canReceive){
@@ -56,13 +54,6 @@ public final class TileUniversalEnergyInterface extends TileEnergyBattery implem
       if(transfer_mode.canExtract){
         EnergyCompat.transmitEnergy(energy_nodes, energy);
       }
-    }
-    if(energy.tick()){
-      changed = true;
-    }
-    if(changed){
-      update_data();
-      changed = false;
     }
   }
 
@@ -93,16 +84,27 @@ public final class TileUniversalEnergyInterface extends TileEnergyBattery implem
   }
 
   @Override
+  public void extractEnergy(double energy, EnergyTransferStage stage){
+  }
+
+  @Override
+  public void receiveEnergy(double energy, EnergyTransferStage stage){
+  }
+
+  @Override
+  public final boolean isFreeEnergy(){
+    return false;
+  }
+
+  @Override
   public final void load(final CompoundTag nbt){
     super.load(nbt);
-    energy.loadFromNBT(nbt);
     transfer_mode = ArrayUtil.getArrayValue(TRANSFER_MODE.values(), nbt.getByte("Transfer Mode"));
   }
 
   @Override
   protected final void saveAdditional(final CompoundTag nbt){
     super.saveAdditional(nbt);
-    energy.saveToNBT(nbt);
     nbt.putByte("Transfer Mode", (byte)transfer_mode.ordinal());
   }
 
@@ -116,11 +118,6 @@ public final class TileUniversalEnergyInterface extends TileEnergyBattery implem
       return super.getCapability(capability, facing);
     }
     return LazyOptional.empty();
-  }
-  
-  @Override
-  public final Energy getEnergy(){
-    return energy;
   }
   
   @Override

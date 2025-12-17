@@ -1,6 +1,6 @@
 package addsynth.energy.gameplay.machines.energy_wire;
 
-import addsynth.energy.lib.tiles.network.AbstractEnergyNetworkTile;
+import addsynth.energy.lib.tiles.AbstractEnergyNetworkTile;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;

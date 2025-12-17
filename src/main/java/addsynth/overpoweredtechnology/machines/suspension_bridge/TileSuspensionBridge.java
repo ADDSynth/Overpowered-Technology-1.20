@@ -9,7 +9,7 @@ import addsynth.core.gameplay.reference.ADDSynthCoreText;
 import addsynth.core.util.constants.DirectionConstant;
 import addsynth.core.util.game.redstone.RedstoneDetector;
 import addsynth.energy.lib.main.Receiver;
-import addsynth.energy.lib.tiles.network.BlockNetworkMachineWithInventory;
+import addsynth.energy.lib.tiles.machines.block_network.BlockNetworkMachineWithInventory;
 import addsynth.overpoweredtechnology.items.basic.LensItem;
 import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;

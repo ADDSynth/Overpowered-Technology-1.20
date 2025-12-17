@@ -2,9 +2,12 @@ package addsynth.energy.lib.energy_network;
 
 import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
-import addsynth.energy.lib.tiles.generators.TileAbstractGenerator;
+import addsynth.energy.lib.main.IEnergyGenerator;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
-public class GeneratorData extends EnergyTransferData<TileAbstractGenerator> implements IGeneratorData {
+public class GeneratorData<G extends BlockEntity & IEnergyGenerator> extends EnergyTransferData<G> implements IGeneratorData {
+// Now I'm adding the TileUniversalEnergyInterface and it's the same problem.
+// I can't specify TileAbstractGenerator as the type parameter.
 
   private long total_energy;
   private long[] energy = new long[0];
@@ -12,7 +15,7 @@ public class GeneratorData extends EnergyTransferData<TileAbstractGenerator> imp
 
   @Override
   public final void update(){
-    list.removeIf((EnergyNode<TileAbstractGenerator> node) -> node.isInvalid());
+    list.removeIf((EnergyNode<G> node) -> node.isInvalid());
     total_energy = 0;
     size = list.size();
     if(energy.length != size){

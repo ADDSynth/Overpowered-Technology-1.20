@@ -5,14 +5,14 @@ import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.node.Node;
 import addsynth.core.block_network.search.AdvancedSearchAlgorithm;
-import addsynth.core.util.time.TimeUtil;
-import addsynth.energy.ADDSynthEnergy;
+import addsynth.energy.gameplay.machines.energy_storage.TileEnergyStorage;
+import addsynth.energy.gameplay.machines.energy_wire.TileEnergyWire;
 import addsynth.energy.gameplay.machines.universal_energy_interface.TileUniversalEnergyInterface;
 import addsynth.energy.lib.main.IEnergyUser;
-import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
+import addsynth.energy.lib.tiles.AbstractEnergyNetworkTile;
+import addsynth.energy.lib.tiles.AbstractEnergyTile;
 import addsynth.energy.lib.tiles.generators.TileAbstractGenerator;
 import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
-import addsynth.energy.lib.tiles.network.AbstractEnergyNetworkTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -29,8 +29,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
  */
 public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile> {
 
-  public long tick_time;
-
   private final HashSet<EnergyNode> all_machines = new HashSet<>();
   private final EnergyNetworkData   transfer_data = new EnergyNetworkData();
 
@@ -45,18 +43,28 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   // connected by wire, to be NOT be connected, and thus be two separate energy networks.
   // I can't believe ChatGPT (or specifically Copilot using GPT-5) actually solved my issue.
   // An energy network MUST consist of all machines connected, but FAIL if going from machine to machine.
-  private static final boolean canNavigate(final Node from, final Node to){
-    @Nullable BlockEntity to_tile = to.getTile();
-    if(to_tile != null){
-      if(isNavigable(to_tile)){
-        return true;
-      }
-      @Nullable BlockEntity from_tile = from.getTile();
-      if(from_tile != null){
-        if(isNavigable(from_tile) && isMachine(to_tile)){
-          return true;
+  /** This is the primary method that determines if a Node gets added to the Energy Network. */
+  private static final boolean canNavigate(@Nullable final Node previous_node, final Node current_node){
+    @Nullable BlockEntity tile = current_node.getTile();
+    if(tile != null){
+      if(previous_node != null){
+        @Nullable BlockEntity previous_tile = previous_node.getTile();
+        if(previous_tile != null){
+          // Wire/Battery -> Wire/Battery TRUE
+          // Wire -> Machine   OKAY
+          // Machine -> Wire   OKAY
+          // Machine/Battery -> Machine FAIL
+          if(isMachine(previous_tile)){
+            // if prevous node was a machine, we can only navigate to wires
+            return isWire(tile);
+          }
+          if(isBattery(previous_tile)){
+            // batteries can navigate to wires or other batteries
+            return isWire(tile) || isBattery(tile);
+          }
         }
       }
+      return isWire(tile) || isMachine(tile) || isBattery(tile);
     }
     return false;
   }
@@ -65,8 +73,12 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
     return tile instanceof TileAbstractMachine || tile instanceof TileAbstractGenerator || tile instanceof TileUniversalEnergyInterface;
   }
 
-  private static final boolean isNavigable(final BlockEntity tile){
-    return tile instanceof AbstractEnergyNetworkTile && !isMachine(tile);
+  private static final boolean isBattery(final BlockEntity tile){
+    return tile instanceof TileEnergyStorage;
+  }
+
+  private static final boolean isWire(final BlockEntity tile){
+    return tile instanceof TileEnergyWire;
   }
 
   @Override
@@ -80,14 +92,33 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
     transfer_data.tick();
   }
 
+  /** This is the primary method that determines if a machine gets added to the Energy Network.
+   *  Remember, we allow machines to be added if the previous Node was NOT a machine */
   @Override
   protected final void customSearch(@Nullable final Node previous, final Node node, final ServerLevel world){
-    final BlockEntity tile = node.getTile();
+    @Nullable BlockEntity tile = node.getTile();
     if(tile != null){
-      if(tile instanceof IEnergyUser){
-        all_machines.add(new EnergyNode(tile));
-        transfer_data.add(tile);
+      if(previous != null){
+        @Nullable BlockEntity previous_tile = previous.getTile();
+        if(previous_tile != null){
+          if(isMachine(previous_tile)){
+            return;
+          }
+          if(isBattery(previous_tile) && isBattery(tile)){
+            // if previous node was a battery, only thing we can add adjacent is another battery.
+            add(tile);
+            return;
+          }
+        }
       }
+      add(tile);
+    }
+  }
+
+  private final void add(final BlockEntity tile){
+    if(tile instanceof AbstractEnergyTile energy_tile){
+      all_machines.add(new EnergyNode<>(energy_tile));
+      transfer_data.add(energy_tile);
     }
   }
 

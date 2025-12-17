@@ -22,8 +22,7 @@ import org.jetbrains.annotations.Nullable;
  *  item from the input inventory to the working inventory and switches to the Running state.
  * @author ADDSynth
  */
-public abstract class TileStandardWorkMachine extends TileAbstractWorkMachine
-  implements IInputInventory, IOutputInventory, IMachineInventory {
+public abstract class TileStandardWorkMachine extends TileAbstractWorkMachine implements IMachineInventory {
 
   protected final MachineInventory inventory;
 
@@ -40,17 +39,10 @@ public abstract class TileStandardWorkMachine extends TileAbstractWorkMachine
   }
 
   @Override
-  public void serverTick(ServerLevel level, BlockState blockstate){
+  protected void derivedTick(ServerLevel level, BlockState blockstate){
     machine_tick();
     if(inventory.tick()){
       changed = true;
-    }
-    if(energy.tick()){
-      changed = true;
-    }
-    if(changed){
-      update_data();
-      changed = false;
     }
   }
 

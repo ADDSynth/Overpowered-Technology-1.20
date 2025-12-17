@@ -2,7 +2,7 @@ package addsynth.overpoweredtechnology.machines.fusion.converter;
 
 import java.util.ArrayList;
 import addsynth.core.util.game.MinecraftUtility;
-import addsynth.energy.lib.tiles.generators.TileAbstractGenerator;
+import addsynth.energy.lib.tiles.generators.TilePassiveGenerator;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.machines.data_cable.DataCableNetwork;
 import addsynth.overpoweredtechnology.machines.data_cable.TileDataCable;
@@ -15,7 +15,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TileFusionEnergyConverter extends TileAbstractGenerator {
+public final class TileFusionEnergyConverter extends TilePassiveGenerator {
 
   private static final int sync_timer = 4; // TODO: remove sync timer in version 1.7
   private final ArrayList<DataCableNetwork> data_cable_networks = new ArrayList<>(1);
@@ -28,12 +28,8 @@ public final class TileFusionEnergyConverter extends TileAbstractGenerator {
   }
 
   @Override
-  public final void serverTick(ServerLevel level, BlockState blockstate){
-    final int energy_per_tick = MachineValues.fusion_energy_output_per_tick.get();
-    if(energy.getCapacity() != energy_per_tick){
-      energy.setCapacity(energy_per_tick);
-      energy.setMaxExtract(energy_per_tick);
-    }
+  public final void derivedTick(ServerLevel level, BlockState blockstate){
+    energy.setIfChanged(MachineValues.fusion_energy_output_per_tick.get());
     if(level.getGameTime() % sync_timer == 0){
       
       final BlockPos previous_position = fusion_chamber != null ? fusion_chamber.getBlockPos() : null;
@@ -60,9 +56,8 @@ public final class TileFusionEnergyConverter extends TileAbstractGenerator {
     }
     // every tick
     if(activated && valid){
-      energy.set_to_full();
+      energy.reset();
     }
-    energy.updateEnergyIO();
   }
 
   @Override
@@ -115,10 +110,6 @@ public final class TileFusionEnergyConverter extends TileAbstractGenerator {
         }
       }
     }
-  }
-
-  @Override
-  protected void setGeneratorData(){
   }
 
 }

@@ -2,9 +2,16 @@ package addsynth.energy.lib.energy_network;
 
 import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
-import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
+import addsynth.energy.lib.main.IEnergyConsumer;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
-public class ReceiverData extends EnergyTransferData<TileAbstractMachine> implements IReceiverData {
+public class ReceiverData<R extends BlockEntity & IEnergyConsumer> extends EnergyTransferData<R> implements IReceiverData {
+// this has to be ReceiverData<R extends BlockEntity & IEnergyConsumer> right now instead of
+// specifing 'TileAbstractMachine' as the type parameter because Tiles that have their own
+// BlockNetwork CANNOT extend from TileAbstractMachine, so they have to be their own AbstractTile class.
+// I wonder if the solution is to somehow make a hybrid network class, like a new type of
+// Block Network that extends from the Energy Network. anyway, once I solve this issue,
+// then it can return to 'extends EnergyTransferData<TileAbstractMachine>'
 
   private long total_energy;
   private long[] energy = new long[0];
@@ -12,7 +19,7 @@ public class ReceiverData extends EnergyTransferData<TileAbstractMachine> implem
   
   @Override
   public final void update(){
-    list.removeIf((EnergyNode<TileAbstractMachine> node) -> node.isInvalid());
+    list.removeIf((EnergyNode<R> node) -> node.isInvalid());
     total_energy = 0;
     size = list.size();
     if(energy.length != size){

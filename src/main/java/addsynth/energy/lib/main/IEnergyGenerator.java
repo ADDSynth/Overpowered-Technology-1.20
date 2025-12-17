@@ -7,9 +7,7 @@ public interface IEnergyGenerator extends IEnergyUser {
   public double getAvailableEnergy();
 
   /** The Energy Network will prioritize using energy from free sources, such as Solar Panels. */
-  public default boolean isFreeEnergy(){
-    return false;
-  }
+  public boolean isFreeEnergy();
 
   // too far / too restrictive
   // @Override

@@ -2,7 +2,7 @@ package addsynth.overpoweredtechnology.machines.energy_extractor;
 
 import javax.annotation.Nullable;
 import addsynth.core.game.inventory.filter.BasicFilter;
-import addsynth.energy.lib.tiles.generators.TileStandardGenerator;
+import addsynth.energy.lib.tiles.generators.TileInputGenerator;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import addsynth.overpoweredtechnology.registers.Tiles;
@@ -16,7 +16,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TileEnergyExtractor extends TileStandardGenerator implements MenuProvider {
+public final class TileEnergyExtractor extends TileInputGenerator implements MenuProvider {
 
   private static final BasicFilter input_filter = new BasicFilter(
     OverpoweredItems.energy_crystal_shards,
@@ -29,19 +29,10 @@ public final class TileEnergyExtractor extends TileStandardGenerator implements 
   }
 
   @Override
-  public void serverTick(ServerLevel level, BlockState blockstate){
-    if(energy.isEmpty()){
-      if(input_inventory.isEmpty() == false){
-        setGeneratorData();
-        changed = true;
-      }
-    }
-    if(energy.tick()){
+  protected void derivedTick(ServerLevel level, BlockState blockstate){
+    if(energy.isEmpty() && !input_inventory.isEmpty()){
+      setGeneratorData();
       changed = true;
-    }
-    if(changed){
-      update_data();
-      changed = false;
     }
   }
 
@@ -60,6 +51,11 @@ public final class TileEnergyExtractor extends TileStandardGenerator implements 
       energy.setEnergyAndCapacity(MachineValues.light_block_energy.get());
       energy.setMaxExtract(MachineValues.light_block_max_extract.get());
     }
+  }
+
+  @Override
+  public final boolean isFreeEnergy(){
+    return false;
   }
 
   @Override

@@ -1,46 +1,27 @@
 package addsynth.energy.lib.tiles.generators;
 
-import java.util.function.Predicate;
-import addsynth.core.game.inventory.IInputInventory;
-import addsynth.core.game.inventory.InputInventory;
-import addsynth.core.game.inventory.InventoryUtil;
+import addsynth.core.block_network.BlockNetwork;
+import addsynth.energy.lib.energy_network.EnergyNetwork;
+import addsynth.energy.lib.main.Generator;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-/** Standard Generators are generators that have an Input inventory and
- *  accept fuel items to be consumed to produce Energy.
- * @author ADDSynth
- */
-public abstract class TileStandardGenerator extends TileAbstractGenerator implements IInputInventory {
+public abstract class TileStandardGenerator extends TileAbstractGenerator {
 
-  protected final InputInventory input_inventory;
+  protected final Generator energy = new Generator();
+  protected boolean changed;
 
-  public TileStandardGenerator(final BlockEntityType type, BlockPos position, BlockState blockstate, final Predicate<ItemStack> filter){
+  public TileStandardGenerator(final BlockEntityType type, BlockPos position, BlockState blockstate){
     super(type, position, blockstate);
-    this.input_inventory = InputInventory.create(this, 1, filter);
   }
 
   @Override
-  public void serverTick(ServerLevel level, BlockState blockstate){
-    // standard generator behaviour
-    if(energy.isEmpty()){
-      if(input_inventory.isEmpty() == false){
-        setGeneratorData();
-        changed = true;
-      }
-    }
-    // if there's any energy left, subtract available energy before we reset the IO
-    energy.subtractAvailableEnergy();
+  public final void serverTick(ServerLevel level, BlockState blockstate){
+    BlockNetwork.tick(network, level, this, EnergyNetwork::new);
+    derivedTick(level, blockstate);
     if(energy.tick()){
       changed = true;
     }
@@ -50,43 +31,30 @@ public abstract class TileStandardGenerator extends TileAbstractGenerator implem
     }
   }
 
+  protected abstract void derivedTick(ServerLevel level, BlockState blockstate);
+
   @Override
   public void load(final CompoundTag nbt){
     super.load(nbt);
-    if(input_inventory != null){ input_inventory.load(nbt);}
+    energy.loadFromNBT(nbt);
   }
 
   @Override
   protected void saveAdditional(final CompoundTag nbt){
     super.saveAdditional(nbt);
-    if(input_inventory != null){ input_inventory.save(nbt);}
+    energy.saveToNBT(nbt);
+  }
+
+  protected abstract void setGeneratorData();
+
+  @Override
+  public double getAvailableEnergy(){
+    return energy.getAvailableEnergy();
   }
 
   @Override
-  @NotNull
-  public <T> LazyOptional<T> getCapability(final @NotNull Capability<T> capability, final @Nullable Direction side){
-    if(remove == false){
-      if(capability == ForgeCapabilities.ITEM_HANDLER){
-        return InventoryUtil.getInventoryCapability(input_inventory, null, side);
-      }
-      return super.getCapability(capability, side);
-    }
-    return LazyOptional.empty();
-  }
-
-  @Override
-  public void onInventoryChanged(){
-    changed = true;
-  }
-
-  @Override
-  public final void drop_inventory(){
-    InventoryUtil.drop_inventories(worldPosition, level, input_inventory);
-  }
-
-  @Override
-  public final InputInventory getInputInventory(){
-    return input_inventory;
+  public final Generator getEnergy(){
+    return energy;
   }
 
 }

@@ -24,16 +24,9 @@ public abstract class TileManualMachine extends TileSwitchableMachine {
   }
 
   @Override
-  public void serverTick(ServerLevel level, BlockState blockstate){
+  public void derivedTick(ServerLevel level, BlockState blockstate){
     checkIfPowerTimeChanged();
     machine_tick();
-    if(energy.tick()){
-      changed = true;
-    }
-    if(changed){
-      update_data();
-      changed = false;
-    }
   }
 
   @Override

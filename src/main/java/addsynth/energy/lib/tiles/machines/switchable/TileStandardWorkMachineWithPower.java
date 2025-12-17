@@ -23,8 +23,7 @@ import org.jetbrains.annotations.Nullable;
 /** This is just like the {@link TileStandardWorkMachine} except it can be turned off and has idle energy.
  * @author ADDSynth
  */
-public abstract class TileStandardWorkMachineWithPower extends TileSwitchableMachine
-  implements IInputInventory, IOutputInventory, IMachineInventory {
+public abstract class TileStandardWorkMachineWithPower extends TileSwitchableMachine implements IMachineInventory {
 
   protected final MachineInventory inventory;
 
@@ -41,18 +40,11 @@ public abstract class TileStandardWorkMachineWithPower extends TileSwitchableMac
   }
 
   @Override
-  public final void serverTick(ServerLevel level, BlockState blockstate){
+  public final void derivedTick(ServerLevel level, BlockState blockstate){
     checkIfPowerTimeChanged();
     machine_tick();
     if(inventory.tick()){
       changed = true;
-    }
-    if(energy.tick()){
-      changed = true;
-    }
-    if(changed){
-      update_data();
-      changed = false;
     }
   }
 

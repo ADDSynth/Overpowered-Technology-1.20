@@ -1,7 +1,6 @@
 package addsynth.energy.lib.tiles.machines;
 
 import addsynth.energy.lib.config.MachineData;
-import addsynth.energy.lib.main.IBattery;
 import addsynth.energy.lib.main.MachineReceiver;
 import addsynth.energy.lib.main.Receiver;
 import net.minecraft.core.BlockPos;
@@ -14,12 +13,8 @@ import net.minecraft.world.level.block.state.BlockState;
  *  specifically defined and are well managed.
  * @author ADDSynth
  */
-public abstract class TileAbstractWorkMachine extends TileAbstractMachine implements IBattery {
+public abstract class TileAbstractWorkMachine extends TileAbstractMachine {
 
-  /** Do not call {@link #update_data()}. Instead set this to true whenever
-   *  important data is changed. Check for this in the TileEntity's tick() function.
-   */
-  protected boolean changed;
   protected final MachineData data;
   protected MachineState state;
   protected MachineStatus status;
@@ -53,11 +48,6 @@ public abstract class TileAbstractWorkMachine extends TileAbstractMachine implem
 
   public final float getWorkTimePercentage(){
     return energy.getEnergyPercentage();
-  }
-
-  @Override
-  public final double getAvailableEnergy(){
-    return 0;
   }
 
   public MutableComponent getStatus(){

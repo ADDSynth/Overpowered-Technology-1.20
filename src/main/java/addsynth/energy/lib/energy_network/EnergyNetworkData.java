@@ -1,10 +1,12 @@
 package addsynth.energy.lib.energy_network;
 
 import addsynth.energy.gameplay.config.Config;
+import addsynth.energy.gameplay.machines.universal_energy_interface.TileUniversalEnergyInterface;
 import addsynth.energy.lib.main.IEnergyUser;
 import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
 import addsynth.energy.lib.tiles.generators.TileAbstractGenerator;
 import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
+import addsynth.energy.lib.tiles.machines.block_network.AbstractBlockNetworkMachine;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class EnergyNetworkData {
@@ -24,11 +26,23 @@ public class EnergyNetworkData {
     batteries.clear();
   }
 
+  @SuppressWarnings("unchecked") // sadly, this is the best I can do, again.
   public final <M extends BlockEntity & IEnergyUser> void add(final M tile){
-    if(tile instanceof TileAbstractMachine machine){
+    // handle special custom TileEntity first
+    if(tile instanceof TileUniversalEnergyInterface energy_interface){
+      free_generators.add(energy_interface);
+      generators.add(energy_interface);
+      receivers.add(energy_interface);
+      batteries.add(energy_interface);
+    }
+    else if(tile instanceof TileAbstractMachine machine){
       receivers.add(machine);
     }
-    if(tile instanceof TileAbstractGenerator generator){
+    // add block network tiles
+    else if(tile instanceof AbstractBlockNetworkMachine block_network_machine){
+      receivers.add(block_network_machine);
+    }
+    else if(tile instanceof TileAbstractGenerator generator){
       if(generator.isFreeEnergy()){
         free_generators.add(generator);
       }
@@ -36,7 +50,7 @@ public class EnergyNetworkData {
         generators.add(generator);
       }
     }
-    if(tile instanceof TileEnergyBattery battery){
+    else if(tile instanceof TileEnergyBattery battery){
       batteries.add(battery);
     }
   }
@@ -51,13 +65,13 @@ public class EnergyNetworkData {
           batteries.update();
     
     // Step 2: Transfer Energy from Generators to Receivers
-    transfer(free_generators, receivers);
-    transfer(     generators, receivers);
-    transfer(      batteries, receivers);
+    transfer(free_generators, receivers, EnergyTransferStage.FREE_GENERATOR_TO_RECEIVERS);
+    transfer(     generators, receivers, EnergyTransferStage.GENERATOR_TO_RECEIVER);
+    transfer(      batteries, receivers, EnergyTransferStage.BATTERY_TO_RECEIVER);
     
     // Step 3: Transfer Remaining Energy from Generators to Batteries
-    transfer(free_generators, batteries);
-    transfer(     generators, batteries);
+    transfer(free_generators, batteries, EnergyTransferStage.FREE_GENERATOR_TO_BATTERY);
+    transfer(     generators, batteries, EnergyTransferStage.GENERATOR_TO_BATTERY);
     
     // Step 4: Balance Batteries
     if(Config.balance_batteries.get()){
@@ -67,7 +81,7 @@ public class EnergyNetworkData {
     tick_time = System.nanoTime() - start_time;
   }
 
-  private static final void transfer(IGeneratorData generator_data, IReceiverData receiver_data){
+  private static final void transfer(IGeneratorData generator_data, IReceiverData receiver_data, EnergyTransferStage stage){
     final long energy_to_transfer = Math.min(generator_data.getTotalAvailableEnergy(), receiver_data.getTotalRequestedEnergy());
     if(energy_to_transfer > 0){
       generator_data.extractEnergy(energy_to_transfer);

@@ -1,7 +1,7 @@
 package addsynth.energy.gameplay.machines.generator;
 
 import javax.annotation.Nullable;
-import addsynth.energy.lib.tiles.generators.TileStandardGenerator;
+import addsynth.energy.lib.tiles.generators.TileFuelGenerator;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
 
-public final class TileGenerator extends TileStandardGenerator implements MenuProvider {
+public final class TileGenerator extends TileFuelGenerator implements MenuProvider {
 
   public TileGenerator(BlockPos position, BlockState blockstate){
     super(Tiles.GENERATOR.get(), position, blockstate, null);

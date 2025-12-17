@@ -67,8 +67,8 @@ public class TileAdvancedGemConverter extends TileStandardWorkMachine implements
   // =====================================================================================
 
   @Override
-  public void serverTick(ServerLevel level, BlockState blockstate){
-    super.serverTick(level, blockstate);
+  protected void derivedTick(ServerLevel level, BlockState blockstate){
+    super.derivedTick(level, blockstate);
     if(temp_lowest_value != lowest_value){
       lowest_value = temp_lowest_value;
       sendClientSync();
