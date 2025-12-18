@@ -98,7 +98,7 @@ public final class CircuitFabricatorGui extends GuiEnergyBase<TileCircuitFabrica
 
   @Override
   protected final void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY){
-    draw_custom_background_texture(graphics, 384, 256);
+    draw_wide_background_texture(graphics);
     work_progress_bar.draw(graphics, this, tile);
     // draw arrows and ingredients
     final int length = recipe_ingredients.getLength();

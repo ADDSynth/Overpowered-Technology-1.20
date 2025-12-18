@@ -65,7 +65,7 @@ public final class GuiEnergySuspensionBridge extends GuiEnergyBase<TileSuspensio
 
   @Override
   protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY){
-    draw_custom_background_texture(graphics, 384, 256);
+    draw_wide_background_texture(graphics);
   }
 
   @Override

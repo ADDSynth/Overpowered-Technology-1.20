@@ -48,6 +48,15 @@ public abstract class GuiContainerBase<T extends AbstractContainerMenu> extends 
     graphics.blit(GUI_TEXTURE, leftPos, topPos, imageWidth, imageHeight, 0, 0, imageWidth, imageHeight, 256, 256);
   }
 
+  /** Since whenever we use a gui texture that's too big than 256x256 is often 384x256,
+   *  we provide a helper method for this size, since we use it a lot.
+   * @param graphics
+   */
+  protected final void draw_wide_background_texture(final GuiGraphics graphics){
+    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+    graphics.blit(GUI_TEXTURE, leftPos, topPos, imageWidth, imageHeight, 0, 0, imageWidth, imageHeight, 384, 256);
+  }
+
   /** Draws the background texture with custom scaled width and height. Use this
    *  if you have a background texture that is not the default size of 256x256.
    * @param texture_width
