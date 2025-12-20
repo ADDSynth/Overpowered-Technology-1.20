@@ -1,6 +1,5 @@
 package addsynth.energy.gameplay.machines.universal_energy_interface;
 
-import addsynth.core.util.java.ArrayUtil;
 import addsynth.energy.compat.energy.EnergyCompat;
 import addsynth.energy.compat.energy.forge.ForgeEnergyIntermediary;
 import addsynth.energy.gameplay.config.Config;
@@ -30,15 +29,15 @@ public final class TileUniversalEnergyInterface extends TileEnergyBattery implem
   private final ForgeEnergyIntermediary forge_energy = new ForgeEnergyIntermediary(energy){
     @Override
     public boolean canExtract(){
-      return super.canExtract() && transfer_mode.canExtract;
+      return super.canExtract() && transfer_settings.external_extract;
     }
     @Override
     public boolean canReceive(){
-      return super.canReceive() && transfer_mode.canReceive;
+      return super.canReceive() && transfer_settings.external_receive;
     }
   };
 
-  private TRANSFER_MODE transfer_mode = TRANSFER_MODE.BI_DIRECTIONAL;
+  private final InterfaceTransferSettings transfer_settings = new InterfaceTransferSettings();
 
   public TileUniversalEnergyInterface(BlockPos position, BlockState blockstate){
     super(Tiles.UNIVERSAL_ENERGY_INTERFACE.get(), position, blockstate, new Energy(Config.universal_energy_interface_buffer.get()));
@@ -48,64 +47,25 @@ public final class TileUniversalEnergyInterface extends TileEnergyBattery implem
   public final void derivedTick(ServerLevel level, BlockState blockstate){
     final EnergyCompat.CompatEnergyNode[] energy_nodes = EnergyCompat.getConnectedEnergy(worldPosition, level);
     if(energy_nodes.length > 0){
-      if(transfer_mode.canReceive){
+      if(transfer_settings.active_pull){
         EnergyCompat.acceptEnergy(energy_nodes, energy);
       }
-      if(transfer_mode.canExtract){
+      if(transfer_settings.active_push){
         EnergyCompat.transmitEnergy(energy_nodes, energy);
       }
     }
   }
 
-  public final TRANSFER_MODE get_transfer_mode(){
-    return transfer_mode;
-  }
-  
-  public final void set_next_transfer_mode(){
-    final int mode = (transfer_mode.ordinal() + 1) % TRANSFER_MODE.values().length;
-    transfer_mode = TRANSFER_MODE.values()[mode];
-    changed = true;
-  }
-
-  @Override
-  public final double getRequestedEnergy(){
-    if(transfer_mode.canExtract){
-      return energy.getRequestedEnergy();
-    }
-    return 0;
-  }
-
-  @Override
-  public final double getAvailableEnergy(){
-    if(transfer_mode.canReceive){
-      return energy.getAvailableEnergy();
-    }
-    return 0;
-  }
-
-  @Override
-  public void extractEnergy(double energy, EnergyTransferStage stage){
-  }
-
-  @Override
-  public void receiveEnergy(double energy, EnergyTransferStage stage){
-  }
-
-  @Override
-  public final boolean isFreeEnergy(){
-    return false;
-  }
-
   @Override
   public final void load(final CompoundTag nbt){
     super.load(nbt);
-    transfer_mode = ArrayUtil.getArrayValue(TRANSFER_MODE.values(), nbt.getByte("Transfer Mode"));
+    transfer_settings.load(nbt);
   }
 
   @Override
   protected final void saveAdditional(final CompoundTag nbt){
     super.saveAdditional(nbt);
-    nbt.putByte("Transfer Mode", (byte)transfer_mode.ordinal());
+    transfer_settings.save(nbt);
   }
 
   @Override
@@ -119,7 +79,74 @@ public final class TileUniversalEnergyInterface extends TileEnergyBattery implem
     }
     return LazyOptional.empty();
   }
-  
+
+  public final void setTransferSettings(final int index){
+    switch(index){
+    case 0: transfer_settings.setBiDirectional(); break;
+    case 1: transfer_settings.setExternalBattery(); break;
+    case 2: transfer_settings.setInternalBattery(); break;
+    case 3: transfer_settings.setExtract(); break;
+    case 4: transfer_settings.setReceive(); break;
+    case 5: transfer_settings.setNoTransfer(); break;
+    }
+    changed = true;
+  }
+
+  public final void toggleSetting(final int index){
+    transfer_settings.toggle(index);
+    changed = true;
+  }
+
+  public final boolean getToggle(final int index){
+    return transfer_settings.get(index);
+  }
+
+  @Override
+  public final double getRequestedEnergy(){
+    if(transfer_settings.internal_receive){
+      return energy.getRequestedEnergy();
+    }
+    return 0;
+  }
+
+  @Override
+  public final double getAvailableEnergy(){
+    if(transfer_settings.internal_extract){
+      return energy.getAvailableEnergy();
+    }
+    return 0;
+  }
+
+  @Override
+  public void extractEnergy(double energy, EnergyTransferStage extract_stage){
+    if(transfer_settings.isGenerator()){
+      if(extract_stage == EnergyTransferStage.FREE_GENERATOR && transfer_settings.is_free_energy_source){
+        this.energy.extractEnergy(energy);
+      }
+      else if(extract_stage == EnergyTransferStage.GENERATOR && !transfer_settings.is_free_energy_source){
+        this.energy.extractEnergy(energy);
+      }
+    }
+    else if(extract_stage == EnergyTransferStage.BATTERY && transfer_settings.isBattery()){
+      this.energy.extractEnergy(energy);
+    }
+  }
+
+  @Override
+  public void receiveEnergy(double energy, EnergyTransferStage receive_stage){
+    if(receive_stage == EnergyTransferStage.RECEIVER && transfer_settings.isReceiver()){
+      this.energy.receiveEnergy(energy);
+    }
+    else if(receive_stage == EnergyTransferStage.BATTERY && transfer_settings.isBattery()){
+      this.energy.receiveEnergy(energy);
+    }
+  }
+
+  @Override
+  public final boolean isFreeEnergy(){
+    return transfer_settings.is_free_energy_source;
+  }
+
   @Override
   @Nullable
   public AbstractContainerMenu createMenu(int id, Inventory player_inventory, Player player){

@@ -65,13 +65,13 @@ public class EnergyNetworkData {
           batteries.update();
     
     // Step 2: Transfer Energy from Generators to Receivers
-    transfer(free_generators, receivers, EnergyTransferStage.FREE_GENERATOR_TO_RECEIVERS);
-    transfer(     generators, receivers, EnergyTransferStage.GENERATOR_TO_RECEIVER);
-    transfer(      batteries, receivers, EnergyTransferStage.BATTERY_TO_RECEIVER);
+    transfer(free_generators, receivers, EnergyTransferStage.FREE_GENERATOR, EnergyTransferStage.RECEIVER);
+    transfer(     generators, receivers, EnergyTransferStage.GENERATOR,      EnergyTransferStage.RECEIVER);
+    transfer(      batteries, receivers, EnergyTransferStage.BATTERY,        EnergyTransferStage.RECEIVER);
     
     // Step 3: Transfer Remaining Energy from Generators to Batteries
-    transfer(free_generators, batteries, EnergyTransferStage.FREE_GENERATOR_TO_BATTERY);
-    transfer(     generators, batteries, EnergyTransferStage.GENERATOR_TO_BATTERY);
+    transfer(free_generators, batteries, EnergyTransferStage.FREE_GENERATOR, EnergyTransferStage.BATTERY);
+    transfer(     generators, batteries, EnergyTransferStage.GENERATOR,      EnergyTransferStage.BATTERY);
     
     // Step 4: Balance Batteries
     if(Config.balance_batteries.get()){
@@ -81,7 +81,7 @@ public class EnergyNetworkData {
     tick_time = System.nanoTime() - start_time;
   }
 
-  private static final void transfer(IGeneratorData generator_data, IReceiverData receiver_data, EnergyTransferStage stage){
+  private static final void transfer(IGeneratorData generator_data, IReceiverData receiver_data, EnergyTransferStage extract_stage, EnergyTransferStage receive_stage){
     final long energy_to_transfer = Math.min(generator_data.getTotalAvailableEnergy(), receiver_data.getTotalRequestedEnergy());
     if(energy_to_transfer > 0){
       generator_data.extractEnergy(energy_to_transfer);

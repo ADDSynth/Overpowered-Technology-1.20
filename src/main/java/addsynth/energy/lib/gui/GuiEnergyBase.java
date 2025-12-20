@@ -51,12 +51,16 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
   }
 
   protected final void draw_energy(final GuiGraphics graphics, final int draw_x, final int draw_y){
+    draw_energy(graphics, draw_x, right_edge, draw_y);
+  }
+
+  protected final void draw_energy(final GuiGraphics graphics, final int draw_header_x, final int draw_energy_x, final int draw_y){
     if(energy != null){
-      draw_text_left(graphics, EnergyText.energy_text.getString()+":", draw_x, draw_y);
-      draw_text_right(graphics, String.format("%.2f", energy.getEnergy()) + " / " + energy.getCapacity(), draw_y);
+      draw_text_left(graphics, EnergyText.energy_text, draw_header_x, draw_y);
+      draw_text_right(graphics, energy.print(), draw_energy_x, draw_y);
     }
     else{
-      draw_text_center(graphics, EnergyText.null_energy_reference, (draw_x + right_edge) / 2, draw_y);
+      draw_text_center(graphics, EnergyText.null_energy_reference, (draw_header_x + draw_energy_x) / 2, draw_y);
     }
   }
 
@@ -84,14 +88,7 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
   protected final void draw_energy_usage(GuiGraphics graphics, final int draw_x, final int draw_y){
     if(energy != null){
       draw_text_left(graphics, EnergyText.efficiency_text.getString()+":", draw_x, draw_y);
-      final String energy_usage = StringUtil.build(
-        String.format("%.2f", energy.get_energy_in()),
-        " / ",
-        String.format("%.2f", energy.getMaxReceive()),
-        "  ",
-        StringUtil.toPercentageString(energy.get_energy_in() / energy.getMaxReceive())
-      );
-      draw_text_right(graphics, energy_usage, draw_y);
+      draw_text_right(graphics, energy.printEnergyUse(), draw_y);
     }
     else{
       draw_text_left(graphics, EnergyText.null_energy_reference, draw_x, draw_y);

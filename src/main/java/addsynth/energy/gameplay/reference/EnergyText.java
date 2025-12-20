@@ -16,7 +16,7 @@ public final class EnergyText {
   public static final Component null_energy_reference = Component.literal("[Error: Null Energy Reference]");
 
   // Common
-  public static final Component energy_text           = Component.translatable("gui.addsynth_energy.common.energy");
+  public static final Component energy_text           = Component.translatable("gui.addsynth_energy.common.energy").append(":");
   public static final Component energy_usage_text     = Component.translatable("gui.addsynth_energy.common.energy_usage");
   public static final Component tick_text             = Component.translatable("gui.addsynth_energy.common.tick");
   public static final Component efficiency_text       = Component.translatable("gui.addsynth_energy.common.efficiency");
