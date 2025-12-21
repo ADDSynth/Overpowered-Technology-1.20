@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
 
-  public final Receiver energy = new Receiver(0, 1000);
+  public final Receiver energy = new Receiver();
 
   private int lens_index = -1;
 
@@ -120,6 +120,8 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
     }
   }
 
+  // Energy Suspension Bridge Rewrite has been delayed until Version 6.2.
+  // Also have it require energy then, because we need to count the blocks.
   // We need a single-directional update and a bi-directional update!
   // The reason we update from both directions is because both networks might have
   // valid shapes, but different shapes, so they think the other is incompatible.
