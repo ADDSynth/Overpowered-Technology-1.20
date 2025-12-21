@@ -1,58 +1,20 @@
 package addsynth.energy.lib.tiles.battery;
 
-import addsynth.core.block_network.BlockNetwork;
-import addsynth.energy.lib.energy_network.EnergyNetwork;
 import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.main.IBattery;
-import addsynth.energy.lib.tiles.AbstractEnergyTile;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 /** This is the base class for all TileEntities that should be treated as Batteries by the Energy Network. */
-public abstract class TileEnergyBattery extends AbstractEnergyTile implements IBattery {
-
-  protected final Energy energy;
-  protected boolean changed;
+public abstract class TileEnergyBattery extends BasicEnergyTile implements IBattery {
 
   public TileEnergyBattery(final BlockEntityType type, BlockPos position, BlockState blockstate){
     super(type, position, blockstate);
-    this.energy = new Energy();
   }
 
   public TileEnergyBattery(final BlockEntityType type, BlockPos position, BlockState blockstate, final Energy energy){
-    super(type, position, blockstate);
-    this.energy = energy;
-  }
-
-  @Override
-  public final void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(network, level, this, EnergyNetwork::new);
-    derivedTick(level, blockstate);
-    if(energy.tick()){
-      changed = true;
-    }
-    if(changed){
-      update_data();
-      changed = false;
-    }
-  }
-
-  protected void derivedTick(ServerLevel level, BlockState blockstate){
-  }
-
-  @Override
-  public void load(final CompoundTag nbt){
-    super.load(nbt);
-    energy.loadFromNBT(nbt);
-  }
-
-  @Override
-  protected void saveAdditional(final CompoundTag nbt){
-    super.saveAdditional(nbt);
-    energy.saveToNBT(nbt);
+    super(type, position, blockstate, energy);
   }
 
   @Override
@@ -63,11 +25,6 @@ public abstract class TileEnergyBattery extends AbstractEnergyTile implements IB
   @Override
   public double getRequestedEnergy(){
     return energy.getRequestedEnergy();
-  }
-
-  @Override
-  public final Energy getEnergy(){
-    return energy;
   }
 
 }

@@ -1,6 +1,5 @@
 package addsynth.energy.lib.energy_network;
 
-import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
 import addsynth.energy.lib.main.IEnergyConsumer;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -15,7 +14,6 @@ public class ReceiverData<R extends BlockEntity & IEnergyConsumer> extends Energ
 
   private long total_energy;
   private long[] energy = new long[0];
-  private long[] energy_to_receive;
   
   @Override
   public final void update(){
@@ -25,7 +23,7 @@ public class ReceiverData<R extends BlockEntity & IEnergyConsumer> extends Energ
     if(energy.length != size){
       energy = new long[size];
     }
-    for(i = 0; i < size; i++){
+    for(int i = 0; i < size; i++){
       energy[i] = (long)list.get(i).getTile().getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY;
       total_energy += energy[i];
     }
@@ -42,13 +40,15 @@ public class ReceiverData<R extends BlockEntity & IEnergyConsumer> extends Energ
   }
   
   @Override
-  public void receiveEnergy(final long transfer_energy){
-    total_energy -= transfer_energy;
-    energy_to_receive = MathUtility.divide_evenly(transfer_energy, energy);
-    for(i = 0; i < size; i++){
-      energy[i] -= energy_to_receive[i];
-      list.get(i).getEnergy().receiveEnergy((double)energy_to_receive[i] / DecimalNumber.DECIMAL_ACCURACY);
-    }
+  public long[] getReceiverValues(){
+    return energy;
+  }
+  
+  @Override
+  public void receiveEnergy(final int index, final long energy){
+    total_energy -= energy;
+    this.energy[index] -= energy;
+    list.get(index).getEnergy().receiveEnergy((double)energy / DecimalNumber.DECIMAL_ACCURACY);
   }
 
 }

@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 
 public abstract class EnergyTransferData<T extends BlockEntity & IEnergyUser> {
 
-  protected int i;
   protected int size;
   protected final IndexedSet<EnergyNode<T>> list = new IndexedSet<>();
 

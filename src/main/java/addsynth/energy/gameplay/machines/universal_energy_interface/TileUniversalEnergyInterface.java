@@ -5,8 +5,8 @@ import addsynth.energy.compat.energy.forge.ForgeEnergyIntermediary;
 import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.lib.energy_network.EnergyTransferStage;
 import addsynth.energy.lib.main.Energy;
+import addsynth.energy.lib.tiles.battery.BasicEnergyTile;
 import addsynth.energy.lib.tiles.battery.ICustomEnergyTile;
-import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,7 +24,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public final class TileUniversalEnergyInterface extends TileEnergyBattery implements ICustomEnergyTile, MenuProvider {
+public final class TileUniversalEnergyInterface extends BasicEnergyTile implements ICustomEnergyTile, MenuProvider {
 
   private final ForgeEnergyIntermediary forge_energy = new ForgeEnergyIntermediary(energy){
     @Override
@@ -102,49 +102,18 @@ public final class TileUniversalEnergyInterface extends TileEnergyBattery implem
   }
 
   @Override
-  public final double getRequestedEnergy(){
-    if(transfer_settings.internal_receive){
-      return energy.getRequestedEnergy();
-    }
+  public final double getAvailableEnergy(EnergyTransferStage generator_stage){
+    if(transfer_settings.isFreeGenerator(generator_stage)){ return energy.getAvailableEnergy(); }
+    if(transfer_settings.isGenerator(    generator_stage)){ return energy.getAvailableEnergy(); }
+    if(transfer_settings.isBattery(      generator_stage)){ return energy.getAvailableEnergy(); }
     return 0;
   }
 
   @Override
-  public final double getAvailableEnergy(){
-    if(transfer_settings.internal_extract){
-      return energy.getAvailableEnergy();
-    }
+  public final double getRequestedEnergy(EnergyTransferStage receiver_stage){
+    if(transfer_settings.isReceiver(receiver_stage)){ return energy.getRequestedEnergy(); }
+    if(transfer_settings.isBattery( receiver_stage)){ return energy.getRequestedEnergy(); }
     return 0;
-  }
-
-  @Override
-  public void extractEnergy(double energy, EnergyTransferStage extract_stage){
-    if(transfer_settings.isGenerator()){
-      if(extract_stage == EnergyTransferStage.FREE_GENERATOR && transfer_settings.is_free_energy_source){
-        this.energy.extractEnergy(energy);
-      }
-      else if(extract_stage == EnergyTransferStage.GENERATOR && !transfer_settings.is_free_energy_source){
-        this.energy.extractEnergy(energy);
-      }
-    }
-    else if(extract_stage == EnergyTransferStage.BATTERY && transfer_settings.isBattery()){
-      this.energy.extractEnergy(energy);
-    }
-  }
-
-  @Override
-  public void receiveEnergy(double energy, EnergyTransferStage receive_stage){
-    if(receive_stage == EnergyTransferStage.RECEIVER && transfer_settings.isReceiver()){
-      this.energy.receiveEnergy(energy);
-    }
-    else if(receive_stage == EnergyTransferStage.BATTERY && transfer_settings.isBattery()){
-      this.energy.receiveEnergy(energy);
-    }
-  }
-
-  @Override
-  public final boolean isFreeEnergy(){
-    return transfer_settings.is_free_energy_source;
   }
 
   @Override

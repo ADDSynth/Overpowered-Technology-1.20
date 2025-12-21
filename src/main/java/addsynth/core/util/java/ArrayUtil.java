@@ -170,6 +170,13 @@ public final class ArrayUtil {
     return exists;
   }
 
+  public static final long[] combine_arrays(@Nonnull final long[] a, @Nonnull final long[] b){
+    final long[] result = new long[a.length + b.length];
+    System.arraycopy(a, 0, result, 0, a.length);
+    System.arraycopy(b, 0, result, a.length, b.length);
+    return result;
+  }
+
   // https://stackoverflow.com/questions/12462079/potential-heap-pollution-via-varargs-parameter
   // https://softwareengineering.stackexchange.com/questions/155994/java-heap-pollution#
   // https://docs.oracle.com/javase/tutorial/java/generics/nonReifiableVarargsType.html

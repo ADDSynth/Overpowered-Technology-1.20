@@ -4,6 +4,7 @@ public interface IReceiverData {
 
   public boolean hasRequestedEnergy();
   public long getTotalRequestedEnergy();
-  public void receiveEnergy(long transfer_energy);
+  public long[] getReceiverValues();
+  public void receiveEnergy(int index, long energy);
 
 }

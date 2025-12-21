@@ -1,5 +1,6 @@
 package addsynth.energy.gameplay.machines.universal_energy_interface;
 
+import addsynth.energy.lib.energy_network.EnergyTransferStage;
 import net.minecraft.nbt.CompoundTag;
 
 public final class InterfaceTransferSettings {
@@ -103,16 +104,20 @@ public final class InterfaceTransferSettings {
     internal_extract = false;
   }
   
-  public final boolean isGenerator(){
-    return internal_extract && !internal_receive;
+  public final boolean isGenerator(final EnergyTransferStage stage){
+    return stage == EnergyTransferStage.GENERATOR && internal_extract && !internal_receive && !is_free_energy_source;
   }
   
-  public final boolean isReceiver(){
-    return !internal_extract && internal_receive;
+  public final boolean isFreeGenerator(final EnergyTransferStage stage){
+    return stage == EnergyTransferStage.FREE_GENERATOR && internal_extract && !internal_receive && is_free_energy_source;
   }
   
-  public final boolean isBattery(){
-    return internal_extract && internal_receive;
+  public final boolean isReceiver(final EnergyTransferStage stage){
+    return stage == EnergyTransferStage.RECEIVER && !internal_extract && internal_receive;
+  }
+  
+  public final boolean isBattery(final EnergyTransferStage stage){
+    return stage == EnergyTransferStage.BATTERY && internal_extract && internal_receive;
   }
 
 }

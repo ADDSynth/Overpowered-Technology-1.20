@@ -1,6 +1,5 @@
 package addsynth.energy.lib.energy_network;
 
-import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
 import addsynth.energy.lib.main.IEnergyGenerator;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -11,7 +10,6 @@ public class GeneratorData<G extends BlockEntity & IEnergyGenerator> extends Ene
 
   private long total_energy;
   private long[] energy = new long[0];
-  private long[] energy_to_extract;
 
   @Override
   public final void update(){
@@ -21,7 +19,7 @@ public class GeneratorData<G extends BlockEntity & IEnergyGenerator> extends Ene
     if(energy.length != size){
       energy = new long[size];
     }
-    for(i = 0; i < size; i++){
+    for(int i = 0; i < size; i++){
       energy[i] = (long)list.get(i).getTile().getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY;
       total_energy += energy[i];
     }
@@ -38,13 +36,15 @@ public class GeneratorData<G extends BlockEntity & IEnergyGenerator> extends Ene
   }
   
   @Override
-  public void extractEnergy(final long transfer_energy){
-    total_energy -= transfer_energy;
-    energy_to_extract = MathUtility.divide_evenly(transfer_energy, energy);
-    for(i = 0; i < size; i++){
-      energy[i] -= energy_to_extract[i];
-      list.get(i).getEnergy().extractEnergy((double)energy_to_extract[i] / DecimalNumber.DECIMAL_ACCURACY);
-    }
+  public long[] getGeneratorValues(){
+    return energy;
+  }
+  
+  @Override
+  public void extractEnergy(final int index, final long energy){
+    total_energy -= energy;
+    this.energy[index] -= energy;
+    list.get(index).getEnergy().extractEnergy((double)energy / DecimalNumber.DECIMAL_ACCURACY);
   }
 
 }

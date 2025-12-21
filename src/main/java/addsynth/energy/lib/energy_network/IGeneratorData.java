@@ -4,6 +4,7 @@ public interface IGeneratorData {
 
   public boolean hasAvailableEnergy();
   public long getTotalAvailableEnergy();
-  public void extractEnergy(long transfer_energy);
+  public long[] getGeneratorValues();
+  public void extractEnergy(int index, long energy);
 
 }
