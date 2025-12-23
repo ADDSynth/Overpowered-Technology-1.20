@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.util.game.redstone.RedstoneDetector;
-import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.main.Receiver;
 import addsynth.energy.lib.tiles.machines.block_network.AbstractBlockNetworkMachine;
 import addsynth.energy.lib.tiles.machines.switchable.IAutoShutoff;
@@ -64,7 +63,7 @@ public final class TileLaserHousing extends AbstractBlockNetworkMachine<LaserNet
   }
 
   @Override
-  public final Energy getEnergy(){
+  public final Receiver getEnergy(){
     // OPTIMIZE: Standardize getting energy from multi-block structures.
     if(onClientSide()){
       return energy; // only guis should use this.
@@ -82,7 +81,7 @@ public final class TileLaserHousing extends AbstractBlockNetworkMachine<LaserNet
   @Override
   public final boolean get_switch_state(){ return power_switch; }
 
-  public final void setDataDirectlyFromNetwork(final Energy energy, final int laser_distance, final boolean running, final boolean shutoff, final RedstoneDetector redstone){
+  public final void setDataDirectlyFromNetwork(final Receiver energy, final int laser_distance, final boolean running, final boolean shutoff, final RedstoneDetector redstone){
     this.energy.set(energy);
     this.laser_distance = laser_distance;
     this.power_switch = running;

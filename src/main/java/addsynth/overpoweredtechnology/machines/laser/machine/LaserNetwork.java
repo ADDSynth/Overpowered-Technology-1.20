@@ -146,6 +146,9 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
    */
   @Override
   protected final void tick(final ServerLevel world){
+    if(energy.getMaxReceive() != MachineValues.laser_max_receive.get()){
+      energy.setMaxReceive(MachineValues.laser_max_receive.get());
+    }
     changed = redstone.update(world, blocks.getBlockPositions(), changed);
     if(redstone.onRisingEdge()){
       if(lasers.size() > 0 && laser_distance > 0){

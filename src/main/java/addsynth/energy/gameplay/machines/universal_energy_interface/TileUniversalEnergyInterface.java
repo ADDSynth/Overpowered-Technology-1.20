@@ -45,6 +45,9 @@ public final class TileUniversalEnergyInterface extends BasicEnergyTile implemen
 
   @Override
   public final void derivedTick(ServerLevel level, BlockState blockstate){
+    if(energy.getCapacity() != Config.universal_energy_interface_buffer.get()){
+      energy.setCapacity(Config.universal_energy_interface_buffer.get());
+    }
     final EnergyCompat.CompatEnergyNode[] energy_nodes = EnergyCompat.getConnectedEnergy(worldPosition, level);
     if(energy_nodes.length > 0){
       if(transfer_settings.active_pull){

@@ -253,7 +253,7 @@ public class Energy {
     this.maxExtract.set( maxExtract);
   }
 
-  public final void set(final Energy energy){
+  public void set(final Energy energy){
     this.energy.set(     energy.getEnergy()     );
     this.capacity.set(   energy.getCapacity()   );
     this.maxExtract.set( energy.getMaxExtract() );

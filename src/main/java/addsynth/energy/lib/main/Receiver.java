@@ -57,6 +57,15 @@ public class Receiver extends Energy {
     changed = true;
   }
 
+  @Override
+  public void set(final Energy energy){
+    this.energy.set(     energy.getEnergy()     );
+    this.capacity.set(   energy.getCapacity()   );
+    this.maxReceive.set( energy.getMaxReceive() );
+    this.energy_in.set(  energy.get_energy_in() );
+    changed = true;
+  }
+
 // ================================== GETTERS =================================
 
   @Override

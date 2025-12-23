@@ -57,6 +57,15 @@ public class Generator extends Energy {
     changed = true;
   }
 
+  @Override
+  public void set(final Energy energy){
+    this.energy.set(     energy.getEnergy()     );
+    this.capacity.set(   energy.getCapacity()   );
+    this.maxExtract.set( energy.getMaxExtract() );
+    this.energy_out.set( energy.get_energy_out());
+    changed = true;
+  }
+
 // ================================== GETTERS =================================
 
   @Override

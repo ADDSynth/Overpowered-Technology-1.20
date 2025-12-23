@@ -27,8 +27,12 @@ public final class TileEnergyStorage extends TileEnergyBattery implements MenuPr
 
   @Override
   protected final void derivedTick(ServerLevel level, BlockState blockstate){
-    energy.setCapacity(Config.energy_storage.getCapacity());
-    energy.setTransferRate(Config.energy_storage.getMaxTransferRate());
+    if(energy.getCapacity() != Config.energy_storage.getCapacity()){
+      energy.setCapacity(Config.energy_storage.getCapacity());
+    }
+    if(energy.getMaxExtract() != Config.energy_storage.getMaxTransferRate()){
+      energy.setTransferRate(Config.energy_storage.getMaxTransferRate());
+    }
   }
 
   @Override
