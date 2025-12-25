@@ -1,5 +1,6 @@
 package addsynth.energy.gameplay.reference;
 
+import java.util.function.Supplier;
 import addsynth.energy.gameplay.EnergyBlocks;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -22,7 +23,12 @@ public final class EnergyText {
   public static final Component efficiency_text       = Component.translatable("gui.addsynth_energy.common.efficiency");
   public static final Component max_extract_text      = Component.translatable("gui.addsynth_energy.common.max_extract");
   public static final Component extraction_text       = Component.translatable("gui.addsynth_energy.common.extraction");
-  public static final MutableComponent status_text    = Component.translatable("gui.addsynth_energy.common.status");
+  public static final Supplier<MutableComponent> status_text = () -> {
+    // This is called multiple times in the GuiEnergyBase.draw_status() methods, so we must return a new Component each time.
+    // This is the best we can do, for now. Ideally, each status message would probably have "Status: ..." appended to each
+    // of the translated strings, and have a %s for the POWERING_ON and POWERING_OFF messages.
+    return Component.translatable("gui.addsynth_energy.common.status").append(": ");
+  };
   public static final Component time_left_text        = Component.translatable("gui.addsynth_energy.common.time_remaining");
   public static final Component charge_remaining_text = Component.translatable("gui.addsynth_energy.common.charge_time_remaining");
   public static final Component full_charge_time_text = Component.translatable("gui.addsynth_energy.common.time_to_full_charge");

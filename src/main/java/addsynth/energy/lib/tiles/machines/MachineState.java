@@ -13,14 +13,20 @@ public enum MachineState {
   RUNNING     ("gui.addsynth_energy.machine_state.running");
 
   public static final MachineState[] value = MachineState.values();
+  private final String translation_key;
   private final MutableComponent state;
 
   private MachineState(final String translation_key){
+    this.translation_key = translation_key;
     this.state = Component.translatable(translation_key);
   }
 
   public final MutableComponent get(){
     return this != IDLE ? state : state.withStyle(ColorCode.GOOD);
+  }
+
+  public final MutableComponent get(String power_percentage){
+    return Component.translatable(translation_key).append(" ").append(power_percentage);
   }
 
 }

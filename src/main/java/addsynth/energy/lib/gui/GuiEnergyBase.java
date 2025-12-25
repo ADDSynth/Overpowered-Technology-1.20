@@ -97,23 +97,23 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
 
   /** Draws the status at the default location, below the energy capacity line. */
   protected final void draw_status(GuiGraphics graphics, final TileAbstractWorkMachine machine){
-    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), 6, 28);
+    draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), 6, 28);
   }
 
   protected final void draw_status(GuiGraphics graphics, final TileAbstractWorkMachine machine, final int y){
-    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), 6, y);
+    draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), 6, y);
   }
 
   protected final void draw_status(GuiGraphics graphics, final TileAbstractWorkMachine machine, final int x, final int y){
-    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), x, y);
+    draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), x, y);
   }
 
   protected final void draw_status_after_switch(GuiGraphics graphics, final TileAbstractWorkMachine machine){
-    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), 50, 21);
+    draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), 50, 21);
   }
 
   protected final void draw_status_below_switch(GuiGraphics graphics, final TileAbstractWorkMachine machine){
-    draw_text_left(graphics, EnergyText.status_text.append(": ").append(machine.getStatus()), 6, 37);
+    draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), 6, 37);
   }
 
   /** Draws machine time left at the bottom-left corner of the gui. */

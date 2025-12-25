@@ -169,7 +169,7 @@ public abstract class TileSwitchableMachine extends TileAbstractWorkMachine impl
       return status.get();
     }
     if(state == MachineState.POWERING_OFF || state == MachineState.POWERING_ON){
-      return state.get().append(" ").append(StringUtil.toPercentageString(getPowerCycleTimePercentage(), RoundMode.Floor));
+      return state.get(StringUtil.toPercentageString(getPowerCycleTimePercentage(), RoundMode.Floor));
     }
     return state.get();
   }
