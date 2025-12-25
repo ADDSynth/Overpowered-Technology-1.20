@@ -64,6 +64,9 @@ CHANGED:
 FIXED:
   Machines will now immediately update their data if it was changed in the config. Previously they
     would only update if you removed the machine and placed it back down again.
+  Fix Passive Machines (Plasma Generator and Crystal Matter Generator) continuing to accept energy even though
+    the output was full.
+  Passive Machines can now be extracted using a Hopper (and possibly other machines).
 ===Overpowered Technology:
 INFO:
   The mod ID has changed from 'overpowered' to 'overpowered_technology'.
@@ -78,6 +81,7 @@ CHANGED:
   Fusion Core now has an HD texture.
 FIXED:
   Ring Effects are now translated.
+  Fix Crystal Matter Generator not creating a gem and wasting energy if the slot it had chosen was already full.
 
 
 

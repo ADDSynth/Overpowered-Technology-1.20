@@ -3,6 +3,7 @@ package addsynth.energy.gameplay.machines.charger;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
 import addsynth.energy.lib.main.Receiver;
+import addsynth.energy.lib.tiles.machines.MachineStatus;
 import addsynth.energy.lib.tiles.machines.TileSingleItemMachine;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
@@ -35,7 +36,7 @@ public final class TileCharger extends TileSingleItemMachine implements MenuProv
   protected final void doWork(){
     if(item_energy != null){
       final IEnergyStorage item_energy = this.item_energy;
-      if(energy.isFull()){
+      if(energy.isFull() && item_energy.receiveEnergy(1, true) > 0){
         item_energy.receiveEnergy(1, false);
         energy.setEmpty();
       }
@@ -45,12 +46,14 @@ public final class TileCharger extends TileSingleItemMachine implements MenuProv
   @Override
   protected final boolean canFinishWork(){
     if(output_inventory.isEmpty()){
+      status = MachineStatus.GOOD;
       if(item_energy != null){
         final IEnergyStorage item_energy = this.item_energy;
         return item_energy.getEnergyStored() == item_energy.getMaxEnergyStored();
       }
       return true; // if somehow an item was inserted, but does not have an IEnergyStorage
     }
+    status = MachineStatus.OUTPUT_FULL;
     return false;
   }
 

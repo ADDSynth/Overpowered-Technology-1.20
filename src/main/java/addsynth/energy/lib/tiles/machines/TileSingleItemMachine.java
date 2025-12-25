@@ -58,6 +58,7 @@ public abstract class TileSingleItemMachine extends TileAbstractWorkMachine impl
       }
     }
     if(state == MachineState.RUNNING){
+      status = energy.isReceiving() ? MachineStatus.GOOD : MachineStatus.NOT_RECEIVING_ENERGY;
       doWork();
       if(canFinishWork()){
         finishWork();
@@ -82,9 +83,10 @@ public abstract class TileSingleItemMachine extends TileAbstractWorkMachine impl
   protected boolean canFinishWork(){
     if(energy.isFull()){
       if(output_inventory.isEmpty()){
+        status = MachineStatus.GOOD;
         return true;
       }
-      // state = MachineState.OUTPUT_FULL;
+      status = MachineStatus.OUTPUT_FULL;
     }
     return false; 
   }

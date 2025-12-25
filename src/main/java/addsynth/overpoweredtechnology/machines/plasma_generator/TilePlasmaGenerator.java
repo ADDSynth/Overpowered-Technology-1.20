@@ -1,10 +1,9 @@
 package addsynth.overpoweredtechnology.machines.plasma_generator;
 
 import javax.annotation.Nullable;
-import addsynth.core.game.inventory.IOutputInventory;
-import addsynth.core.game.inventory.OutputInventory;
+import addsynth.energy.lib.tiles.machines.MachineStatus;
 import addsynth.energy.lib.tiles.machines.switchable.IAutoShutoff;
-import addsynth.energy.lib.tiles.machines.switchable.TilePassiveMachine;
+import addsynth.energy.lib.tiles.machines.switchable.TileStandardPassiveMachine;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import addsynth.overpoweredtechnology.registers.Tiles;
@@ -18,21 +17,14 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TilePlasmaGenerator extends TilePassiveMachine implements IOutputInventory, IAutoShutoff, MenuProvider {
-
-  private final OutputInventory output_inventory;
-  // FIX: Work for version 6: create a TileStandardPassiveMachine class, which has an OutputInventory and
-  //      provides a ForgeCapability for the DOWN direction so Hoppers can automatically take out items.
-  // PRIORITY: Passive Machines will continue to accept energy, even if it can't insert
-  //           any items into the output, also will force insert even though stack is full?
+public final class TilePlasmaGenerator extends TileStandardPassiveMachine implements IAutoShutoff, MenuProvider {
 
   private boolean auto_shutoff = false;
   public static final int DEFAULT_OUTPUT_NUMBER = 1;
   private int output_number = DEFAULT_OUTPUT_NUMBER;
 
   public TilePlasmaGenerator(BlockPos position, BlockState blockstate){
-    super(Tiles.PLASMA_GENERATOR.get(), position, blockstate, MachineValues.plasma_generator);
-    output_inventory = OutputInventory.create(this, 1);
+    super(Tiles.PLASMA_GENERATOR.get(), position, blockstate, MachineValues.plasma_generator, 1);
   }
 
   @Override
@@ -47,9 +39,18 @@ public final class TilePlasmaGenerator extends TilePassiveMachine implements IOu
   }
 
   @Override
+  public final boolean canWork(){
+    if(output_inventory.can_add(0, new ItemStack(OverpoweredItems.plasma.get()))){
+      status = MachineStatus.GOOD;
+      return true;
+    }
+    status = MachineStatus.OUTPUT_FULL;
+    return false;
+  }
+
+  @Override
   public final void load(final CompoundTag nbt){
     super.load(nbt);
-    output_inventory.load(nbt);
     auto_shutoff = nbt.getBoolean("Auto Shutoff");
     output_number = nbt.getInt("Output Threshold");
   }
@@ -57,7 +58,6 @@ public final class TilePlasmaGenerator extends TilePassiveMachine implements IOu
   @Override
   protected final void saveAdditional(final CompoundTag nbt){
     super.saveAdditional(nbt);
-    output_inventory.save(nbt);
     nbt.putBoolean("Auto Shutoff", auto_shutoff);
     nbt.putInt("Output Threshold", output_number);
   }
@@ -91,21 +91,6 @@ public final class TilePlasmaGenerator extends TilePassiveMachine implements IOu
   @Override
   public Component getDisplayName(){
     return getBlockState().getBlock().getName();
-  }
-
-  @Override
-  public void onInventoryChanged(){
-    changed = true;
-  }
-
-  @Override
-  public void drop_inventory(){
-    output_inventory.drop_in_world(level, worldPosition);
-  }
-
-  @Override
-  public OutputInventory getOutputInventory(){
-    return output_inventory;
   }
 
 }

@@ -17,7 +17,8 @@ public abstract class TileAbstractWorkMachine extends TileAbstractMachine {
 
   protected final MachineData data;
   protected MachineState state;
-  protected MachineStatus status;
+  protected MachineStatus previous_status;
+  protected MachineStatus status = MachineStatus.GOOD;
 
   public TileAbstractWorkMachine(BlockEntityType type, BlockPos position, BlockState blockstate, MachineState initial_state, MachineData data){
     super(type, position, blockstate, new MachineReceiver(data));
@@ -45,6 +46,11 @@ public abstract class TileAbstractWorkMachine extends TileAbstractMachine {
   }
 
   protected abstract void machine_tick();
+  
+  /** Set MachineStatus on Clients from the Server. */
+  public final void setStatus(final MachineStatus status){
+    this.status = status;
+  }
 
   public final float getWorkTimePercentage(){
     return energy.getEnergyPercentage();

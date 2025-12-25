@@ -2,14 +2,11 @@ package addsynth.overpoweredtechnology.machines.crystal_matter_generator;
 
 import java.util.Random;
 import javax.annotation.Nullable;
-import addsynth.core.game.inventory.IOutputInventory;
-import addsynth.core.game.inventory.OutputInventory;
-import addsynth.energy.lib.tiles.machines.switchable.TilePassiveMachine;
+import addsynth.energy.lib.tiles.machines.switchable.TileStandardPassiveMachine;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.core.Gems;
 import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -18,32 +15,38 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class TileCrystalMatterGenerator extends TilePassiveMachine implements IOutputInventory, MenuProvider {
+public final class TileCrystalMatterGenerator extends TileStandardPassiveMachine implements MenuProvider {
 
-  private final OutputInventory output_inventory;
+  private final Random random = new Random();
 
   public TileCrystalMatterGenerator(BlockPos position, BlockState blockstate){
-    super(Tiles.CRYSTAL_MATTER_REPLICATOR.get(), position, blockstate, MachineValues.crystal_matter_generator);
-    output_inventory = OutputInventory.create(this, 8);
+    super(Tiles.CRYSTAL_MATTER_REPLICATOR.get(), position, blockstate, MachineValues.crystal_matter_generator, 8);
   }
 
   @Override
   protected final void perform_work(){
-    final int slot = (new Random()).nextInt(8);
-    final ItemStack stack = Gems.getGem(slot);
-    output_inventory.insertItem(slot, stack, false);
+    final int first_slot = random.nextInt(8);
+    int slot = first_slot;
+    ItemStack gem = Gems.getGem(slot);
+    while(!output_inventory.can_add(slot, gem)){
+      slot = (slot+1) % 8;
+      gem = Gems.getGem(slot);
+      if(slot == first_slot){
+        return;
+      }
+    }
+    output_inventory.insertItem(slot, gem, false);
   }
 
   @Override
-  public final void load(final CompoundTag nbt){
-    super.load(nbt);
-    output_inventory.load(nbt);
-  }
-
-  @Override
-  protected final void saveAdditional(final CompoundTag nbt){
-    super.saveAdditional(nbt);
-    output_inventory.save(nbt);
+  protected final boolean canWork(){
+    int i;
+    for(i = 0; i < 8; i++){
+      if(output_inventory.getStackInSlot(i).getCount() < 64){
+        return true;
+      }
+    }
+    return false;
   }
 
   @Override
@@ -55,21 +58,6 @@ public final class TileCrystalMatterGenerator extends TilePassiveMachine impleme
   @Override
   public Component getDisplayName(){
     return getBlockState().getBlock().getName();
-  }
-
-  @Override
-  public void onInventoryChanged(){
-    changed = true;
-  }
-
-  @Override
-  public void drop_inventory(){
-    output_inventory.drop_in_world(level, worldPosition);
-  }
-
-  @Override
-  public OutputInventory getOutputInventory(){
-    return output_inventory;
   }
 
 }

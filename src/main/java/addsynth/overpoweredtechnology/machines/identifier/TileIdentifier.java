@@ -5,6 +5,7 @@ import addsynth.core.game.inventory.filter.TypeFilter;
 import addsynth.core.game.item.ItemUtil;
 import addsynth.core.util.game.data.AdvancementUtil;
 import addsynth.core.util.player.PlayerUtil;
+import addsynth.energy.lib.tiles.machines.MachineStatus;
 import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
 import addsynth.overpoweredtechnology.assets.CustomAdvancements;
 import addsynth.overpoweredtechnology.assets.CustomStats;
@@ -35,8 +36,16 @@ public final class TileIdentifier extends TileStandardWorkMachine implements Men
   @Override
   protected final boolean can_work(){
     final ItemStack input = inventory.getInputInventory().getStackInSlot(0);
-    final ItemStack output = inventory.getOutputInventory().getStackInSlot(0);
-    return input.isEmpty() == false && output.isEmpty();
+    if(!input.isEmpty()){
+      final ItemStack output = inventory.getOutputInventory().getStackInSlot(0);
+      if(!output.isEmpty()){
+        status = MachineStatus.OUTPUT_FULL;
+        return false;
+      }
+      status = MachineStatus.GOOD;
+      return true;
+    }
+    return false;
   }
 
   @Override

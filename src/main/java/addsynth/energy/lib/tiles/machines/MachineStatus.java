@@ -6,9 +6,11 @@ import net.minecraft.network.chat.MutableComponent;
 
 public enum MachineStatus {
 
-  GOOD                (false, "Normal"),
+  GOOD                (false, "Normal"), // no need to specify a translation key as GOOD status will never be displayed.
   OUTPUT_FULL         (true,  "gui.addsynth_energy.machine_state.output_full"),
-  NO_ENERGY           (true,  "gui.addsynth_energy.machine_state.no_energy"),
+  // REMOVE: MachineStatus.NO_ENERGY, I checked, it was commented code in TileAlwaysOnMachine, and TileStandardWorkMachine,
+  //         displays when machine had no energy. Has been superseded by NOT_RECEIVING_ENERGY. Probably will be removed.
+  // NO_ENERGY           (true,  "gui.addsynth_energy.machine_state.no_energy"),
   NOT_RECEIVING_ENERGY(true,  "gui.addsynth_energy.machine_state.not_receiving_energy");
 
   private final MutableComponent status;

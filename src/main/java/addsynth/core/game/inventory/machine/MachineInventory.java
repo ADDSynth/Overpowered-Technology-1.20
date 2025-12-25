@@ -25,7 +25,9 @@ public final class MachineInventory implements IInventoryResponder, IInventorySy
   private final WorkingInventory working_inventory;
   private final OutputInventory output_inventory;
   private boolean changed;
+  /** This will be true if the output can accept a job. */
   private boolean can_add;
+  /** This will be true if we have input items AND the result can be added to the output. */
   private boolean can_work;
   @Nonnull
   private WorkJob[] jobs = new WorkJob[0];

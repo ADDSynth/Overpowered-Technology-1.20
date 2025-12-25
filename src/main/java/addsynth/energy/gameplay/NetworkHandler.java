@@ -22,6 +22,7 @@ public final class NetworkHandler extends ADDSynthNetworkHandler {
     registerClientMessage( 4, INSTANCE, EnergyDiagnosticsMessage.class,      EnergyDiagnosticsMessage::new);
     registerClientMessage( 5, INSTANCE, SolarPanelData.class,                SolarPanelData::new);
     registerServerMessage( 6, INSTANCE, ToggleTransferSetting.class,         ToggleTransferSetting::new);
+    registerClientMessage( 7, INSTANCE, UpdateClientMachineStatusMessage.class, UpdateClientMachineStatusMessage::new);
   }
 
 }

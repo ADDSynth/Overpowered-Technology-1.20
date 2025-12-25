@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import addsynth.core.game.inventory.SlotData;
 import addsynth.core.game.inventory.filter.SingleItemFilter;
 import addsynth.core.recipe.jobs.JobSystem;
+import addsynth.energy.lib.tiles.machines.MachineStatus;
 import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.machines.magic_infuser.recipes.MagicInfuserRecipes;
@@ -42,9 +43,16 @@ public final class TileMagicInfuser extends TileStandardWorkMachine implements M
 
   @Override
   protected final boolean can_work(){
-    return !inventory.getInputInventory().getStackInSlot(0).isEmpty() &&
-           !inventory.getInputInventory().getStackInSlot(1).isEmpty() &&
-            inventory.getOutputInventory().getStackInSlot(0).isEmpty();
+    if(inventory.getInputInventory().getStackInSlot(0).isEmpty() || inventory.getInputInventory().getStackInSlot(1).isEmpty()){
+      status = MachineStatus.GOOD;
+      return false;
+    }
+    if(inventory.getOutputInventory().getStackInSlot(0).isEmpty()){
+      status = MachineStatus.GOOD;
+      return true;
+    }
+    status = MachineStatus.OUTPUT_FULL;
+    return false;
   }
 
   @Override

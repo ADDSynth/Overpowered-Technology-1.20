@@ -7,6 +7,7 @@ import addsynth.core.game.inventory.filter.SingleItemFilter;
 import addsynth.core.game.inventory.filter.TagFilter;
 import addsynth.core.util.network.NetworkUtil;
 import addsynth.core.util.player.PlayerUtil;
+import addsynth.energy.lib.tiles.machines.MachineStatus;
 import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
 import addsynth.material.Material;
 import addsynth.overpoweredtechnology.config.MachineValues;
@@ -116,10 +117,18 @@ public class TileAdvancedGemConverter extends TileStandardWorkMachine implements
 
   @Override
   protected boolean can_work(){
-    if(quick_transfer()){
-      return false;
+    if(!inventory.getInputInventory().getStackInSlot(0).isEmpty()){
+      if(temp_lowest_value >= 64){
+        status = MachineStatus.OUTPUT_FULL;
+        return false;
+      }
+      status = MachineStatus.GOOD;
+      if(quick_transfer()){
+        return false;
+      }
+      return true;
     }
-    return inventory.getInputInventory().getStackInSlot(0).isEmpty() == false && temp_lowest_value < 64;
+    return false;
   }
 
   @Override

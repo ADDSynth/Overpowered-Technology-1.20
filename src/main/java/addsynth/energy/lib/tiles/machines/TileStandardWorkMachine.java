@@ -4,7 +4,10 @@ import java.util.function.Predicate;
 import addsynth.core.game.inventory.*;
 import addsynth.core.game.inventory.machine.IMachineInventory;
 import addsynth.core.game.inventory.machine.MachineInventory;
+import addsynth.core.util.network.NetworkUtil;
+import addsynth.energy.gameplay.NetworkHandler;
 import addsynth.energy.lib.config.MachineData;
+import addsynth.energy.lib.network_messages.UpdateClientMachineStatusMessage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -44,12 +47,17 @@ public abstract class TileStandardWorkMachine extends TileAbstractWorkMachine im
     if(inventory.tick()){
       changed = true;
     }
+    if(previous_status != status){
+      previous_status = status;
+      NetworkUtil.send_to_TileEntity(NetworkHandler.INSTANCE, this, new UpdateClientMachineStatusMessage(this.worldPosition, status));
+    }
   }
 
   @Override
   protected final void machine_tick(){
     switch(state){
     case RUNNING:
+      status = energy.isReceiving() ? MachineStatus.GOOD : MachineStatus.NOT_RECEIVING_ENERGY;
       if(canFinishWork()){
         finishWork();
         if(can_work()){
@@ -85,7 +93,12 @@ public abstract class TileStandardWorkMachine extends TileAbstractWorkMachine im
    *  Override to specify non-default behaviour.
    */
   protected boolean can_work(){
-    return inventory.can_work();
+    if(inventory.can_add_to_output()){
+      status = MachineStatus.GOOD;
+      return inventory.can_work();
+    }
+    status = MachineStatus.OUTPUT_FULL;
+    return false;
   }
 
   /** This is called to start a job.

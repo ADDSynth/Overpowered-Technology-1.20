@@ -3,7 +3,6 @@ package addsynth.energy.lib.tiles.machines.switchable;
 import addsynth.energy.lib.config.MachineData;
 import addsynth.energy.lib.tiles.machines.MachineState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -24,43 +23,9 @@ public abstract class TileManualMachine extends TileSwitchableMachine {
   }
 
   @Override
-  public void derivedTick(ServerLevel level, BlockState blockstate){
-    checkIfPowerTimeChanged();
-    machine_tick();
-  }
-
-  @Override
-  protected void machine_tick(){
-    switch(state){
-    case OFF:
-      if(power_switch){
-        if(power_on_time > 0){
-          state = MachineState.POWERING_ON;
-        }
-        else{
-          state = MachineState.RUNNING;
-        }
-        changed = true;
-      }
-      break;
-
-    case POWERING_ON:
-      power_time += 1;
-      if(power_time >= power_on_time){
-        state = MachineState.RUNNING;
-        power_time = 0;
-      }
-      changed = true;
-      break;
-
-    case POWERING_OFF:
-      powering_off();
-      break;
-
-    default:
-      if(power_switch == false){
-        turn_off();
-      }
+  protected final void running(){
+    if(power_switch == false){
+      turn_off();
     }
   }
 

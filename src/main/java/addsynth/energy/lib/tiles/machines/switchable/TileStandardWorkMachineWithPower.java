@@ -10,7 +10,6 @@ import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 /** This is just like the {@link TileStandardWorkMachine} except it can be turned off and has idle energy.
  * @author ADDSynth
  */
+// UNUSED: addsynth.energy.lib.tiles.machines.switchable.TileStandardWorkMachineWithPower
 public abstract class TileStandardWorkMachineWithPower extends TileSwitchableMachine implements IMachineInventory {
 
   protected final MachineInventory inventory;
@@ -40,16 +40,11 @@ public abstract class TileStandardWorkMachineWithPower extends TileSwitchableMac
   }
 
   @Override
-  public final void derivedTick(ServerLevel level, BlockState blockstate){
-    checkIfPowerTimeChanged();
-    machine_tick();
+  protected final void machine_tick(){
+    // StandardWorkMachineWithPower has an IDLE state.
     if(inventory.tick()){
       changed = true;
     }
-  }
-
-  @Override
-  protected final void machine_tick(){
     switch(state){
     case OFF:
       if(power_switch){

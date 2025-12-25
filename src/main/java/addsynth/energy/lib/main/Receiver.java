@@ -95,4 +95,8 @@ public class Receiver extends Energy {
     return false;
   }
 
+  public final boolean isReceiving(){
+    return energy_in.get() > 0;
+  }
+
 }

@@ -2,8 +2,8 @@ package addsynth.energy.lib.tiles.machines.switchable;
 
 import addsynth.energy.lib.config.MachineData;
 import addsynth.energy.lib.tiles.machines.MachineState;
+import addsynth.energy.lib.tiles.machines.MachineStatus;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -21,57 +21,27 @@ public abstract class TilePassiveMachine extends TileSwitchableMachine {
   }
 
   @Override
-  public void derivedTick(ServerLevel level, BlockState blockstate){
-    checkIfPowerTimeChanged();
-    machine_tick();
-  }
-
-  @Override
-  protected void machine_tick(){
-    switch(state){
-    case OFF:
-      if(power_switch){
-        if(power_on_time > 0){
-          state = MachineState.POWERING_ON;
-        }
-        else{
-          state = MachineState.RUNNING;
-        }
-        changed = true;
-      }
-      break;
-
-    case POWERING_ON:
-      power_time += 1;
-      if(power_time >= power_on_time){
-        state = MachineState.RUNNING;
-        power_time = 0;
-      }
-      changed = true;
-      break;
-
-    case POWERING_OFF:
-      powering_off();
-      break;
-    
-    default:
+  protected final void running(){
+    if(canWork()){
+      status = energy.isReceiving() ? MachineStatus.GOOD : MachineStatus.NOT_RECEIVING_ENERGY;
       if(energy.isFull()){
         perform_work();
         energy.setEmpty();
         changed = true;
       }
-      if(power_switch == false){
-        turn_off();
-      }
-      break;
+    }
+    if(power_switch == false){
+      turn_off();
     }
   }
+
+  protected abstract boolean canWork();
 
   protected abstract void perform_work();
 
   @Override
   public double getRequestedEnergy(){
-    if(state == MachineState.RUNNING){
+    if(state == MachineState.RUNNING && canWork()){
       return energy.getRequestedEnergy();
     }
     return 0;

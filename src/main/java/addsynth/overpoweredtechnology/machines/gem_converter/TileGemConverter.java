@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import addsynth.core.game.inventory.filter.TagFilter;
 import addsynth.core.util.game.data.AdvancementUtil;
 import addsynth.core.util.player.PlayerUtil;
+import addsynth.energy.lib.tiles.machines.MachineStatus;
 import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
 import addsynth.material.Material;
 import addsynth.overpoweredtechnology.assets.CustomAdvancements;
@@ -76,10 +77,18 @@ public final class TileGemConverter extends TileStandardWorkMachine implements M
 
   @Override
   protected final boolean can_work(){
-    if(quick_transfer()){
-      return false;
+    if(!inventory.getInputInventory().getStackInSlot(0).isEmpty()){
+      if(!inventory.getOutputInventory().can_add(0, gem_selected)){
+        status = MachineStatus.OUTPUT_FULL;
+        return false;
+      }
+      status = MachineStatus.GOOD;
+      if(quick_transfer()){
+        return false;
+      }
+      return true;
     }
-    return inventory.getInputInventory().getStackInSlot(0).isEmpty() ? false : inventory.getOutputInventory().can_add(0, gem_selected);
+    return false;
   }
 
   /** Checks if the Input gem matches the gem we're converting to, and if that is the case,
