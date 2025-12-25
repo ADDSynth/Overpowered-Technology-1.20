@@ -4,7 +4,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.energy.gameplay.reference.EnergyText;
-import addsynth.energy.lib.blocks.MachineBlock;
+import addsynth.energy.lib.blocks.EnergyMachineBlock;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -24,7 +24,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
-public final class GeneratorBlock extends MachineBlock {
+public final class GeneratorBlock extends EnergyMachineBlock {
 
   public GeneratorBlock(){
     super(MapColor.WOOL);

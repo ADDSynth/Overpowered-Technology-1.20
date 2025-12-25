@@ -5,10 +5,10 @@ import addsynth.core.game.tiles.TileBaseNoData;
 import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import addsynth.core.util.network.NetworkUtil;
 import addsynth.energy.gameplay.NetworkHandler;
+import addsynth.energy.gameplay.machines.energy_wire.TileEnergyWire;
 import addsynth.energy.gameplay.reference.EnergyText;
 import addsynth.energy.lib.energy_network.EnergyNetwork;
 import addsynth.energy.lib.energy_network.EnergyNode;
-import addsynth.energy.lib.tiles.AbstractEnergyNetworkTile;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,9 +38,9 @@ public final class TileEnergyDiagnostics extends TileBaseNoData implements ITick
       
       tile = level.getBlockEntity(worldPosition.relative(direction));
       if(tile != null){
-        if(tile instanceof AbstractEnergyNetworkTile energy_tile){
+        if(tile instanceof TileEnergyWire energy_wire){
   
-          final EnergyNetwork network = energy_tile.getBlockNetwork();
+          final EnergyNetwork network = energy_wire.getBlockNetwork();
           if(network != null){
           
             // get Diagnostic Data

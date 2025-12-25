@@ -2,12 +2,9 @@ package addsynth.energy.gameplay.machines.energy_storage;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.energy.gameplay.reference.EnergyText;
-import addsynth.energy.lib.blocks.MachineBlock;
-import addsynth.energy.lib.energy_network.EnergyNetwork;
-import addsynth.energy.lib.tiles.AbstractEnergyNetworkTile;
+import addsynth.energy.lib.blocks.EnergyMachineBlock;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -30,7 +27,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
-public final class EnergyStorageBlock extends MachineBlock {
+public final class EnergyStorageBlock extends EnergyMachineBlock {
 
   public EnergyStorageBlock(){
     super(Block.Properties.of().sound(SoundType.METAL).mapColor(MapColor.SNOW).noOcclusion().strength(0.5f, 6.0f));
@@ -69,11 +66,6 @@ public final class EnergyStorageBlock extends MachineBlock {
       }
     }
     return InteractionResult.SUCCESS;
-  }
-
-  @Override
-  public final void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving){
-    BlockNetworkUtil.onRemove(super::onRemove, AbstractEnergyNetworkTile.class, EnergyNetwork::new, state, world, pos, newState, isMoving);
   }
 
   @Override

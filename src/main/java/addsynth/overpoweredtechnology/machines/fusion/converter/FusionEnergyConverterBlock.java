@@ -3,7 +3,7 @@ package addsynth.overpoweredtechnology.machines.fusion.converter;
 import java.util.List;
 import javax.annotation.Nullable;
 import addsynth.core.util.game.tileentity.TileEntityUtil;
-import addsynth.energy.lib.blocks.MachineBlock;
+import addsynth.energy.lib.blocks.EnergyMachineBlock;
 import addsynth.overpoweredtechnology.game.reference.TextReference;
 import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 
-public final class FusionEnergyConverterBlock extends MachineBlock {
+public final class FusionEnergyConverterBlock extends EnergyMachineBlock {
 
   public FusionEnergyConverterBlock(){
     super(MapColor.SNOW);

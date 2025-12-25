@@ -4,7 +4,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.energy.gameplay.reference.EnergyText;
-import addsynth.energy.lib.blocks.MachineBlock;
+import addsynth.energy.lib.blocks.EnergyMachineBlock;
 import addsynth.overpoweredtechnology.registers.Tiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -30,7 +30,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
-public final class PlasmaGeneratorBlock extends MachineBlock {
+public final class PlasmaGeneratorBlock extends EnergyMachineBlock {
 
   public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
