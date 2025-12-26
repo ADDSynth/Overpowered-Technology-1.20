@@ -1,7 +1,6 @@
 package addsynth.energy.gameplay.machines.energy_diagnostics;
 
 import addsynth.energy.lib.main.Energy;
-import addsynth.energy.lib.main.EnergyType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntity;
