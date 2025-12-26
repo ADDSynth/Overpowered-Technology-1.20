@@ -25,7 +25,7 @@ public final class GeneratePortalMessage extends TileEntityNetworkMessage<TilePo
 
   @Override
   protected final void handle(final ServerLevel level, final ServerPlayer player, final TilePortalControlPanel tile){
-    tile.generate_portal();
+    tile.generate_portal(level);
     AdvancementUtil.grantAdvancement(player, CustomAdvancements.PORTAL);
   }
 

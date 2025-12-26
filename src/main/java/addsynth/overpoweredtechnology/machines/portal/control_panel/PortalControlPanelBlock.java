@@ -62,7 +62,7 @@ public final class PortalControlPanelBlock extends EnergyMachineBlock {
     if(world.isClientSide == false){
       final TilePortalControlPanel tile = MinecraftUtility.getTileEntity(pos, world, TilePortalControlPanel.class);
       if(tile != null){
-        tile.check_portal(player.isCreative());
+        tile.check_portal(world, player.isCreative());
         NetworkHooks.openScreen((ServerPlayer)player, tile, pos);
       }
     }

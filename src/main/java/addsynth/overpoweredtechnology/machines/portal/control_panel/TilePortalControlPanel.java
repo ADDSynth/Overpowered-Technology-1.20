@@ -28,7 +28,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TilePortalControlPanel extends TileManualMachine implements IAutoShutoff, MenuProvider {
@@ -93,7 +92,7 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
    *  Call this function when the gui opens to run the portal check algorithm, which will check proper construction
    *  and check if the portal frames have the proper items in them.
    */
-  public final void check_portal(final boolean creative_mode){
+  public final void check_portal(final Level level, final boolean creative_mode){
     portal_frames.clear();
     valid_portal = false;
     portal_items[0] = false;
@@ -106,14 +105,14 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
     portal_items[7] = false;
     axis = null;
     
-    evaluate_portal_construction(creative_mode);
+    evaluate_portal_construction(level, creative_mode);
     
     final SyncPortalDataMessage message = new SyncPortalDataMessage(worldPosition, portal_items, this.message, valid_portal);
     NetworkUtil.send_to_clients_in_world(NetworkHandler.INSTANCE, level, message);
   }
 
-  private final void evaluate_portal_construction(final boolean player_is_in_creative_mode){
-    if(portal_search_algorithm(this.worldPosition, new ArrayList<BlockPos>(30)) == false){
+  private final void evaluate_portal_construction(final Level level, final boolean player_is_in_creative_mode){
+    if(portal_search_algorithm(level, this.worldPosition, new ArrayList<BlockPos>(30)) == false){
       message = PortalMessage.NO_DATA_CABLE;
       return;
     }
@@ -129,7 +128,7 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
       message = PortalMessage.PORTAL_NOT_CONSTRUCTED;
       return;
     }
-    if(check_for_obstruction_inside_portal_frame() == false){
+    if(check_for_obstruction_inside_portal_frame(level)){
       message = PortalMessage.OBSTRUCTED;
       return;
     }
@@ -155,7 +154,7 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
     message = PortalMessage.PORTAL_READY;
   }
 
-  private final boolean portal_search_algorithm(BlockPos from, ArrayList<BlockPos> searched){
+  private final boolean portal_search_algorithm(final Level level, BlockPos from, ArrayList<BlockPos> searched){
     boolean found = false;
     BlockPos position;
     Block block;
@@ -176,7 +175,7 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
               }
             }
           }
-          portal_search_algorithm(position, searched);
+          portal_search_algorithm(level, position, searched);
         }
       }
     }
@@ -224,47 +223,51 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
   }
 
   @SuppressWarnings("incomplete-switch")
-  private final boolean check_for_obstruction_inside_portal_frame(){
+  private final boolean check_for_obstruction_inside_portal_frame(final Level level){
     if(axis == null){
       return false;
     }
-    boolean pass = true;
     final int min_x = lowest_portal_frame.getX() + 1;
     final int min_y = lowest_portal_frame.getY() + 1;
     final int min_z = lowest_portal_frame.getZ() + 1;
+    final int max_x = min_x + 2;
+    final int max_y = min_y + 2;
+    final int max_z = min_z + 2;
     int x;
     int y;
     int z;
-    BlockPos position;
+    BlockPos.MutableBlockPos position = new BlockPos.MutableBlockPos();
     switch(axis){
     case X:
-      z = lowest_portal_frame.getZ();
-      for(y = min_y; (y <= min_y + 2 && pass); y++){
-        for(x = min_x; (x <= min_x + 2 && pass); x++){
-          position = new BlockPos(x, y, z);
-          if(level.getBlockState(position).getBlock() != Blocks.AIR){ // TODO: Check if material is AIR, not the specific Air Block.
-            pass = false;
+      position.setZ(lowest_portal_frame.getZ());
+      for(y = min_y; y <= max_y; y++){
+        position.setY(y);
+        for(x = min_x; x <= max_x; x++){
+          position.setX(x);
+          if(!level.getBlockState(position).isAir()){
+            return true;
           }
         }
       }
       break;
     case Z:
-      x = lowest_portal_frame.getX();
-      for(y = min_y; (y <= min_y + 2 && pass); y++){
-        for(z = min_z; (z <= min_z + 2 && pass); z++){
-          position = new BlockPos(x, y, z);
-          if(level.getBlockState(position).getBlock() != Blocks.AIR){
-            pass = false;
+      position.setX(lowest_portal_frame.getX());
+      for(y = min_y; y <= max_y; y++){
+        position.setY(y);
+        for(z = min_z; z <= max_z; z++){
+          position.setZ(z);
+          if(!level.getBlockState(position).isAir()){
+            return true;
           }
         }
       }
       break;
     }
-    return pass;
+    return false;
   }
 
   @SuppressWarnings("incomplete-switch")
-  public final void generate_portal(){
+  public final void generate_portal(final Level level){
     if(valid_portal){
     
       for(BlockPos position : portal_frames){
