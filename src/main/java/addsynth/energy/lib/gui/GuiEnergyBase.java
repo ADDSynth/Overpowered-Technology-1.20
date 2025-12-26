@@ -42,18 +42,32 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
     this.draw_energy(graphics, 6, 17);
   }
 
+  /** Draws energy with the header X position to the right of a power switch. */
   protected final void draw_energy_after_switch(final GuiGraphics graphics){
     this.draw_energy(graphics, 50, 21);
   }
 
+  /** Draws energy with the header Y position below a power switch. */
   protected final void draw_energy_below_switch(final GuiGraphics graphics){
     this.draw_energy(graphics, 6, 37);
   }
 
+  /** Draws energy with the header at the coordinates you specify, but the actual
+   *  energy values are drawn right-aligned along the right-edge of the gui.
+   * @param graphics
+   * @param draw_x
+   * @param draw_y
+   */
   protected final void draw_energy(final GuiGraphics graphics, final int draw_x, final int draw_y){
     draw_energy(graphics, draw_x, right_edge, draw_y);
   }
 
+  /** Draws the energy line. This specifically asks where to draw the header and the energy values.
+   * @param graphics
+   * @param draw_header_x
+   * @param draw_energy_x
+   * @param draw_y
+   */
   protected final void draw_energy(final GuiGraphics graphics, final int draw_header_x, final int draw_energy_x, final int draw_y){
     if(energy != null){
       draw_text_left(graphics, EnergyText.energy_text, draw_header_x, draw_y);
@@ -100,18 +114,22 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
     draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), 6, 28);
   }
 
+  /** Draws the machine's status at the Y level you specify. */
   protected final void draw_status(GuiGraphics graphics, final TileAbstractWorkMachine machine, final int y){
     draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), 6, y);
   }
 
+  /** Draws the machine's status at the coordinates you specify. */
   protected final void draw_status(GuiGraphics graphics, final TileAbstractWorkMachine machine, final int x, final int y){
     draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), x, y);
   }
 
+  /** Draws the status to the right of a power switch. */
   protected final void draw_status_after_switch(GuiGraphics graphics, final TileAbstractWorkMachine machine){
     draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), 50, 21);
   }
 
+  /** Draws the status below the power switch. */
   protected final void draw_status_below_switch(GuiGraphics graphics, final TileAbstractWorkMachine machine){
     draw_text_left(graphics, EnergyText.status_text.get().append(machine.getStatus()), 6, 37);
   }

@@ -11,6 +11,7 @@ public final class ForgeEnergy {
     return tile.getCapability(ForgeCapabilities.ENERGY, capability_side).orElse(null) != null;
   }
 
+  /** Gets energy from this ForgeEnergy object. Use 'simulate' parameter to simulate or actually extract energy. */
   public static final int get(final Object input, final int energy_requested, final boolean simulate){
     final IEnergyStorage energy = (IEnergyStorage)input;
     if(energy.canExtract()){

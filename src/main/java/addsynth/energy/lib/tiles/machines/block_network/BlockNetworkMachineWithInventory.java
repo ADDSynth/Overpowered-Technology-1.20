@@ -19,6 +19,10 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** Like the name implies, this is a BlockNetwork machine with an Input Inventory, and this
+ *  class contains all the code needed for the Input Inventory to function properly.
+ * @param <B>
+ */
 public abstract class BlockNetworkMachineWithInventory<B extends BlockNetwork> extends AbstractBlockNetworkMachine<B> implements IInputInventory {
 
   protected boolean changed;

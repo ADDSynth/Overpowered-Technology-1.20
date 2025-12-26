@@ -4,6 +4,10 @@ import addsynth.core.util.color.ColorCode;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
+/** Separate from {@link MachineState}, the machine may not be able to perform normal function
+ *  based on some condition. Since Machine Status can be calculated on the server, it does not
+ *  need to be saved and only needs to be sent to the client.
+ */
 public enum MachineStatus {
 
   GOOD                (false, "Normal"), // no need to specify a translation key as GOOD status will never be displayed.

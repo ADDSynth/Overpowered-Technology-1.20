@@ -11,17 +11,30 @@ import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
 import addsynth.energy.lib.tiles.machines.block_network.AbstractBlockNetworkMachine;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+/** This is the class that actually handles the transfer of Energy in an Energy Network. */
 public class EnergyNetworkData {
 
   private long start_time;
+  @SuppressWarnings("unused")
   private long tick_time;
+  /** Total Generator energy acquired during pre-transfer. */
   private long generator_energy;
+  /** Total Receiver energy acquired during pre-transfer. */
   private long receiver_energy;
+  /** Actual energy that should be transferred, which is the Minimum of
+   *  Generator and Receiver energy, determined during pre-transfer. */
   private long energy_to_transfer;
+  /** Main energy values acquired from {@link IGeneratorData} or {@link IReceiverData}. */
   private long[] energy_values;
+  /** Total energy values that also include {@link CustomTransferData}. */
   private long[] energy;
+  /** Energy values we need to transfer to/from {@link #energy}.
+   *  Determined by equally distributing {@link #energy_to_transfer}. */
   private long[] energy_transfer;
+  /** Size of main {@link IGeneratorData} or {@link IReceiverData}. If index
+   *  goes over size, we know we're accessing {@link CustomTransferData}. */
   private int size;
+  /** Total size of TransferData + {@link CustomTransferData}. */
   private int total_size;
   private int i;
   private final GeneratorData free_generators = new GeneratorData();
@@ -84,6 +97,7 @@ public class EnergyNetworkData {
     
     // Step 4: Balance Batteries
     if(Config.balance_batteries.get()){
+      // Actually, would it work if I transferred from BATTERIES to BATTERIES? But I'm sure calling batteries.balance() is massively more efficient.
       batteries.balance();
       // FEATURE: currently isn't being balanced with Universal Energy Interfaces set to Battery mode.
     }

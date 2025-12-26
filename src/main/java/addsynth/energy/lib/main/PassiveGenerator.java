@@ -2,6 +2,10 @@ package addsynth.energy.lib.main;
 
 import net.minecraft.nbt.CompoundTag;
 
+/** The Passive Generator is a Generator which 'produces' energy every tick
+ *  based on the TileEntity's internal state, and thus can be calculated from
+ *  the TileEntity and does not need to save any energy values.
+ */
 public class PassiveGenerator extends Generator {
 
   /** You must call this at least once to set the Capacity and Max Extract variables.<br>

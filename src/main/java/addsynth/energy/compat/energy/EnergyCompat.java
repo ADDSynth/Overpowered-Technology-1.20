@@ -56,6 +56,7 @@ public final class EnergyCompat {
     return nodes.toArray(new CompatEnergyNode[nodes.size()]);
   }
 
+  /** Actively takes energy from adjacent ForgeEnergy objects. */
   public static final void acceptEnergy(final CompatEnergyNode[] nodes, final Energy our_energy){
     // get needed energy
     final int energy_needed = (int)our_energy.getEnergyNeeded();
@@ -91,6 +92,7 @@ public final class EnergyCompat {
     }
   }
 
+  /** Actively sends energy into adjacent ForgeEnergy objects. */
   public static final void transmitEnergy(final CompatEnergyNode[] nodes, final Energy our_energy){
     // get available energy, divide evenly amongst the number of external machines.
     final int[] energy_available = MathUtility.divide_evenly((int)our_energy.getEnergy(), nodes.length);

@@ -4,6 +4,11 @@ import addsynth.core.util.java.list.IndexedSet;
 import addsynth.energy.lib.main.IEnergyUser;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+/** Energy Transfer Data is simply a class that stores all the machine's energy values
+ *  and they are only acquired once at the beginning of the energy tick and then
+ *  modified during each transfer step, instead of re-acquiring on each transfer.
+ * @param <T>
+ */
 public abstract class EnergyTransferData<T extends BlockEntity & IEnergyUser> {
 
   protected int size;

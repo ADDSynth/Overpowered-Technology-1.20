@@ -17,8 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 /** Machines with a Power Switch can be switched off to conserve energy.
- *  Most Work Machines derive from this class.
- * @author ADDSynth
+ *  @author ADDSynth
  */
 public abstract class TileSwitchableMachine extends TileAbstractWorkMachine implements ISwitchableMachine {
 // TODO: I was against it all this time, but yeah, SWITCH TO A BEHAVIOUR SYSTEM!!!!

@@ -13,6 +13,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+/** The advanced search algorithm goes a step further in determining which BlockEntity
+ *  gets added to the BlockNetwork, by also providing the Node of the previous position,
+ *  allowing you to run extra checks based on the previous BlockEntity. For instance,
+ *  the next position may be a valid BlockEntity for the BlockNetwork, but you may not
+ *  want to add it because it really should not be 'connecting' to the BlockEntity we're
+ *  coming from.
+ */
 public final class AdvancedSearchAlgorithm implements IBlockSearchAlgorithm {
 
   public final BiPredicate<Node, Node> isValid;

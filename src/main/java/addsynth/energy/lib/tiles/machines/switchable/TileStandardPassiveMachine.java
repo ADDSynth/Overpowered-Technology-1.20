@@ -14,8 +14,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/** The Standard Passive Generator is a machine that accepts energy when RUNNING and
- *  creates a new Item and puts it in an OutputInventory.
+/** The StandardPassiveMachine is a machine that accepts energy when RUNNING and,
+ *  when work is finished, creates a new Item and puts it in an {@link OutputInventory}.
  */
 public abstract class TileStandardPassiveMachine extends TilePassiveMachine implements IOutputInventory {
 

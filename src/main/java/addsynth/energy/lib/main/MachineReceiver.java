@@ -2,6 +2,10 @@ package addsynth.energy.lib.main;
 
 import addsynth.energy.lib.config.MachineData;
 
+/** The MachineReceiver is an extension of the Receiver which just checks the
+ *  {@link MachineData} every tick to see if the energy values changed, like if
+ *  any config values have changed, and updates the Energy object automatically.
+ */
 public class MachineReceiver extends Receiver {
 
   protected final MachineData data;

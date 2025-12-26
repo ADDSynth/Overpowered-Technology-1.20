@@ -2,6 +2,9 @@ package addsynth.energy.lib.main;
 
 import net.minecraft.nbt.CompoundTag;
 
+/** A Generator is a special Energy object that can never accept energy from
+ *  the Energy Network, and thus, we can make certain assumptions and override
+ *  some functions to be more efficient. */
 public class Generator extends Energy {
 
   public Generator(){

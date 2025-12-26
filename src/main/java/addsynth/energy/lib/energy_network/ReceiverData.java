@@ -4,6 +4,7 @@ import addsynth.core.util.math.number.DecimalNumber;
 import addsynth.energy.lib.main.IEnergyConsumer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+/** Represents a list of machines that can receive energy. */
 public class ReceiverData<R extends BlockEntity & IEnergyConsumer> extends EnergyTransferData<R> implements IReceiverData {
 // this has to be ReceiverData<R extends BlockEntity & IEnergyConsumer> right now instead of
 // specifing 'TileAbstractMachine' as the type parameter because Tiles that have their own

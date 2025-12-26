@@ -12,6 +12,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+/** The standard search algorithm only tests a single BlockEntity against a predicate
+ *  you specify in order to determine if the BlockEntity should be a part of the
+ *  BlockNetwork. You can optionally specify a Consumer to run additional code on
+ *  all positions that are searched by the search algorithm.
+ */
 public final class StandardBlockSearch implements IBlockSearchAlgorithm {
 
   public final Predicate<Node> isValid;

@@ -9,6 +9,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+/** This is the standard Generator implementation which directly extends from
+ *  {@link TileAbstractGenerator} and has all basic Generator functions. This
+ *  is a seperate class to differentiate it from {@link TilePassiveGenerator}.
+ *  This is not directly being used right now, because most Generators
+ *  generate energy based on some {@link TileInputGenerator input items}.
+ */
 public abstract class TileStandardGenerator extends TileAbstractGenerator {
 
   protected final Generator energy = new Generator();

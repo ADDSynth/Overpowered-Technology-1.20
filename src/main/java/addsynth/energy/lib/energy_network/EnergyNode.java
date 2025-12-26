@@ -7,12 +7,12 @@ import addsynth.energy.lib.main.IEnergyUser;
 import addsynth.energy.lib.tiles.AbstractEnergyNetworkTile;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-/** <p>Energy Nodes are entries that are stored in the Energy Transfer system that determine
- *  individual machines that can transfer energy. They must be constantly checked by calling
- *  {@link #isInvalid()} to remove TileEntities that have suddenly been removed.
+/** <p>Energy Nodes are entries that are stored in the {@link EnergyNetworkData Energy Transfer system}
+ *  that determine individual machines that can transfer energy. It is recommended to call
+ *  {@link #isInvalid()} every tick to remove Energy Nodes that have unexpectedly become invalid.
  *  <p>Since blocks that are part of their own BlockNetwork cannot extend from
  *  {@link AbstractEnergyNetworkTile} they have to implement their own class, but as long
- *  as they implement the <c>IEnergyUser</c> interface, we can add them as Energy Nodes.
+ *  as they implement the {@link IEnergyUser} interface, we can add them as Energy Nodes.
  *  <p>Additionally, blocks that are part of a BlockNetwork could be encountered more than once
  *  during the EnergyNetwork discovery process, but EnergyNodes are only added if the {@link Energy}
  *  returned is different. So all blocks in the BlockNetwork MUST return their BlockNetwork's Energy.

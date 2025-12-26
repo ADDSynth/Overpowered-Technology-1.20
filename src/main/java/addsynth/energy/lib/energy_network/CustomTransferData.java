@@ -4,6 +4,14 @@ import addsynth.core.util.java.list.IndexedSet;
 import addsynth.core.util.math.number.DecimalNumber;
 import addsynth.energy.gameplay.machines.universal_energy_interface.TileUniversalEnergyInterface;
 
+/** Machines which cannot be standardized as a Generator, Receiver, or Battery, or otherwise
+ *  just want total control over how the Energy System interacts with their Energy, should
+ *  determine for themselves how energy should be received/extracted at every transfer stage.
+ *  The {@link EnergyTransferStage} will then be passed to the TileEntity so they can determine
+ *  whether to provide energy values during that stage. Although, right now, the only machine
+ *  which acts this way is the {@link TileUniversalEnergyInterface}. Unlike normal
+ *  {@link EnergyTransferData} energy values for custom data MUST be reacquired in each transfer stage.
+ */
 public class CustomTransferData {
 
   protected final IndexedSet<EnergyNode<TileUniversalEnergyInterface>> list = new IndexedSet<>();

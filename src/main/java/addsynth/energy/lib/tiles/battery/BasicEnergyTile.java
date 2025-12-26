@@ -10,6 +10,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+/** This is the abstract class for all TileEntities that can both extract and receive
+ *  energy. This does not necessarily mean this is the abstract class for all Batteries.
+ */
 public abstract class BasicEnergyTile extends AbstractEnergyTile {
 
   protected final Energy energy;

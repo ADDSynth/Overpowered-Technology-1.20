@@ -5,6 +5,15 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
 
+/** An IndexedSet is an object that acts as both a Set and a List, so you can be assured
+ *  that the items contained in the IndexedSet are both unique (elements can only be added
+ *  if they are not already in the IndexedSet), and they can be accessed by index. The
+ *  {@link #contains} method is O(1) constant time because we call the Set's contain method.
+ *  The add operations are also constant time, because they check if the item can be added
+ *  to the Set first, however, many remove and index functions must navigate through the
+ *  whole list, and that means they are O(n) linear time.
+ * @param <T>
+ */
 public class IndexedSet<T> implements Iterable<T> /*, Collection<T>*/ {
 
   private final ArrayList<T> list;

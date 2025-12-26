@@ -9,8 +9,8 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-/** Work Machines are the most commonly used Machine types. Their behaviour is
- *  specifically defined and are well managed.
+/** Work Machines are the most commonly used Machine type. Their behaviour is
+ *  specifically defined and managed.
  * @author ADDSynth
  */
 public abstract class TileAbstractWorkMachine extends TileAbstractMachine {

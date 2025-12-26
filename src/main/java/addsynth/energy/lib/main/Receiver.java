@@ -2,6 +2,10 @@ package addsynth.energy.lib.main;
 
 import net.minecraft.nbt.CompoundTag;
 
+/** A Receiver is an Energy object that can never have energy extracted
+ *  from it. Since we know this, we can override certain methods to make
+ *  them more efficient.
+ */
 public class Receiver extends Energy {
 
   public Receiver(){

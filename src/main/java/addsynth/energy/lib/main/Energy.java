@@ -422,15 +422,23 @@ public class Energy {
     }
   }
 
+  /** Returns a String representation of this Energy Object. Specifically,
+   *  this displays as "Energy: ENERGY / CAPACITY", and should really only
+   *  be used in log and debug messages. */
   @Override
   public String toString(){
     return StringUtil.build("Energy: ", energy, "/", capacity);
   }
 
+  /** Returns a String that shows the Energy Level / Capacity. */
   public String print(){
     return StringUtil.build(String.format("%.2f", energy.get()), " / ", String.format("%.2f", capacity.get()));
   }
 
+  /** Energy Use is really only useful in Machines that are Receive-Only. This displays the
+   *  speed of the machine by displaying how much energy per tick the machine is accepting.
+   *  Specifically this will return "ENERGY_IN / MAX_RECEIVE_PER_TICK (percentage)".
+   */
   public String printEnergyUse(){
     final double energy_in = this.energy_in.get();
     final double max_receive = maxReceive.get();

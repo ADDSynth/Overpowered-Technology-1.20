@@ -4,6 +4,7 @@ import addsynth.core.util.math.number.DecimalNumber;
 import addsynth.energy.lib.main.IEnergyGenerator;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+/** Represents a list of machines that can have energy extracted from them. */
 public class GeneratorData<G extends BlockEntity & IEnergyGenerator> extends EnergyTransferData<G> implements IGeneratorData {
 // Now I'm adding the TileUniversalEnergyInterface and it's the same problem.
 // I can't specify TileAbstractGenerator as the type parameter.

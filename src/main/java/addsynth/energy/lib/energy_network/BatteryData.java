@@ -4,6 +4,7 @@ import addsynth.core.util.math.common.MathUtility;
 import addsynth.core.util.math.number.DecimalNumber;
 import addsynth.energy.lib.tiles.battery.TileEnergyBattery;
 
+/** Represents a list of machines that are treated as Batteries by the Energy transfer system. */
 public class BatteryData extends EnergyTransferData<TileEnergyBattery> implements IGeneratorData, IReceiverData {
 
   private long total_generator_energy;
