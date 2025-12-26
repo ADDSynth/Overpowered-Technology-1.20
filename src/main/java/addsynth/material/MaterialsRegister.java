@@ -1,7 +1,7 @@
 package addsynth.material;
 
 import java.util.List;
-import addsynth.core.compat.Compatibility;
+import addsynth.material.compat.MaterialsCompat;
 import addsynth.material.compat.recipe.BronzeModAbsentCondition;
 import addsynth.material.compat.recipe.SteelModAbsentCondition;
 import addsynth.material.reference.Names;
@@ -129,7 +129,7 @@ public final class MaterialsRegister {
       Material.NEODYMIUM.registerOreItem(registry);
 
       // metal plates
-      if(Compatibility.ADDSYNTH_ENERGY.isLoaded()){
+      if(MaterialsCompat.addsynth_energy.isLoaded()){
         registry.register(Names.IRON_PLATE,   new Item(new Item.Properties()));
         registry.register(Names.COPPER_PLATE, new Item(new Item.Properties()));
         registry.register(Names.GOLD_PLATE,   new Item(new Item.Properties()));

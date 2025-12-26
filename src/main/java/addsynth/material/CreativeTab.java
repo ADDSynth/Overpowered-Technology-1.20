@@ -1,6 +1,6 @@
 package addsynth.material;
 
-import addsynth.core.compat.Compatibility;
+import addsynth.material.compat.MaterialsCompat;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -15,7 +15,7 @@ public final class CreativeTab {
   public  static final ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, location);
 
   public static final void register(final Registry<CreativeModeTab> registry){
-    final CreativeModeTab creative_tab = CreativeModeTab.builder()
+    final CreativeModeTab.Builder creative_tab_builder = CreativeModeTab.builder()
       .title(Component.literal(ADDSynthMaterials.MOD_NAME))
       .icon(() -> new ItemStack(Material.SAPPHIRE.gem.get()))
       .displayItems((displayParameters, output) -> {
@@ -78,7 +78,7 @@ public final class CreativeTab {
         output.accept(Material.TITANIUM.deepslate_ore.get());
         output.accept(Material.NEODYMIUM.deepslate_ore.get());
         // metal plates
-        if(Compatibility.ADDSYNTH_ENERGY.isLoaded()){
+        if(MaterialsCompat.addsynth_energy.isLoaded()){
           output.accept(Material.IRON.plate.get());
           output.accept(Material.COPPER.plate.get());
           output.accept(Material.GOLD.plate.get());
@@ -134,10 +134,11 @@ public final class CreativeTab {
         output.accept(Material.ROSE_QUARTZ.item.get());
         output.accept(Material.ROSE_QUARTZ.ore.get());
         output.accept(Material.ROSE_QUARTZ.deepslate_ore.get());
-      })
-      .withTabsBefore(addsynth.core.gameplay.CreativeTab.key) // TODO: no 'clean' way around this? Now Materials will depend on ADDSynthCore
-      .build();
-    Registry.register(registry, key, creative_tab);
+      });
+    if(MaterialsCompat.addsynthcore.isLoaded()){
+      creative_tab_builder.withTabsBefore(addsynth.core.gameplay.CreativeTab.key);
+    }
+    Registry.register(registry, key, creative_tab_builder.build());
   }
 
 }
