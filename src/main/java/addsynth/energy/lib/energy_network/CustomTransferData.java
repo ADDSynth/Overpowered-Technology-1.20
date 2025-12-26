@@ -42,7 +42,7 @@ public class CustomTransferData {
   public final long getAvailableEnergy(final EnergyTransferStage stage){
     total_generator_energy = 0;
     for(i = 0; i < size; i++){
-          generator_energy[i] = (long)list.get(i).getTile().getAvailableEnergy(stage) * DecimalNumber.DECIMAL_ACCURACY;
+          generator_energy[i] = (long)(list.get(i).getTile().getAvailableEnergy(stage) * DecimalNumber.DECIMAL_ACCURACY);
       total_generator_energy += generator_energy[i];
     }
     return total_generator_energy;
@@ -51,7 +51,7 @@ public class CustomTransferData {
   public final long getRequestedEnergy(final EnergyTransferStage stage){
     total_receiver_energy = 0;
     for(i = 0; i < size; i++){
-          receiver_energy[i] = (long)list.get(i).getTile().getRequestedEnergy(stage) * DecimalNumber.DECIMAL_ACCURACY;
+          receiver_energy[i] = (long)(list.get(i).getTile().getRequestedEnergy(stage) * DecimalNumber.DECIMAL_ACCURACY);
       total_receiver_energy += receiver_energy[i];
     }
     return total_receiver_energy;

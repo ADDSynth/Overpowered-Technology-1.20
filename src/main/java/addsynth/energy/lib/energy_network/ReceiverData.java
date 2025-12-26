@@ -25,7 +25,7 @@ public class ReceiverData<R extends BlockEntity & IEnergyConsumer> extends Energ
       energy = new long[size];
     }
     for(int i = 0; i < size; i++){
-      energy[i] = (long)list.get(i).getTile().getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY;
+      energy[i] = (long)(list.get(i).getTile().getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY);
       total_energy += energy[i];
     }
   }

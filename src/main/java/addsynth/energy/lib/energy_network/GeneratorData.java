@@ -21,7 +21,7 @@ public class GeneratorData<G extends BlockEntity & IEnergyGenerator> extends Ene
       energy = new long[size];
     }
     for(int i = 0; i < size; i++){
-      energy[i] = (long)list.get(i).getTile().getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY;
+      energy[i] = (long)(list.get(i).getTile().getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY);
       total_energy += energy[i];
     }
   }

@@ -28,4 +28,9 @@ public abstract class EnergyTransferData<T extends BlockEntity & IEnergyUser> {
     return size;
   }
 
+  @Override
+  public String toString(){
+    return list.toString();
+  }
+
 }

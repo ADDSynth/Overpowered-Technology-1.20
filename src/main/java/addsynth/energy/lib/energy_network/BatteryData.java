@@ -25,9 +25,9 @@ public class BatteryData extends EnergyTransferData<TileEnergyBattery> implement
     }
     for(int i = 0; i < size; i++){
       tile = list.get(i).getTile();
-      generator_energy[i] = (long)tile.getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY;
+      generator_energy[i] = (long)(tile.getAvailableEnergy() * DecimalNumber.DECIMAL_ACCURACY);
       total_generator_energy += generator_energy[i];
-      receiver_energy[i] = (long)tile.getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY;
+      receiver_energy[i] = (long)(tile.getRequestedEnergy() * DecimalNumber.DECIMAL_ACCURACY);
       total_receiver_energy += receiver_energy[i];
     }
   }
@@ -82,8 +82,8 @@ public class BatteryData extends EnergyTransferData<TileEnergyBattery> implement
       long energy = 0;
       final long capacity[] = new long[size];
       for(i = 0; i < size; i++){
-            energy += (long)list.get(i).getEnergy().getEnergy()   * DecimalNumber.DECIMAL_ACCURACY;
-        capacity[i] = (long)list.get(i).getEnergy().getCapacity() * DecimalNumber.DECIMAL_ACCURACY;
+            energy += (long)(list.get(i).getEnergy().getEnergy()   * DecimalNumber.DECIMAL_ACCURACY);
+        capacity[i] = (long)(list.get(i).getEnergy().getCapacity() * DecimalNumber.DECIMAL_ACCURACY);
       }
       final long[] transfer = MathUtility.divide_evenly(energy, capacity);
       for(i = 0; i < size; i++){
