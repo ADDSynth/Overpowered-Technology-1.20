@@ -7,6 +7,7 @@ import addsynth.core.game.inventory.machine.MachineInventory;
 import addsynth.core.util.network.NetworkUtil;
 import addsynth.energy.gameplay.NetworkHandler;
 import addsynth.energy.lib.config.MachineData;
+import addsynth.energy.lib.main.Receiver;
 import addsynth.energy.lib.network_messages.UpdateClientMachineStatusMessage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,6 +39,16 @@ public abstract class TileStandardWorkMachine extends TileAbstractWorkMachine im
   public TileStandardWorkMachine(BlockEntityType type, BlockPos position, BlockState blockstate,
                                  int input_slots, Predicate<ItemStack> filter, int output_slots, MachineData data){
     super(type, position, blockstate, MachineState.IDLE, data);
+    this.inventory = new MachineInventory(input_slots, filter, output_slots);
+  }
+
+  /** Use this constructor if your machine wants to set it's energy values and work time dynamically
+   *  during gameplay. However, if the data remains static, then you should actually define your own
+   *  {@link MachineData} object as a static final field, and use one of the other constructors.
+   */
+  public TileStandardWorkMachine(BlockEntityType type, BlockPos position, BlockState blockstate,
+                                 int input_slots, Predicate<ItemStack> filter, int output_slots){
+    super(type, position, blockstate, MachineState.IDLE, new Receiver());
     this.inventory = new MachineInventory(input_slots, filter, output_slots);
   }
 

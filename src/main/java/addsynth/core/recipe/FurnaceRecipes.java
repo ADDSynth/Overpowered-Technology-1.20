@@ -28,4 +28,15 @@ public final class FurnaceRecipes extends RecipeCollection<SmeltingRecipe> {
     return false;
   }
 
+  public static final int getSmeltingTime(final ItemStack stack){
+    for(final SmeltingRecipe recipe : INSTANCE.getRecipes()){
+      for(final Ingredient ingredient : recipe.getIngredients()){
+        if(ingredient.test(stack)){
+          return recipe.getCookingTime();
+        }
+      }
+    }
+    return 0;
+  }
+
 }

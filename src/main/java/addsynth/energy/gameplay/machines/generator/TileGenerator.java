@@ -23,6 +23,7 @@ public final class TileGenerator extends TileFuelGenerator implements MenuProvid
     input_inventory.isItemStackValid = (Integer slot, ItemStack stack) -> {
       return AbstractFurnaceBlockEntity.isFuel(stack) && stack.getItem() != Items.LAVA_BUCKET;
     };
+    energy.setMaxExtract(5);
   }
 
   @Override
@@ -32,8 +33,6 @@ public final class TileGenerator extends TileFuelGenerator implements MenuProvid
     if(burn_time > 0){
       // 1 Coal/Charcoal should provide 8,000 units of energy and take 80 seconds to use up.
       energy.setEnergyAndCapacity(burn_time * 5);
-      // Therefore, we should use up 5 energy each tick.
-      energy.setMaxExtract(Math.max(5, (double)burn_time / 320));
     }
   }
 
