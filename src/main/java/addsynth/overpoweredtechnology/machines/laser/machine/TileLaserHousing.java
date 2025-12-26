@@ -54,7 +54,6 @@ public final class TileLaserHousing extends AbstractBlockNetworkMachine<LaserNet
   @Override
   protected final void saveAdditional(final CompoundTag nbt){
     super.saveAdditional(nbt);
-    // save everything just in case we need to save more than just Energy, and maintain backward compatability.
     nbt.putBoolean("Power Switch", power_switch);
     nbt.putInt("Laser Distance", laser_distance);
     nbt.putBoolean("Auto Shutoff", auto_shutoff);

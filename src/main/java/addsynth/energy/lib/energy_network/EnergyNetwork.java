@@ -13,6 +13,7 @@ import addsynth.energy.lib.tiles.AbstractEnergyNetworkTile;
 import addsynth.energy.lib.tiles.AbstractEnergyTile;
 import addsynth.energy.lib.tiles.generators.TileAbstractGenerator;
 import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
+import addsynth.energy.lib.tiles.machines.block_network.AbstractBlockNetworkMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -101,24 +102,24 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
       if(previous != null){
         @Nullable BlockEntity previous_tile = previous.getTile();
         if(previous_tile != null){
-          if(isMachine(previous_tile)){
-            return;
-          }
-          if(isBattery(previous_tile) && isBattery(tile)){
-            // if previous node was a battery, only thing we can add adjacent is another battery.
-            add(tile);
-            return;
-          }
+          final boolean previous_is_machine = isMachine(previous_tile); // || previous_tile instanceof AbstractBlockNetworkMachine;
+          final boolean previous_is_battery = isBattery(previous_tile);
+          final boolean     tile_is_machine = isMachine(         tile); // ||          tile instanceof AbstractBlockNetworkMachine;
+          final boolean     tile_is_battery = isBattery(         tile);
+          if(previous_is_machine && tile_is_machine){ return; }
+          if(previous_is_battery && tile_is_machine){ return; }
+          if(previous_is_machine && tile_is_battery){ return; }
         }
       }
-      add(tile);
-    }
-  }
-
-  private final void add(final BlockEntity tile){
-    if(tile instanceof AbstractEnergyTile energy_tile){
-      all_machines.add(new EnergyNode<>(energy_tile));
-      transfer_data.add(energy_tile);
+      // Add new machine
+      if(tile instanceof AbstractEnergyTile energy_tile){
+        all_machines.add(new EnergyNode<>(energy_tile));
+        transfer_data.add(energy_tile);
+      }
+      else if(tile instanceof AbstractBlockNetworkMachine block_network_machine){
+        all_machines.add(new EnergyNode<>(block_network_machine));
+        transfer_data.add(block_network_machine);
+      }
     }
   }
 

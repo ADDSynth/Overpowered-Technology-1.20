@@ -10,6 +10,7 @@ import addsynth.energy.lib.main.Receiver;
 import addsynth.energy.lib.tiles.AbstractEnergyNetworkTile;
 import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -34,6 +35,18 @@ public abstract class AbstractBlockNetworkMachine<T extends BlockNetwork> extend
   public AbstractBlockNetworkMachine(BlockEntityType type, BlockPos position, BlockState blockstate, Receiver energy){
     super(type, position, blockstate);
     this.energy = energy;
+  }
+
+  @Override
+  public void load(final CompoundTag tag){
+    super.load(tag);
+    energy.loadFromNBT(tag);
+  }
+
+  @Override
+  protected void saveAdditional(final CompoundTag tag){
+    super.saveAdditional(tag);
+    energy.saveToNBT(tag);
   }
 
   @Override
