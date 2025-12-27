@@ -3,6 +3,7 @@ package addsynth.energy.lib.energy_network;
 import java.util.HashSet;
 import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
+import addsynth.core.block_network.node.BlockEntityNode;
 import addsynth.core.block_network.node.Node;
 import addsynth.core.block_network.search.AdvancedSearchAlgorithm;
 import addsynth.energy.gameplay.machines.energy_storage.TileEnergyStorage;
@@ -45,29 +46,24 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   // I can't believe ChatGPT (or specifically Copilot using GPT-5) actually solved my issue.
   // An energy network MUST consist of all machines connected, but FAIL if going from machine to machine.
   /** This is the primary method that determines if a Node gets added to the Energy Network. */
-  private static final boolean canNavigate(@Nullable final Node previous_node, final Node current_node){
-    @Nullable BlockEntity tile = current_node.getTile();
-    if(tile != null){
-      if(previous_node != null){
-        @Nullable BlockEntity previous_tile = previous_node.getTile();
-        if(previous_tile != null){
-          // Wire/Battery -> Wire/Battery TRUE
-          // Wire -> Machine   OKAY
-          // Machine -> Wire   OKAY
-          // Machine/Battery -> Machine FAIL
-          if(isMachine(previous_tile)){
-            // if prevous node was a machine, we can only navigate to wires
-            return isWire(tile);
-          }
-          if(isBattery(previous_tile)){
-            // batteries can navigate to wires or other batteries
-            return isWire(tile) || isBattery(tile);
-          }
-        }
+  private static final boolean canNavigate(@Nullable final BlockEntityNode previous_node, final BlockEntityNode current_node){
+    final BlockEntity tile = current_node.getTile();
+    if(previous_node != null){
+      final BlockEntity previous_tile = previous_node.getTile();
+      // Wire/Battery -> Wire/Battery TRUE
+      // Wire -> Machine   OKAY
+      // Machine -> Wire   OKAY
+      // Machine/Battery -> Machine FAIL
+      if(isMachine(previous_tile)){
+        // if prevous node was a machine, we can only navigate to wires
+        return isWire(tile);
       }
-      return isWire(tile) || isMachine(tile) || isBattery(tile);
+      if(isBattery(previous_tile)){
+        // batteries can navigate to wires or other batteries
+        return isWire(tile) || isBattery(tile);
+      }
     }
-    return false;
+    return tile instanceof AbstractEnergyNetworkTile;
   }
 
   private static final boolean isMachine(final BlockEntity tile){

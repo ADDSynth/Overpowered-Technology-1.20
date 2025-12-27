@@ -13,6 +13,10 @@ public class Node extends AbstractNode<BlockEntity> {
     super(tile);
   }
 
+  public Node(final AbstractNode node){
+    super(node.position, node.block, node.tile);
+  }
+
   public Node(final BlockPos position, final Level world){
     super(position, world.getBlockState(position).getBlock(), world.getBlockEntity(position));
   }

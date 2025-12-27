@@ -5,10 +5,12 @@ import java.util.function.BiFunction;
 import javax.annotation.Nullable;
 import addsynth.core.ADDSynthCore;
 import addsynth.core.block_network.node.AbstractNode;
+import addsynth.core.block_network.node.BlockEntityNode;
 import addsynth.core.block_network.node.Node;
 import addsynth.core.block_network.search.IBlockSearchAlgorithm;
 import addsynth.core.block_network.search.StandardBlockSearch;
 import addsynth.core.game.tiles.TileBase;
+import addsynth.core.util.game.MinecraftUtility;
 import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import addsynth.energy.lib.energy_network.EnergyNetwork;
 import addsynth.overpoweredtechnology.machines.data_cable.DataCableNetwork;
@@ -223,7 +225,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
       throw new NullPointerException("Loaded Block Network too early! Level hasn't been loaded yet.");
     }
     class_type = tile.getClass();
-    search_algorithm = new StandardBlockSearch(this::is_valid);
+    search_algorithm = StandardBlockSearch.create(class_type);
     DebugBlockNetwork.CREATED(this, tile.getBlockPos());
   }
 
@@ -262,17 +264,6 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
     good_network.baseTick(world, tile);
   }
 
-  // This can't be removed as it is used when Removing TileEntities to create a new Network if blocks get disconnected.
-  private final boolean is_valid(final Node node){
-    final BlockEntity tile = node.getTile();
-    if(tile != null){
-      if(!tile.isRemoved()){
-        return class_type.isInstance(tile);
-      }
-    }
-    return false;
-  }
-
   /**
    * Must be called when splitting or joining BlockNetworks, and right after creating BlockNetworks during TileEntity load.
    * @param from
@@ -305,12 +296,12 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
     }
     else{
       boolean first = true;
-      Node node;
+      T tile;
       BlockPos position;
       for(Direction side : Direction.values()){
         position = tile_position.relative(side);
-        node = new Node(position, world);
-        if(is_valid(node)){ // checks for null and IBlockNetworkUser
+        tile = (T)MinecraftUtility.getTileEntity(position, world, class_type);
+        if(tile != null){
           if(first){ // first valid tile
             updateBlockNetwork(world, position);
             // Now all adjacent tiles, even though they hold a reference to the original network,
@@ -320,7 +311,6 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
           else{
             // if it's an original block, then the network SHOULD NOT contain that position, after update.
             // if it's part of another network we already updated, then that position SHOULD be in it's block list.
-            final T tile = (T)node.getTile();
             if(isInvalid(tile)){
               DebugBlockNetwork.SPLIT(position, this);
               final B new_network = constructor.apply(world, tile);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
-import addsynth.core.block_network.node.Node;
+import addsynth.core.block_network.node.BlockEntityNode;
 import addsynth.core.block_network.search.IBlockSearchAlgorithm;
 import addsynth.core.util.java.ArrayUtil;
 import net.minecraft.core.BlockPos;
@@ -43,14 +43,14 @@ public final class BlockList<T extends BlockEntity & IBlockNetworkUser> {
 
   /** This is the main function that finds all blocks belonging to this BlockNetwork.
    *  This is called by {@link BlockNetwork#updateBlockNetwork(ServerLevel, BlockPos)}. */
-  @SuppressWarnings({"unchecked", "null"})
+  @SuppressWarnings("unchecked")
   public final void update(IBlockSearchAlgorithm search_algorithm, final ServerLevel world, final BlockPos from, final BlockNetwork network, final CustomSearch custom_search){
     // get tiles
-    final HashSet<Node> found = search_algorithm.find_blocks(from, world, custom_search);
+    final HashSet<BlockEntityNode> found = search_algorithm.find_blocks(from, world, custom_search);
   
     // extract tiles
     final ArrayList<T> tiles = new ArrayList<>(100);
-    for(final Node node : found){
+    for(final BlockEntityNode node : found){
       final T tile = (T)node.getTile();
       // set BlockNetwork
       tile.setBlockNetwork(network);

@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 /** This is a Node that MUST have a TileEntity at that location.
  *  You can be assured that the TileEntity you get is not null.
  */
-public abstract class BlockEntityNode<T extends BlockEntity> extends AbstractNode<T> {
+public class BlockEntityNode<T extends BlockEntity> extends AbstractNode<T> {
 
   public BlockEntityNode(@Nonnull final T tile){
     super(tile);
