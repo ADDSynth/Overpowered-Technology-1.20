@@ -82,14 +82,14 @@ public final class ArrayUtil {
   public static final <T> T getArrayValue(final T[] array, final int index, final T default_value, final boolean warn){
     if(array == null){
       if(warn){
-        ADDSynthCore.log.error(new NullPointerException("Input array for "+ArrayUtil.class.getName()+".getArrayValue() is null!"));
+        ADDSynthCore.log.error("Input array for "+ArrayUtil.class.getName()+".getArrayValue() is null!", new NullPointerException());
       }
       return default_value;
     }
     final int length = array.length;
     if(length == 0){
       if(warn){
-        ADDSynthCore.log.error(new IllegalArgumentException("Input array for "+ArrayUtil.class.getName()+".getArrayValue() doesn't have any values!"));
+        ADDSynthCore.log.error("Input array for "+ArrayUtil.class.getName()+".getArrayValue() doesn't have any values!", new IllegalArgumentException());
       }
       return default_value;
     }
@@ -118,11 +118,11 @@ public final class ArrayUtil {
   // TEST can I just pass an object array?
   public static final <T> boolean is_valid_array(final T[] array, final String call_location){
     if(array == null){
-      ADDSynthCore.log.error(new NullPointerException("Input for "+call_location+" was null!"));
+      ADDSynthCore.log.error("Input for "+call_location+" was null!", new NullPointerException());
       return false;
     }
     if(array.length == 0){
-      ADDSynthCore.log.error(new IllegalArgumentException("Input array for "+call_location+" requires at least 1 "+array.getClass().getComponentType().getSimpleName()+" element."));
+      ADDSynthCore.log.error("Input array for "+call_location+" requires at least 1 "+array.getClass().getComponentType().getSimpleName()+" element.", new IllegalArgumentException());
       return false;
     }
     return true;
@@ -142,9 +142,16 @@ public final class ArrayUtil {
   /** Prints extremely detailed information to the log, and also prints the stacktrace. */
   public static final <T> void print_array_index_out_of_bounds_error(@Nonnull final T[] array, final int index){
     final int length = array.length;
-    final String valid_indexes = length == 0 ? "The array is empty." : length == 1 ? "Only index 0 is valid." : "Only indexes 0-"+(length-1)+" are valid.";
-    ADDSynthCore.log.error(new ArrayIndexOutOfBoundsException("Invalid index "+index+" for array "+array.getClass().getComponentType().getSimpleName()+"["+length+"]. "+valid_indexes));
-    Thread.dumpStack(); // FEATURE: easiest solution for now because I'm in a time crunch, but would be nice to find a way to print the thread stack EXCEPT the first 2 lines that shows dumpStack() and print_array_error() respectively.
+    final StringBuilder s = new StringBuilder();
+    s.append("Invalid index ");
+    s.append(index);
+    s.append(" for array ");
+    s.append(array.getClass().getComponentType().getSimpleName());
+    s.append('[');
+    s.append(length);
+    s.append("]. ");
+    s.append(length == 0 ? "The array is empty." : length == 1 ? "Only index 0 is valid." : "Only indexes 0-"+(length-1)+" are valid.");
+    ADDSynthCore.log.error(s.toString(), new ArrayIndexOutOfBoundsException());
   }
 
   /** Gets total length of all arrays combined. */
@@ -188,7 +195,7 @@ public final class ArrayUtil {
     final T[] final_array = Arrays.copyOf(first_array, i + get_length_of_arrays(additional_arrays)); // creates a new array with the total size.
     for(T[] array : additional_arrays){
       if(array == null){
-        ADDSynthCore.log.error(new NullPointerException("Encountered a null array in "+ArrayUtil.class.getSimpleName()+".combine_arrays() function."));
+        ADDSynthCore.log.error("Encountered a null array in "+ArrayUtil.class.getSimpleName()+".combine_arrays() function.", new NullPointerException());
         continue;
       }
       for(T object : array){

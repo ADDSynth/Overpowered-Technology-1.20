@@ -39,13 +39,20 @@ public final class RecipeFilter {
       ingredients_length = ingredients.size();
       if(ingredients_length > size){
         ADDSynthCore.log.warn(
-          "Cannot set the "+RecipeFilter.class.getSimpleName()+" to match "+StringUtil.print(recipe)+
-          " because the recipe has too many ingredients ("+ingredients_length+")."
+          StringUtil.build(
+            "Cannot set the ",
+            RecipeFilter.class.getSimpleName(),
+            " to match ",
+            StringUtil.print(recipe),
+            " because the recipe has too many ingredients (",
+            ingredients_length,
+            ")."
+          )
         );
       }
     }
     else{
-      (new NullPointerException("Tried to set "+RecipeFilter.class.getSimpleName()+" to a null recipe.")).printStackTrace();
+      ADDSynthCore.log.error("Tried to set "+RecipeFilter.class.getSimpleName()+" to a null recipe.", new NullPointerException());
       reset();
     }
   }

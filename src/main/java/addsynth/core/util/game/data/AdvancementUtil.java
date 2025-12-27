@@ -27,7 +27,7 @@ public final class AdvancementUtil {
         player.getAdvancements().award(advancement, criteria_id);
       }
       else{
-        ADDSynthCore.log.error(new NullPointerException("Advancement "+advancement_id.toString()+" doesn't exist."));
+        ADDSynthCore.log.error("Advancement "+advancement_id.toString()+" doesn't exist.", new NullPointerException());
       }
     }
   }
@@ -62,7 +62,7 @@ public final class AdvancementUtil {
         }
       }
       else{
-        ADDSynthCore.log.error(new NullPointerException("Advancement "+advancement_id.toString()+" doesn't exist."));
+        ADDSynthCore.log.error("Advancement "+advancement_id.toString()+" doesn't exist.", new NullPointerException());
       }
     }
   }

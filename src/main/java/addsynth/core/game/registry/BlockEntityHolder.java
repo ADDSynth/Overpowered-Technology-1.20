@@ -37,11 +37,11 @@ public class BlockEntityHolder <T extends BlockEntity> {
       registry.register(name, BlockEntityType.Builder.of(constructor, block.get()).build(null));
       return;
     }
-    ADDSynthCore.log.error(
-      new NullPointerException("Failed to register TileEntity Type because you did not add a RegistryObject<Block> "+
-      "block holder to the "+BlockEntityHolder.class.getSimpleName()+" constructor. If you intend to apply this "+
-      "TileEntity Type to more than one block, then use the other register function.")
-    );
+    final StringBuilder s = new StringBuilder();
+    s.append("Failed to register BlockEntityType because you did not add a RegistryObject<Block> block holder to the ");
+    s.append(BlockEntityHolder.class.getSimpleName());
+    s.append(" constructor. If you intend to apply this BlockEntityType to more than one block, use the other register function.");
+    ADDSynthCore.log.error(s.toString(), new NullPointerException());
   }
 
   public final void register(final IForgeRegistry<BlockEntityType> registry, final Block ... blocks){

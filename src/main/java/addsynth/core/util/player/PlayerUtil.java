@@ -100,7 +100,7 @@ public final class PlayerUtil {
   public static final ServerPlayer getPlayer(String player_name){
     final MinecraftServer server = ServerUtils.getServer();
     if(server == null){
-      ADDSynthCore.log.error(new NullPointerException("Cannot call "+PlayerUtil.class.getSimpleName()+".getPlayer() on the Client side!"));
+      ADDSynthCore.log.error("Cannot call "+PlayerUtil.class.getSimpleName()+".getPlayer() on the client side!", new NullPointerException());
       return null;
     }
     return server.getPlayerList().getPlayerByName(player_name);

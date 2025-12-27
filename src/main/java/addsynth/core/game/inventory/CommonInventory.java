@@ -149,21 +149,18 @@ public class CommonInventory extends ItemStackHandler {
 
   protected final boolean is_valid_slot(final int slot){
     final int size = stacks.size();
-    if(size > 0){
-      if(slot >= 0 && slot < size){
-        return true;
-      }
-      if(size == 1){
-        ADDSynthCore.log.error("Invalid slot: "+slot+", there is only slot 0.");
-      }
-      else{
-        ADDSynthCore.log.error("Invalid slot: "+slot+", only 0 to "+Integer.toString(size - 1)+" allowed.");
-      }
+    if(slot >= 0 && slot < size){
+      return true;
     }
-    else{
-      ADDSynthCore.log.error("Invalid slot: "+slot+", this ItemStackHandler does not have any slots.");
+    // if(size == 0){
+    //   ADDSynthCore.log.error("Invalid slot: "+slot+", this ItemStackHandler does not have any slots.");
+    //   return false;
+    // }
+    if(size == 1){
+      ADDSynthCore.log.error("Invalid slot: "+slot+", there is only slot 0.", new IndexOutOfBoundsException());
+      return false;
     }
-    Thread.dumpStack();
+    ADDSynthCore.log.error("Invalid slot: "+slot+", only 0 to "+Integer.toString(size - 1)+" allowed.", new IndexOutOfBoundsException());
     return false;
   }
 

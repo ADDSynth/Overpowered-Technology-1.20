@@ -40,18 +40,29 @@ public final class Debug {
   }
 
   public static final void block(final Block block, final BlockPos position){
-    ADDSynthCore.log.warn(
-      "Debug Block: Type: "+block.getClass().getName()+
-      ", Registry Name: "+ForgeRegistries.BLOCKS.getKey(block)+
-      ", Translation Key: "+block.getDescriptionId()+
-      (position != null ? ", Position: "+position : ""));
+    final StringBuilder s = new StringBuilder();
+    s.append("Debug Block: Class: ");
+    s.append(block.getClass().getName());
+    s.append(", Registry ID: ");
+    s.append(ForgeRegistries.BLOCKS.getKey(block));
+    // s.append(", Translation Key: ");
+    // s.append(block.getDescriptionId());
+    if(position != null){
+      s.append(", Position: ");
+      s.append(StringUtil.print(position));
+    }
+    ADDSynthCore.log.warn(s.toString());
   }
 
   public static final void item(final Item item){
-    ADDSynthCore.log.warn(
-      "Debug Item: Type: "+item.getClass().getName()+
-      ", Registry Name: "+ForgeRegistries.ITEMS.getKey(item)+
-      ", Translation Key: "+item.getDescriptionId());
+    final StringBuilder s = new StringBuilder();
+    s.append("Debug Item: Class: ");
+    s.append(item.getClass().getName());
+    s.append(", Registry ID: ");
+    s.append(ForgeRegistries.ITEMS.getKey(item));
+    // s.append(", Translation Key: ");
+    // s.append(item.getDescriptionId());
+    ADDSynthCore.log.warn(s.toString());
   }
 
   public static final void debug(){

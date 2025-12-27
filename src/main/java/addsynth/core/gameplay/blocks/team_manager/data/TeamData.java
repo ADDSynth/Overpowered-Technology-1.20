@@ -162,7 +162,7 @@ public final class TeamData {
     if(input_criteria == ObjectiveCriteria.FOOD){               return  8; }
     if(input_criteria == ObjectiveCriteria.AIR){                return  9; }
     if(input_criteria == ObjectiveCriteria.ARMOR){              return 10; }
-    ADDSynthCore.log.error(new IllegalArgumentException("Invalid ScoreCriteria."));
+    ADDSynthCore.log.error("Invalid ScoreCriteria.", new IllegalArgumentException());
     return -1;
   }
 
@@ -190,7 +190,7 @@ public final class TeamData {
     if(criteria.isPresent()){
       return criteria.get();
     }
-    ADDSynthCore.log.error(new NoSuchElementException("Unable to determine Criteria. Invalid criteria ID '"+id+"'."));
+    ADDSynthCore.log.error("Unable to determine Criteria. Invalid criteria ID '"+id+"'.", new NoSuchElementException());
     return null;
   }
 

@@ -48,7 +48,7 @@ public final class EnergyBridge extends RotatedPillarBlock {
       }
       return block_state;
     }
-    OverpoweredTechnology.log.error("Device color index ("+index+") is out-of-range for the getEnergyBridge() function.", new IllegalArgumentException());
+    OverpoweredTechnology.log.error("Device color index ("+index+") is out-of-range for the getEnergyBridge() function.", new IndexOutOfBoundsException());
     return Blocks.AIR.defaultBlockState();
   }
 

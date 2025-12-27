@@ -16,7 +16,7 @@ public final class MathUtility {
    */
   public static final int[] divide_evenly(final int number, @Nonnegative final int count){
     if(count == 0){
-      ADDSynthCore.log.fatal(new ArithmeticException("Error in "+MathUtility.class.getSimpleName()+".divide_evenly(). Cannot divide by 0!"));
+      ADDSynthCore.log.error("Error in "+MathUtility.class.getSimpleName()+".divide_evenly(). Cannot divide by 0!", new ArithmeticException());
       return new int[count];
     }
     if(number == 0){
@@ -55,11 +55,11 @@ public final class MathUtility {
     final int[] final_list = new int[length]; // already initialized to all 0
 
     if(length == 0){
-      ADDSynthCore.log.fatal(new IllegalArgumentException(MathUtility.class.getSimpleName()+".divide_evenly() cannot use an empty integer array."));
+      ADDSynthCore.log.error(MathUtility.class.getSimpleName()+".divide_evenly() cannot use an empty integer array.", new IllegalArgumentException());
       return final_list;
     }
     if(number < 0){
-      ADDSynthCore.log.fatal(new IllegalArgumentException("Cannot use "+MathUtility.class.getSimpleName()+".divide_evenly() to divide a negative number!"));
+      ADDSynthCore.log.error("Cannot use "+MathUtility.class.getSimpleName()+".divide_evenly() to divide a negative number!", new IllegalArgumentException());
       return final_list;
     }
     if(length == 1){
@@ -129,11 +129,11 @@ public final class MathUtility {
     final long[] final_list = new long[length]; // already initialized to all 0
 
     if(length == 0){
-      ADDSynthCore.log.fatal(new IllegalArgumentException(MathUtility.class.getSimpleName()+".divide_evenly() cannot use an empty integer array."));
+      ADDSynthCore.log.error(MathUtility.class.getSimpleName()+".divide_evenly() cannot use an empty integer array.", new IllegalArgumentException());
       return final_list;
     }
     if(number < 0){
-      ADDSynthCore.log.fatal(new IllegalArgumentException("Cannot use "+MathUtility.class.getSimpleName()+".divide_evenly() to divide a negative number!"));
+      ADDSynthCore.log.error("Cannot use "+MathUtility.class.getSimpleName()+".divide_evenly() to divide a negative number!", new IllegalArgumentException());
       return final_list;
     }
     if(length == 1){

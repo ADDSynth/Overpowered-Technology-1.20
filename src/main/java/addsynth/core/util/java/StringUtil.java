@@ -167,7 +167,7 @@ public final class StringUtil {
     int i;
     for(i = 0; i < array.length; i++){
       if(array[i] == null){
-        ADDSynthCore.log.error(new NullPointerException("Found null object in array argument for StringUtil.print_minecraft_array()."));
+        ADDSynthCore.log.error("Found null object in array argument for StringUtil.print_minecraft_array().", new NullPointerException());
         output.append("null");
       }
       else{
@@ -183,7 +183,7 @@ public final class StringUtil {
               output.append(((ItemStack)array[i]).toString());
             }
             else{
-              ADDSynthCore.log.error(new IllegalArgumentException("An object in the array is of the wrong type. StringUtil.print_minecraft_array() only recognizes arrays of Item, Block, or ItemStack objects."));
+              ADDSynthCore.log.error("An object in the array is of the wrong type. StringUtil.print_minecraft_array() only recognizes arrays of Item, Block, or ItemStack objects.", new IllegalArgumentException());
               output.append(array[i].toString());
             }
           }

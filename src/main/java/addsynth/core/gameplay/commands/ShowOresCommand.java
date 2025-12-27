@@ -216,7 +216,7 @@ public final class ShowOresCommand {
         }
       }
       catch(IOException e){
-        ADDSynthCore.log.error(e);
+        e.printStackTrace();
       }
 
       source.sendSuccess(() -> Component.literal("Ore sample saved to "+ore_sample_file+"."), true);

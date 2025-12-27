@@ -109,7 +109,7 @@ public final class TileBlackHole extends BlockEntity implements ITickingTileEnti
 
   public static final boolean is_black_hole_allowed(final Level world){
     if(world == null){
-      OverpoweredTechnology.log.error(new NullPointerException("World not loaded yet."));
+      OverpoweredTechnology.log.error("World not loaded yet.", new NullPointerException());
       return false;
     }
     if(world.isDebug()){

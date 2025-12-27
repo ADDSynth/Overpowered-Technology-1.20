@@ -21,7 +21,7 @@ public final class ServerUtils {
   public static final MinecraftServer getServer(){
     final MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
     if(server == null){
-      ADDSynthCore.log.fatal(new NullPointerException(ServerUtils.class.getName()+".getServer() was unable to retrieve the current running server! Maybe there is no server running?"));
+      ADDSynthCore.log.error(ServerUtils.class.getName()+".getServer() was unable to retrieve the current running server! Maybe there is no server running?", new NullPointerException());
     }
     return server;
   }

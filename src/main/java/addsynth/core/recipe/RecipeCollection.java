@@ -99,7 +99,7 @@ public class RecipeCollection<T extends Recipe<Container>> {
       ADDSynthCore.log.info(this.toString()+" was rebuilt.");
     }
     else{
-      ADDSynthCore.log.error(this.toString()+" failed to build recipes because the supplied RecipeManager was null.");
+      ADDSynthCore.log.error(this.toString()+" failed to build recipes because the supplied RecipeManager was null.", new NullPointerException());
     }
   }
 
