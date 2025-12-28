@@ -1,13 +1,11 @@
 package addsynth.overpoweredtechnology.blocks.dimension.tree;
 
-import java.util.HashSet;
 import addsynth.core.block_network.node.Node;
-import addsynth.core.block_network.search.StandardBlockSearch;
+import addsynth.core.util.block.BlockSearch;
 import addsynth.core.util.world.WorldUtil;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -26,21 +24,16 @@ public final class UnknownWood extends Block {
   public void playerWillDestroy(Level world, BlockPos position, BlockState state, Player player){
     super.playerWillDestroy(world, position, state, player);
     if(world.isClientSide == false){
-      final HashSet<Node> blocks = search.find_blocks(position, (ServerLevel)world);
-      blocks.forEach(
-        (Node node) -> {
-          if(node.position != position){
-            world.removeBlock(node.position, false);
-          }
+      BlockSearch.forEachAdjacent(position, world, (Node node) -> {
+        if(node.block == OverpoweredBlocks.unknown_wood.get() ||
+           node.block == OverpoweredBlocks.unknown_leaves.get()){
+          world.removeBlock(node.position, false);
+          return true;
         }
-      );
+        return false;
+      });
       WorldUtil.spawnItemStack(world, position, new ItemStack(OverpoweredItems.void_crystal.get(), 1));
     }
   }
-
-  private static final StandardBlockSearch search = new StandardBlockSearch((Node node) -> {
-    return node.block == OverpoweredBlocks.unknown_wood.get()   ||
-           node.block == OverpoweredBlocks.unknown_leaves.get();
-  });
 
 }

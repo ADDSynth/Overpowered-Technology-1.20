@@ -3,6 +3,8 @@ package addsynth.overpoweredtechnology.machines.portal.control_panel;
 import java.util.ArrayList;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import addsynth.core.block_network.node.Node;
+import addsynth.core.util.block.BlockSearch;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.core.util.math.block.BlockArea;
 import addsynth.core.util.network.NetworkUtil;
@@ -112,7 +114,7 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
   }
 
   private final void evaluate_portal_construction(final Level level, final boolean player_is_in_creative_mode){
-    if(portal_search_algorithm(level, this.worldPosition, new ArrayList<BlockPos>(30)) == false){
+    if(portal_search_algorithm(level, this.worldPosition) == false){
       message = PortalMessage.NO_DATA_CABLE;
       return;
     }
@@ -154,32 +156,23 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
     message = PortalMessage.PORTAL_READY;
   }
 
-  private final boolean portal_search_algorithm(final Level level, BlockPos from, ArrayList<BlockPos> searched){
-    boolean found = false;
-    BlockPos position;
-    Block block;
-    for(final Direction side : Direction.values()){
-      position = from.relative(side);
-      if(searched.contains(position) == false){
-        searched.add(position);
-        block = level.getBlockState(position).getBlock();
-        if(block == data_cable || block == portal_frame || block == iron_frame){
-          found = true;
-          if(block == portal_frame){
-            final TilePortalFrame portal_frame = (TilePortalFrame)level.getBlockEntity(position); // we already know this is a portal frame block, its okay to do this.
-            if(portal_frame != null){
-              portal_frames.add(position);
-              final int item = portal_frame.check_item();
-              if(item >= 0){
-                portal_items[item] = true;
-              }
-            }
+  private final boolean portal_search_algorithm(final Level level, BlockPos from){
+    return BlockSearch.forEachAdjacent(from, level, (Node node) -> {
+      if(node.block == data_cable || node.block == iron_frame){
+        return true;
+      }
+      if(node.getTile() != null){
+        if(node.getTile() instanceof TilePortalFrame portal_frame){
+          portal_frames.add(node.position);
+          final int item = portal_frame.check_item();
+          if(item >= 0){
+            portal_items[item] = true;
           }
-          portal_search_algorithm(level, position, searched);
+          return true;
         }
       }
-    }
-    return found;
+      return false;
+    });
   }
 
   private final boolean check_portal_construction(){
