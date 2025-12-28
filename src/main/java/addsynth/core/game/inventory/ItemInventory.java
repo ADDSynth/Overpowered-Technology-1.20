@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import addsynth.core.container.ItemContainer;
 import addsynth.core.container.ItemContainerSupplier;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -19,6 +18,32 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 
+/** <p>Use this to allow ItemStacks to have an inventory, accessed when you right-click
+ *  with the item in hand.
+ *  <p>Since your item is likely to have the same kind of inventory, it's best to specify
+ *  a static function that takes in an ItemStack and returns an ItemInventory by calling
+ *  {@code ItemInventory.of()} and pass in whatever settings your inventory uses.
+ *  <p>Here's an example:
+ *  <pre><code>
+ *  public class MyItem extends Item {
+ *  
+ *    public static ItemInventory getInventory(ItemStack stack){
+ *      return ItemInventory.of(stack, input_slots, MyItemContainer::new);
+ *    }
+ *    
+ *    Override
+ *    public InteractionResult use(Level level, Player player, InteractionHand hand){
+ *      final ItemStack stack = player.getItemInHand(hand);
+ *      if(!level.isClient){
+ *        final ItemInventory inventory = getInventory(stack);
+ *        inventory.openInventory((ServerPlayer)player);
+ *      }
+ *      return;
+ *    }
+ *  }
+ *  </code></pre>
+ *  <p>You must also create your own ItemContainer class and extend from {@link ItemContainer}.
+ */
 public class ItemInventory implements IStorageInventory, IInventoryResponder, IInputInventory, MenuProvider {
 
   private final InputInventory inventory;
@@ -33,10 +58,12 @@ public class ItemInventory implements IStorageInventory, IInventoryResponder, II
     load();
   }
 
+  /** Use this to create an ItemInventory based on the supplied ItemStack and number of slots. */
   public static final ItemInventory of(final ItemStack itemstack, int slots, ItemContainerSupplier container_constructor){
     return new ItemInventory(itemstack, slots, (ItemStack stack) -> true, container_constructor);
   }
 
+  /** Use this to create an ItemInventory based on the supplied ItemStack, input slots, and filter. */
   public static final ItemInventory of(final ItemStack itemstack, int slots, Predicate<ItemStack> filter, ItemContainerSupplier container_constructor){
     return new ItemInventory(itemstack, slots, filter, container_constructor);
   }

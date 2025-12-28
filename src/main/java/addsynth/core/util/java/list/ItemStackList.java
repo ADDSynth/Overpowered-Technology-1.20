@@ -7,7 +7,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 /** This class was created in order to keep an array of {@code ArrayList<ItemStack>}
- *  and get around any type safety warnings. */
+ *  and get around any type safety warnings.
+ *  @since Overpowered Technology version 1.5.1, September 14, 2023 (Filter Update)
+ */
 public final class ItemStackList extends ArrayList<ItemStack> implements Predicate<ItemStack> {
 
   public ItemStackList(){

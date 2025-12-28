@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 /** Work Machines are the most commonly used Machine type. Their behaviour is
  *  specifically defined and managed.
  * @author ADDSynth
+ * @since Overpowered Technology version 1.3.4, October 29, 2020 (WorkSystem commit)
  */
 public abstract class TileAbstractWorkMachine extends TileAbstractMachine {
 

@@ -25,6 +25,10 @@ public abstract class AbstractNode<T extends BlockEntity> {
     this.tile = tile;
   }
 
+  /** <p>Returns whether this node is invalid.<p>An invalid node will either have a null Block
+   *  or null Position. If this node contains a BlockEntity, then we also check if the BlockEntity
+   *  has been removed and if the Block and Position matches that of the BlockEntity.
+   */
   public boolean isInvalid(){
     if(block == null || position == null){
       return true;

@@ -9,6 +9,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 /** This class was created in order to keep an array of {@code ArrayList<Ingredient>}
  *  and get around any type safety warnings.<br>
  *  This is used in {@link addsynth.core.game.inventory.filter.MachineFilter}
+ *  @since Overpowered Technology version 1.5.1, September 14, 2023 (Filter Update)
  */
 public final class IngredientList extends ArrayList<Ingredient> implements Predicate<ItemStack> {
 

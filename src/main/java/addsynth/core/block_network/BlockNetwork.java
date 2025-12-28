@@ -96,7 +96,7 @@ import net.minecraft.world.level.block.state.BlockState;
  *    {@link #updateBlockNetwork(ServerLevel, BlockPos)} In the {@link #neighbor_was_changed} function.
  *    It's best to only update the BlockNetwork if the neighbor block is relevant to your BlockNetwork,
  *    so you need to check what kind of block it is. You'll also need to implement the {@link #clear_custom_data()}
- *    and {@link #customSearch(Node, ServerLevel)} methods, to clear your data and add new blocks respectively.
+ *    and {@link #customSearch(Node, Node, ServerLevel)} methods, to clear your data and add new blocks respectively.
  * 
  * <p>-----------------------------------------------------------------------------------------------
  * <p>Here I will describe how BlockNetworks function for my own sanity and others:
@@ -231,6 +231,11 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
     this((Class<T>)tile.getClass(), tile.getBlockPos(), search_algorithm);
   }
 
+  /** This constructor will use a {@link StandardBlockSearch} algorithm with a
+   *  constructed predicate that only tests for TileEntities that matches {@code class_type}.
+   * @param class_type
+   * @param position
+   */
   public BlockNetwork(final Class<T> class_type, final BlockPos position){
     this.search_algorithm = StandardBlockSearch.create(class_type);
     this.class_type = class_type;
