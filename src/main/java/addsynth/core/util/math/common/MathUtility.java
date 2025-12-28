@@ -62,6 +62,9 @@ public final class MathUtility {
       ADDSynthCore.log.error("Cannot use "+MathUtility.class.getSimpleName()+".divide_evenly() to divide a negative number!", new IllegalArgumentException());
       return final_list;
     }
+    if(number == 0){
+      return final_list;
+    }
     if(length == 1){
       return new int[]{Math.min(number, Math.max(list[0], 0))};
     }
@@ -134,6 +137,9 @@ public final class MathUtility {
     }
     if(number < 0){
       ADDSynthCore.log.error("Cannot use "+MathUtility.class.getSimpleName()+".divide_evenly() to divide a negative number!", new IllegalArgumentException());
+      return final_list;
+    }
+    if(number == 0){
       return final_list;
     }
     if(length == 1){
