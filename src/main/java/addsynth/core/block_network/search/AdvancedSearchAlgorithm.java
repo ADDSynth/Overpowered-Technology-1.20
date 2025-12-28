@@ -71,7 +71,7 @@ public final class AdvancedSearchAlgorithm implements IBlockSearchAlgorithm {
         "(someone's code is doing something they're not supposed to.)", e);
     }
     catch(Exception e){
-      ADDSynthCore.log.fatal("Error in "+AdvancedSearchAlgorithm.class.getSimpleName()+".search() algorithm.", e);
+      ADDSynthCore.log.error("Error in "+AdvancedSearchAlgorithm.class.getSimpleName()+".search() algorithm.", e);
     }
     return list;
   }

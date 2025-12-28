@@ -53,7 +53,7 @@ public final class Config {
         "  by the amount of sunlight hitting the solar panel. If any solar panel does not have full \n"+
         "  brightness, then the Solar Panel Controller will display the Blocked status. Although this\n"+
         "  tremendously saves on processing power, it won't be very realistic if you can surround the solar\n"+
-        "  panel with stacks of blocks, and it'll still receive full power.."
+        "  panel with stacks of blocks, and it'll still receive full power."
       ).defineEnum("Blocking Detection Method", BlockingAlgorithm.Hitscan);
       builder.pop();
     }

@@ -22,8 +22,8 @@ import net.minecraft.commands.arguments.ResourceOrTagArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
@@ -140,7 +140,8 @@ public final class ShowOresCommand {
       
       final TreeMap<String, Integer> block_count = new TreeMap<>();
       final ITag<Block> ore_blocks = ForgeRegistries.BLOCKS.tags().getTag(Tags.Blocks.ORES);
-      final Level world = source.getLevel();
+      @SuppressWarnings("resource")
+      final ServerLevel world = source.getLevel();
       final int height = world.getMaxBuildHeight();
       final BlockPos position = entity.blockPosition();
       final int chunks = size * size;
@@ -231,7 +232,8 @@ public final class ShowOresCommand {
     if(entity != null){
       final TagArgumentTester<Block> checker = new TagArgumentTester<Block>(target);
       final String name = checker.isTag ? "blocks matching tag "+checker.name : checker.name + " blocks";
-      final Level world = source.getLevel();
+      @SuppressWarnings("resource")
+      final ServerLevel world = source.getLevel();
       final int height = world.getMaxBuildHeight();
       final BlockPos position = entity.blockPosition();
       final int chunks = size * size;

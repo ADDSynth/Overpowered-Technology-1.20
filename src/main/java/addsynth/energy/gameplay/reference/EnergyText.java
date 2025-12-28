@@ -25,7 +25,7 @@ public final class EnergyText {
   public static final Component extraction_text       = Component.translatable("gui.addsynth_energy.common.extraction");
   public static final Supplier<MutableComponent> status_text = () -> {
     // This is called multiple times in the GuiEnergyBase.draw_status() methods, so we must return a new Component each time.
-    // This is the best we can do, for now. Ideally, each status message would probably have "Status: ..." appended to each
+    // This is the best we can do, for now. Ideally, each status message would probably have "Status: " appended to each
     // of the translated strings, and have a %s for the POWERING_ON and POWERING_OFF messages.
     return Component.translatable("gui.addsynth_energy.common.status").append(": ");
   };

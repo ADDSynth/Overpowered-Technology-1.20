@@ -54,6 +54,7 @@ public final class GuiPortalControlPanel extends GuiEnergyBase<TilePortalControl
       (Button button) -> {
         NetworkHandler.INSTANCE.sendToServer(new GeneratePortalMessage(tile.getBlockPos()));
       }).bounds(this.leftPos + button_x, this.topPos + button_y, button_width, button_height).build();
+    generate_portal_button.active = tile.isValid(); // set active immediately so it isn't shown active for one frame.
     addRenderableWidget(generate_portal_button);
     
     // Set Portal Control Panel Gui Displayed ItemStacks
@@ -71,7 +72,7 @@ public final class GuiPortalControlPanel extends GuiEnergyBase<TilePortalControl
   }
 
   @Override
-  protected void containerTick(){
+  protected final void containerTick(){
     gem_blocks.tick();
     generate_portal_button.active = tile.isValid();
   }

@@ -3,6 +3,7 @@ package addsynth.core.util.java;
 import java.util.Arrays;
 import java.util.Collection;
 import addsynth.core.ADDSynthCore;
+import addsynth.core.util.color.Color;
 import addsynth.core.util.math.common.CommonMath;
 import addsynth.core.util.math.common.RoundMode;
 import addsynth.core.util.time.TimeConstants;
@@ -258,6 +259,10 @@ public final class StringUtil {
     // final String type = recipe.getType().getClass().getSimpleName();
     final String output = recipe.getResultItem(RegistryAccess.EMPTY).toString();
     return build(class_name, "(", id, ", Output: ", output, ")");
+  }
+
+  public static final String printColor(final int color){
+    return "( "+Color.getRed(color)+" , "+Color.getGreen(color)+" , "+Color.getBlue(color)+" )";
   }
 
 }

@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
  *  items to be inserted and extracted.
  * @param <T>
  */
+@Deprecated // REMOVE addsynth.core.container.BasicContainer in 2030. Merge AbstractContainer and TileEntityContainer? No?
 public abstract class BasicContainer<T extends BlockEntity & IStorageInventory> extends TileEntityContainer<T> {
 
   public BasicContainer(final MenuType type, final int id, final Inventory player_inventory, final T tile){

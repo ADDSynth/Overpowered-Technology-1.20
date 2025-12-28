@@ -67,7 +67,7 @@ public final class StandardBlockSearch implements IBlockSearchAlgorithm {
         "(someone's code is doing something they're not supposed to.)", e);
     }
     catch(Exception e){
-      ADDSynthCore.log.fatal("Error in "+StandardBlockSearch.class.getSimpleName()+".search() algorithm.", e);
+      ADDSynthCore.log.error("Error in "+StandardBlockSearch.class.getSimpleName()+".search() algorithm.", e);
     }
     return list;
   }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 import addsynth.core.ADDSynthCore;
 import addsynth.core.util.java.FileUtil;
+import addsynth.core.util.java.StringUtil;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
@@ -133,9 +134,9 @@ public final class ColorUtil {
         final IForgeRegistry<Block> registry = ForgeRegistries.BLOCKS;
 
         for(i = 0; i < length; i++){
-          writer.write(color_values[i].name+" colors: "+printColor(color_values[i].value)+"\n");
+          writer.write(color_values[i].name+" colors: "+StringUtil.printColor(color_values[i].value)+"\n");
           for(ColorSet color : set[i]){
-            writer.write("   "+map_color_names.get(color.mapcolor)+" "+printColor(color.mapcolor.col)+"\n");
+            writer.write("   "+map_color_names.get(color.mapcolor)+" "+StringUtil.printColor(color.mapcolor.col)+"\n");
             for(Block block : color.blocks){
               writer.write("      "+registry.getKey(block)+"\n");
             }
@@ -247,10 +248,6 @@ public final class ColorUtil {
       }
     }
     return blocks.toArray(new Block[blocks.size()]);
-  }
-
-  public static final String printColor(final int color){ // MAYBE: move this to StringUtil?
-    return "( "+Color.getRed(color)+" , "+Color.getGreen(color)+" , "+Color.getBlue(color)+" )";
   }
 
 }

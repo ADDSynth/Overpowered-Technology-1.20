@@ -35,21 +35,6 @@ public final class RecipeUtil {
     return recipe.matches(InventoryUtil.toInventory(inventory), world);
   }
 
-  /* DELETE in 2026
-  @SuppressWarnings("resource")
-  public static final <C extends Container, R extends Recipe<C>> List<R> getRecipesofType(final RecipeType<R> type){
-    final MinecraftServer server = ServerUtils.getServer();
-    if(server != null){
-      final RecipeManager recipe_manager = server.getRecipeManager();
-      return recipe_manager.getAllRecipesFor(type);
-    }
-    ADDSynthCore.log.error("RecipeUtil.getRecipesofType(RecipeType type) CANNOT be called on the Client side!");
-    Thread.dumpStack();
-    final Minecraft minecraft = Minecraft.getInstance();
-    return getRecipesofType(type, minecraft.level);
-  }
-  */
-
   public static final <C extends Container, R extends Recipe<C>> List<R> getRecipesofType(final RecipeType<R> type, final Level world){
     final RecipeManager recipe_manager = world.getRecipeManager();
     return recipe_manager.getAllRecipesFor(type);

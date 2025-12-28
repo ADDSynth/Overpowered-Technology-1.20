@@ -1,11 +1,24 @@
 package addsynth.core.util.debug;
 
+import java.util.Objects;
 import javax.annotation.Nullable;
+import addsynth.core.ADDSynthCore;
 import addsynth.core.util.server.ServerUtils;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.profiling.ProfilerFiller;
 
 public final class DebugUtil {
+
+  /** Similar to {@link Objects#requireNonNull(Object, String)}, except this
+   *  merely prints a NullPointerException to the log instead of throwing it.
+   * @param obj
+   * @param message
+   */
+  public static final void checkForNull(Object obj, String message){
+    if(obj == null){
+      ADDSynthCore.log.error(message, new NullPointerException());
+    }
+  }
 
   @Nullable
   @SuppressWarnings("resource")

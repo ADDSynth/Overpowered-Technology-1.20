@@ -52,13 +52,13 @@ public final class ItemExplosionCommand {
     );
   }
 
+  @SuppressWarnings("resource")
   private static final int item_explosion(final CommandSourceStack command_source, final int item_count, final int radius) throws CommandSyntaxException {
     CommandUtil.check_argument("items", item_count, 1, MAX_ITEMS);
     CommandUtil.check_argument("radius", radius, 1, MAX_ITEM_RADIUS);
 
     // get world and position
     final Vec3 position    = command_source.getPosition();
-    @SuppressWarnings("resource")
     final ServerLevel world = command_source.getLevel();
 
     // get items

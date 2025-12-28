@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+// REMOVE Low Voltage Wire Block and related files if it doesn't get completed by 2032. It probably won't.
 public class LowVoltageWire extends WallAttachableWire {
 
   public LowVoltageWire(){
