@@ -3,7 +3,6 @@ package addsynth.core.gameplay.items.backpack;
 import java.util.function.Predicate;
 import addsynth.core.game.inventory.ItemInventory;
 import addsynth.core.game.inventory.filter.BasicFilter;
-import addsynth.core.game.inventory.filter.InvertedFilter;
 import addsynth.core.gameplay.reference.Core;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -17,7 +16,7 @@ import net.minecraft.world.level.Level;
 public class Backpack extends Item {
 
   // This will ensure that you NEVER insert ANY backpack inside another backpack
-  private static final Predicate<ItemStack> filter = InvertedFilter.of(new BasicFilter(Core.backpack));
+  private static final Predicate<ItemStack> filter = new BasicFilter(Core.backpack).negate();
 
   public static final ItemInventory getInventory(ItemStack itemstack){
     return ItemInventory.of(itemstack, 27, filter, BackpackContainer::new);
