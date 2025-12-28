@@ -50,7 +50,7 @@ public class SolarPanelTile extends BlockEntity implements IBlockNetworkUser<Sol
 
   @Override
   public void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(network, level, this, SolarPanelNetwork::new);
+    BlockNetwork.tick(SolarPanelTile.class, network, level, this, SolarPanelNetwork::new);
     // Handle life
     final boolean wet = level.isRainingAt(worldPosition.above()) || blockstate.getValue(BlockStateProperties.WATERLOGGED);
     final int max_life = Config.SOLAR_PANEL.max_life.get();

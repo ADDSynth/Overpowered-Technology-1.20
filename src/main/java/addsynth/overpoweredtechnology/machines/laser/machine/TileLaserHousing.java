@@ -38,7 +38,7 @@ public final class TileLaserHousing extends AbstractBlockNetworkMachine<LaserNet
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(network, level, this, LaserNetwork::new);
+    BlockNetwork.tick(TileLaserHousing.class, network, level, this, LaserNetwork::new);
   }
 
   @Override

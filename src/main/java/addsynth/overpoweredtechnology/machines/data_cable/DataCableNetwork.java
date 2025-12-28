@@ -43,8 +43,8 @@ public final class DataCableNetwork extends BlockNetwork<TileDataCable> {
     }
   }
 
-  public DataCableNetwork(final ServerLevel world, final TileDataCable tile){
-    super(world, tile);
+  public DataCableNetwork(final BlockPos position){
+    super(TileDataCable.class, position);
     // MAYBE: Is this safe?
     fusion_converter_block = OverpoweredBlocks.fusion_converter.get();
     fusion_control_unit    = OverpoweredBlocks.fusion_control_unit.get();

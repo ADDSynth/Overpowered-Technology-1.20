@@ -1,7 +1,5 @@
 package addsynth.energy.lib.tiles.generators;
 
-import addsynth.core.block_network.BlockNetwork;
-import addsynth.energy.lib.energy_network.EnergyNetwork;
 import addsynth.energy.lib.main.Generator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -26,7 +24,7 @@ public abstract class TileStandardGenerator extends TileAbstractGenerator {
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(network, level, this, EnergyNetwork::new);
+    super.serverTick(level, blockstate);
     derivedTick(level, blockstate);
     if(energy.tick()){
       changed = true;

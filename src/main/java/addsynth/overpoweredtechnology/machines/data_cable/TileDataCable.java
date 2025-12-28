@@ -19,7 +19,7 @@ public final class TileDataCable extends TileBase implements IBlockNetworkUser<D
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.check(cable_network, level, this, DataCableNetwork::new);
+    BlockNetwork.check(TileDataCable.class, cable_network, level, this, DataCableNetwork::new);
   }
 
   @Override

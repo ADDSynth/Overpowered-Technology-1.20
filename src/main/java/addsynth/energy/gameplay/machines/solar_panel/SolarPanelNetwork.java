@@ -3,6 +3,7 @@ package addsynth.energy.gameplay.machines.solar_panel;
 import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.util.time.WorldTime;
 import addsynth.energy.gameplay.config.Config;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.dimension.DimensionType;
 
@@ -16,8 +17,8 @@ public class SolarPanelNetwork extends BlockNetwork<SolarPanelTile> {
   private double time_multiplier;
   private double thunder_multiplier;
 
-  public SolarPanelNetwork(ServerLevel world, SolarPanelTile tile){
-    super(world, tile);
+  public SolarPanelNetwork(final BlockPos position){
+    super(SolarPanelTile.class, position);
   }
 
   @Override

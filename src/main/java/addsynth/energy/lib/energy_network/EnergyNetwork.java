@@ -34,8 +34,8 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   private final HashSet<EnergyNode> all_machines = new HashSet<>();
   private final EnergyNetworkData   transfer_data = new EnergyNetworkData();
 
-  public EnergyNetwork(final ServerLevel world, final AbstractEnergyNetworkTile energy_network_tile){
-    super(world, energy_network_tile, new AdvancedSearchAlgorithm(EnergyNetwork::canNavigate));
+  public EnergyNetwork(final BlockPos position){
+    super(AbstractEnergyNetworkTile.class, position, new AdvancedSearchAlgorithm(EnergyNetwork::canNavigate));
   }
 
   // To handle whether a Generator is connected to 2 or more Energy Networks, or a Receiver is connected

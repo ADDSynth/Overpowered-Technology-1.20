@@ -1,11 +1,10 @@
 package addsynth.core.block_network;
 
 import java.util.Collection;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 import addsynth.core.ADDSynthCore;
 import addsynth.core.block_network.node.AbstractNode;
-import addsynth.core.block_network.node.BlockEntityNode;
 import addsynth.core.block_network.node.Node;
 import addsynth.core.block_network.search.IBlockSearchAlgorithm;
 import addsynth.core.block_network.search.StandardBlockSearch;
@@ -45,7 +44,7 @@ import net.minecraft.world.level.block.state.BlockState;
  * 
  * <p><b>Step 3:</b> In your TileEntity's {@link ITickingTileEntity#serverTick serverTick()} method,
  *    you must call either {@link BlockNetwork#check} to just initialize the BlockNetwork or call
- *    {@link BlockNetwork#tick(BlockNetwork, ServerLevel, BlockEntity, BiFunction)}. These methods
+ *    {@link BlockNetwork#tick(Class, BlockNetwork, ServerLevel, BlockEntity, Function)}. These methods
  *    automatically ensure your BlockNetwork is initialized on the first tick using your passed
  *    in constructor. It also ensures that the BlockNetwork is only ticked once, by checking the
  *    passed in TileEntity is the first one listed in our internal saved list of TileEntities.
@@ -211,7 +210,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
 
   /** Only used in the {@link #is_valid} function to determine if
    *  the passed-in TileEntity is part of this BlockNetwork. */
-  private final Class<? extends BlockEntity> class_type;
+  private final Class<T> class_type;
 
   /** All the blocks that are in this block network. */
   protected final BlockList<T> blocks = new BlockList<>();
@@ -220,22 +219,28 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
    *  will just use the {@link StandardBlockSearch}. */
   private final IBlockSearchAlgorithm search_algorithm;
 
+  @Deprecated // REMOVE BlockNetwork old constructors
+  @SuppressWarnings("unchecked")
   public BlockNetwork(final ServerLevel world, final T tile){
-    if(world == null){
-      throw new NullPointerException("Loaded Block Network too early! Level hasn't been loaded yet.");
-    }
-    class_type = tile.getClass();
-    search_algorithm = StandardBlockSearch.create(class_type);
-    DebugBlockNetwork.CREATED(this, tile.getBlockPos());
+    this((Class<T>)tile.getClass(), tile.getBlockPos());
   }
 
+  @Deprecated
+  @SuppressWarnings("unchecked")
   public BlockNetwork(final ServerLevel world, final T tile, final IBlockSearchAlgorithm search_algorithm){
-    if(world == null){
-      throw new NullPointerException("Loaded Block Network too early! Level hasn't been loaded yet.");
-    }
+    this((Class<T>)tile.getClass(), tile.getBlockPos(), search_algorithm);
+  }
+
+  public BlockNetwork(final Class<T> class_type, final BlockPos position){
+    this.search_algorithm = StandardBlockSearch.create(class_type);
+    this.class_type = class_type;
+    DebugBlockNetwork.CREATED(this, position);
+  }
+
+  public BlockNetwork(final Class<T> class_type, final BlockPos position, final IBlockSearchAlgorithm search_algorithm){
     this.search_algorithm = search_algorithm;
-    class_type = tile.getClass();
-    DebugBlockNetwork.CREATED(this, tile.getBlockPos());
+    this.class_type = class_type;
+    DebugBlockNetwork.CREATED(this, position);
   }
 
   // This works perfectly and very efficiently. Never change it!
@@ -246,10 +251,10 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   /** This is a static helper function, used to initialize your BlockNetwork
    *  in the {@link ITickingTileEntity#serverTick(ServerLevel, BlockState)} function. Use this if
    *  your BlockNetwork does not need to be ticked. */
-  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B check(final B network, final ServerLevel world, final T tile, final BiFunction<ServerLevel, T, B> constructor){
+  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> B check(final Class<T> class_type, final B network, final ServerLevel world, final T tile, final Function<BlockPos, B> constructor){
     if(network == null){
       if(!tile.isRemoved()){
-        return BlockNetworkUtil.create_or_join(world, tile, constructor);
+        return BlockNetworkUtil.create_or_join(class_type, world, tile, constructor);
       }
       return null;
     }
@@ -259,8 +264,8 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
   /** Static helper function that automatically initializes your BlockNetwork if needed
    *  and ticks it. This must be called in the {@link ITickingTileEntity#serverTick(ServerLevel, BlockState)}
    *  method and your BlockNetwork should override the {@link #tick(ServerLevel)} method. */
-  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> void tick(final B network, final ServerLevel world, final T tile, final BiFunction<ServerLevel, T, B> constructor){
-    final B good_network = check(network, world, tile, constructor);
+  public static final <B extends BlockNetwork<T>, T extends BlockEntity & IBlockNetworkUser<B>> void tick(final Class<T> class_type, final B network, final ServerLevel world, final T tile, final Function<BlockPos, B> constructor){
+    final B good_network = check(class_type, network, world, tile, constructor);
     good_network.baseTick(world, tile);
   }
 
@@ -282,12 +287,11 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
     }
   }
 
-  /** This is called by {@link BlockNetworkUtil#removeTile(ServerLevel, BlockEntity, BiFunction)}.
+  /** This is called by {@link BlockNetworkUtil#removeTile(ServerLevel, BlockEntity, Function)}.
    *  This checks all adjacent positions next to the TileEntity that was removed. The first
    *  valid TileEntity we find remains as the original BlockNetwork and gets updated. Any
    *  adjacent blocks that are NOT part of the updated BlockNetwork becomes a new BlockNetwork. */
-  @SuppressWarnings("unchecked")
-  final <B extends BlockNetwork> void removeTile(final ServerLevel world, final T destroyed_tile, final BiFunction<ServerLevel, T, B> constructor){
+  final <B extends BlockNetwork> void removeTile(final ServerLevel world, final T destroyed_tile, final Function<BlockPos, B> constructor){
     final BlockPos tile_position = destroyed_tile.getBlockPos();
     DebugBlockNetwork.TILE_REMOVED(this, tile_position);
     blocks.remove(destroyed_tile);
@@ -300,7 +304,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
       BlockPos position;
       for(Direction side : Direction.values()){
         position = tile_position.relative(side);
-        tile = (T)MinecraftUtility.getTileEntity(position, world, class_type);
+        tile = MinecraftUtility.getTileEntity(position, world, class_type);
         if(tile != null){
           if(first){ // first valid tile
             updateBlockNetwork(world, position);
@@ -313,7 +317,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
             // if it's part of another network we already updated, then that position SHOULD be in it's block list.
             if(isInvalid(tile)){
               DebugBlockNetwork.SPLIT(position, this);
-              final B new_network = constructor.apply(world, tile);
+              final B new_network = constructor.apply(position);
               new_network.updateBlockNetwork(world, position);
             }
           }
@@ -345,7 +349,7 @@ public abstract class BlockNetwork<T extends BlockEntity & IBlockNetworkUser> {
 
   /** Override this method if you want your BlockNetwork to execute code every tick. We have internal
    *  code that ensures your BlockNetwork is only ticked once per tick. To tick your BlockNetwork you
-   *  must call the static {@link BlockNetwork#tick(BlockNetwork, ServerLevel, BlockEntity, BiFunction)}
+   *  must call the static {@link BlockNetwork#tick(BlockNetwork, ServerLevel, BlockEntity, Function)}
    *  in your TileEntity's {@link ITickingTileEntity#serverTick()} method. */
   protected void tick(final ServerLevel world){
   }

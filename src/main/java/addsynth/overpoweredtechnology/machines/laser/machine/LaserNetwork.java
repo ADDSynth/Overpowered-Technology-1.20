@@ -53,8 +53,8 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
   public boolean running;
   public boolean auto_shutoff;
 
-  public LaserNetwork(final ServerLevel world, final TileLaserHousing tile){
-    super(world, tile);
+  public LaserNetwork(final BlockPos position){
+    super(TileLaserHousing.class, position);
   }
 
   @Override

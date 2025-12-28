@@ -24,7 +24,7 @@ public abstract class AbstractEnergyNetworkTile extends TileBase implements IBlo
 
   @Override
   public void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(network, level, this, EnergyNetwork::new);
+    BlockNetwork.tick(AbstractEnergyNetworkTile.class, network, level, this, EnergyNetwork::new);
   }
 
   @Override

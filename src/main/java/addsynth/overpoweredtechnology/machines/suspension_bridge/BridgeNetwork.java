@@ -57,8 +57,8 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
    *  in the middle of updating. */
   private boolean updating;
 
-  public BridgeNetwork(final ServerLevel world, final TileSuspensionBridge tile){
-    super(world, tile);
+  public BridgeNetwork(final BlockPos position){
+    super(TileSuspensionBridge.class, position);
   }
 
   public final int get_min_x(){ return shape.min_x; }

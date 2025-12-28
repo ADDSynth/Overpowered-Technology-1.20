@@ -45,7 +45,7 @@ public final class TileSuspensionBridge extends BlockNetworkMachineWithInventory
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(network, level, this, BridgeNetwork::new);
+    BlockNetwork.tick(TileSuspensionBridge.class, network, level, this, BridgeNetwork::new);
   }
 
   @Override
