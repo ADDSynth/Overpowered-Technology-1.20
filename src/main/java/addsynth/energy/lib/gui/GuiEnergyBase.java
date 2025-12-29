@@ -3,7 +3,7 @@ package addsynth.energy.lib.gui;
 import addsynth.core.container.TileEntityContainer;
 import addsynth.core.game.inventory.machine.IMachineInventory;
 import addsynth.core.gui.GuiContainerBase;
-import addsynth.core.util.java.StringUtil;
+import addsynth.core.util.time.MinecraftTime;
 import addsynth.energy.gameplay.reference.EnergyText;
 import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.main.IEnergyUser;
@@ -137,16 +137,11 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
   /** Draws machine time left at the bottom-left corner of the gui. */
   protected void draw_time_left(GuiGraphics graphics, final int draw_y){
     if(energy != null){
-      final double rate = energy.getDifference();
-      final String time_left; // it let's me do this?
-      if(tile instanceof IMachineInventory){
-        // prints all jobs
-        time_left = StringUtil.print_time((((IMachineInventory)tile).getJobs() * energy.getCapacity()) + energy.getEnergyNeeded(), rate);
+      double total_energy = energy.getEnergyNeeded();
+      if(tile instanceof IMachineInventory machine){
+        total_energy += machine.getJobs() * energy.getCapacity();
       }
-      else{
-        time_left = StringUtil.print_time(energy.getEnergyNeeded(), rate);
-      }
-      draw_text_left(graphics, EnergyText.time_left_text.getString()+": "+time_left, 6, draw_y);
+      draw_text_left(graphics, EnergyText.time_left_text.getString()+": "+print_time(total_energy), 6, draw_y);
     }
     else{
       draw_text_left(graphics, EnergyText.time_left_text.getString()+": "+EnergyText.null_energy_reference.getString(), 6, draw_y);
@@ -157,15 +152,11 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
   protected void draw_time_left_center(GuiGraphics graphics, final int draw_y){
     final int draw_x = imageWidth/2;
     if(energy != null){
-      final double rate = energy.getDifference();
-      final String time_left;
-      if(tile instanceof IMachineInventory){
-        time_left = StringUtil.print_time((((IMachineInventory)tile).getJobs() * energy.getCapacity()) + energy.getEnergyNeeded(), rate);
+      double total_energy = energy.getEnergyNeeded();
+      if(tile instanceof IMachineInventory machine){
+        total_energy += machine.getJobs() * energy.getCapacity();
       }
-      else{
-        time_left = StringUtil.print_time(energy.getEnergyNeeded(), rate);
-      }
-      draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+time_left, draw_x, draw_y);
+      draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+print_time(total_energy), draw_x, draw_y);
     }
     else{
       draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+EnergyText.null_energy_reference.getString(), draw_x, draw_y);
@@ -175,7 +166,7 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
   /** Prints machine's time left at the bottom-center of the gui. Allows you to specify the ticks yourself,
    *  so a machine can have custom behaviour instead of just using the Energy's charge rate. */
   protected void draw_time_left_center(final GuiGraphics graphics, final int draw_y, final int ticks){
-    draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+StringUtil.print_time(ticks), imageWidth/2, draw_y);
+    draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+MinecraftTime.print(ticks), imageWidth/2, draw_y);
   }
 
   /** Draws charge time at bottom-left of gui. */
@@ -187,10 +178,10 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
     final double difference = energy.getDifference();
     switch((int)Math.signum(difference)){
     case 1:
-      draw_text_left(graphics, EnergyText.full_charge_time_text.getString()+": "+StringUtil.print_time((int)Math.ceil(energy.getEnergyNeeded() / difference)), 6, draw_y);
+      draw_text_left(graphics, EnergyText.full_charge_time_text.getString()+": "+MinecraftTime.print((int)Math.ceil(energy.getEnergyNeeded() / difference)), 6, draw_y);
       break;
     case -1:
-      draw_text_left(graphics, EnergyText.charge_remaining_text.getString()+": "+StringUtil.print_time((int)Math.ceil(energy.getEnergy() / (-difference))), 6, draw_y);
+      draw_text_left(graphics, EnergyText.charge_remaining_text.getString()+": "+MinecraftTime.print((int)Math.ceil(energy.getEnergy() / (-difference))), 6, draw_y);
       break;
     case 0:
       draw_text_left(graphics, EnergyText.no_energy_change_text, 6, draw_y);
@@ -208,15 +199,20 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
     final double difference = energy.getDifference();
     switch((int)Math.signum(difference)){
     case 1:
-      draw_text_center(graphics, EnergyText.full_charge_time_text.getString()+": "+StringUtil.print_time((int)Math.ceil(energy.getEnergyNeeded() / difference)), draw_x, draw_y);
+      draw_text_center(graphics, EnergyText.full_charge_time_text.getString()+": "+MinecraftTime.print((int)Math.ceil(energy.getEnergyNeeded() / difference)), draw_x, draw_y);
       break;
     case -1:
-      draw_text_center(graphics, EnergyText.charge_remaining_text.getString()+": "+StringUtil.print_time((int)Math.ceil(energy.getEnergy() / (-difference))), draw_x, draw_y);
+      draw_text_center(graphics, EnergyText.charge_remaining_text.getString()+": "+MinecraftTime.print((int)Math.ceil(energy.getEnergy() / (-difference))), draw_x, draw_y);
       break;
     case 0:
       draw_text_center(graphics, EnergyText.no_energy_change_text, draw_x, draw_y);
       break;
     }
+  }
+
+  private final String print_time(final double total_energy){
+    final double rate = energy.getDifference();
+    return MinecraftTime.print(rate > 0 ? (int)Math.ceil(total_energy / rate) : 0);
   }
 
 }

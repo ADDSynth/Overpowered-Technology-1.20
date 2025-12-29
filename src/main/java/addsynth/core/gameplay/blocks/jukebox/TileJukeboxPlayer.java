@@ -10,8 +10,8 @@ import addsynth.core.game.inventory.filter.TypeFilter;
 import addsynth.core.game.tiles.TileStorageMachine;
 import addsynth.core.gameplay.registers.Tiles;
 import addsynth.core.util.game.tileentity.ITickingTileEntity;
-import addsynth.core.util.java.StringUtil;
 import addsynth.core.util.math.random.RandomUtil;
+import addsynth.core.util.time.MinecraftTime;
 import addsynth.core.util.time.TimeConstants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -464,8 +464,8 @@ public class TileJukeboxPlayer extends TileStorageMachine implements MenuProvide
   public final int getIndex(){return hasMusicDiscs() ? index+1 : 0;}
   public final int getNumberOfTracks(){return tracks;}
   public final ItemStack getItemStack(){return current_disc;}
-  public final String getTime(){return StringUtil.print_time2(play_time);}
-  public final String getTotalTime(){return StringUtil.print_time2(is_in_delay ? delay_time : song_time);}
+  public final String getTime(){return MinecraftTime.print2(play_time);}
+  public final String getTotalTime(){return MinecraftTime.print2(is_in_delay ? delay_time : song_time);}
   public final float getSongPercentage(){
     if(song_time == 0 || (is_in_delay && delay_time == 0)){
       return 0;
