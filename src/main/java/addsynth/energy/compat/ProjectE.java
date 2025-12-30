@@ -1,6 +1,5 @@
 package addsynth.energy.compat;
 
-/*
 import addsynth.core.compat.Compatibility;
 import addsynth.core.compat.EMCValue;
 import addsynth.core.gameplay.Config;
@@ -67,4 +66,3 @@ public final class ProjectE {
   }
   
 }
-*/

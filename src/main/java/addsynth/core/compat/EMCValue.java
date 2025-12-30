@@ -1,6 +1,5 @@
 package addsynth.core.compat;
 
-/*
 import javax.annotation.Nonnull;
 import addsynth.core.ADDSynthCore;
 import addsynth.core.util.java.StringUtil;
@@ -8,22 +7,21 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
-import moze_intel.projecte.api.ProjectEAPI;
 import moze_intel.projecte.api.proxy.IEMCProxy;
 
 /** Contains Project E vanilla EMC values reported directly from the mod.<br/>
  *  Use these when creating custom EMC values for your<br/>
  *  items when Project E can't assign them automatically.
- *
+ */
 public final class EMCValue {
 
-  /** Used for Iron, Tin, Copper, Aluminum, and their compressed plates. *
+  /** Used for Iron, Tin, Copper, Aluminum, and their compressed plates. */
   public static final long common_metal   =  256;
-  /** Used for Steel and Bronze. *
+  /** Used for Steel and Bronze. */
   public static final long strong_metal   =  512;
-  /** Used for Silver and Gold. *
+  /** Used for Silver and Gold. */
   public static final long uncommon_metal = 2048;
-  /** Rare metals such as Platinum and Titanium. *
+  /** Rare metals such as Platinum and Titanium. */
   public static final long rare_metal     = 8192;
   
   public static final long common_metal_block   =  2304;
@@ -72,9 +70,9 @@ public final class EMCValue {
   public static final long silicon = 1024; // 4x value of Nether Quartz
 
   /** Although you can get the EMCProxy at any time, it won't have the EMC values until
-   *  after a world is loaded. Therefore, this must be called when a player enters a world. *
+   *  after a world is loaded. Therefore, this must be called when a player enters a world. */
   public static final void check_internal_emc_values(){
-    final IEMCProxy emcProxy = ProjectEAPI.getEMCProxy();
+    final IEMCProxy emcProxy = IEMCProxy.INSTANCE;
     // Metals
     checkEMC(emcProxy, Items.IRON_INGOT, common_metal);
     checkEMC(emcProxy, Items.GOLD_INGOT, uncommon_metal);
@@ -131,13 +129,13 @@ public final class EMCValue {
   }
 
   /** Although you can get the EMCProxy at any time, it won't have the EMC values until
-   *  after a world is loaded. Therefore, this must be called when a player enters a world. *
+   *  after a world is loaded. Therefore, this must be called when a player enters a world. */
   public static final void check_items(@Nonnull final String mod_id){
-    final IEMCProxy emcProxy = ProjectEAPI.getEMCProxy();
+    final IEMCProxy emcProxy = IEMCProxy.INSTANCE;
     
     ResourceLocation name;
     for(Item item : ForgeRegistries.ITEMS){
-      name = item.getRegistryName();
+      name = ForgeRegistries.ITEMS.getKey(item);
       if(name != null){
         if(name.getNamespace().equals(mod_id)){
           if(!emcProxy.hasValue(item)){
@@ -149,4 +147,3 @@ public final class EMCValue {
   }
 
 }
-*/

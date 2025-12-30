@@ -1,6 +1,5 @@
 package addsynth.material.compat;
 
-/*
 import addsynth.core.compat.Compatibility;
 import addsynth.core.compat.EMCValue;
 import addsynth.material.ADDSynthMaterials;
@@ -69,7 +68,7 @@ public final class ProjectE {
       InterModComms.sendTo(sender, mod, message, () -> new CustomEMCRegistration(NSSItem.createItem(Material.NICKEL.plate.get()),    EMCValue.common_metal));
       InterModComms.sendTo(sender, mod, message, () -> new CustomEMCRegistration(NSSItem.createItem(Material.ZINC.plate.get()),      EMCValue.common_metal));
       InterModComms.sendTo(sender, mod, message, () -> new CustomEMCRegistration(NSSItem.createItem(Material.SILVER.plate.get()),    EMCValue.uncommon_metal));
-      InterModComms.sendTo(sender, mod, message, () -> new CustomEMCRegistration(NSSItem.createItem(Material.COBALT.plate.get(),     EMCValue.uncommon_metal));
+      InterModComms.sendTo(sender, mod, message, () -> new CustomEMCRegistration(NSSItem.createItem(Material.COBALT.plate.get()),     EMCValue.uncommon_metal));
       InterModComms.sendTo(sender, mod, message, () -> new CustomEMCRegistration(NSSItem.createItem(Material.PLATINUM.plate.get()),  EMCValue.rare_metal));
       InterModComms.sendTo(sender, mod, message, () -> new CustomEMCRegistration(NSSItem.createItem(Material.TITANIUM.plate.get()),  EMCValue.rare_metal));
       InterModComms.sendTo(sender, mod, message, () -> new CustomEMCRegistration(NSSItem.createItem(Material.NEODYMIUM.plate.get()), EMCValue.rare_metal));
@@ -83,4 +82,3 @@ public final class ProjectE {
   }
 
 }
-*/

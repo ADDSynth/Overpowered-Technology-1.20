@@ -1,8 +1,8 @@
 package addsynth.overpoweredtechnology;
 
 import java.io.File;
-// import addsynth.core.compat.Compatibility;
-// import addsynth.core.compat.EMCValue;
+import addsynth.core.compat.Compatibility;
+import addsynth.core.compat.EMCValue;
 import addsynth.core.util.CommonUtil;
 import addsynth.core.util.constants.DevStage;
 import addsynth.core.util.game.Game;
@@ -105,14 +105,12 @@ public class OverpoweredTechnology {
     // load world saved data
     OverpoweredSavedData.load(server);
 
-    /*
     // check items missing EMC
-    if(Compatibility.PROJECT_E.isLoaded()){
-      if(DEV_STAGE.isDevelopment){
+    if(DEV_STAGE.isDevelopment){
+      if(Compatibility.PROJECT_E.isLoaded()){
         EMCValue.check_items(MOD_ID);
       }
     }
-    */
   }
 
   private static final void client_setup(final FMLClientSetupEvent event){

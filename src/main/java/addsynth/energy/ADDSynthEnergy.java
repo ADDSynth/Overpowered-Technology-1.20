@@ -3,8 +3,8 @@ package addsynth.energy;
 import java.io.File;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-// import addsynth.core.compat.Compatibility;
-// import addsynth.core.compat.EMCValue;
+import addsynth.core.compat.Compatibility;
+import addsynth.core.compat.EMCValue;
 import addsynth.core.util.CommonUtil;
 import addsynth.core.util.constants.DevStage;
 import addsynth.core.util.game.Game;
@@ -76,13 +76,11 @@ public class ADDSynthEnergy {
   }
 
   public static void onServerStarted(final ServerStartedEvent event){
-    /*
-    if(Compatibility.PROJECT_E.isLoaded()){
-      if(DEV_STAGE.isDevelopment){
+    if(DEV_STAGE.isDevelopment){
+      if(Compatibility.PROJECT_E.isLoaded()){
         EMCValue.check_items(MOD_ID);
       }
     }
-    */
   }
 
   private static final void client_setup(final FMLClientSetupEvent event){

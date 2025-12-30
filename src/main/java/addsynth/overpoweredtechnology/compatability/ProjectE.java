@@ -1,10 +1,9 @@
 package addsynth.overpoweredtechnology.compatability;
 
-/*
 import addsynth.core.compat.Compatibility;
-import addsynth.overpoweredmod.OverpoweredTechnology;
-import addsynth.overpoweredmod.game.reference.OverpoweredBlocks;
-import addsynth.overpoweredmod.game.reference.OverpoweredItems;
+import addsynth.overpoweredtechnology.OverpoweredTechnology;
+import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
+import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import moze_intel.projecte.api.imc.CustomEMCRegistration;
 import moze_intel.projecte.api.imc.IMCMethods;
 import moze_intel.projecte.api.nss.NSSItem;
@@ -30,4 +29,3 @@ public final class ProjectE {
   }
 
 }
-*/

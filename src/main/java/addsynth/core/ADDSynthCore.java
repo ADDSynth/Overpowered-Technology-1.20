@@ -2,6 +2,7 @@ package addsynth.core;
 
 import java.io.File;
 import addsynth.core.compat.Compatibility;
+import addsynth.core.compat.EMCValue;
 import addsynth.core.gameplay.Config;
 import addsynth.core.gameplay.NetworkHandler;
 import addsynth.core.gameplay.blocks.jukebox.JukeboxPlayerGui;
@@ -95,14 +96,12 @@ public final class ADDSynthCore {
   }
 
   public static void onServerStarted(final ServerStartedEvent event){
-    /*
     if(Compatibility.PROJECT_E.isLoaded()){
       EMCValue.check_internal_emc_values();
       if(DEV_STAGE.isDevelopment){
         EMCValue.check_items(MOD_ID);
       }
     }
-    */
   }
 
   public static final void registerCommands(final RegisterCommandsEvent event){

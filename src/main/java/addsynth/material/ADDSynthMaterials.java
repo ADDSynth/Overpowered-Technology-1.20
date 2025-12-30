@@ -2,8 +2,6 @@ package addsynth.material;
 
 import java.util.stream.Stream;
 import addsynth.core.ADDSynthCore;
-// import addsynth.core.compat.Compatibility;
-// import addsynth.core.compat.EMCValue;
 import addsynth.core.util.CommonUtil;
 import addsynth.core.util.constants.DevStage;
 import addsynth.material.compat.MaterialsCompat;
@@ -50,13 +48,6 @@ public final class ADDSynthMaterials {
   }
 
   public static void onServerStarted(final ServerStartedEvent event){
-    /*
-    if(Compatibility.PROJECT_E.isLoaded()){
-      if(DEV_STAGE.isDevelopment){
-        EMCValue.check_items(MOD_ID);
-      }
-    }
-    */
   }
 
   private static final void client_setup(final FMLClientSetupEvent event){
