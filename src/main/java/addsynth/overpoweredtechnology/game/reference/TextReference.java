@@ -70,4 +70,8 @@ public final class TextReference {
   public static final Component fusion_control_laser_description = Component.translatable("gui.overpowered_technology.jei_description.fusion_control_laser");
   public static final Component fusion_converter_description     = Component.translatable("gui.overpowered_technology.jei_description.fusion_converter");
 
+  public static final Component advanced_gem_converter_description = Component.translatable("gui.overpowered_technology.jei_description.advanced_gem_converter");
+  public static final Component           laser_swords_description = Component.translatable("gui.overpowered_technology.jei_description.laser_swords");
+  public static final Component         infinity_tools_description = Component.translatable("gui.overpowered_technology.jei_description.infinity_tools");
+
 }

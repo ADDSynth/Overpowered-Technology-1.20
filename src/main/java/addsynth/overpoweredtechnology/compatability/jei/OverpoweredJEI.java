@@ -25,8 +25,6 @@ import net.minecraft.world.item.ItemStack;
 @JeiPlugin
 public final class OverpoweredJEI implements IModPlugin {
 
-// https://github.com/micdoodle8/Galacticraft/blob/MC1.10/src/main/java/micdoodle8/mods/galacticraft/core/client/jei/GalacticraftJEI.java#L90
-
   @Override
   public void onRuntimeAvailable(IJeiRuntime jeiRuntime){
     // JEI builds the Ingredient list from items in the Creative Inventory.
@@ -79,7 +77,7 @@ public final class OverpoweredJEI implements IModPlugin {
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.null_block.get()),           VanillaTypes.ITEM_STACK, TextReference.null_block_description);
     
     // Celestial Tools
-    final ArrayList<ItemStack> celestial_tools = new ArrayList<>(6);
+    final ArrayList<ItemStack> celestial_tools = new ArrayList<>(5);
     celestial_tools.add(new ItemStack(OverpoweredItems.celestial_sword.get()));
     celestial_tools.add(new ItemStack(OverpoweredItems.celestial_shovel.get()));
     celestial_tools.add(new ItemStack(OverpoweredItems.celestial_axe.get()));
@@ -125,6 +123,7 @@ public final class OverpoweredJEI implements IModPlugin {
     // Lasers
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.laser_housing.get()), VanillaTypes.ITEM_STACK, TextReference.laser_housing_description);
     final ArrayList<ItemStack> lasers = new ArrayList<>(8);
+    lasers.add(new ItemStack(Laser.WHITE.cannon.get()));
     lasers.add(new ItemStack(Laser.RED.cannon.get()));
     lasers.add(new ItemStack(Laser.ORANGE.cannon.get()));
     lasers.add(new ItemStack(Laser.YELLOW.cannon.get()));
@@ -132,8 +131,19 @@ public final class OverpoweredJEI implements IModPlugin {
     lasers.add(new ItemStack(Laser.CYAN.cannon.get()));
     lasers.add(new ItemStack(Laser.BLUE.cannon.get()));
     lasers.add(new ItemStack(Laser.MAGENTA.cannon.get()));
-    lasers.add(new ItemStack(Laser.WHITE.cannon.get()));
     registry.addIngredientInfo(lasers, VanillaTypes.ITEM_STACK, TextReference.laser_description);
+    
+    // Laser Swords
+    final ArrayList<ItemStack> laser_swords = new ArrayList<>(8);
+    laser_swords.add(new ItemStack(OverpoweredItems.white_laser_sword.get()));
+    laser_swords.add(new ItemStack(OverpoweredItems.red_laser_sword.get()));
+    laser_swords.add(new ItemStack(OverpoweredItems.orange_laser_sword.get()));
+    laser_swords.add(new ItemStack(OverpoweredItems.yellow_laser_sword.get()));
+    laser_swords.add(new ItemStack(OverpoweredItems.green_laser_sword.get()));
+    laser_swords.add(new ItemStack(OverpoweredItems.cyan_laser_sword.get()));
+    laser_swords.add(new ItemStack(OverpoweredItems.blue_laser_sword.get()));
+    laser_swords.add(new ItemStack(OverpoweredItems.magenta_laser_sword.get()));
+    registry.addIngredientInfo(laser_swords, VanillaTypes.ITEM_STACK, TextReference.laser_swords_description);
     
     // Machines 2
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.energy_suspension_bridge.get()), VanillaTypes.ITEM_STACK, TextReference.energy_suspension_bridge_description);
@@ -142,12 +152,22 @@ public final class OverpoweredJEI implements IModPlugin {
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.matter_compressor.get()),        VanillaTypes.ITEM_STACK, TextReference.matter_compressor_description);
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.crystal_matter_generator.get()), VanillaTypes.ITEM_STACK, TextReference.crystal_matter_generator_description);
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.black_hole.get()),               VanillaTypes.ITEM_STACK, TextReference.black_hole_description);
+    registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.advanced_gem_converter.get()),   VanillaTypes.ITEM_STACK, TextReference.advanced_gem_converter_description);
     
     // Fusion Machines
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.fusion_chamber.get()),       VanillaTypes.ITEM_STACK, TextReference.fusion_chamber_description);
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.fusion_control_unit.get()),  VanillaTypes.ITEM_STACK, TextReference.fusion_control_unit_description);
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.fusion_control_laser.get()), VanillaTypes.ITEM_STACK, TextReference.fusion_control_laser_description);
     registry.addIngredientInfo(new ItemStack(OverpoweredBlocks.fusion_converter.get()),     VanillaTypes.ITEM_STACK, TextReference.fusion_converter_description);
+    
+    // Infinity Tools
+    final ArrayList<ItemStack> infinity_tools = new ArrayList<>(5);
+    infinity_tools.add(new ItemStack(OverpoweredItems.infinity_sword.get()));
+    infinity_tools.add(new ItemStack(OverpoweredItems.infinity_shovel.get()));
+    infinity_tools.add(new ItemStack(OverpoweredItems.infinity_pickaxe.get()));
+    infinity_tools.add(new ItemStack(OverpoweredItems.infinity_axe.get()));
+    infinity_tools.add(new ItemStack(OverpoweredItems.infinity_hoe.get()));
+    registry.addIngredientInfo(infinity_tools, VanillaTypes.ITEM_STACK, TextReference.infinity_tools_description);
   }
 
 }

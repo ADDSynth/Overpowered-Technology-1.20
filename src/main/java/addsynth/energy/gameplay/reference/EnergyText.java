@@ -57,14 +57,18 @@ public final class EnergyText {
   public static final Component compressor         = EnergyBlocks.compressor.get().getName();
 
   // Descriptions:
-  public static final Component wire_description               = Component.translatable("gui.addsynth_energy.jei_description.wire");
-  public static final Component generator_description          = Component.translatable("gui.addsynth_energy.jei_description.generator");
-  public static final Component energy_storage_description     = Component.translatable("gui.addsynth_energy.jei_description.energy_storage");
-  public static final Component electric_furnace_description   = Component.translatable("gui.addsynth_energy.jei_description.electric_furnace");
-  public static final Component compressor_description         = Component.translatable("gui.addsynth_energy.jei_description.compressor");
+  public static final Component               wire_description = Component.translatable("gui.addsynth_energy.jei_description.wire");
+  public static final Component          generator_description = Component.translatable("gui.addsynth_energy.jei_description.generator");
+  public static final Component     energy_storage_description = Component.translatable("gui.addsynth_energy.jei_description.energy_storage");
+  public static final Component   electric_furnace_description = Component.translatable("gui.addsynth_energy.jei_description.electric_furnace");
+  public static final Component         compressor_description = Component.translatable("gui.addsynth_energy.jei_description.compressor");
   public static final Component circuit_fabricator_description = Component.translatable("gui.addsynth_energy.jei_description.circuit_fabricator");
-  public static final Component energy_interface_description   = Component.translatable("gui.addsynth_energy.jei_description.universal_energy_interface");
+  public static final Component   energy_interface_description = Component.translatable("gui.addsynth_energy.jei_description.universal_energy_interface");
   public static final Component energy_diagnostics_description = Component.translatable("gui.addsynth_energy.jei_description.energy_diagnostics_block");
-  public static final Component power_regulator_description    = Component.translatable("gui.addsynth_energy.jei_description.power_regulator");
+  public static final Component    power_regulator_description = Component.translatable("gui.addsynth_energy.jei_description.power_regulator");
+  public static final Component        solar_panel_description = Component.translatable("gui.addsynth_energy.jei_description.solar_panel");
+  public static final Component solar_panel_controller_description = Component.translatable("gui.addsynth_energy.jei_description.solar_panel_controller");
+  public static final Component            charger_description = Component.translatable("gui.addsynth_energy.jei_description.charger");
+  public static final Component       energy_tools_description = Component.translatable("gui.addsynth_energy.jei_description.energy_tools");
 
 }

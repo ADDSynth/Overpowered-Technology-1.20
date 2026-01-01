@@ -1,5 +1,6 @@
 package addsynth.energy.compat.jei;
 
+import java.util.ArrayList;
 import addsynth.energy.ADDSynthEnergy;
 import addsynth.energy.gameplay.EnergyBlocks;
 import addsynth.energy.gameplay.EnergyItems;
@@ -56,6 +57,17 @@ public final class EnergyJEIPlugin implements IModPlugin {
     registry.addIngredientInfo(new ItemStack(EnergyBlocks.energy_diagnostics_block.get()), VanillaTypes.ITEM_STACK, EnergyText.energy_diagnostics_description);
     
     registry.addIngredientInfo(new ItemStack(EnergyItems.power_regulator.get()), VanillaTypes.ITEM_STACK, EnergyText.power_regulator_description);
+    
+    registry.addIngredientInfo(new ItemStack(EnergyBlocks.solar_panel.get()),    VanillaTypes.ITEM_STACK, EnergyText.solar_panel_description);
+    registry.addIngredientInfo(new ItemStack(EnergyBlocks.solar_panel_controller.get()), VanillaTypes.ITEM_STACK, EnergyText.solar_panel_controller_description);
+    registry.addIngredientInfo(new ItemStack(EnergyBlocks.charger.get()),        VanillaTypes.ITEM_STACK, EnergyText.charger_description);
+    
+    final ArrayList<ItemStack> energy_tools = new ArrayList<>(4);
+    energy_tools.add(new ItemStack(EnergyItems.energy_shovel.get()));
+    energy_tools.add(new ItemStack(EnergyItems.energy_pickaxe.get()));
+    energy_tools.add(new ItemStack(EnergyItems.energy_axe.get()));
+    energy_tools.add(new ItemStack(EnergyItems.energy_hoe.get()));
+    registry.addIngredientInfo(energy_tools, VanillaTypes.ITEM_STACK, EnergyText.energy_tools_description);
   }
 
   @Override

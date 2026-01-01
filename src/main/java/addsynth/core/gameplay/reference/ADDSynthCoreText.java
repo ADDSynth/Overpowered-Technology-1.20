@@ -36,8 +36,12 @@ public final class ADDSynthCoreText {
   public static final Component team_manager = Core.team_manager.get().getName();
 
   // Descriptions:
-  public static final Component    music_box_description = Component.translatable("gui.addsynthcore.jei_description.music_box");
-  public static final Component  music_sheet_description = Component.translatable("gui.addsynthcore.jei_description.music_sheet");
-  public static final Component team_manager_description = Component.translatable("gui.addsynthcore.jei_description.team_manager");
+  public static final Component       music_box_description = Component.translatable("gui.addsynthcore.jei_description.music_box");
+  public static final Component     music_sheet_description = Component.translatable("gui.addsynthcore.jei_description.music_sheet");
+  public static final Component    team_manager_description = Component.translatable("gui.addsynthcore.jei_description.team_manager");
+  public static final Component    watering_can_description = Component.translatable("gui.addsynthcore.jei_description.watering_can");
+  public static final Component  hedge_trimmers_description = Component.translatable("gui.addsynthcore.jei_description.hedge_trimmers");
+  public static final Component personal_beacon_description = Component.translatable("gui.addsynthcore.jei_description.personal_beacon");
+  public static final Component    auto_jukebox_description = Component.translatable("gui.addsynthcore.jei_description.auto_jukebox");
 
 }
