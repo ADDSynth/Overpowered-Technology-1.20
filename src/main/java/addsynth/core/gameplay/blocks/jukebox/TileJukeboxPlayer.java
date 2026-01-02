@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import addsynth.core.ADDSynthCore;
 import addsynth.core.game.inventory.filter.TypeFilter;
+import addsynth.core.game.item.ItemUtil;
 import addsynth.core.game.tiles.TileStorageMachine;
 import addsynth.core.gameplay.registers.Tiles;
 import addsynth.core.util.game.tileentity.ITickingTileEntity;
@@ -430,7 +431,7 @@ public class TileJukeboxPlayer extends TileStorageMachine implements MenuProvide
     tracks = nbt.getInt("Tracks");
     index = nbt.getInt("Index");
     shuffle = nbt.getBoolean("Shuffle");
-    current_disc = ItemStack.of(nbt.getCompound("CurrentDisc")); // OPTIMIZE: Only need to save Item ID, Use an ItemUtil saveItem / loadItem function!!!
+    current_disc = ItemUtil.loadItem(nbt, "CurrentDisc");
     play_time = nbt.getInt("Time");
     song_time = nbt.getInt("Song Time");
     repeat_single = nbt.getBoolean("Repeat");
@@ -448,7 +449,7 @@ public class TileJukeboxPlayer extends TileStorageMachine implements MenuProvide
     nbt.putInt("Tracks", tracks);
     nbt.putInt("Index", index);
     nbt.putBoolean("Shuffle", shuffle);
-    nbt.put("CurrentDisc", current_disc.serializeNBT());
+    ItemUtil.saveItem(nbt, "CurrentDisc", current_disc);
     nbt.putInt("Time", play_time);
     nbt.putInt("Song Time", song_time);
     nbt.putBoolean("Repeat", repeat_single);

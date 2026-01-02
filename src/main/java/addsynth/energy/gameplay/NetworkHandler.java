@@ -18,7 +18,7 @@ public final class NetworkHandler extends ADDSynthNetworkHandler {
     registerServerMessage( 0, INSTANCE, SwitchMachineMessage.class,          SwitchMachineMessage::decode);
     registerServerMessage( 1, INSTANCE, SetTransferSettings.class,           SetTransferSettings::new);
     registerServerMessage( 2, INSTANCE, ToggleAutoShutoffMessage.class,      ToggleAutoShutoffMessage::decode);
-    registerServerMessage( 3, INSTANCE, ChangeCircuitFabricatorRecipe.class, ChangeCircuitFabricatorRecipe::decode);
+    registerServerMessage( 3, INSTANCE, ChangeCircuitFabricatorRecipe.class, ChangeCircuitFabricatorRecipe::new);
     registerClientMessage( 4, INSTANCE, EnergyDiagnosticsMessage.class,      EnergyDiagnosticsMessage::new);
     registerClientMessage( 5, INSTANCE, SolarPanelData.class,                SolarPanelData::new);
     registerServerMessage( 6, INSTANCE, ToggleTransferSetting.class,         ToggleTransferSetting::new);

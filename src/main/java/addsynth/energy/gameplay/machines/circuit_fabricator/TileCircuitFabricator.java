@@ -3,6 +3,7 @@ package addsynth.energy.gameplay.machines.circuit_fabricator;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import addsynth.core.game.inventory.filter.RecipeFilter;
+import addsynth.core.util.game.data.NBTUtil;
 import addsynth.energy.ADDSynthEnergy;
 import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.gameplay.machines.circuit_fabricator.recipe.CircuitFabricatorRecipe;
@@ -29,9 +30,6 @@ public final class TileCircuitFabricator extends TileStandardWorkMachine impleme
   private ResourceLocation output_itemStack = defaultRecipe;
   // This RecipeFilter is different for every machine, therefore, it SHOULD NOT BE STATIC.
   private final RecipeFilter filter = new RecipeFilter(8);
-
-  // NBT Labels
-  private static final String legacyNBTSaveTag = "Circuit to Craft";
   private static final String saveTag = "Recipe";
 
   public TileCircuitFabricator(BlockPos position, BlockState blockstate){
@@ -39,26 +37,6 @@ public final class TileCircuitFabricator extends TileStandardWorkMachine impleme
     inventory.getInputInventory().isItemStackValid = filter::test;
     inventory.setRecipeProvider(CircuitFabricatorRecipes.INSTANCE);
     rebuild_filters(); // sets default filter for new TileEntities.
-  }
-
-  public final void change_recipe(final int circuit_id){
-    final ResourceLocation circuit = switch(circuit_id){
-      case 0 -> Names.CIRCUIT_TIER_1;
-      case 1 -> Names.CIRCUIT_TIER_2;
-      case 2 -> Names.CIRCUIT_TIER_3;
-      case 3 -> Names.CIRCUIT_TIER_4;
-      case 4 -> Names.CIRCUIT_TIER_5;
-      case 5 -> Names.CIRCUIT_TIER_6;
-      case 6 -> Names.CIRCUIT_TIER_7;
-      case 7 -> Names.CIRCUIT_TIER_8;
-      case 8 -> Names.CIRCUIT_TIER_9;
-      default -> defaultRecipe;
-    };
-    change_recipe(circuit);
-  }
-
-  public final void change_recipe(final String new_recipe){
-    change_recipe(ResourceLocation.parse(new_recipe));
   }
 
   public final void change_recipe(final ResourceLocation new_recipe){
@@ -81,6 +59,7 @@ public final class TileCircuitFabricator extends TileStandardWorkMachine impleme
       // Handle invalid recipe
       ADDSynthEnergy.log.warn("Circuit Fabricator recipe for "+output_itemStack.toString()+" doesn't exist anymore.");
       // PRIORITY: add a resetMachine() function. Add a call here. Check how we currently handle unexpected machine state errors.
+      // Pop out the items in the working inventory.
       change_recipe(defaultRecipe);
     }
   }
@@ -115,29 +94,7 @@ public final class TileCircuitFabricator extends TileStandardWorkMachine impleme
   @Override
   public final void load(final CompoundTag nbt){
     super.load(nbt);
-    
-    // handle old saves
-    if(nbt.contains(legacyNBTSaveTag)){
-      change_recipe(nbt.getInt(legacyNBTSaveTag)); // loads 0 by default
-      return;
-    }
-    
-    // handle new saves
-    final String recipe_string = nbt.getString(saveTag);
-    // handle if tag doesn't exist
-    if(recipe_string.equals("")){
-      change_recipe(defaultRecipe);
-      return;
-    }
-    // handle if item doesn't exist
-    final ResourceLocation recipe = ResourceLocation.parse(recipe_string);
-    if(ForgeRegistries.ITEMS.containsKey(recipe) == false){
-      ADDSynthEnergy.log.warn("Loading CircuitFabricator data: Item '"+recipe_string+"' doesn't exist anymore. Loading default recipe.");
-      change_recipe(defaultRecipe);
-      return;
-    }
-    // load normally
-    change_recipe(recipe);
+    change_recipe(NBTUtil.loadResourceLocationAndCheckItem(nbt, saveTag, defaultRecipe));
   }
 
   @Override
