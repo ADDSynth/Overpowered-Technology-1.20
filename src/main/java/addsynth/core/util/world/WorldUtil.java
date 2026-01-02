@@ -1,5 +1,7 @@
 package addsynth.core.util.world;
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import addsynth.core.util.server.ServerUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
@@ -15,6 +17,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.LevelData;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.TickEvent.LevelTickEvent;
+import net.minecraftforge.event.TickEvent.Phase;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 public final class WorldUtil {
 
@@ -23,8 +30,39 @@ public final class WorldUtil {
    * @param world
    * @param position
    */
+  @Deprecated
   public static final boolean isAir(final Level world, final BlockPos position){
     return world.getBlockState(position).isAir();
+  }
+
+  /** Assign a function to be called when a {@link LevelTickEvent} is posted on the Forge Event Bus
+   *  by using {@link EventBusSubscriber} and {@link SubscribeEvent}. However, logically, you only
+   *  want levels to be ticked on the server side, so this is a helper method to do just that.
+   * @param event
+   * @param code
+   */
+  public static final void tickLevel(final LevelTickEvent event, Consumer<ServerLevel> code){
+    if(event.side == LogicalSide.SERVER){
+      if(event.phase == Phase.START){
+        code.accept((ServerLevel)event.level);
+      }
+    }
+  }
+
+  /** Assign a function to be called when a {@link LevelTickEvent} is posted on the Forge Event Bus
+   *  by using {@link EventBusSubscriber} and {@link SubscribeEvent}. However, logically, you only
+   *  want levels to be ticked on the server side, so this is a helper method to do just that.
+   * @param event
+   * @param code
+   */
+  @SuppressWarnings("resource")
+  public static final void tickLevel(final LevelTickEvent event, BiConsumer<MinecraftServer, ServerLevel> code){
+    if(event.side == LogicalSide.SERVER){
+      if(event.phase == Phase.START){
+        final ServerLevel level = (ServerLevel)event.level;
+        code.accept(level.getServer(), level);
+      }
+    }
   }
 
   public static final int getTopMostFreeSpace(final Level world, final BlockPos position){

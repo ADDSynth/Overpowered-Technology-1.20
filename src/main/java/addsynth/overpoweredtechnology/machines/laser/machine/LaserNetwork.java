@@ -18,9 +18,9 @@ import addsynth.overpoweredtechnology.assets.CustomStats;
 import addsynth.overpoweredtechnology.assets.Sounds;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.NetworkHandler;
-import addsynth.overpoweredtechnology.machines.laser.LaserJobs;
 import addsynth.overpoweredtechnology.machines.laser.cannon.AbstractLaserCannon;
 import addsynth.overpoweredtechnology.machines.laser.cannon.LaserCannon;
+import addsynth.overpoweredtechnology.machines.laser.jobs.LaserJobs;
 import addsynth.overpoweredtechnology.machines.laser.network_messages.LaserClientSyncMessage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -179,11 +179,11 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
     NetworkUtil.send_to_clients_in_world(NetworkHandler.INSTANCE, world, message);
   }
 
-  private final void fire_lasers(final Level world){
+  private final void fire_lasers(final ServerLevel world){
     blocks.remove_invalid();
     
     LaserJobs.addNew(world, lasers, laser_distance);
-    playSound((ServerLevel)world);
+    playSound(world);
     awardPlayers(world);
     
     this.energy.subtract_capacity();
