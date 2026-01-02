@@ -2,7 +2,6 @@ package addsynth.overpoweredtechnology.machines.magic_infuser;
 
 import javax.annotation.Nullable;
 import addsynth.core.game.inventory.SlotData;
-import addsynth.core.game.inventory.filter.SingleItemFilter;
 import addsynth.core.recipe.jobs.JobSystem;
 import addsynth.energy.lib.tiles.machines.MachineStatus;
 import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
@@ -26,7 +25,7 @@ public final class TileMagicInfuser extends TileStandardWorkMachine implements M
 
   private static final SlotData[] getSlotData(){
     return new SlotData[] {
-      new SlotData(new SingleItemFilter(Items.BOOK)),
+      new SlotData(Items.BOOK),
       new SlotData(MagicInfuserRecipes.INSTANCE.getFilter(1))
     };
   }

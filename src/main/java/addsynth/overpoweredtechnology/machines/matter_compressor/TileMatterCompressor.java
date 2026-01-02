@@ -1,7 +1,6 @@
 package addsynth.overpoweredtechnology.machines.matter_compressor;
 
 import addsynth.core.game.inventory.SlotData;
-import addsynth.core.game.inventory.filter.SingleItemFilter;
 import addsynth.core.game.tiles.TileMachine;
 import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import addsynth.energy.lib.main.IEnergyConsumer;
@@ -28,9 +27,8 @@ public final class TileMatterCompressor extends TileMachine implements ITickingT
   private int matter;
   private final Receiver energy;
 
-  private static final SingleItemFilter filter = new SingleItemFilter(OverpoweredItems.black_hole.get());
   private static final SlotData[] slot_data = {
-    new SlotData(filter, 1),
+    new SlotData(OverpoweredItems.black_hole, 1),
     new SlotData()
   };
 

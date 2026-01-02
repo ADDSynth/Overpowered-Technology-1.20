@@ -2,7 +2,6 @@ package addsynth.overpoweredtechnology.machines.fusion.chamber;
 
 import javax.annotation.Nullable;
 import addsynth.core.game.inventory.SlotData;
-import addsynth.core.game.inventory.filter.SingleItemFilter;
 import addsynth.core.game.tiles.TileStorageMachine;
 import addsynth.core.util.game.data.AdvancementUtil;
 import addsynth.overpoweredtechnology.assets.CustomAdvancements;
@@ -22,8 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public final class TileFusionChamber extends TileStorageMachine implements MenuProvider {
 
-  private static final SingleItemFilter filter = new SingleItemFilter(OverpoweredItems.fusion_core.get());
-  private static final SlotData[] slot_data = {new SlotData(filter, 1)};
+  private static final SlotData[] slot_data = {new SlotData(OverpoweredItems.fusion_core, 1)};
 
   /** A standard TNT explosion is size of 4. */
   private static final float FUSION_CHAMBER_EXPLOSION_SIZE = 10.0f;

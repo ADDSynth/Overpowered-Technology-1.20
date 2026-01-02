@@ -2,8 +2,6 @@ package addsynth.overpoweredtechnology.machines.advanced_gem_converter;
 
 import addsynth.core.game.inventory.InputInventory;
 import addsynth.core.game.inventory.SlotData;
-import addsynth.core.game.inventory.filter.BasicFilter;
-import addsynth.core.game.inventory.filter.SingleItemFilter;
 import addsynth.core.game.inventory.filter.TagFilter;
 import addsynth.core.util.network.NetworkUtil;
 import addsynth.core.util.player.PlayerUtil;
@@ -42,14 +40,14 @@ public class TileAdvancedGemConverter extends TileStandardWorkMachine implements
   // slot 2-9 gem holder slots (filter for that specific gem)
   private static final SlotData[] slot_data = {
     new SlotData(new TagFilter(OverpoweredItemTags.convertable_gems)),
-    new SlotData(new SingleItemFilter(Items.QUARTZ)),
-    new SlotData(new BasicFilter(Material.RUBY.gem)),
-    new SlotData(new BasicFilter(Material.TOPAZ.gem)),
-    new SlotData(new BasicFilter(Material.CITRINE.gem)),
-    new SlotData(new SingleItemFilter(Items.EMERALD)),
-    new SlotData(new SingleItemFilter(Items.DIAMOND)),
-    new SlotData(new BasicFilter(Material.SAPPHIRE.gem)),
-    new SlotData(new SingleItemFilter(Items.AMETHYST_SHARD))
+    new SlotData(Items.QUARTZ),
+    new SlotData(Material.RUBY.gem), // I'm restricting these slots to my gems for now, no harm I suppose
+    new SlotData(Material.TOPAZ.gem),
+    new SlotData(Material.CITRINE.gem),
+    new SlotData(Items.EMERALD),
+    new SlotData(Items.DIAMOND),
+    new SlotData(Material.SAPPHIRE.gem),
+    new SlotData(Items.AMETHYST_SHARD)
   };
   // Work slot (Gem Converter)
 
