@@ -76,13 +76,6 @@ public abstract class TileAbstractBase extends BlockEntity {
   }
 
   protected final void loadPlayerData(final CompoundTag nbt){
-    // legacy
-    if(nbt.contains("Player")){
-      owner = nbt.getString("Player");
-      last_used_by = owner;
-      return;
-    }
-    
     owner = nbt.getString("Owner");
     last_used_by = nbt.getString("Last Used By");
   }

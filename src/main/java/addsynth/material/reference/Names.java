@@ -11,7 +11,7 @@ public final class Names {
   public static final ResourceLocation             GOLD_PLATE = ADDSynthMaterials.getLocation("gold_plate");
   public static final ResourceLocation             IRON_PLATE = ADDSynthMaterials.getLocation("iron_plate");
 
-  // legacy
+  // LEGACY: Remove Amethyst Legacy Names in 2028
   public static final ResourceLocation AMETHYST_LEGACY       = ADDSynthMaterials.getLocation("amethyst");
   public static final ResourceLocation AMETHYST_BLOCK_LEGACY = ADDSynthMaterials.getLocation("amethyst_block");
 

@@ -89,6 +89,7 @@ Please configure your IDE to recognize these Task Tags.
 | TEST     |  Normal  | Further testing is required to see if there's a better way to do something. |
 | DELETE   |   Low    | Commented code that can be deleted when I'm sure I won't miss it.           |
 | FEATURE  |   Low    | Describes a feature that would be nice to have, but ultimately not needed at the moment. |
+| LEGACY   |   Low    | Marks code that is kept for backwards-compatibility, and can be removed after a long time has passed, or a major rewrite. |
 | MAYBE    |   Low    | Suggests an alternative. |
 | NOTE     |   Low    | Leaves a note about the code, so I can find it later. |
 | REPLICA  |   Low    | Code that is an exact duplicate of someone else's code, because I need a custom version. Must check for any differences each time the external code is updated. |
