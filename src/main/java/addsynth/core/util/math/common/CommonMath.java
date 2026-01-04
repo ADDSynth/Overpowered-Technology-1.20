@@ -210,27 +210,27 @@ public final class CommonMath {
     return Math.ceil(value / multiple) * multiple;
   }
 
-  public static final int toPercentage(int top, int bottom){
+  public static final int toPercentage(final double top, final double bottom){
     if(bottom == 0){
       // Divide by 0 error
       return 0;
     }
-    return Math.round(((float)top / bottom) * 100);
+    return (int)Math.round((top / bottom) * 100);
   }
 
-  public static final double toPercentage(int top, int bottom, int number_of_decimals, RoundMode mode){
+  public static final double toPercentage(final double top, final double bottom, int number_of_decimals, RoundMode mode){
     if(bottom == 0){
       // Divide by 0 error
       return 0.0;
     }
-    return toPercentage((double)top / bottom, number_of_decimals, mode);
+    return toPercentage(top / bottom, number_of_decimals, mode);
   }
   
-  public static final int toPercentage(double value){
+  public static final int toPercentage(final double value){
     return (int)Math.round(value * 100);
   }
 
-  public static final double toPercentage(double value, int number_of_decimals, RoundMode mode){
+  public static final double toPercentage(final double value, int number_of_decimals, RoundMode mode){
     return switch (mode) {
     case Round   ->      round(value * 100, number_of_decimals);
     case Floor   -> Math.floor(value * 100);

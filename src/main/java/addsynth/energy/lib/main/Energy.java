@@ -447,7 +447,7 @@ public class Energy {
     s.append(" / ");
     s.append(String.format("%.2f", max_receive));
     s.append(' ');
-    s.append(StringUtil.toPercentageString(energy_in / max_receive));
+    s.append(StringUtil.toPercentageString(energy_in, max_receive));
     return s.toString();
   }
 
