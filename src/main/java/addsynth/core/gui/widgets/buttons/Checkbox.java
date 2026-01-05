@@ -32,7 +32,7 @@ public abstract class Checkbox extends AbstractButton {
     final boolean checked = get_toggle_state();
     WidgetUtil.common_button_render_setup(GuiReference.widgets);
     graphics.blit(GuiReference.widgets, getX(), getY(), size, size, checked ? texture_x : texture_x + texture_height, texture_y, texture_width, texture_height, 256, 256);
-    graphics.drawString(font, getMessage(), getX() + 16, getY() + 2, GuiUtil.text_color);
+    graphics.drawString(font, getMessage(), getX() + 16, getY() + 2, GuiUtil.text_color, false);
   }
 
   @Override

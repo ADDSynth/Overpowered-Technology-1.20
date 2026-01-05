@@ -55,7 +55,7 @@ public final class GuiEnergyDiagnostics extends GuiBase {
   @Override
   protected final void drawGuiForegroundLayer(GuiGraphics graphics, int mouse_x, int mouse_y){
     draw_title(graphics);
-    graphics.drawString(font, "Page: "+(page+1), 36, 6, GuiUtil.text_color);
+    graphics.drawString(font, "Page: "+(page+1), 36, 6, GuiUtil.text_color, false);
     if(tile.network_exists){
       // draw column headers
       draw_text_center(graphics,     name_text,     name_column.horizontal_center, text_y);

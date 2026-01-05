@@ -52,7 +52,7 @@ public final class NoteButton extends AbstractWidget {
     if(note != null){
       @SuppressWarnings("resource")
       final Minecraft mc = Minecraft.getInstance();
-      graphics.drawString(mc.font, note, getX() + center_x - (mc.font.width(note) / 2), getY() + text_draw_y, 4210752);
+      graphics.drawString(mc.font, note, getX() + center_x - (mc.font.width(note) / 2), getY() + text_draw_y, 4210752, false);
     }
   }
 

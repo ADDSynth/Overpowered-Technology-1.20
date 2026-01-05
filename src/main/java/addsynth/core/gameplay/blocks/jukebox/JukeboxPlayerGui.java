@@ -2,7 +2,6 @@ package addsynth.core.gameplay.blocks.jukebox;
 
 import addsynth.core.gameplay.reference.GuiReference;
 import addsynth.core.gui.GuiContainerBase;
-import addsynth.core.gui.util.GuiUtil;
 import addsynth.core.gui.widgets.rect.ProgressBar;
 import addsynth.core.util.java.StringUtil;
 import addsynth.core.util.math.common.RoundMode;
@@ -93,7 +92,7 @@ public class JukeboxPlayerGui extends GuiContainerBase<JukeboxContainer> {
   @Override
   protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY){
     // titles
-    graphics.drawCenteredString(font, title, center_x, 6, GuiUtil.text_color);
+    draw_text_center(graphics, title, center_x, 6);
     graphics.drawString(font, playerInventoryTitle, right_side, playerInventoryY, 4210752, false);
     // status
     graphics.drawString(font, tile.isPlaying() ? PLAYING_STATUS : STOPPED_STATUS, 6, line_2, 4210752, false);

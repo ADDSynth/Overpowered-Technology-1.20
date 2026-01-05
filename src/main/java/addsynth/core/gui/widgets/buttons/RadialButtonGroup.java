@@ -66,7 +66,7 @@ public final class RadialButtonGroup extends AbstractButton {
       graphics.blit(GuiReference.widgets, getX(), getY() + (line_height*i), radial_gui_size, radial_gui_size, radial_texture_x, i == option_selected ? radial_selected_texture_y : radial_texture_y, radial_texture_size, radial_texture_size, 256, 256);
     }
     for(i = 0; i < buttons; i++){
-      graphics.drawString(font, options[i], getX() + 16, getY() + (line_height*i) + 2, GuiUtil.text_color);
+      graphics.drawString(font, options[i], getX() + 16, getY() + (line_height*i) + 2, GuiUtil.text_color, false);
     }
   }
 

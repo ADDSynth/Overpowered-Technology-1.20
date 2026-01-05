@@ -24,7 +24,7 @@ public final class ItemListEntry extends AbstractListEntry<ItemStack> {
     if(item != null){
       graphics.renderItem(item, getX() + 1, getY() + 1);
     }
-    graphics.drawString(fontrenderer, getMessage(), getX() + 18, getY() + 5, Colors.WHITE.value);
+    graphics.drawString(fontrenderer, getMessage(), getX() + 18, getY() + 5, Colors.WHITE.value, true);
   }
 
   @Override

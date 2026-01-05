@@ -37,7 +37,7 @@ public abstract class AbstractListEntry<E> extends AbstractButton {
     Minecraft minecraft = Minecraft.getInstance();
     Font fontrenderer = minecraft.font;
     drawListEntryHighlight(graphics);
-    graphics.drawString(fontrenderer, getMessage(), getX() + 1, getY() + 1, Colors.WHITE.value);
+    graphics.drawString(fontrenderer, getMessage(), getX() + 1, getY() + 1, Colors.WHITE.value, true);
   }
 
   /** This is the code that draws a transparent white box under the list entry

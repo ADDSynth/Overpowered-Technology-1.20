@@ -86,6 +86,8 @@ public final class OnOffSwitch<T extends BlockEntity & ISwitchableMachine> exten
     // Draw text
     final Font fontrenderer = minecraft.font;
     final int text_color = 14737632;
+    // This is drawing a drop shadow
+    // no vanilla equivalent for drawing centered string
     graphics.drawCenteredString(fontrenderer, getMessage(), getX() + (power_state ? 23 : 17), getY() + 4, text_color);
   }
 
