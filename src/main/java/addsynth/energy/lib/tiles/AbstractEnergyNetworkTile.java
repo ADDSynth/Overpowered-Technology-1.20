@@ -1,7 +1,6 @@
 package addsynth.energy.lib.tiles;
 
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.IBlockNetworkUser;
 import addsynth.core.game.tiles.TileBase;
 import addsynth.energy.lib.energy_network.EnergyNetwork;
@@ -24,7 +23,7 @@ public abstract class AbstractEnergyNetworkTile extends TileBase implements IBlo
 
   @Override
   public void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(AbstractEnergyNetworkTile.class, network, level, this, EnergyNetwork::new);
+    EnergyNetwork.handler.tick(network, level, this);
   }
 
   @Override

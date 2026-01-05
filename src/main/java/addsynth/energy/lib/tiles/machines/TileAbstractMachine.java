@@ -25,7 +25,7 @@ public abstract class TileAbstractMachine extends AbstractEnergyTile implements 
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    super.serverTick(level, blockstate);
+    EnergyNetwork.handler.tick(network, level, this);
     derivedTick(level, blockstate);
     if(energy.tick()){
       changed = true;

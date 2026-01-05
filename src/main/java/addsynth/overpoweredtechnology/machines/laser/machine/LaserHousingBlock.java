@@ -2,7 +2,6 @@ package addsynth.overpoweredtechnology.machines.laser.machine;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.core.util.game.tileentity.TileEntityUtil;
 import addsynth.energy.lib.blocks.MachineBlock;
@@ -73,13 +72,13 @@ public final class LaserHousingBlock extends MachineBlock {
 
   @Override
   public final void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving){
-    BlockNetworkUtil.onRemove(super::onRemove, TileLaserHousing.class, LaserNetwork::new, state, world, pos, newState, isMoving);
+    LaserNetwork.handler.onRemove(super::onRemove, state, world, pos, newState, isMoving);
   }
 
   @Override
   @SuppressWarnings("deprecation")
   public final void neighborChanged(BlockState state, Level world, BlockPos pos, Block blockIn, BlockPos neighbor, boolean isMoving){
-    BlockNetworkUtil.neighbor_changed(world, pos, neighbor);
+    LaserNetwork.handler.neighbor_changed(world, pos, neighbor);
   }
 
   @Override

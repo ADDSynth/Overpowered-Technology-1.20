@@ -3,6 +3,7 @@ package addsynth.energy.lib.energy_network;
 import java.util.HashSet;
 import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
+import addsynth.core.block_network.BlockNetworkHandler;
 import addsynth.core.block_network.node.BlockEntityNode;
 import addsynth.core.block_network.node.Node;
 import addsynth.core.block_network.search.AdvancedSearchAlgorithm;
@@ -34,8 +35,10 @@ public final class EnergyNetwork extends BlockNetwork<AbstractEnergyNetworkTile>
   private final HashSet<EnergyNode> all_machines = new HashSet<>();
   private final EnergyNetworkData   transfer_data = new EnergyNetworkData();
 
+  public static final BlockNetworkHandler<AbstractEnergyNetworkTile, EnergyNetwork> handler = new BlockNetworkHandler<>(AbstractEnergyNetworkTile.class, EnergyNetwork::new);
+
   public EnergyNetwork(final BlockPos position){
-    super(AbstractEnergyNetworkTile.class, position, new AdvancedSearchAlgorithm(EnergyNetwork::canNavigate));
+    super(position, new AdvancedSearchAlgorithm(EnergyNetwork::canNavigate));
   }
 
   // To handle whether a Generator is connected to 2 or more Energy Networks, or a Receiver is connected

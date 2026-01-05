@@ -2,7 +2,6 @@ package addsynth.overpoweredtechnology.machines.suspension_bridge;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.core.util.game.tileentity.TileEntityUtil;
 import addsynth.energy.gameplay.reference.EnergyText;
@@ -78,7 +77,7 @@ public final class EnergySuspensionBridgeBlock extends MachineBlock {
 
   @Override
   public final void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving){
-    BlockNetworkUtil.onRemove(super::onRemove, TileSuspensionBridge.class, BridgeNetwork::new, state, world, pos, newState, isMoving);
+    BridgeNetwork.handler.onRemove(super::onRemove, state, world, pos, newState, isMoving);
   }
 
 }

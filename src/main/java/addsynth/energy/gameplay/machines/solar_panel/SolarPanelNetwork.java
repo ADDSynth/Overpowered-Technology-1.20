@@ -1,6 +1,7 @@
 package addsynth.energy.gameplay.machines.solar_panel;
 
 import addsynth.core.block_network.BlockNetwork;
+import addsynth.core.block_network.BlockNetworkHandler;
 import addsynth.core.util.time.WorldTime;
 import addsynth.energy.gameplay.config.Config;
 import net.minecraft.core.BlockPos;
@@ -17,8 +18,10 @@ public class SolarPanelNetwork extends BlockNetwork<SolarPanelTile> {
   private double time_multiplier;
   private double thunder_multiplier;
 
+  public static final BlockNetworkHandler<SolarPanelTile, SolarPanelNetwork> handler = new BlockNetworkHandler<>(SolarPanelTile.class, SolarPanelNetwork::new);
+
   public SolarPanelNetwork(final BlockPos position){
-    super(SolarPanelTile.class, position);
+    super(position, handler);
   }
 
   @Override

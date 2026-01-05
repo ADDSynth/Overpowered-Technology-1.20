@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
+import addsynth.core.block_network.BlockNetworkHandler;
 import addsynth.core.block_network.node.Node;
 import addsynth.core.util.game.data.AdvancementUtil;
 import addsynth.core.util.game.redstone.RedstoneDetector;
@@ -53,8 +54,10 @@ public final class LaserNetwork extends BlockNetwork<TileLaserHousing> {
   public boolean running;
   public boolean auto_shutoff;
 
+  public static final BlockNetworkHandler<TileLaserHousing, LaserNetwork> handler = new BlockNetworkHandler<>(TileLaserHousing.class, LaserNetwork::new);
+
   public LaserNetwork(final BlockPos position){
-    super(TileLaserHousing.class, position);
+    super(position, handler);
   }
 
   @Override

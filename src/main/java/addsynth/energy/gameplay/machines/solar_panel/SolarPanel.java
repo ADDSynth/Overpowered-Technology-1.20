@@ -1,7 +1,6 @@
 package addsynth.energy.gameplay.machines.solar_panel;
 
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.game.blocks.TileEntityBlock;
 import addsynth.energy.registers.Tiles;
 import net.minecraft.core.BlockPos;
@@ -98,7 +97,7 @@ public class SolarPanel extends TileEntityBlock implements SimpleWaterloggedBloc
   @Override
   @SuppressWarnings("deprecation")
   public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving){
-    BlockNetworkUtil.onRemove(super::onRemove, SolarPanelTile.class, SolarPanelNetwork::new, state, world, pos, newState, isMoving);
+    SolarPanelNetwork.handler.onRemove(super::onRemove, state, world, pos, newState, isMoving);
   }
 
 }

@@ -3,6 +3,7 @@ package addsynth.overpoweredtechnology.machines.data_cable;
 import java.util.ArrayList;
 import javax.annotation.Nullable;
 import addsynth.core.block_network.BlockNetwork;
+import addsynth.core.block_network.BlockNetworkHandler;
 import addsynth.core.block_network.node.Node;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
@@ -43,8 +44,10 @@ public final class DataCableNetwork extends BlockNetwork<TileDataCable> {
     }
   }
 
+  public static final BlockNetworkHandler<TileDataCable, DataCableNetwork> handler = new BlockNetworkHandler<>(TileDataCable.class, DataCableNetwork::new);
+
   public DataCableNetwork(final BlockPos position){
-    super(TileDataCable.class, position);
+    super(position, handler);
     // MAYBE: Is this safe?
     fusion_converter_block = OverpoweredBlocks.fusion_converter.get();
     fusion_control_unit    = OverpoweredBlocks.fusion_control_unit.get();

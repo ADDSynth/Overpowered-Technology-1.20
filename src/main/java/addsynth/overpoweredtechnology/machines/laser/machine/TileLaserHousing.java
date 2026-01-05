@@ -1,8 +1,6 @@
 package addsynth.overpoweredtechnology.machines.laser.machine;
 
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetwork;
-import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.util.game.redstone.RedstoneDetector;
 import addsynth.energy.lib.main.Receiver;
 import addsynth.energy.lib.tiles.machines.block_network.AbstractBlockNetworkMachine;
@@ -38,7 +36,7 @@ public final class TileLaserHousing extends AbstractBlockNetworkMachine<LaserNet
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(TileLaserHousing.class, network, level, this, LaserNetwork::new);
+    LaserNetwork.handler.tick(network, level, this);
   }
 
   @Override
@@ -68,7 +66,7 @@ public final class TileLaserHousing extends AbstractBlockNetworkMachine<LaserNet
       return energy; // only guis should use this.
     }
     if(network == null){
-      BlockNetworkUtil.createBlockNetwork((ServerLevel)level, this, LaserNetwork::new);
+      LaserNetwork.handler.createBlockNetwork((ServerLevel)level, this);
     }
     return network.energy;
   }

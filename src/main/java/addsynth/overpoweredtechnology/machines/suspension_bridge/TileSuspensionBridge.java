@@ -1,8 +1,6 @@
 package addsynth.overpoweredtechnology.machines.suspension_bridge;
 
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetwork;
-import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.game.inventory.SlotData;
 import addsynth.core.game.inventory.filter.TypeFilter;
 import addsynth.core.gameplay.reference.ADDSynthCoreText;
@@ -45,7 +43,7 @@ public final class TileSuspensionBridge extends BlockNetworkMachineWithInventory
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(TileSuspensionBridge.class, network, level, this, BridgeNetwork::new);
+    BridgeNetwork.handler.tick(network, level, this);
   }
 
   @Override
@@ -78,7 +76,7 @@ public final class TileSuspensionBridge extends BlockNetworkMachineWithInventory
       return energy;
     }
     if(network == null){
-      BlockNetworkUtil.createBlockNetwork((ServerLevel)level, this, BridgeNetwork::new);
+      BridgeNetwork.handler.createBlockNetwork((ServerLevel)level, this);
     }
     return network.energy;
   }

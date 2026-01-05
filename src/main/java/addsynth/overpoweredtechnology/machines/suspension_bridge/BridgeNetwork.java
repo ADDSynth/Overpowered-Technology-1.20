@@ -2,7 +2,7 @@ package addsynth.overpoweredtechnology.machines.suspension_bridge;
 
 import java.util.ArrayList;
 import addsynth.core.block_network.BlockNetwork;
-import addsynth.core.block_network.BlockNetworkUtil;
+import addsynth.core.block_network.BlockNetworkHandler;
 import addsynth.core.util.constants.DirectionConstant;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.core.util.game.data.AdvancementUtil;
@@ -57,8 +57,10 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
    *  in the middle of updating. */
   private boolean updating;
 
+  public static final BlockNetworkHandler<TileSuspensionBridge, BridgeNetwork> handler = new BlockNetworkHandler<>(TileSuspensionBridge.class, BridgeNetwork::new);
+
   public BridgeNetwork(final BlockPos position){
-    super(TileSuspensionBridge.class, position);
+    super(position, handler);
   }
 
   public final int get_min_x(){ return shape.min_x; }
@@ -277,7 +279,7 @@ public final class BridgeNetwork extends BlockNetwork<TileSuspensionBridge> {
     
     // found other bridge, assign bridge network
     if(tile.getBlockNetwork() == null){
-      BlockNetworkUtil.createBlockNetwork(world, tile, BridgeNetwork::new);
+      handler.createBlockNetwork(world, tile);
     }
     bridge_data.network = tile.getBlockNetwork();
     

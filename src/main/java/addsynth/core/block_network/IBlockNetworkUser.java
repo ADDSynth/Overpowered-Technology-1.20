@@ -16,13 +16,13 @@ public interface IBlockNetworkUser<T extends BlockNetwork> extends ITickingTileE
 
   public void setBlockNetwork(T network);
 
-  /** DO NOT CREATE BLOCK NETWORKS INSIDE THIS FUNCTION! {@link BlockNetworkUtil} calls this
+  /** DO NOT CREATE BLOCK NETWORKS INSIDE THIS FUNCTION! {@link BlockNetworkHandler} calls this
    *  to get the BlockNetwork from the TileEntity, which then begins an infinite call loop!
    */
   @Nullable
   public T getBlockNetwork();
 
-  /** This function is called by {@link BlockNetworkUtil#createBlockNetwork} after initializing the
+  /** This function is called by {@link BlockNetworkHandler#createBlockNetwork} after initializing the
    *  Block Network. Use this function to set Block Network data from the TileEntity, after it's
    *  been loaded by Minecraft.
    */

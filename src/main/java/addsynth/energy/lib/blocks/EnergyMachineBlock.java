@@ -1,8 +1,6 @@
 package addsynth.energy.lib.blocks;
 
-import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.energy.lib.energy_network.EnergyNetwork;
-import addsynth.energy.lib.tiles.AbstractEnergyNetworkTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -26,13 +24,13 @@ public abstract class EnergyMachineBlock extends MachineBlock {
 
   @Override
   public final void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving){
-    BlockNetworkUtil.onRemove(super::onRemove, AbstractEnergyNetworkTile.class, EnergyNetwork::new, state, world, pos, newState, isMoving);
+    EnergyNetwork.handler.onRemove(super::onRemove, state, world, pos, newState, isMoving);
   }
 
   @Override
   @SuppressWarnings("deprecation")
   public final void neighborChanged(BlockState state, Level world, BlockPos pos, Block blockIn, BlockPos neighbor, boolean isMoving){
-    BlockNetworkUtil.neighbor_changed(world, pos, neighbor);
+    EnergyNetwork.handler.neighbor_changed(world, pos, neighbor);
   }
 
 }

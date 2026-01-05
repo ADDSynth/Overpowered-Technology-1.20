@@ -1,5 +1,6 @@
 package addsynth.energy.lib.tiles.generators;
 
+import addsynth.energy.lib.energy_network.EnergyNetwork;
 import addsynth.energy.lib.main.PassiveGenerator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -18,7 +19,7 @@ public abstract class TilePassiveGenerator extends TileAbstractGenerator {
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    super.serverTick(level, blockstate);
+    EnergyNetwork.handler.tick(network, level, this);
     derivedTick(level, blockstate);
   }
 

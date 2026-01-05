@@ -1,5 +1,6 @@
 package addsynth.energy.lib.tiles.battery;
 
+import addsynth.energy.lib.energy_network.EnergyNetwork;
 import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.tiles.AbstractEnergyTile;
 import net.minecraft.core.BlockPos;
@@ -28,7 +29,7 @@ public abstract class BasicEnergyTile extends AbstractEnergyTile {
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    super.serverTick(level, blockstate);
+    EnergyNetwork.handler.tick(network, level, this);
     derivedTick(level, blockstate);
     if(energy.tick()){
       changed = true;

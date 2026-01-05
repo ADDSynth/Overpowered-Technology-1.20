@@ -1,7 +1,6 @@
 package addsynth.overpoweredtechnology.machines.data_cable;
 
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.IBlockNetworkUser;
 import addsynth.core.game.tiles.TileBase;
 import addsynth.overpoweredtechnology.registers.Tiles;
@@ -19,7 +18,7 @@ public final class TileDataCable extends TileBase implements IBlockNetworkUser<D
 
   @Override
   public final void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.check(TileDataCable.class, cable_network, level, this, DataCableNetwork::new);
+    DataCableNetwork.handler.check(cable_network, level, this);
   }
 
   @Override

@@ -1,7 +1,6 @@
 package addsynth.energy.gameplay.machines.solar_panel;
 
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetwork;
 import addsynth.core.block_network.IBlockNetworkUser;
 import addsynth.energy.gameplay.config.Config;
 import addsynth.energy.registers.Tiles;
@@ -50,7 +49,7 @@ public class SolarPanelTile extends BlockEntity implements IBlockNetworkUser<Sol
 
   @Override
   public void serverTick(ServerLevel level, BlockState blockstate){
-    BlockNetwork.tick(SolarPanelTile.class, network, level, this, SolarPanelNetwork::new);
+    SolarPanelNetwork.handler.tick(network, level, this);
     // Handle life
     final boolean wet = level.isRainingAt(worldPosition.above()) || blockstate.getValue(BlockStateProperties.WATERLOGGED);
     final int max_life = Config.SOLAR_PANEL.max_life.get();

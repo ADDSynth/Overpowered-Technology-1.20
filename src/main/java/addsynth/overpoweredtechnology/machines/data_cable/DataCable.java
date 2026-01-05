@@ -1,7 +1,6 @@
 package addsynth.overpoweredtechnology.machines.data_cable;
 
 import javax.annotation.Nullable;
-import addsynth.core.block_network.BlockNetworkUtil;
 import addsynth.core.util.block.BlockMatchList;
 import addsynth.core.util.block.BlockShape;
 import addsynth.energy.lib.blocks.Wire;
@@ -70,13 +69,13 @@ public final class DataCable extends Wire {
   @Override
   @SuppressWarnings("deprecation")
   public final void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving){
-    BlockNetworkUtil.onRemove(super::onRemove, TileDataCable.class, DataCableNetwork::new, state, world, pos, newState, isMoving);
+    DataCableNetwork.handler.onRemove(super::onRemove, state, world, pos, newState, isMoving);
   }
 
   @Override
   @SuppressWarnings("deprecation")
   public final void neighborChanged(BlockState state, Level world, BlockPos pos, Block blockIn, BlockPos neighbor, boolean isMoving){
-    BlockNetworkUtil.neighbor_changed(world, pos, neighbor);
+    DataCableNetwork.handler.neighbor_changed(world, pos, neighbor);
   }
 
 }
