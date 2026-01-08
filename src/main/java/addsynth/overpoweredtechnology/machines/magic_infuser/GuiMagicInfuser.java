@@ -29,7 +29,7 @@ public final class GuiMagicInfuser extends GuiEnergyBase<TileMagicInfuser, Conta
     graphics.renderItem(tile.getWorkingInventory().getStackInSlot(0), 78, 44);
     graphics.renderItem(tile.getWorkingInventory().getStackInSlot(1), 95, 44);
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), center_x, 72);
-    draw_time_left(graphics, 93);
+    draw_time_left_center(graphics, 93, tile);
   }
 
 }

@@ -1,12 +1,12 @@
 package addsynth.energy.lib.gui;
 
 import addsynth.core.container.TileEntityContainer;
-import addsynth.core.game.inventory.machine.IMachineInventory;
 import addsynth.core.gui.GuiContainerBase;
 import addsynth.core.util.time.MinecraftTime;
 import addsynth.energy.gameplay.reference.EnergyText;
 import addsynth.energy.lib.main.Energy;
 import addsynth.energy.lib.main.IEnergyUser;
+import addsynth.energy.lib.tiles.machines.TileAbstractMachine;
 import addsynth.energy.lib.tiles.machines.TileAbstractWorkMachine;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -135,38 +135,13 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
   }
 
   /** Draws machine time left at the bottom-left corner of the gui. */
-  protected void draw_time_left(GuiGraphics graphics, final int draw_y){
-    if(energy != null){
-      double total_energy = energy.getEnergyNeeded();
-      if(tile instanceof IMachineInventory machine){
-        total_energy += machine.getJobs() * energy.getCapacity();
-      }
-      draw_text_left(graphics, EnergyText.time_left_text.getString()+": "+print_time(total_energy), 6, draw_y);
-    }
-    else{
-      draw_text_left(graphics, EnergyText.time_left_text.getString()+": "+EnergyText.null_energy_reference.getString(), 6, draw_y);
-    }
+  protected void draw_time_left(GuiGraphics graphics, final int draw_y, final TileAbstractMachine machine){
+    draw_text_left(graphics, EnergyText.time_left_text.getString()+": "+MinecraftTime.print(machine.getTimeLeft()), 6, draw_y);
   }
 
   /** Draws machine time left at the bottom-center of the gui. */
-  protected void draw_time_left_center(GuiGraphics graphics, final int draw_y){
-    final int draw_x = imageWidth/2;
-    if(energy != null){
-      double total_energy = energy.getEnergyNeeded();
-      if(tile instanceof IMachineInventory machine){
-        total_energy += machine.getJobs() * energy.getCapacity();
-      }
-      draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+print_time(total_energy), draw_x, draw_y);
-    }
-    else{
-      draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+EnergyText.null_energy_reference.getString(), draw_x, draw_y);
-    }
-  }
-
-  /** Prints machine's time left at the bottom-center of the gui. Allows you to specify the ticks yourself,
-   *  so a machine can have custom behaviour instead of just using the Energy's charge rate. */
-  protected void draw_time_left_center(final GuiGraphics graphics, final int draw_y, final int ticks){
-    draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+MinecraftTime.print(ticks), imageWidth/2, draw_y);
+  protected void draw_time_left_center(GuiGraphics graphics, final int draw_y, final TileAbstractMachine machine){
+    draw_text_center(graphics, EnergyText.time_left_text.getString()+": "+MinecraftTime.print(machine.getTimeLeft()), imageWidth/2, draw_y);
   }
 
   /** Draws charge time at bottom-left of gui. */
@@ -208,11 +183,6 @@ public abstract class GuiEnergyBase<T extends BlockEntity & IEnergyUser, C exten
       draw_text_center(graphics, EnergyText.no_energy_change_text, draw_x, draw_y);
       break;
     }
-  }
-
-  private final String print_time(final double total_energy){
-    final double rate = energy.getDifference();
-    return MinecraftTime.print(rate > 0 ? (int)Math.ceil(total_energy / rate) : 0);
   }
 
 }

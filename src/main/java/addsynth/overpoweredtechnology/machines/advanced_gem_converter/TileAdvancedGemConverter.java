@@ -59,6 +59,7 @@ public class TileAdvancedGemConverter extends TileStandardWorkMachine implements
 
   public TileAdvancedGemConverter(BlockPos position, BlockState blockstate){
     // By default, a Machine Inventory will have the Working Inventory slot count equal to that of the Input Inventory. This machine only uses the first slot.
+    // TODO: Must allow users to build a custom Machine Inventory, with custom logic?
     super(Tiles.ADVANCED_GEM_CONVERTER.get(), position, blockstate, slot_data, 1, MachineValues.advanced_gem_converter);
     inventory.setResponder(this);
   }

@@ -96,7 +96,7 @@ public final class GuiPlasmaGenerator extends GuiEnergyBase<TilePlasmaGenerator,
     draw_status_after_switch(graphics, tile);
     draw_energy_usage_below_switch(graphics);
     draw_text_right(graphics, work_progress_bar.getWorkTimeProgress(), 77, 74);
-    draw_time_left(graphics, 102);
+    draw_time_left_center(graphics, 102, tile);
   }
 
 }

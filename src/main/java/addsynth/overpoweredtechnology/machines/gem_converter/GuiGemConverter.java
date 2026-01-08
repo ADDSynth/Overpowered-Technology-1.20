@@ -70,7 +70,7 @@ public final class GuiGemConverter extends GuiEnergyBase<TileGemConverter, Conta
     }
     
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), 25, 88);
-    draw_time_left(graphics, 99);
+    draw_time_left_center(graphics, 99, tile);
   }
 
 }

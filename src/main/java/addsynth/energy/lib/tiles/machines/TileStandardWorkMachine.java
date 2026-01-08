@@ -192,5 +192,14 @@ public abstract class TileStandardWorkMachine extends TileAbstractWorkMachine im
   public final CommonInventory getWorkingInventory(){
     return inventory.getWorkingInventory();
   }
+
+  @Override
+  public int getTimeLeft(){
+    final double rate = energy.getDifference();
+    if(rate > 0){
+      return (int)Math.ceil((energy.getEnergyNeeded() + inventory.getJobs() * energy.getCapacity()) / rate);
+    }
+    return 0;
+  }
   
 }

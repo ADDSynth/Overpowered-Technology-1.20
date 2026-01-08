@@ -34,7 +34,7 @@ public final class GuiCrystalMatterGenerator extends GuiEnergyBase<TileCrystalMa
     draw_status_after_switch(graphics, tile);
     draw_energy_usage(graphics, 6, 38);
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), 77);
-    draw_time_left_center(graphics, 98);
+    draw_time_left_center(graphics, 98, tile);
   }
 
 }

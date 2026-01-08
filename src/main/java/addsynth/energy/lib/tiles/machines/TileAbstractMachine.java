@@ -68,4 +68,10 @@ public abstract class TileAbstractMachine extends AbstractEnergyTile implements 
     return energy;
   }
 
+  // This function is only used in guis
+  public int getTimeLeft(){
+    final double rate = energy.getDifference();
+    return rate > 0 ? (int)Math.ceil(energy.getEnergyNeeded() / rate) : 0;
+  }
+
 }
