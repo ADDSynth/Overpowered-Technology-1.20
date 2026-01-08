@@ -11,13 +11,13 @@ public class BackpackContainer extends ItemContainer {
   public BackpackContainer(int id, Inventory player_inventory, ItemInventory inventory){
     super(Containers.BACKPACK.get(), id, player_inventory, inventory);
     addInputSlots(inventory, 0, 8, 18, 9, 3);
-    make_player_inventory(player_inventory);
+    make_immoveable_selected_player_inventory(player_inventory);
   }
 
   public BackpackContainer(int id, Inventory player_inventory, FriendlyByteBuf buf){
     super(Containers.BACKPACK.get(), id, player_inventory, buf, Backpack::getInventory);
     addInputSlots(inventory, 0, 8, 18, 9, 3);
-    make_player_inventory(player_inventory);
+    make_immoveable_selected_player_inventory(player_inventory);
   }
 
 }

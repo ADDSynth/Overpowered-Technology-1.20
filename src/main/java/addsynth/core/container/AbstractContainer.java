@@ -1,5 +1,6 @@
 package addsynth.core.container;
 
+import addsynth.core.container.slots.ImmoveableSlot;
 import addsynth.core.container.slots.InputSlot;
 import addsynth.core.container.slots.OutputSlot;
 import addsynth.core.game.inventory.IInputInventory;
@@ -43,6 +44,41 @@ public abstract class AbstractContainer extends AbstractContainerMenu {
     }
     for(i = 0; i < 9; i++){
       addSlot(new Slot(player_inventory, i, x + (i*18), y + 58));
+    }  
+  }
+
+  /** Make player inventory slots, but with the Selected Slot as an {@link ImmoveableSlot}.
+   *  This is useful for {@link ItemInventory ItemInventories} where you right-click an
+   *  item to open its inventory. The item MUST STAY IN THE SLOT while the inventory is
+   *  being accessed, because the inventory changes the item's NBT data when it is changed.
+   * @param player_inventory
+   */
+  protected final void make_immoveable_selected_player_inventory(Inventory player_inventory){
+    make_immoveable_selected_inventory(player_inventory, 8, 84);
+  }
+
+  /** Make player inventory slots, but with the Selected Slot as an {@link ImmoveableSlot}.
+   *  This is useful for {@link ItemInventory ItemInventories} where you right-click an
+   *  item to open its inventory. The item MUST STAY IN THE SLOT while the inventory is
+   *  being accessed, because the inventory changes the item's NBT data when it is changed.
+   * @param player_inventory
+   */
+  protected final void make_immoveable_selected_inventory(Inventory player_inventory, int x, int y){
+    int i;
+    int j;
+    for(j = 0; j < 3; j++){
+      for(i = 0; i < 9; i++){
+        addSlot(new Slot(player_inventory, i + 9 + (j*9), x + (i*18), y + (j*18)));
+      }
+    }
+    final int selected = player_inventory.selected; // ID of selected slot in hotbar, 0-8.
+    for(i = 0; i < 9; i++){
+      if(i == selected){
+        addSlot(new ImmoveableSlot(player_inventory, i, x + (i*18), y+58));
+      }
+      else{
+        addSlot(new           Slot(player_inventory, i, x + (i*18), y+58));
+      }
     }  
   }
 

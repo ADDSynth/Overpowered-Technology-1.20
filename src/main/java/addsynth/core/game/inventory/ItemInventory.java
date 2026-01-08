@@ -47,6 +47,7 @@ import net.minecraftforge.network.NetworkHooks;
 public class ItemInventory implements IStorageInventory, IInventoryResponder, IInputInventory, MenuProvider {
 
   private final InputInventory inventory;
+  /** The ItemStack that contains the {@link #inventory} in NBT data. */
   private final ItemStack      itemstack;
   private final ItemContainerSupplier menu_supplier;
   private static final String name = "Inventory"; // temporary

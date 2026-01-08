@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
  *  an ItemInventory as a parameter in the constructor. However, the second constructor,
  *  the one that has the {@link FriendlyByteBuf} is called by Forge internally, so we
  *  can't pass in our ItemInventory. We could encode and decode our inventory to/from
- *  the FriendlyByteBuf, but I've thought of a better way. Since we know this an item
+ *  the FriendlyByteBuf, but I've thought of a better way. Since we know this is an item
  *  inventory, and the inventory can only be opened from the Item in the player's hand,
  *  we can create the Inventory on-the-fly, by getting the ItemStack currently selected
  *  by the player and calling a static {@code MyItem.getInventory(ItemStack)} function
