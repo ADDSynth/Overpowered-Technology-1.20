@@ -58,10 +58,9 @@ public abstract class TileStandardWorkMachine extends TileAbstractWorkMachine im
     if(inventory.tick()){
       changed = true;
     }
-    if(previous_status != status){
-      previous_status = status;
-      NetworkUtil.send_to_TileEntity(NetworkHandler.INSTANCE, this, new UpdateClientMachineStatusMessage(this.worldPosition, status));
-    }
+    // I used to check machine status and only update the client if it had changed, but this doesn't update my client
+    // on the first tick because I hadn't logged in yet. And it never triggered on any tick after that.
+    NetworkUtil.send_to_TileEntity(NetworkHandler.INSTANCE, this, new UpdateClientMachineStatusMessage(this.worldPosition, status));
   }
 
   @Override

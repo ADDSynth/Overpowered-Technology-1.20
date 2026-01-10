@@ -63,8 +63,10 @@ public final class NetworkUtil {
     return text_components;
   }
 
-  /** Sends the Network message to all clients in the world you specify.
+  /** <p>Sends the Network message to all clients in the world you specify.
    *  Must be called on the server side.
+   *  <p><b>Note:</b> This may fail on the first tick while you are logging in, because you aren't
+   *  logged in yet, so there will be no client players to send to.
    * @param network
    * @param world
    * @param message
@@ -73,14 +75,18 @@ public final class NetworkUtil {
     network.send(PacketDistributor.DIMENSION.with(() -> world.dimension()), message);
   }
 
-  /** Sends a network message to only those players that are close to the TileEntity,
-   *  with a default radius of 64 blocks (4 chunks).  */
+  /** <p>Sends a network message to only those players that are close to the TileEntity,
+   *  with a default radius of 64 blocks (4 chunks).
+   *  <p><b>Note:</b> This may fail on the first tick while you are logging in, because you aren't
+   *  logged in yet, so there will be no client players to send to. */
   public static final void send_to_TileEntity(final SimpleChannel network, final BlockEntity tile, final Object message){
     send_to_TileEntity(network, tile, 64, message);
   }
 
-  /** Further restricts which clients to send the network message to by only sending
-   *  the message to just the players that are close to the TileEntity. */
+  /** <p>Further restricts which clients to send the network message to by only sending
+   *  the message to just the players that are close to the TileEntity.<br>
+   *  <p><b>Note:</b> This may fail on the first tick while you are logging in, because you aren't
+   *  logged in yet, so there will be no client players to send to. */
   public static final void send_to_TileEntity(final SimpleChannel network, final BlockEntity tile, final double radius, final Object message){
     @SuppressWarnings("resource")
     final Level world = tile.getLevel();

@@ -52,10 +52,7 @@ public abstract class TileSwitchableMachine extends TileAbstractWorkMachine impl
       changed = true;
     }
     machine_tick();
-    if(previous_status != status){
-      previous_status = status;
-      NetworkUtil.send_to_TileEntity(NetworkHandler.INSTANCE, this, new UpdateClientMachineStatusMessage(this.worldPosition, status));
-    }
+    NetworkUtil.send_to_TileEntity(NetworkHandler.INSTANCE, this, new UpdateClientMachineStatusMessage(this.worldPosition, status));
   }
 
   @Override

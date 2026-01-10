@@ -18,7 +18,6 @@ public abstract class TileAbstractWorkMachine extends TileAbstractMachine {
 
   protected final MachineData data;
   protected MachineState state;
-  protected MachineStatus previous_status;
   protected MachineStatus status = MachineStatus.GOOD;
 
   public TileAbstractWorkMachine(BlockEntityType type, BlockPos position, BlockState blockstate, MachineState initial_state, MachineData data){
