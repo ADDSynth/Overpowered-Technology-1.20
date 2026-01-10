@@ -15,7 +15,7 @@ import net.minecraftforge.fml.ModList;
  */
 public final class Compatibility {
 
-  // Java doesn't have structs either?! That's another stupid thing about Java!
+  // JAVA #2: Java doesn't have structs either?! That's another stupid thing about Java!
 
   // TODO: Add authors, What Minecraft versions are available, and possibly but not likely a short description.
 

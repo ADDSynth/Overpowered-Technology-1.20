@@ -22,7 +22,7 @@ public final class LaserJobs {
   private static final ConcurrentHashMap<ResourceLocation, LevelLaserJobs> laser_jobs = new ConcurrentHashMap<>(3);
 
   private LaserJobs(){
-    // Stupid Java thing #7? Marking this class as static would solve this.
+    // Stupid JAVA thing #7? Marking this class as static would solve this.
     throw new AssertionError("No instances for you!");
   }
 

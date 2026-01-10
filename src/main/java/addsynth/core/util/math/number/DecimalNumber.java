@@ -49,8 +49,7 @@ public final class DecimalNumber {
 
 // ===================================================================================
   
-  // No unsigned primitive values, no structs, and now,
-  // 3rd problem with Java: No operator overload! >:(
+  // JAVA #3: No unsigned primitive values. No structs. And now: No operator overloads! >:(
 
   public final void add(final double amount){
     set(get() + amount);

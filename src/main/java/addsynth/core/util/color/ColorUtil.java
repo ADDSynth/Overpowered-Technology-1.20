@@ -14,7 +14,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
-// What? Java doesn't have unsigned numeric types? That's the stupidest thing I've ever heard!
+// JAVA #1: What? Java doesn't have unsigned numeric types? That's the stupidest thing I've ever heard!
 // https://stackoverflow.com/questions/430346/why-doesnt-java-support-unsigned-ints
 // https://en.wikipedia.org/wiki/Criticism_of_Java#Unsigned_integer_types
 

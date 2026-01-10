@@ -24,7 +24,7 @@ public class BridgeData {
   /** Determines which side of the bridge controls the bridge.
    *  This should only be changed when turning on/off the bridge. */
   public BridgeRelation relation = BridgeRelation.NONE;
-  // 6th or 7th problem I have with Java: Enums aren't implicitly initialized to the first value? They're reference types?
+  // JAVA #6: 6th problem I have with Java: Enums aren't implicitly initialized to the first value? They're reference types?
 
   public int length;
 

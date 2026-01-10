@@ -294,7 +294,7 @@ public class Energy {
   public final double getEnergyNeeded(){
     final double energy   = this.energy.get();
     final double capacity = this.capacity.get();
-    // In what world does 1000.0 - 999.999 = 9.999999999763531E-4? Answer: The Java world.
+    // JAVA #4: In what world does 1000.0 - 999.999 = 9.999999999763531E-4? Answer: The Java world.
     return energy < capacity ? CommonMath.round(capacity - energy, DecimalNumber.ACCURACY) : 0;
   }
 

@@ -271,7 +271,7 @@ public final class ShowOresCommand {
     return JavaUtils.cast_to_int(blocks);
   }
 
-  // This is the better way to do it, but Java prevents accessing local variables in a local function.
+  // JAVA #5: This is the better way to do it, but Java prevents accessing local variables in a local function.
   /*
   private static final void count_blocks(final CommandSource source, final int size, final Consumer<Block> consumer){
     final Entity entity = source.getEntity();
