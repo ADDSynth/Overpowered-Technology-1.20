@@ -182,6 +182,7 @@ dependencies {
 
     // ADDSynth mods
     implementation fg.deobf("blank:ADDSynthCore-${minecraft_version}:1.0")
+    implementation fg.deobf("blank:ADDSynthMaterials-${minecraft_version}:1.0")
 
     // compile against the JEI API but do not include it at runtime
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"

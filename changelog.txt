@@ -1,16 +1,4 @@
-version 6 - TBD
-===ADDDSynth Materials:
-NEW:
-  Added 7 new Materials: Nickel, Lead, Zinc, Cobalt, Brass, Invar, and Neodymium.
-    Nickel, Lead, and Zinc are common (like Iron).
-    Cobalt is uncommon (like Silver and Gold).
-    Neodymium is rare (like Platinum or Titanium).
-    Brass and Invar are Metal Alloys.
-  Added missing Deepslate variants of all ores.
-CHANGED:
-  In the real world, Bronze actually has a lighter color than Copper. Changed the color of Bronze
-    blocks and items to a lighter color that I've used for Copper before.
-  Silicon Ore now drops 2-3 Silicon instead of just 1.
+Version 6 - TBD
 ===ADDSynth Energy:
 NEW:
   Low Voltage Wire item.

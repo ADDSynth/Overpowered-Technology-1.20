@@ -23,22 +23,6 @@ issueTrackerURL="https://github.com/ADDSynth/Overpowered-Technology-1.19.4/issue
 
 
 [[mods]]
-modId="addsynth_materials"
-version="1.0"
-displayName="ADDSynth Materials"
-displayURL="http://www.gyrostudiostechnology.com/minecraft/mods/materials/index.html"
-logoFile="addsynth_materials_logo.png"
-credits=""
-authors="ADDSynth"
-description="Extra Materials"
-[[dependencies.addsynth_materials]]
-    modId="addsynthcore"
-    mandatory=true
-    versionRange="[1,]"
-    ordering="BEFORE"
-    side="BOTH"
-
-[[mods]]
 modId="addsynth_energy"
 version="1.0"
 displayName="ADDSynth Energy"
@@ -112,6 +96,6 @@ description="This mod adds a bunch of really cool science and tech stuff."
 [[dependencies.overpowered_technology]]
     modId="addsynth_materials"
     mandatory=true
-    versionRange="[1,)"
+    versionRange="[1.0,2.0)"
     ordering="BEFORE"
     side="BOTH"
