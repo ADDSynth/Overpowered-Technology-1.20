@@ -22,57 +22,6 @@ issueTrackerURL="https://github.com/ADDSynth/Overpowered-Technology-1.19.4/issue
 
 
 
-# A list of mods - how many allowed here is determined by the individual mod loader
-[[mods]] #mandatory
-
-# The modid of the mod
-modId="addsynthcore" #mandatory
-
-# The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-#version="${file.jarVersion}" #mandatory
-version="1.0"
-
-# A display name for the mod
-displayName="ADDSynthCore" #mandatory
-
-# A URL to query for updates for this mod. See the JSON update specification <here>
-#updateJSONURL="http://www.gyrostudiostechnology.com/minecraft/mods/overpowered/update.json" #optional
-
-# A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="http://www.gyrostudiostechnology.com/minecraft/mods/addsynthcore/index.html" #optional
-
-# A file name (in the root of the mod JAR) containing a logo for display
-logoFile="addsynth_core_logo.png" #optional
-
-# A text field displayed in the mod UI
-credits="Mojang, and the Forge Development Team" #optional
-
-# A text field displayed in the mod UI
-authors="ADDSynth" #optional
-
-# The description text for the mod (multi line!) (#mandatory)
-description="Core mod required by all of ADDSynth's mods. Also adds a few basic things by itself."
-
-# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.addsynthcore]] #optional
-    # the modid of the dependency
-    modId="forge" #mandatory
-    # Does this dependency have to exist - if not, ordering below must be specified
-    mandatory=true #mandatory
-    # The version range of the dependency
-    versionRange="[47.4.0,)" #mandatory
-    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
-    ordering="NONE"
-    # Side this dependency is applied on - BOTH, CLIENT or SERVER
-    side="BOTH"
-# Here's another dependency
-[[dependencies.addsynthcore]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.20.1]"
-    ordering="NONE"
-    side="BOTH"
-
 [[mods]]
 modId="addsynth_materials"
 version="1.0"
@@ -151,7 +100,7 @@ description="This mod adds a bunch of really cool science and tech stuff."
 [[dependencies.overpowered_technology]]
     modId="addsynthcore"
     mandatory=true
-    versionRange="[1,)"
+    versionRange="[1.0,2.0)"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.overpowered_technology]]

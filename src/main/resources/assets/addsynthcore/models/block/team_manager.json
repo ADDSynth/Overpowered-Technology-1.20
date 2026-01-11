@@ -1,8 +1,0 @@
-{
-    "parent": "block/cube_bottom_top",
-    "textures": {
-        "top": "addsynthcore:block/team_manager_top",
-        "side": "addsynthcore:block/team_manager_side",
-        "bottom": "addsynthcore:block/team_manager_bottom"
-    }
-}

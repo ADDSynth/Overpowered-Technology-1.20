@@ -15,6 +15,7 @@ out
 
 # gradle
 build
+libs
 .gradle
 
 # other
@@ -23,7 +24,7 @@ run
 server
 
 # Files from Forge MDK
-forge*changelog.txt
+forge_stuff
 
 # scripts
 setupEclipse.bat

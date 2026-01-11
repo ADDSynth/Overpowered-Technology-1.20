@@ -1,8 +1,0 @@
-{
-  "parent": "addsynthcore:block/trophy_model",
-  "textures": {
-    "particle":              "addsynthcore:block/trophies/bronze_trophy",
-    "trophy_texture":        "addsynthcore:block/trophies/bronze_trophy",
-    "trophy_texture_inside": "addsynthcore:block/trophies/bronze_trophy_inside"
-  }
-}
