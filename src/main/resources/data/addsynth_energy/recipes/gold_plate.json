@@ -1,9 +1,0 @@
-{
-  "type": "addsynth_energy:compressor",
-  "ingredients": [
-    {"tag": "forge:ingots/gold"}
-  ],
-  "result": {
-    "item": "addsynth_materials:gold_plate"
-  }
-}

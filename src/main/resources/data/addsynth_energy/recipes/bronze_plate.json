@@ -1,9 +1,0 @@
-{
-  "type": "addsynth_energy:compressor",
-  "ingredients": [
-    {"tag": "forge:ingots/bronze"}
-  ],
-  "result": {
-    "item": "addsynth_materials:bronze_plate"
-  }
-}

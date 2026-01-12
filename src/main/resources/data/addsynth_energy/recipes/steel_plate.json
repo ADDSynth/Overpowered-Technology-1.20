@@ -1,9 +1,0 @@
-{
-  "type": "addsynth_energy:compressor",
-  "ingredients": [
-    {"tag": "forge:ingots/steel"}
-  ],
-  "result": {
-    "item": "addsynth_materials:steel_plate"
-  }
-}

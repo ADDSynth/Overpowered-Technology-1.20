@@ -1,7 +1,0 @@
-{
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "addsynth_energy:block/energy_storage"
-	},
-    "render_type": "translucent"
-}

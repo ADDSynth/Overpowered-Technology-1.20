@@ -1,9 +1,0 @@
-{
-  "type": "addsynth_energy:compressor",
-  "ingredients": [
-    {"tag": "forge:ingots/titanium"}
-  ],
-  "result": {
-    "item": "addsynth_materials:titanium_plate"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "type": "addsynth_energy:compressor",
-  "ingredients": [
-    {"tag": "forge:ingots/tin"}
-  ],
-  "result": {
-    "item": "addsynth_materials:tin_plate"
-  }
-}

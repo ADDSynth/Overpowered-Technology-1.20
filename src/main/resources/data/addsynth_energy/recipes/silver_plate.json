@@ -1,9 +1,0 @@
-{
-  "type": "addsynth_energy:compressor",
-  "ingredients": [
-    {"tag": "forge:ingots/silver"}
-  ],
-  "result": {
-    "item": "addsynth_materials:silver_plate"
-  }
-}

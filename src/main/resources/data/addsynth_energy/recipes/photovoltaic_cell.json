@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {"tag": "forge:silicon"}
-  ],
-  "result": {
-    "item": "addsynth_energy:photovoltaic_cell"
-  }
-}
