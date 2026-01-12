@@ -15,7 +15,7 @@ loaderVersion="[47,)" #mandatory This is typically bumped every Minecraft versio
 license="Creative Commons BY-NC-ND"
 
 # A URL to refer people to when problems occur with this mod
-issueTrackerURL="https://github.com/ADDSynth/Overpowered-Technology-1.19.4/issues" #optional
+issueTrackerURL="https://github.com/ADDSynth/Overpowered-Technology-1.20/issues" #optional
 
 
 
@@ -55,7 +55,7 @@ description="This mod adds a bunch of really cool science and tech stuff."
 [[dependencies.overpowered_technology]]
     modId="addsynth_energy"
     mandatory=true
-    versionRange="[1,)"
+    versionRange="[1.0,2.0)"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.overpowered_technology]]
