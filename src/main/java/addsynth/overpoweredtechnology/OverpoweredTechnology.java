@@ -1,6 +1,5 @@
 package addsynth.overpoweredtechnology;
 
-import java.io.File;
 import addsynth.core.compat.Compatibility;
 import addsynth.core.compat.EMCValue;
 import addsynth.core.util.CommonUtil;
@@ -40,7 +39,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -72,7 +70,6 @@ public class OverpoweredTechnology {
   }
 
   private static final void init_config(final ModLoadingContext context){
-    new File(FMLPaths.CONFIGDIR.get().toString(), MOD_NAME).mkdir();
     Game.registerConfig(context,                  Config::new, MOD_NAME, "main.toml");
     Game.registerConfig(context,           MachineValues::new, MOD_NAME, "machine_values.toml");
     Game.registerConfig(context, UnidentifiedItemsConfig::new, MOD_NAME, "unidentified_items.toml");
