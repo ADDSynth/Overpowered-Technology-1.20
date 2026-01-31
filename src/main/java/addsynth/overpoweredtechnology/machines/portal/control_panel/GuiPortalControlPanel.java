@@ -58,7 +58,7 @@ public final class GuiPortalControlPanel extends GuiEnergyBase<TilePortalControl
     addRenderableWidget(generate_portal_button);
     
     // Set Portal Control Panel Gui Displayed ItemStacks
-    final Ingredient[] portal_control_panel_displayed_itemstacks = {
+    gem_blocks.setRecipe(
       Ingredient.of(MaterialTag.RUBY.BLOCKS),
       Ingredient.of(MaterialTag.TOPAZ.BLOCKS),
       Ingredient.of(MaterialTag.CITRINE.BLOCKS),
@@ -67,8 +67,7 @@ public final class GuiPortalControlPanel extends GuiEnergyBase<TilePortalControl
       Ingredient.of(MaterialTag.SAPPHIRE.BLOCKS),
       Ingredient.of(Tags.Items.STORAGE_BLOCKS_AMETHYST),
       Ingredient.of(Tags.Items.STORAGE_BLOCKS_QUARTZ)
-    };
-    gem_blocks.setRecipe(portal_control_panel_displayed_itemstacks);
+    );
   }
 
   @Override
