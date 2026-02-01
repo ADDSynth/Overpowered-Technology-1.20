@@ -28,7 +28,7 @@ public final class GuiAdvancedOreRefinery extends GuiEnergyBase<TileAdvancedOreR
     draw_status(graphics, tile);
     graphics.renderItem(tile.getWorkingInventory().getStackInSlot(0), 76, 43);
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), 69);
-    draw_time_left_center(graphics, 92, tile);
+    draw_time_left_center(graphics, tile, 92);
   }
 
 }

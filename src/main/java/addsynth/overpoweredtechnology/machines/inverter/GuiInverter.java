@@ -40,7 +40,7 @@ public final class GuiInverter extends GuiEnergyBase<TileInverter, ContainerInve
     }
     
     draw_text_center(graphics, work_progress_bar.getWorkTimeProgress(), center_x, 70);
-    draw_time_left_center(graphics, 93, tile);
+    draw_time_left_center(graphics, tile, 93);
   }
 
 }

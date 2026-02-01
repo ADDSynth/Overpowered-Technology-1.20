@@ -90,7 +90,7 @@ public class AdvancedGemConverterGui extends GuiEnergyBase<TileAdvancedGemConver
     graphics.renderItem(working_stack, 65, 32);
     draw_text_center(graphics, progress_bar.getWorkTimeProgress(), 96, 36);
     draw_text_center(graphics, Integer.toString(tile.getLowestValue()), 162, 47);
-    draw_time_left_center(graphics, 99, tile); // TODO: Job system probably isn't set up correctly to handle the Advanced Gem Converter on the job when a gem is instantly moved to the slot of the same gem type, so it will report inaccurate time remaining.
+    draw_time_left_center(graphics, tile, 99); // TODO: Job system probably isn't set up correctly to handle the Advanced Gem Converter on the job when a gem is instantly moved to the slot of the same gem type, so it will report inaccurate time remaining.
   }
 
 }
