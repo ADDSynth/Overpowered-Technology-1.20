@@ -104,7 +104,5 @@ public final class Names {
 
 
   // Legacy
-  public static final ResourceLocation MATTER_ENERGY_CORE_LEGACY       = OverpoweredTechnology.getLocation("matter_energy_converter");
-  public static final ResourceLocation CRYSTAL_ENERGY_EXTRACTOR_LEGACY = OverpoweredTechnology.getLocation("crystal_energy_extractor");
   
 }

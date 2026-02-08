@@ -14,7 +14,6 @@ import addsynth.overpoweredtechnology.blocks.dimension.tree.*;
 import addsynth.overpoweredtechnology.game.core.*;
 import addsynth.overpoweredtechnology.game.reference.Names;
 import addsynth.overpoweredtechnology.game.reference.OverpoweredBlocks;
-import addsynth.overpoweredtechnology.game.reference.OverpoweredItems;
 import addsynth.overpoweredtechnology.items.*;
 import addsynth.overpoweredtechnology.items.basic.*;
 import addsynth.overpoweredtechnology.items.tools.LaserSword;
@@ -330,19 +329,10 @@ public final class Registers {
     // handle items
     final List<Mapping<Item>> missing_items = event.getMappings(ForgeRegistries.Keys.ITEMS, OverpoweredTechnology.MOD_ID);
     for(Mapping<Item> map : missing_items){
-      if(map.getKey().equals(Names.MATTER_ENERGY_CORE_LEGACY)){
-        map.remap(OverpoweredItems.matter_energy_core.get());
-      }
-      if(map.getKey().equals(Names.CRYSTAL_ENERGY_EXTRACTOR_LEGACY)){
-        map.remap(OverpoweredBlocks.energy_extractor.get().asItem());
-      }
     }
     // handle blocks
     final List<Mapping<Block>> missing_blocks = event.getMappings(ForgeRegistries.Keys.BLOCKS, OverpoweredTechnology.MOD_ID);
     for(Mapping<Block> map : missing_blocks){
-      if(map.getKey().equals(Names.CRYSTAL_ENERGY_EXTRACTOR_LEGACY)){
-        map.remap(OverpoweredBlocks.energy_extractor.get());
-      }
     }
   }
 
