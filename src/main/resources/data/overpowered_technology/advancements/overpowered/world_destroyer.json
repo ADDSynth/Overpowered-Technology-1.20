@@ -16,7 +16,12 @@
     "place_black_hole": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "block": "overpowered_technology:black_hole"
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "overpowered_technology:black_hole"
+          }
+        ]
       }
     }
   },
