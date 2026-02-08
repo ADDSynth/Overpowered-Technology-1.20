@@ -24,7 +24,7 @@ public final class CreativeTab {
   public static final void register(final Registry<CreativeModeTab> registry){
     final CreativeModeTab creative_tab = CreativeModeTab.builder()
       .title(Component.literal(OverpoweredTechnology.MOD_NAME))
-      .icon(() -> new ItemStack(OverpoweredItems.celestial_gem.get(), 1))
+      .icon(() -> new ItemStack(OverpoweredItems.matter_energy_core.get(), 1))
       .displayItems((displayParameters, output) -> {
         output.accept(OverpoweredItems.celestial_gem.get());
         output.accept(OverpoweredItems.energy_crystal_shards.get());

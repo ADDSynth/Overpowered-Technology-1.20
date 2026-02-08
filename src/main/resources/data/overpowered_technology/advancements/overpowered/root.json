@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "overpowered_technology:celestial_gem"
+      "item": "overpowered_technology:matter_energy_core"
     },
     "title": {
       "translate": "advancements.overpowered_technology.root.title"
