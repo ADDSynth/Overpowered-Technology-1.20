@@ -35,7 +35,7 @@ public final class CreativeTab {
         output.accept(OverpoweredItems.energized_power_core.get());
         output.accept(OverpoweredItems.nullified_power_core.get());
         output.accept(OverpoweredItems.energy_grid.get());
-        output.accept(OverpoweredItems.vacuum_container.get());
+        output.accept(OverpoweredItems.sealed_container.get());
         output.accept(OverpoweredItems.reinforced_container.get());
         output.accept(OverpoweredItems.beam_emitter.get());
         output.accept(OverpoweredItems.scanning_laser.get());

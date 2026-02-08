@@ -24,16 +24,16 @@
     "has_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "overpowered_technology:vacuum_container"
+        "recipe": "overpowered_technology:sealed_container"
       }
     },
-    "has_container": {
+    "has_sealed_container": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "overpowered_technology:vacuum_container"
+              "overpowered_technology:sealed_container"
             ]
           }
         ]
@@ -45,12 +45,12 @@
       "slimeball",
       "glass_panes",
       "has_recipe",
-      "has_container"
+      "has_sealed_container"
     ]
   ],
   "rewards": {
     "recipes": [
-      "overpowered_technology:vacuum_container"
+      "overpowered_technology:sealed_container"
     ]
   }
 }

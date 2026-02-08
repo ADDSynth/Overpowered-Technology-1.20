@@ -40,7 +40,7 @@ public final class TextReference {
 
   public static final Component plasma_description                  = Component.translatable("gui.overpowered_technology.jei_description.plasma");
   public static final Component matter_energy_core_description      = Component.translatable("gui.overpowered_technology.jei_description.matter_energy_core");
-  public static final Component vacuum_container_description        = Component.translatable("gui.overpowered_technology.jei_description.vacuum_container");
+  public static final Component sealed_container_description        = Component.translatable("gui.overpowered_technology.jei_description.sealed_container");
   public static final Component reinforced_container_description    = Component.translatable("gui.overpowered_technology.jei_description.reinforced_container");
   public static final Component dimensional_flux_description        = Component.translatable("gui.overpowered_technology.jei_description.dimensional_flux");
   public static final Component unimatter_description               = Component.translatable("gui.overpowered_technology.jei_description.unimatter");

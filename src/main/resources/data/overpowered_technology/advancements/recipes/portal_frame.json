@@ -21,13 +21,13 @@
         ]
       }
     },
-    "container": {
+    "sealed_container": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "overpowered_technology:vacuum_container"
+              "overpowered_technology:sealed_container"
             ]
           }
         ]
@@ -56,7 +56,7 @@
     [
       "iron_ingot",
       "obsidian",
-      "container",
+      "sealed_container",
       "has_recipe",
       "has_portal_frame"
     ]

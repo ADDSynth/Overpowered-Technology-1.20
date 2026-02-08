@@ -47,13 +47,13 @@
         ]
       }
     },
-    "vacuum_container": {
+    "sealed_container": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "overpowered_technology:vacuum_container"
+              "overpowered_technology:sealed_container"
             ]
           }
         ]
@@ -84,7 +84,7 @@
       "silver_plate",
       "matter_energy_transformer",
       "circuit",
-      "vacuum_container",
+      "sealed_container",
       "has_recipe",
       "has_machine"
     ]

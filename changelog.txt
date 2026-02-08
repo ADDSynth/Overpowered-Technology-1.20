@@ -16,6 +16,7 @@ CHANGED:
     and Bridge Builder (Avtivate an Energy Suspension Bridge the maximum length) advancements are
     no longer challenge advancements.
   Creative Tab icon and Advancements Tab icon have changed to the Matter/Energy Core.
+  Container was renamed to Sealed Container.
 FIXED:
   Ring Effects are now translated.
   Fix Crystal Matter Generator not creating a gem and wasting energy if the slot it had chosen was already full.

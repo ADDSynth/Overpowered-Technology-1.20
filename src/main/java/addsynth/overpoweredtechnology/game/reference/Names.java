@@ -24,7 +24,7 @@ public final class Names {
   public static final ResourceLocation ENERGIZED_POWER_CORE    = OverpoweredTechnology.getLocation("energized_power_core");
   public static final ResourceLocation NULLIFIED_POWER_CORE    = OverpoweredTechnology.getLocation("nullified_power_core");
   public static final ResourceLocation ENERGY_GRID             = OverpoweredTechnology.getLocation("energy_grid");
-  public static final ResourceLocation VACUUM_CONTAINER        = OverpoweredTechnology.getLocation("vacuum_container");
+  public static final ResourceLocation SEALED_CONTAINER        = OverpoweredTechnology.getLocation("sealed_container");
   public static final ResourceLocation REINFORCED_CONTAINER    = OverpoweredTechnology.getLocation("reinforced_container");
 
   public static final ResourceLocation BEAM_EMITTER            = OverpoweredTechnology.getLocation("beam_emitter");

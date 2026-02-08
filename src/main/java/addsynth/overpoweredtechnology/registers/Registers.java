@@ -153,7 +153,7 @@ public final class Registers {
       registry.register(Names.ENERGIZED_POWER_CORE,       new Item(new Item.Properties()));
       registry.register(Names.NULLIFIED_POWER_CORE,       new Item(new Item.Properties()));
       registry.register(Names.ENERGY_GRID,                new Item(new Item.Properties()));
-      registry.register(Names.VACUUM_CONTAINER,           new Item(new Item.Properties()));
+      registry.register(Names.SEALED_CONTAINER,           new Item(new Item.Properties()));
       registry.register(Names.REINFORCED_CONTAINER,       new Item(new Item.Properties()));
       
       registry.register(Names.BEAM_EMITTER,               new Item(new Item.Properties()));

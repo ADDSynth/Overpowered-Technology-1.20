@@ -18,7 +18,7 @@ public final class OverpoweredItems {
   public static final RegistryObject<Item> energized_power_core      = RegistryObject.create(Names.ENERGIZED_POWER_CORE,      ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> nullified_power_core      = RegistryObject.create(Names.NULLIFIED_POWER_CORE,      ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> energy_grid               = RegistryObject.create(Names.ENERGY_GRID,               ForgeRegistries.ITEMS);
-  public static final RegistryObject<Item> vacuum_container          = RegistryObject.create(Names.VACUUM_CONTAINER,          ForgeRegistries.ITEMS);
+  public static final RegistryObject<Item> sealed_container          = RegistryObject.create(Names.SEALED_CONTAINER,          ForgeRegistries.ITEMS);
   public static final RegistryObject<Item> reinforced_container      = RegistryObject.create(Names.REINFORCED_CONTAINER,      ForgeRegistries.ITEMS);
   
   public static final RegistryObject<Item> beam_emitter              = RegistryObject.create(Names.BEAM_EMITTER,              ForgeRegistries.ITEMS);

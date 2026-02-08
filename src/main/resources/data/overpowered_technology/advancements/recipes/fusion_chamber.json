@@ -1,13 +1,13 @@
 {
   "parent": "overpowered_technology:recipes/root",
   "criteria": {
-    "vacuum_container": {
+    "sealed_container": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "overpowered_technology:vacuum_container"
+              "overpowered_technology:sealed_container"
             ]
           }
         ]
@@ -44,7 +44,7 @@
   },
   "requirements": [
     [
-      "vacuum_container",
+      "sealed_container",
       "titanium_plate",
       "has_recipe",
       "has_machine"

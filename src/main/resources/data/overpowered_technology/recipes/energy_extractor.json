@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "sms",
-    "wgw",
+    "wew",
     "scs"
   ],
   "key": {
@@ -18,8 +18,8 @@
     "c": {
       "item": "addsynth_energy:circuit_tier_5"
     },
-    "g": {
-      "item": "overpowered_technology:vacuum_container"
+    "e": {
+      "item": "overpowered_technology:sealed_container"
     }
   },
   "result": {
