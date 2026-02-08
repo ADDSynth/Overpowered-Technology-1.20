@@ -8,8 +8,7 @@
     },
     "description": {
       "translate": "advancements.overpowered_technology.maximum_bridge_length.description"
-    },
-    "frame": "challenge"
+    }
   },
   "parent": "overpowered_technology:overpowered/energy_suspension_bridge",
   "criteria": {

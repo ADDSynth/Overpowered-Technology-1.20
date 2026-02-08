@@ -8,8 +8,7 @@
     },
     "description": {
       "translate": "advancements.overpowered_technology.convert_a_thousand_gems.description"
-    },
-    "frame": "challenge"
+    }
   },
   "parent": "overpowered_technology:overpowered/gem_converter",
   "criteria": {

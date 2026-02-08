@@ -8,8 +8,7 @@
     },
     "description": {
       "translate": "advancements.overpowered_technology.fire_maximum_laser.description"
-    },
-    "frame": "challenge"
+    }
   },
   "parent": "overpowered_technology:overpowered/fire_laser",
   "criteria": {
