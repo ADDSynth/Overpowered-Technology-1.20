@@ -18,6 +18,7 @@ CHANGED:
     and Bridge Builder (Activate an Energy Suspension Bridge the maximum length) advancements are
     no longer challenge advancements.
   Creative Tab icon and Advancements Tab icon have changed to the Matter/Energy Core.
+  Identifier work time was reduced to 10 seconds.
   Container was renamed to Sealed Container.
   Void Tools are finally named Void Tools instead of Null Tools.
 FIXED:
