@@ -4,6 +4,8 @@ INFO:
    - This WILL make your existing worlds incompatible when upgrading to this version.
   ADDSynthCore, ADDSynth Materials, and ADDSynth Energy have now been split into their
     own projects and their own .jar files. Overpowered Technology requires all 3.
+  Additional content was added to ADDSynthCore, ADDSynth Energy, and ADDSynth Materials.
+    See their respective changelogs for more info.
 NEW:
   Added Infinity Tools, made from Unimatter.
   Added Laser Swords.
@@ -13,13 +15,15 @@ CHANGED:
   Plasma now has an HD texture.
   Fusion Core now has an HD texture.
   The Master Converter (Convert a Thousand Gems), Maximum Distance (Fire a Laser the maximum distance),
-    and Bridge Builder (Avtivate an Energy Suspension Bridge the maximum length) advancements are
+    and Bridge Builder (Activate an Energy Suspension Bridge the maximum length) advancements are
     no longer challenge advancements.
   Creative Tab icon and Advancements Tab icon have changed to the Matter/Energy Core.
   Container was renamed to Sealed Container.
+  Void Tools are finally named Void Tools instead of Null Tools.
 FIXED:
-  Ring Effects are now translated.
+  Ring Effects are now translateable.
   Fix Crystal Matter Generator not creating a gem and wasting energy if the slot it had chosen was already full.
+  Fix Celestial Tools Advancement still mentioning Energy Tools instead of Celestial Tools.
 
 
 
