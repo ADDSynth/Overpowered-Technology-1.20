@@ -15,13 +15,23 @@ public class InfinityHoe extends HoeItem {
   }
 
   @Override
+  public Component getName(ItemStack itemstack){
+    return ((MutableComponent)super.getName(itemstack)).withStyle(ChatFormatting.GOLD);
+  }
+
+  @Override
   public boolean isEnchantable(ItemStack stack){
     return false;
   }
 
   @Override
-  public Component getName(ItemStack itemstack){
-    return ((MutableComponent)super.getName(itemstack)).withStyle(ChatFormatting.GOLD);
+  public boolean isBarVisible(ItemStack stack){
+    return false;
+  }
+
+  @Override
+  public boolean isValidRepairItem(ItemStack itemstack, ItemStack repair_item){
+    return false;
   }
 
 }
