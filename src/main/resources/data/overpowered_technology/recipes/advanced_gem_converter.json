@@ -1,16 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "pup",
+    "iui",
     "hgr",
-    "pcp"
+    "ici"
   ],
   "key": {
     "g": {
       "item": "overpowered_technology:gem_converter"
     },
-    "p": {
-      "tag": "forge:plates/platinum"
+    "i": {
+      "tag": "forge:plates/invar"
     },
     "c": {
       "item": "addsynth_energy:circuit_tier_8"

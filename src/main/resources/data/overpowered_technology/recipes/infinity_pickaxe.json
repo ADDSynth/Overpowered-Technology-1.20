@@ -7,7 +7,7 @@
   ],
   "key": {
     "s": {
-      "item": "addsynth_energy:steel_rod"
+      "tag": "forge:rods/steel"
     },
     "u": {
       "item": "overpowered_technology:unimatter"

@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "tet",
+    "iei",
     "ere",
     "ncn"
   ],
   "key": {
-    "t": {
-      "tag": "forge:plates/titanium"
+    "i": {
+      "tag": "forge:plates/invar"
     },
     "r": {
       "item": "overpowered_technology:reinforced_container"

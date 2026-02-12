@@ -2,20 +2,23 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "aea",
-    "dnd",
-    "aea"
+    "dsd",
+    "aca"
   ],
   "key": {
     "a": {
       "tag": "forge:plates/aluminum"
     },
     "e": {
-      "tag": "forge:ender_pearls"
+      "item": "overpowered_technology:energized_power_core"
+    },
+    "s": {
+      "item": "addsynth_energy:energy_storage_container"
     },
     "d": {
       "item": "overpowered_technology:data_cable"
     },
-    "n": {
+    "c": {
       "item": "addsynth_energy:circuit_tier_6"
     }
   },

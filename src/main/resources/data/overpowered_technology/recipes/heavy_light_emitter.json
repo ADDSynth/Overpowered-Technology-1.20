@@ -1,18 +1,12 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " b ",
-    "bcb",
-    " b "
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "overpowered_technology:beam_emitter"},
+    {"item": "overpowered_technology:beam_emitter"},
+    {"item": "overpowered_technology:beam_emitter"},
+    {"item": "overpowered_technology:beam_emitter"},
+    {"item": "overpowered_technology:matter_energy_core"}
   ],
-  "key": {
-    "b": {
-      "item": "overpowered_technology:beam_emitter"
-    },
-    "c": {
-      "item": "overpowered_technology:matter_energy_core"
-    }
-  },
   "result": {
     "item": "overpowered_technology:heavy_light_emitter",
     "count": 4
