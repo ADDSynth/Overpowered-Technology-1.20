@@ -12,15 +12,17 @@ NEW:
   Added Advanced Gem Converter.
 CHANGED:
   Celestial Sword was renamed to Celestial Blade.
-  Plasma now has an HD texture.
-  Fusion Core now has an HD texture.
   The Master Converter (Convert a Thousand Gems), Maximum Distance (Fire a Laser the maximum distance),
     and Bridge Builder (Activate an Energy Suspension Bridge the maximum length) advancements are
     no longer challenge advancements.
   Creative Tab icon and Advancements Tab icon have changed to the Matter/Energy Core.
-  Identifier work time was reduced to 10 seconds.
+  Identifier work time was reduced to 10 seconds, and total energy required was reduced from 8,000 to 2,000.
+  Plasma Generator time was reduced from 4 minutes to 30 seconds (if working at 100% efficiency),
+    and energy required was reduced from 240,000 to 180,000.
   Container was renamed to Sealed Container.
   Void Tools are finally named Void Tools instead of Null Tools.
+  Plasma now has an HD texture.
+  Fusion Core now has an HD texture.
 FIXED:
   Ring Effects are now translateable.
   Fix Crystal Matter Generator not creating a gem and wasting energy if the slot it had chosen was already full.
