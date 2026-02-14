@@ -7,7 +7,7 @@ import addsynth.core.util.network.NetworkUtil;
 import addsynth.core.util.player.PlayerUtil;
 import addsynth.energy.lib.tiles.machines.MachineStatus;
 import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
-import addsynth.material.Material;
+import addsynth.material.reference.Material;
 import addsynth.overpoweredtechnology.config.MachineValues;
 import addsynth.overpoweredtechnology.game.NetworkHandler;
 import addsynth.overpoweredtechnology.game.core.Gems;

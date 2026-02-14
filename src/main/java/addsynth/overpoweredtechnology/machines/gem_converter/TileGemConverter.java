@@ -6,7 +6,7 @@ import addsynth.core.util.game.data.AdvancementUtil;
 import addsynth.core.util.player.PlayerUtil;
 import addsynth.energy.lib.tiles.machines.MachineStatus;
 import addsynth.energy.lib.tiles.machines.TileStandardWorkMachine;
-import addsynth.material.Material;
+import addsynth.material.reference.Material;
 import addsynth.overpoweredtechnology.assets.CustomAdvancements;
 import addsynth.overpoweredtechnology.assets.CustomStats;
 import addsynth.overpoweredtechnology.config.MachineValues;

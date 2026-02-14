@@ -1,7 +1,7 @@
 package addsynth.overpoweredtechnology.machines.gem_converter;
 
 import java.util.ArrayList;
-import addsynth.material.Material;
+import addsynth.material.reference.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;

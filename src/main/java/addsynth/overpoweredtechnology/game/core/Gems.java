@@ -1,6 +1,6 @@
 package addsynth.overpoweredtechnology.game.core;
 
-import addsynth.material.Material;
+import addsynth.material.reference.Material;
 import addsynth.material.util.MaterialTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
