@@ -34,10 +34,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public final class TilePortalControlPanel extends TileManualMachine implements IAutoShutoff, MenuProvider {
 
-  private final Block data_cable;
-  private final Block portal_frame;
-  private final Block iron_frame;
-
   private static final int containers = 8;
   private boolean[] portal_items = new boolean[containers];
   private boolean valid_portal = false;
@@ -51,6 +47,7 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
   // Gui methods:
   public final Component getMessage(){ return message.getMessage(); }
   public final boolean getPortalItem(final int index){ return portal_items[index]; }
+  /** Returns whether the portal is constructed correctly and is ready to generate. */
   public final boolean isValid(){ return valid_portal; }
   @Override
   public final boolean getAutoShutoff(){ return auto_shutoff; }
@@ -67,9 +64,6 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
     for(i = 0; i < containers; i++){
       portal_items[i] = false;
     }
-    data_cable   = OverpoweredBlocks.data_cable.get();
-    portal_frame = OverpoweredBlocks.portal_frame.get();
-    iron_frame   = OverpoweredBlocks.iron_frame_block.get();
   }
 
   @Override
@@ -114,7 +108,7 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
   }
 
   private final void evaluate_portal_construction(final Level level, final boolean player_is_in_creative_mode){
-    if(portal_search_algorithm(level, this.worldPosition) == false){
+    if(findPortal(level, this.worldPosition) == false){
       message = PortalMessage.NO_DATA_CABLE;
       return;
     }
@@ -156,7 +150,9 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
     message = PortalMessage.PORTAL_READY;
   }
 
-  private final boolean portal_search_algorithm(final Level level, BlockPos from){
+  private final boolean findPortal(final Level level, final BlockPos from){
+    final Block data_cable = OverpoweredBlocks.data_cable.get();
+    final Block iron_frame = OverpoweredBlocks.iron_frame_block.get();
     return BlockSearch.forEachAdjacent(from, level, (Node node) -> {
       if(node.block == data_cable || node.block == iron_frame){
         return true;
@@ -164,10 +160,7 @@ public final class TilePortalControlPanel extends TileManualMachine implements I
       if(node.getTile() != null){
         if(node.getTile() instanceof TilePortalFrame portal_frame){
           portal_frames.add(node.position);
-          final int item = portal_frame.check_item();
-          if(item >= 0){
-            portal_items[item] = true;
-          }
+          portal_frame.check_item(portal_items);
           return true;
         }
       }

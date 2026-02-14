@@ -29,20 +29,22 @@ public final class TilePortalFrame extends TileStorageMachine implements MenuPro
     super(Tiles.PORTAL_FRAME.get(), position, blockstate, slot_data);
   }
 
-  public final int check_item(){
+  public final void check_item(final boolean[] items){
     final ItemStack stack = input_inventory.getStackInSlot(0);
-    if(stack.isEmpty()){ return -1; }
-    final Item item = stack.getItem();
-    final ITagManager<Item> tag_manager = ForgeRegistries.ITEMS.tags();
-    if(tag_manager.getTag(MaterialTag.RUBY.BLOCKS           ).contains(item)){ return 0; }
-    if(tag_manager.getTag(MaterialTag.TOPAZ.BLOCKS          ).contains(item)){ return 1; }
-    if(tag_manager.getTag(MaterialTag.CITRINE.BLOCKS        ).contains(item)){ return 2; }
-    if(tag_manager.getTag(Tags.Items.STORAGE_BLOCKS_EMERALD ).contains(item)){ return 3; }
-    if(tag_manager.getTag(Tags.Items.STORAGE_BLOCKS_DIAMOND ).contains(item)){ return 4; }
-    if(tag_manager.getTag(MaterialTag.SAPPHIRE.BLOCKS       ).contains(item)){ return 5; }
-    if(tag_manager.getTag(Tags.Items.STORAGE_BLOCKS_AMETHYST).contains(item)){ return 6; }
-    if(tag_manager.getTag(Tags.Items.STORAGE_BLOCKS_QUARTZ  ).contains(item)){ return 7; }
-    return -1;
+    if(!stack.isEmpty()){
+      final Item item = stack.getItem();
+      final ITagManager<Item> tag_manager = ForgeRegistries.ITEMS.tags();
+      if(tag_manager != null){
+             if(tag_manager.getTag(MaterialTag.RUBY.BLOCKS           ).contains(item)){ items[0] = true; }
+        else if(tag_manager.getTag(MaterialTag.TOPAZ.BLOCKS          ).contains(item)){ items[1] = true; }
+        else if(tag_manager.getTag(MaterialTag.CITRINE.BLOCKS        ).contains(item)){ items[2] = true; }
+        else if(tag_manager.getTag(Tags.Items.STORAGE_BLOCKS_EMERALD ).contains(item)){ items[3] = true; }
+        else if(tag_manager.getTag(Tags.Items.STORAGE_BLOCKS_DIAMOND ).contains(item)){ items[4] = true; }
+        else if(tag_manager.getTag(MaterialTag.SAPPHIRE.BLOCKS       ).contains(item)){ items[5] = true; }
+        else if(tag_manager.getTag(Tags.Items.STORAGE_BLOCKS_AMETHYST).contains(item)){ items[6] = true; }
+        else if(tag_manager.getTag(Tags.Items.STORAGE_BLOCKS_QUARTZ  ).contains(item)){ items[7] = true; }
+      }
+    }
   }
 
   @Override
