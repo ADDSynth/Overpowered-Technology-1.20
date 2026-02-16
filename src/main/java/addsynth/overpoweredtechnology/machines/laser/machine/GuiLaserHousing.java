@@ -1,5 +1,6 @@
 package addsynth.overpoweredtechnology.machines.laser.machine;
 
+import addsynth.core.gui.widgets.text_box.UnsignedIntegerTextBox;
 import addsynth.energy.lib.gui.GuiEnergyBase;
 import addsynth.energy.lib.gui.widgets.AutoShutoffCheckbox;
 import addsynth.energy.lib.gui.widgets.EnergyProgressBar;
@@ -7,9 +8,7 @@ import addsynth.energy.lib.gui.widgets.OnOffSwitch;
 import addsynth.overpoweredtechnology.game.NetworkHandler;
 import addsynth.overpoweredtechnology.game.reference.GuiReference;
 import addsynth.overpoweredtechnology.machines.laser.network_messages.SetLaserDistanceMessage;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -24,7 +23,7 @@ public final class GuiLaserHousing extends GuiEnergyBase<TileLaserHousing, Conta
   private static final Component lasers_text          = Component.translatable("gui.overpowered_technology.laser_housing.lasers");
   private static final Component distance_text        = Component.translatable("gui.overpowered_technology.laser_housing.distance");
 
-  private EditBox text_box;
+  private UnsignedIntegerTextBox text_box;
   private final EnergyProgressBar energy_bar = new EnergyProgressBar(9, 79, 163, 16, 22, 162);
 
   private static final int gui_height = 115;
@@ -48,47 +47,17 @@ public final class GuiLaserHousing extends GuiEnergyBase<TileLaserHousing, Conta
     super(208, gui_height, container, player_inventory, title, GuiReference.laser_machine);
   }
 
-  private static final class LaserDistanceTextField extends EditBox {
-
-    private final TileLaserHousing tile;
-
-    public LaserDistanceTextField(Font fontIn, int x, int y, int width, int height, TileLaserHousing tile){
-      super(fontIn, x, y, width, height, Component.empty());
-      this.tile = tile;
-      setValue(Integer.toString(tile.getLaserDistance()));
-      setMaxLength(4); // FEATURE: add a numbers-only textbox to ADDSynthCore. Also add Unsigned textbox. Set text to red if input is invalid.
-      setTextColor(16777215);
-      setResponder((String text) -> text_field_changed());
-    }
-
-    private final void text_field_changed(){
-      int captured_distance = 0;
-      try{
-        captured_distance = Integer.parseUnsignedInt(getValue());
-      }
-      catch(NumberFormatException e){
-        captured_distance = -1;
-      }
-      if(captured_distance >= 0){
-        if(captured_distance != tile.getLaserDistance()){
-          if(captured_distance > LaserNetwork.max_laser_distance){
-            captured_distance = LaserNetwork.max_laser_distance;
-            setValue(Integer.toString(LaserNetwork.max_laser_distance));
-          }
-          NetworkHandler.INSTANCE.sendToServer(new SetLaserDistanceMessage(tile.getBlockPos(), captured_distance));
-        }
-      }
-    }
-
-  }
-
   @Override
   protected final void init(){
     super.init();
     addRenderableWidget(new OnOffSwitch<>(this, tile));
     addRenderableWidget(new AutoShutoffCheckbox<TileLaserHousing>(this.leftPos + check_box_x, this.topPos + check_box_y, tile));
     
-    this.text_box = new LaserDistanceTextField(this.font, this.leftPos + text_box_x, this.topPos + text_box_y, text_box_width, text_box_height, tile);
+    text_box = new UnsignedIntegerTextBox(this.font, this.leftPos + text_box_x, this.topPos + text_box_y, text_box_width, text_box_height, tile.getLaserDistance(), 1, LaserNetwork.max_laser_distance);
+    text_box.setTextColor(16777215);
+    text_box.setCallback((Integer value) -> {
+      NetworkHandler.INSTANCE.sendToServer(new SetLaserDistanceMessage(tile.getBlockPos(), value));
+    });
     addWidget(text_box);
   }
 
