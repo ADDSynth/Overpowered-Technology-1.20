@@ -19,7 +19,7 @@
       "item": "addsynth_energy:circuit_tier_5"
     },
     "e": {
-      "item": "addsynth_energy:energy_storage_container"
+      "item": "addsynth_energy:energy_storage"
     }
   },
   "result": {
