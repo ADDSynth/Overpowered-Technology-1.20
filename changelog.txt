@@ -23,6 +23,8 @@ CHANGED:
   Void Tools are finally named Void Tools instead of Null Tools.
   Plasma now has an HD texture.
   Fusion Core now has an HD texture.
+  Moved the Crystal Matter Generator advancement to after Fusion Energy advancement.
+  Changed the icon for the Celestial Tools and Void Tools advancements to Celestial Pickaxe and Void Pickaxe.
 FIXED:
   Ring Effects are now translateable.
   Fix Crystal Matter Generator not creating a gem and wasting energy if the slot it had chosen was already full.

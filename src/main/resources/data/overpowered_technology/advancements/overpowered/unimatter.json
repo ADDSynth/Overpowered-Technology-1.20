@@ -11,7 +11,7 @@
     },
     "frame": "goal"
   },
-  "parent": "overpowered_technology:overpowered/black_hole",
+  "parent": "overpowered_technology:overpowered/matter_compressor",
   "criteria": {
     "unimatter": {
       "trigger": "minecraft:inventory_changed",

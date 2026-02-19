@@ -256,6 +256,8 @@
 
 "advancements.overpowered_technology.plasma_generator.title": "Plasma Generator",
 "advancements.overpowered_technology.plasma_generator.description": "Craft a Plasma Generator",
+"advancements.overpowered_technology.laser_swords.title": "Laser Swords",
+"advancements.overpowered_technology.laser_swords.description": "Craft any Laser Sword",
 "advancements.overpowered_technology.matter_energy_core.title": "Matter & Energy",
 "advancements.overpowered_technology.matter_energy_core.description": "Craft a Matter/Energy Core",
 
@@ -318,6 +320,8 @@
 "advancements.overpowered_technology.survivor.title": "Survivor",
 "advancements.overpowered_technology.survivor.description": "Use a Dimensional Anchor to survive a Black Hole",
 
+"advancements.overpowered_technology.matter_compressor.title": "Matter Compressor",
+"advancements.overpowered_technology.matter_compressor.description": "Craft a Matter Compressor",
 "advancements.overpowered_technology.unimatter.title": "Unimatter",
 "advancements.overpowered_technology.unimatter.description": "Use the Matter Compressor to obtain Unimatter.",
 "advancements.overpowered_technology.infinity_tools.title": "Infinity Tools",

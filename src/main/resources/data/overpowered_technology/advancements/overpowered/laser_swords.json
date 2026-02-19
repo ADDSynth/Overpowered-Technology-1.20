@@ -1,0 +1,125 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:green_laser_sword",
+      "nbt": "{\"Energy\": 1, \"Energy Capacity\": 1}"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.laser_swords.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.laser_swords.description"
+    }
+  },
+  "parent": "overpowered_technology:overpowered/plasma_generator",
+  "criteria": {
+    "white_laser_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:white_laser_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "red_laser_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:red_laser_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "orange_laser_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:orange_laser_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "yellow_laser_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:yellow_laser_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "green_laser_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:green_laser_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "cyan_laser_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:cyan_laser_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "blue_laser_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:blue_laser_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "magenta_laser_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:magenta_laser_sword"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "white_laser_sword",
+      "red_laser_sword",
+      "orange_laser_sword",
+      "yellow_laser_sword",
+      "green_laser_sword",
+      "cyan_laser_sword",
+      "blue_laser_sword",
+      "magenta_laser_sword"
+    ]
+  ]
+}

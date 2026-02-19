@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "overpowered_technology:matter_compressor"
+    },
+    "title": {
+      "translate": "advancements.overpowered_technology.matter_compressor.title"
+    },
+    "description": {
+      "translate": "advancements.overpowered_technology.matter_compressor.description"
+    }
+  },
+  "parent": "overpowered_technology:overpowered/black_hole",
+  "criteria": {
+    "matter_compressor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "overpowered_technology:matter_compressor"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

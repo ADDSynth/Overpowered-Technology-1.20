@@ -10,7 +10,7 @@
       "translate": "advancements.overpowered_technology.crystal_matter_generator.description"
     }
   },
-  "parent": "overpowered_technology:overpowered/inverter",
+  "parent": "overpowered_technology:overpowered/fusion_energy",
   "criteria": {
     "crystal_matter_generator": {
       "trigger": "minecraft:inventory_changed",

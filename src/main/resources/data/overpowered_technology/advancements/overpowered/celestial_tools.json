@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "overpowered_technology:celestial_sword"
+      "item": "overpowered_technology:celestial_pickaxe"
     },
     "title": {
       "translate": "advancements.overpowered_technology.celestial_tools.title"
@@ -81,20 +81,5 @@
       "celestial_pickaxe",
       "celestial_hoe"
     ]
-  ],
-  "conditions": [
-    {
-      "type": "forge:and",
-      "values": [
-        {
-          "type": "forge:item_exists",
-          "item": "overpowered_technology:celestial_pickaxe"
-        },
-        {
-          "type": "forge:item_exists",
-          "item": "overpowered_technology:celestial_sword"
-        }
-      ]
-    }
   ]
 }
