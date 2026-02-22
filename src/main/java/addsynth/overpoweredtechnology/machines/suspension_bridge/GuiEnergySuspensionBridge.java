@@ -52,6 +52,7 @@ public final class GuiEnergySuspensionBridge extends GuiEnergyBase<TileSuspensio
     rotate_button = Button.builder(rotate, (Button button) -> {
       NetworkHandler.INSTANCE.sendToServer(new RotateBridgeMessage(tile.getBlockPos()));
     }).bounds(this.leftPos + button_x, this.topPos + button_y, button_width, 20).build();
+    rotate_button.active = tile.can_rotate();
     addRenderableWidget(rotate_button);
     message_x[0] =    up_section.horizontal_center + GuiUtil.getMaxStringWidth(font,  ADDSynthCoreText.west.getString()+":",    ADDSynthCoreText.up.getString()+":") / 2;
     message_x[1] = north_section.horizontal_center + GuiUtil.getMaxStringWidth(font, ADDSynthCoreText.south.getString()+":", ADDSynthCoreText.north.getString()+":") / 2;

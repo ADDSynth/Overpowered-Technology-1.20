@@ -60,6 +60,8 @@ public class AdvancedGemConverterGui extends GuiEnergyBase<TileAdvancedGemConver
     craftEnergyCrystalButton = new CraftButton(leftPos + 95, topPos + 75, new ItemStack(OverpoweredItems.energy_crystal.get()), () ->
       NetworkHandler.INSTANCE.sendToServer(new AdvancedGemConverterCommand(tile.getBlockPos(), 0))
     );
+    craftLightBlockButton.active    = tile.canCraftLightBlock();
+    craftEnergyCrystalButton.active = tile.canCraftEnergyCrystal();
     addRenderableWidget(craftLightBlockButton);
     addRenderableWidget(craftEnergyCrystalButton);
   }
