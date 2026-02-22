@@ -14,21 +14,20 @@ import net.minecraft.world.entity.player.Inventory;
 
 public final class GuiPlasmaGenerator extends GuiEnergyBase<TilePlasmaGenerator, ContainerPlasmaGenerator> {
 
-  private final WorkProgressBar work_progress_bar = new WorkProgressBar(8, 93, 166, 5, 7, 204);
+  private final WorkProgressBar work_progress_bar = new WorkProgressBar(8, 84, 172, 5, 7, 204);
   
   private UnsignedIntegerTextBox text_box;
   
   public GuiPlasmaGenerator(final ContainerPlasmaGenerator container, final Inventory player_inventory, final Component title){
-    super(183, 196, container, player_inventory, title, GuiReference.plasma_generator);
+    super(189, 187, container, player_inventory, title, GuiReference.plasma_generator);
   }
 
   @Override
   protected final void init(){
     super.init();
-    addRenderableWidget(new OnOffSwitch<>(this, tile));
-    addRenderableWidget(new AutoShutoffCheckbox<TilePlasmaGenerator>(this.leftPos + 19, this.topPos + 52, tile));
-    
-    text_box = new UnsignedIntegerTextBox(this.font, this.leftPos + 139, this.topPos + 51, 35, 15, tile.get_output_number(), 1, ItemConstants.stack_size);
+    addRenderableWidget(new OnOffSwitch<>(this, tile, 40));
+    addRenderableWidget(new AutoShutoffCheckbox<TilePlasmaGenerator>(this.leftPos + 25, this.topPos + 64, tile));
+    text_box = new UnsignedIntegerTextBox(this.font, this.leftPos + 137, this.topPos + 62, 37, 16, tile.get_output_number(), 1, ItemConstants.stack_size);
     text_box.setTextColor(16777215);
     text_box.setCallback((Integer value) -> {
       NetworkHandler.INSTANCE.sendToServer(new SetOutputThresholdMessage(tile.getBlockPos(), value));
@@ -61,10 +60,10 @@ public final class GuiPlasmaGenerator extends GuiEnergyBase<TilePlasmaGenerator,
   @Override
   protected final void renderLabels(GuiGraphics graphics, int mouseX, int mouseY){
     draw_title(graphics);
-    draw_status_after_switch(graphics, tile);
-    draw_energy_usage_below_switch(graphics);
-    draw_text_right(graphics, work_progress_bar.getWorkTimeProgress(), 77, 74);
-    draw_time_left_center(graphics, tile, 102);
+    draw_energy_usage(graphics);
+    draw_status(graphics, tile, 28);
+    draw_text_right(graphics, work_progress_bar.getWorkTimeProgress(), 91, 45);
+    draw_time_left_center(graphics, tile, 94);
   }
 
 }
