@@ -40,6 +40,8 @@ public final class Config {
   private static final int DEFAULT_ENERGY_BRIDGE_DISTANCE = 250;
   public static ForgeConfigSpec.IntValue energy_bridge_max_distance;
 
+  // mine a solid 40x40x40 area, or a hollow 64x64x64 area. Will take you 18 hours.
+  // It is intended for you to automate this using another mod, or use the Lasers.
   private static final int DEFAULT_MAX_REQUIRED_MATTER = 64_000;
   public static ForgeConfigSpec.IntValue max_matter;
 

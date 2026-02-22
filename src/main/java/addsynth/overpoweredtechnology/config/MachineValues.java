@@ -14,10 +14,10 @@ public final class MachineValues {
   public static ForgeConfigSpec.IntValue light_block_max_extract;
 
   // Standard Machines
-  public static final MachineDataConfig gem_converter          = new MachineDataConfig("Gem Converter"         ,    800,  28, 0.06 ,  60); // 22,400 for 40 seconds (allowing 12 conversions per Energy Crystal.)
-  public static final MachineDataConfig inverter               = new MachineDataConfig("Inverter"              , 18_000,  15, 0.1  , 200); // 1 full energy crystal for 15 minutes
-  public static final MachineDataConfig magic_infuser          = new MachineDataConfig("Magic Infuser"         ,  1_200,  50, 0.075,  60); // 60,000
-  public static final MachineDataConfig identifier             = new MachineDataConfig("Identifier"            ,    200,  10, 0.05 ,  10); //  2,000
+  public static final MachineDataConfig gem_converter          = new MachineDataConfig("Gem Converter"         ,    800,  28, 0.06 ,  60); //  22,400 for 40 seconds (allowing 12 conversions per Energy Crystal.)
+  public static final MachineDataConfig inverter               = new MachineDataConfig("Inverter"              , 12_000,  24, 0.1  , 200); // 288,000 energy (1 energy crystal) for 10 minutes
+  public static final MachineDataConfig magic_infuser          = new MachineDataConfig("Magic Infuser"         ,  1_200,  50, 0.075,  60); //  60,000
+  public static final MachineDataConfig identifier             = new MachineDataConfig("Identifier"            ,    200,  10, 0.05 ,  10); //   2,000
   public static final MachineDataConfig advanced_gem_converter = new MachineDataConfig("Advanced Gem Converter",    600,  75, 0, 0); // alternatively, you could do 400 and 120, to be even faster, each conversion would be 20 seconds.
 
   // Passive Machines
