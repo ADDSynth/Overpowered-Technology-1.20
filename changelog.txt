@@ -32,7 +32,7 @@ FIXED:
 
 
 
-v1.5.3 - TBD
+v1.5.3 - February 24, 2026
 NEW:
   Some vanilla items can now be found in the ADDSynth Materials Creative Tab.
   Unidentified Item drops now drop for the Piglin, Piglin Brute, Hoglin, Zoglin, and the Warden.
